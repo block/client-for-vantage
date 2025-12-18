@@ -1,0 +1,20 @@
+.nox
+__pycache__
+.poetry
+.pytest_cache
+.ruff_cache
+dist
+.venv
+.env
+.mypy_cache
+.hermit
+
+# Local development files
+test_local
+openapi_spec.json
+
+# LLM files 
+.claude
+CLAUDE.md
+INSTRUCTIONS.md
+

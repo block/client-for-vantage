@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: '*'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+    - name: Install the latest version of uv
+      uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Install Python versions
+      run: uv python install 3.10 3.11 3.12
+
+    - name: Run Nox
+      env:
+        VANTAGE_API_KEY: ${{ secrets.VANTAGE_API_KEY }}
+        WORKSPACE_TOKEN: ${{ secrets.WORKSPACE_TOKEN }}
+      run: uv run nox
+
+    - name: Test build
+      run: uv build
