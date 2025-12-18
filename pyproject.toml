@@ -41,7 +41,7 @@ dev = [
 [project.urls]
 Homepage = "https://github.com/block/client-for-vantage"
 Repository = "https://github.com/block/client-for-vantage"
-Issues = "https://github.com/block/cilent-for-vantage/issues"
+Issues = "https://github.com/block/client-for-vantage/issues"
 
 [tool.uv.build-backend]
 module-name = "vantage_sdk"
