@@ -1,4 +1,4 @@
-# Vantage SDK
+# Client for Vantage
 
 ![Python 3.10](https://img.shields.io/badge/Python-3.10-blue.svg)
 ![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)
@@ -12,7 +12,7 @@ This SDK is a Python client built around the [Vantage API], providing a streamli
 
 ### Install the library
 
-`uv add vantage-sh-sdk`
+`uv add client-for-vantage`
 
 ### Inititate the SDK
 
