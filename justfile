@@ -16,7 +16,7 @@ test:
 # --- Type Checking ---
 
 typecheck:
-  uv run mypy
+  uv run basedpyright
 
 # --- Run all checks ---
 
@@ -34,6 +34,7 @@ generate-models: download-openapi
     --input-file-type openapi \
     --output-model-type pydantic_v2.BaseModel \
     --target-python-version 3.10 \
+    --module-split-mode single \
     --use-generic-container-types \
     --use-subclass-enum \
     --use-union-operator \
@@ -44,5 +45,7 @@ generate-models: download-openapi
     --use-annotated \
     --strict-nullable \
     --use-default-kwarg \
-    --parent-scoped-naming \
+    --naming-strategy primary-first \
+    --all-exports-scope recursive \
+    --all-exports-collision-strategy minimal-prefix \
     --openapi-scopes schemas paths parameters

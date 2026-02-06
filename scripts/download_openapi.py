@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-import httpx
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from vantage_sdk import VantageSDK
@@ -27,7 +26,7 @@ if __name__ == "__main__":
 
     client = VantageSDK(api_key=settings.vantage_api_key)
 
-    result: httpx.Response = client.get_openapi_spec()
+    result = client.get_openapi_spec()
 
     with open("openapi_spec.json", "w") as f:
         json.dump(result, f, indent=2)

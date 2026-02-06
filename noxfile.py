@@ -27,4 +27,4 @@ def format_check(session):
 def type_check(session):
     session.install(*CORE_DEPS)
     session.install(*DEV_DEPS)
-    session.run("mypy")
+    session.run("basedpyright")

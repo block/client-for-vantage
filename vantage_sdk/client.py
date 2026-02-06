@@ -2,7 +2,7 @@ import asyncio
 import logging
 import warnings
 from collections.abc import Sequence
-from typing import NewType, TypeVar
+from typing import Any, NewType, TypeVar, cast
 from urllib.parse import urljoin
 
 from httpx import AsyncClient, Client, HTTPError, HTTPStatusError, Timeout
@@ -194,7 +194,7 @@ PollInterval = NewType("PollInterval", int)
 # Generic type
 T = TypeVar("T")
 # This type accepts only BaseModel subclasses
-BaseModelType = TypeVar("BaseModelType", bound=BaseModel)
+
 
 # ---- Consts ----
 
@@ -223,7 +223,7 @@ class VantageSDK:
 
     # ---- Private Methods ----
 
-    def _get(self, endpoint: str, params: dict | BaseModel | None = None) -> dict:
+    def _get(self, endpoint: str, params: dict[str, Any] | BaseModel | None = None) -> dict[str, Any]:
         """
         Perform a GET request to the specified endpoint
 
@@ -248,7 +248,7 @@ class VantageSDK:
         response.raise_for_status()
         return response.json()
 
-    def _get_paginated(self, endpoint: str, params: dict | BaseModel | None = None) -> dict:
+    def _get_paginated(self, endpoint: str, params: dict[str, Any] | BaseModel | None = None) -> dict[str, Any]:
         """Fetch paginated results automatically, combining all pages into a single response dictionary
 
         Logic:
@@ -271,7 +271,7 @@ class VantageSDK:
 
         first_response = self._get(endpoint, {**params, "page": 1})
 
-        def parse_page(page_response: dict, page_key: str) -> int | None:
+        def parse_page(page_response: dict[str, Any], page_key: str) -> int | None:
             links = page_response.get("links", {}).get(page_key, None)
             if links:
                 return int(links.split("page=")[1])
@@ -323,7 +323,7 @@ class VantageSDK:
             # Initialize a new async client
             async with AsyncClient(base_url=self.base_url, headers=headers, timeout=self._timeout) as async_client:
                 # Create tasks for pages 2 to n
-                tasks = []
+                tasks: list[Any] = []
 
                 for page_num in range(2, total_pages + 1):
                     page_params = {**params, "page": page_num}
@@ -357,8 +357,14 @@ class VantageSDK:
                     for key in response_keys:
                         if key in page_data:
                             if isinstance(first_response[key], list) and isinstance(page_data[key], list):
-                                first_response[key].extend(page_data[key])
-                                logger.debug("Page %d: Added %d items to list key '%s'", i, len(page_data[key]), key)
+                                items = cast(list[Any], page_data[key])
+                                first_response[key].extend(items)
+                                logger.debug(
+                                    "Page %d: Added %d items to list key '%s'",
+                                    i,
+                                    len(items),
+                                    key,
+                                )
                             elif isinstance(first_response[key], dict) and isinstance(page_data[key], dict):
                                 first_response[key].update(page_data[key])
                                 logger.debug("Page %d: Updated dictionary key '%s'", i, key)
@@ -375,7 +381,7 @@ class VantageSDK:
 
         return first_response
 
-    def _post(self, endpoint: str, params: BaseModelType) -> dict:
+    def _post(self, endpoint: str, params: BaseModel) -> dict[str, Any]:
         """
         Perform a POST request to the specified endpoint
 
@@ -388,21 +394,18 @@ class VantageSDK:
         """
         url = urljoin(self.base_url, endpoint)
 
-        if isinstance(params, BaseModel):
-            json_data = params.model_dump(
-                mode="json",
-                by_alias=True,
-                exclude_none=True,
-                exclude_defaults=True,
-            )
-        else:
-            json_data = params
+        json_data = params.model_dump(
+            mode="json",
+            by_alias=True,
+            exclude_none=True,
+            exclude_defaults=True,
+        )
 
         response = self.session.post(url, json=json_data)
         response.raise_for_status()
         return response.json()
 
-    def _put(self, endpoint: str, params: BaseModelType) -> dict:
+    def _put(self, endpoint: str, params: BaseModel) -> dict[str, Any]:
         """
         Perform a PUT request to the specified endpoint
 
@@ -415,15 +418,12 @@ class VantageSDK:
         """
         url = urljoin(self.base_url, endpoint)
 
-        if isinstance(params, BaseModel):
-            json_data = params.model_dump(
-                mode="json",
-                by_alias=True,
-                exclude_none=True,
-                exclude_defaults=True,
-            )
-        else:
-            json_data = params
+        json_data = params.model_dump(
+            mode="json",
+            by_alias=True,
+            exclude_none=True,
+            exclude_defaults=True,
+        )
 
         response = self.session.put(url, json=json_data)
         response.raise_for_status()
@@ -997,7 +997,8 @@ class VantageSDK:
         """
         integration_token = integration_token_params.integration_token
         data = self._put(
-            f"integrations/{integration_token}", IntegrationsIntegrationTokenPutRequest(root=workspace_tokens)
+            f"integrations/{integration_token}",
+            IntegrationsIntegrationTokenPutRequest(workspace_tokens=workspace_tokens),
         )
         return Integration.model_validate(data)
 
@@ -1050,7 +1051,7 @@ class VantageSDK:
         self,
         integration_token_params: IntegrationTokenParams,
         csv_data: bytes,
-    ) -> dict:
+    ) -> dict[str, Any]:
         """
         Create UserCostsUpload via CSV for a Custom Provider Integration.
 
@@ -1786,7 +1787,7 @@ class VantageSDK:
 
     # ---- OpenAPI Specification ----
 
-    def get_openapi_spec(self) -> dict:
+    def get_openapi_spec(self) -> dict[str, Any]:
         """
         Get the OpenAPI 3 specification - GET /oas_v3.json
 

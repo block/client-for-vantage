@@ -26,7 +26,7 @@ All tests are integration tests that call the actual Vantage API. For an SDK, th
 
 If you encounter type issues, bugs in the generated models, or need to extend functionality:
 1. Overload the class in `vantage_sdk/models/common.py` by inheriting from the generated model.
-2. Add your overrides (using `# type: ignore[assignment]` if changing types).
+2. Add your overrides (using `# pyright: ignore[reportIncompatibleVariableOverride]` if changing types).
 3. Import your new class in `vantage_sdk/models/__init__.py` so it overrides the generated version in the package interface.
 
 See `vantage_sdk/models/common.py` for detailed instructions and examples.
@@ -34,7 +34,7 @@ See `vantage_sdk/models/common.py` for detailed instructions and examples.
 To download the latest OpenAPI spec from Vantage:
 
 ```bash
-just download-api
+just download-openapi
 ```
 
 To regenerate the models from the downloaded spec:
