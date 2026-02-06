@@ -176,6 +176,7 @@ from vantage_sdk.models import (
     UserTokenParams,
     VirtualTagConfig,
     VirtualTagConfigs,
+    VirtualTagConfigStatus,
     VirtualTagTokenParams,
     Workspace,
     Workspaces,
@@ -737,6 +738,22 @@ class VantageSDK:
         """
         data = self._get("virtual_tag_configs")
         return VirtualTagConfigs.model_validate(data)
+
+    def get_virtual_tag_processing_status(
+        self, virtual_tag_token_params: VirtualTagTokenParams
+    ) -> VirtualTagConfigStatus:
+        """
+        Get the processing status for a custom tag - GET /virtual_tag_configs/{token}/status
+
+        Args:
+            virtual_tag_token_params: The token of the custom tag to retrieve status for, begins with 'vtag_'
+
+        Returns:
+            The processing status for the custom tag
+        """
+        virtual_tag_value = virtual_tag_token_params.virtual_tag_token
+        data = self._get(f"virtual_tag_configs/{virtual_tag_value}/status")
+        return VirtualTagConfigStatus.model_validate(data)
 
     def update_virtual_tag(
         self, virtual_tag_token_params: VirtualTagTokenParams, virtual_tag_update: UpdateVirtualTagConfig
