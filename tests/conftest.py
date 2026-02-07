@@ -117,7 +117,7 @@ def pytest_configure(config) -> None:
 def vantage_sdk():
     api_key = settings.vantage_api_key
     sdk = VantageSDK(api_key=api_key)
-    sdk.timeout = Timeout(120.0, read=None)
+    sdk.timeout = Timeout(300.0, read=None)
     return sdk
 
 
