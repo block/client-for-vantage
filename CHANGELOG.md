@@ -6,9 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
 ## [1.1.0] - 2026-02-06
+### Added
+- `get_virtual_tag_processing_status()` method for checking custom tag processing status
+- Configurable `timeout` property on `VantageSDK` with getter/setter
+
 ### Changed
-- Regenerated models with updated datamodel-codegen configuration and module split
-- Added compatibility aliases for renamed request models and recommendation resource models
+- Regenerated models with `parent-scoped-naming = true` in `datamodel-codegen`, replacing generic numbered names (e.g. `Value3Value`, `Settings1Settings`) with descriptive parent-scoped names (e.g. `UpdateVirtualTagConfigValue`, `CreateCostReportSettings`)
+- Upgraded `datamodel-code-generator` to `>=0.53.0` with `[http,ruff]` extras and added `formatters = ["ruff-format", "ruff-check"]`
+- Replaced `mypy` with `basedpyright` for type checking in strict mode
+- Pinned PyPI index to `https://pypi.org/simple` to prevent corporate proxy injection
+- Removed `CostMetric` and `Aggregation` override classes from `common.py` (generated models now have correct types)
+- Simplified `_post` and `_put` to always accept `BaseModel` directly
 
 ### Fixed
 - Adjusted pagination logging to avoid line length lint failures
