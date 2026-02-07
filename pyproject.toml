@@ -33,7 +33,7 @@ dev = [
     "ruff>=0.12.0",
     "nox>=2025.05.01",
     "pytest-mock>=3.14.0",
-    "datamodel-code-generator[http]>=0.53.0",
+    "datamodel-code-generator[http,ruff]>=0.53.0",
     "pytest-timeout>=2.4.0",
     "basedpyright>=1.29.0",
 ]
@@ -104,9 +104,11 @@ use-annotated = true
 strict-nullable = true
 use-default-kwarg = true
 naming-strategy = "primary-first"
+parent-scoped-naming = true
 all-exports-scope = "recursive"
 all-exports-collision-strategy = "minimal-prefix"
 openapi-scopes = ["schemas", "paths", "parameters"]
+formatters = ["ruff-format", "ruff-check"]
 
 [tool.ruff.lint]
 select = [

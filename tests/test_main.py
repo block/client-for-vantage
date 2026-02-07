@@ -4,7 +4,7 @@ import pytest
 
 from tests.conftest import RESOURCES, settings
 from vantage_sdk.models import (
-    Access1Access,
+    UpdateAccessGrantAccess,
     AccessGrantTokenParams,
     AnomalyAlertsGetParametersQuery,
     AnomalyNotificationTokenParams,
@@ -20,8 +20,8 @@ from vantage_sdk.models import (
     BusinessMetricsBusinessMetricTokenValuesGetParametersQuery,
     BusinessMetricTokenParams,
     BusinessMetricValues,
-    ChartSettings2ChartSettings,
-    ChartType1ChartType,
+    UpdateCostReportChartSettings,
+    UpdateCostReportChartType,
     CostAlertsCostAlertTokenEventsGetParametersQuery,
     CostAlertTokenParams,
     CostReportTokenParams,
@@ -30,9 +30,9 @@ from vantage_sdk.models import (
     DashboardTokenParams,
     DataExport,
     DataExportTokenParams,
-    DateBin1DateBin,
-    DateBin7DateBin,
-    DateInterval1DateInterval,
+    UpdateCostReportDateBin,
+    CreateUnitCostsExportDateBin,
+    UpdateCostReportDateInterval,
     FinancialCommitmentReportTokenParams,
     FolderTokenParams,
     KubernetesEfficiencyReportTokenParams,
@@ -45,7 +45,7 @@ from vantage_sdk.models import (
     ResourcesGetParametersQuery,
     ResourceTokenParams,
     SavedFilterTokenParams,
-    Settings2Settings,
+    UpdateCostReportSettings,
     TeamTokenParams,
     UnitCostsDataExportsPostRequest,
     UnitCostsGetParametersQuery,
@@ -65,7 +65,7 @@ from vantage_sdk.models import (
     UpdateTag,
     UpdateTeam,
     UpdateVirtualTagConfig,
-    Value3Value,
+    UpdateVirtualTagConfigValue,
     VirtualTagTokenParams,
     WorkspacesWorkspaceTokenPutRequest,
     WorkspaceTokenParams,
@@ -149,7 +149,7 @@ def test_update_cost_report(vantage_sdk, cost_report_fixture):
         saved_filter_tokens=None,
         business_metric_tokens_with_metadata=None,
         folder_token=None,
-        settings=Settings2Settings(
+        settings=UpdateCostReportSettings(
             include_credits=True,
             include_refunds=True,
             include_discounts=True,
@@ -159,13 +159,13 @@ def test_update_cost_report(vantage_sdk, cost_report_fixture):
             aggregate_by="cost",
             show_previous_period=True,
         ),
-        chart_settings=ChartSettings2ChartSettings(
+        chart_settings=UpdateCostReportChartSettings(
             x_axis_dimension=["date"],
             y_axis_dimension="cost",
         ),
-        date_interval=DateInterval1DateInterval.last_3_months,
-        chart_type=ChartType1ChartType.line,
-        date_bin=DateBin1DateBin.month,
+        date_interval=UpdateCostReportDateInterval.last_3_months,
+        chart_type=UpdateCostReportChartType.line,
+        date_bin=UpdateCostReportDateBin.month,
     )
     params = CostReportTokenParams(cost_report_token=cost_report_fixture.token)
     updated_cost_report = vantage_sdk.update_cost_report(params, cost_report_update)
@@ -201,7 +201,7 @@ def test_update_virtual_tag(vantage_sdk, virtual_tag_fixture):
     updated_key = f"{RESOURCES.updated_prefix}_{virtual_tag_fixture.key}"
     new_value_name = f"{RESOURCES.updated_prefix}_virtual_tag_value"
 
-    new_value = Value3Value(
+    new_value = UpdateVirtualTagConfigValue(
         filter="costs.provider = 'aws' AND costs.service = 'Amazon Simple Storage Service'",
         name=new_value_name,
     )
@@ -299,14 +299,14 @@ def test_update_access_grant(vantage_sdk, access_grant_fixture):
     params = AccessGrantTokenParams(access_grant_token=access_grant_fixture.token)
 
     # Change access from allowed to denied
-    access_grant_update = UpdateAccessGrant(access=Access1Access.denied)
+    access_grant_update = UpdateAccessGrant(access=UpdateAccessGrantAccess.denied)
     updated_access_grant = vantage_sdk.update_access_grant(params, access_grant_update)
 
     assert updated_access_grant is not None
     assert updated_access_grant.access == "denied"
 
     # Change back to allowed
-    access_grant_update = UpdateAccessGrant(access=Access1Access.allowed)
+    access_grant_update = UpdateAccessGrant(access=UpdateAccessGrantAccess.allowed)
     updated_access_grant = vantage_sdk.update_access_grant(params, access_grant_update)
 
     assert updated_access_grant is not None
@@ -986,7 +986,7 @@ def test_create_unit_costs_data_export(vantage_sdk, cost_report_fixture):
     export_request = UnitCostsDataExportsPostRequest(
         cost_report_token=cost_report_fixture.token,
         workspace_token=settings.workspace_token,
-        date_bin=DateBin7DateBin.day,
+        date_bin=CreateUnitCostsExportDateBin.day,
         start_date="2023-01-01",
         end_date="2023-01-31",
     )

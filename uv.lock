@@ -125,7 +125,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "basedpyright" },
-    { name = "datamodel-code-generator", extra = ["http"] },
+    { name = "datamodel-code-generator", extra = ["http", "ruff"] },
     { name = "nox" },
     { name = "pytest" },
     { name = "pytest-mock" },
@@ -145,7 +145,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "basedpyright", specifier = ">=1.29.0" },
-    { name = "datamodel-code-generator", extras = ["http"], specifier = ">=0.53.0" },
+    { name = "datamodel-code-generator", extras = ["http", "ruff"], specifier = ">=0.53.0" },
     { name = "nox", specifier = ">=2025.5.1" },
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "pytest-mock", specifier = ">=3.14.0" },
@@ -198,6 +198,9 @@ wheels = [
 [package.optional-dependencies]
 http = [
     { name = "httpx" },
+]
+ruff = [
+    { name = "ruff" },
 ]
 
 [[package]]

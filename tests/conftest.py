@@ -33,23 +33,24 @@ from vantage_sdk.models import (
     CostReport,
     CostReportTokenParams,
     CostsDataExportsPostRequest,
-    ChartTypeChartType,
-    DateBin4DateBin,
-    DateBinDateBin,
-    DateInterval3DateInterval,
-    DateInterval5DateInterval,
-    DateInterval7DateInterval,
-    DateInterval9DateInterval,
-    Schema,
+    CreateCostReportChartType,
+    CreateDashboardDateBin,
+    CreateCostReportDateBin,
+    CreateDashboardDateInterval,
+    CreateFinancialCommitmentReportDateInterval,
+    CreateKubernetesEfficiencyReportDateInterval,
+    CreateNetworkFlowReportDateInterval,
+    CreateCostExportSchema,
     CostsGetParametersQuery,
     CreateAccessGrant,
-    AccessAccess,
+    CreateAccessGrantAccess,
     CreateAnomalyNotification,
     CreateBillingRule,
     CreateBudget,
-    PeriodPeriod,
+    CreateBudgetPeriod,
     CreateBusinessMetric,
-    CostReportTokensWithMetadatumCostReportTokensWithMetadatum,
+    CreateBusinessMetricCostReportTokensWithMetadatum,
+    CreateBusinessMetricValue,
     CreateCostAlert,
     CreateCostReport,
     CreateDashboard,
@@ -61,25 +62,24 @@ from vantage_sdk.models import (
     CreateResourceReport,
     CreateSavedFilter,
     CreateTeam,
-    RoleRole,
+    CreateTeamRole,
     CreateVirtualTagConfig,
     Dashboard,
     DashboardTokenParams,
-    FlowDirectionFlowDirection,
-    FlowWeightFlowWeight,
-    GroupingGrouping,
+    CreateNetworkFlowReportFlowDirection,
+    CreateNetworkFlowReportFlowWeight,
+    CreateNetworkFlowReportGrouping,
     FinancialCommitmentReport,
     FinancialCommitmentReportTokenParams,
     Folder,
     FolderTokenParams,
-    ForecastedValueForecastedValue,
+    CreateBusinessMetricForecastedValue,
     KubernetesEfficiencyReport,
     KubernetesEfficiencyReportTokenParams,
-    Settings1Settings,
-    Settings2Settings,
-    Settings3Settings,
-    Value,
-    ValueValue,
+    CreateCostReportSettings,
+    CreateDashboardWidgetSettings,
+    CreateVirtualTagConfigValue,
+    VirtualTagConfigValue,
     ManagedAccount,
     ManagedAccountTokenParams,
     NetworkFlowReport,
@@ -88,17 +88,15 @@ from vantage_sdk.models import (
     ResourceReportTokenParams,
     SavedFilter,
     SavedFilterTokenParams,
-    ChartSettings1ChartSettings,
-    ChartSettings2ChartSettings,
-    CostMetricCostMetric,
-    CollapsedTagKeyCollapsedTagKey,
+    CreateCostReportChartSettings,
+    CreateVirtualTagConfigCollapsedTagKey,
     VirtualTagConfigValueCostMetricAggregation,
-    PercentagePercentage,
+    VirtualTagConfigValuePercentage,
     Team,
     TeamTokenParams,
     UpdateCostReport,
-    UnitScale1UnitScale,
-    WidgetWidget,
+    CreateBusinessMetricCostReportTokensWithMetadatumUnitScale,
+    CreateDashboardWidget,
     VirtualTagConfig,
     VirtualTagTokenParams,
     CreateWorkspace,
@@ -164,7 +162,7 @@ def cost_report_fixture(vantage_sdk):
         saved_filter_tokens=None,
         business_metric_tokens_with_metadata=None,
         folder_token=None,
-        settings=Settings1Settings(
+        settings=CreateCostReportSettings(
             include_credits=True,
             include_refunds=True,
             include_discounts=True,
@@ -174,9 +172,9 @@ def cost_report_fixture(vantage_sdk):
             aggregate_by="cost",
             show_previous_period=True,
         ),
-        chart_type=ChartTypeChartType.line,
-        date_bin=DateBinDateBin.month,
-        chart_settings=ChartSettings1ChartSettings(
+        chart_type=CreateCostReportChartType.line,
+        date_bin=CreateCostReportDateBin.month,
+        chart_settings=CreateCostReportChartSettings(
             x_axis_dimension=["date"],
             y_axis_dimension="cost",
         ),
@@ -206,7 +204,7 @@ def team_fixture(vantage_sdk):
     new_team = CreateTeam(
         name=test_team_name,
         workspace_tokens=[settings.workspace_token],
-        role=RoleRole.viewer,
+        role=CreateTeamRole.viewer,
         description="Test team",
         user_tokens=None,
         user_emails=None,
@@ -264,7 +262,7 @@ def team_with_description_fixture(vantage_sdk):
         name=test_team_name,
         description=description,
         workspace_tokens=[settings.workspace_token],
-        role=RoleRole.viewer,
+        role=CreateTeamRole.viewer,
         user_tokens=None,
         user_emails=None,
     )
@@ -293,7 +291,7 @@ def access_grant_fixture(vantage_sdk, folder_fixture, team_fixture):
     new_access_grant = CreateAccessGrant(
         resource_token=folder_fixture.token,
         team_token=team_fixture.token,
-        access=AccessAccess.allowed,
+        access=CreateAccessGrantAccess.allowed,
     )
 
     access_grant: AccessGrant = vantage_sdk.create_access_grant(new_access_grant)
@@ -322,7 +320,7 @@ def access_grant_denied_fixture(vantage_sdk, folder_fixture, team_fixture):
     new_access_grant = CreateAccessGrant(
         resource_token=folder_fixture.token,
         team_token=team_fixture.token,
-        access=AccessAccess.denied,
+        access=CreateAccessGrantAccess.denied,
     )
 
     access_grant: AccessGrant = vantage_sdk.create_access_grant(new_access_grant)
@@ -448,7 +446,7 @@ def create_data_export(vantage_sdk, cost_report_fixture):
     request_body = CostsDataExportsPostRequest(
         cost_report_token=cost_report_fixture.token,
         workspace_token=settings.workspace_token,
-        schema=Schema.focus,
+        schema=CreateCostExportSchema.focus,
     )
     data_export_token: str = vantage_sdk.create_data_export(
         new_data_export=request_body, data_export_query_params=query_params
@@ -497,10 +495,10 @@ def virtual_tag_fixture(vantage_sdk):
         overridable=False,
         backfill_until=date,
         collapsed_tag_keys=[
-            CollapsedTagKeyCollapsedTagKey(key="team", providers=["aws"]),
+            CreateVirtualTagConfigCollapsedTagKey(key="team", providers=["aws"]),
         ],
         values=[
-            Value(
+            CreateVirtualTagConfigValue(
                 filter="costs.provider = 'aws'",
                 name="Primary",
             )
@@ -528,17 +526,17 @@ def virtual_tag_fixture(vantage_sdk):
 def business_metric_fixture(vantage_sdk, cost_report_fixture):
     """Fixture to create a business metric for testing"""
     business_metric_name = RESOURCES.business_metric_name
-    cost_report_business_metric = CostReportTokensWithMetadatumCostReportTokensWithMetadatum(
+    cost_report_business_metric = CreateBusinessMetricCostReportTokensWithMetadatum(
         cost_report_token=cost_report_fixture.token,
-        unit_scale=UnitScale1UnitScale.per_unit,
+        unit_scale=CreateBusinessMetricCostReportTokensWithMetadatumUnitScale.per_unit,
         label_filter=["env:prod"],
     )
     new_business_metric = CreateBusinessMetric(
         title=business_metric_name,
         cost_report_tokens_with_metadata=[cost_report_business_metric],
-        values=[ValueValue(date=datetime.now().astimezone(), amount=100.0, label="baseline")],
+        values=[CreateBusinessMetricValue(date=datetime.now().astimezone(), amount=100.0, label="baseline")],
         forecasted_values=[
-            ForecastedValueForecastedValue(
+            CreateBusinessMetricForecastedValue(
                 date=datetime.now().astimezone(),
                 amount=120.0,
                 label="forecast",
@@ -577,7 +575,7 @@ def budget_fixture(vantage_sdk, cost_report_fixture):
         cost_report_token=cost_report_fixture.token,
         child_budget_tokens=None,
         periods=[
-            PeriodPeriod(
+            CreateBudgetPeriod(
                 start_at=current_date.date(),
                 end_at=(current_date.date()),
                 amount=10000,
@@ -646,15 +644,15 @@ def dashboard_fixture(vantage_sdk, cost_report_fixture):
     new_dashboard = CreateDashboard(
         title=dashboard_title,
         widgets=[
-            WidgetWidget(
+            CreateDashboardWidget(
                 widgetable_token=cost_report_fixture.token,
                 title=f"{dashboard_title}_widget",
-                settings=Settings3Settings(display_type="table"),
+                settings=CreateDashboardWidgetSettings(display_type="table"),
             )
         ],
         saved_filter_tokens=None,
-        date_bin=DateBin4DateBin.month,
-        date_interval=DateInterval3DateInterval.last_30_days,
+        date_bin=CreateDashboardDateBin.month,
+        date_interval=CreateDashboardDateInterval.last_30_days,
         start_date=None,
         end_date=None,
         workspace_token=settings.workspace_token,
@@ -724,7 +722,7 @@ def financial_commitment_report_fixture(vantage_sdk):
         title=report_name,
         workspace_token=settings.workspace_token,
         filter=None,
-        date_interval=DateInterval5DateInterval.last_3_months,
+        date_interval=CreateFinancialCommitmentReportDateInterval.last_3_months,
         date_bucket=None,
         on_demand_costs_scope=None,
         groupings=None,
@@ -757,7 +755,7 @@ def kubernetes_efficiency_report_fixture(vantage_sdk):
     new_kubernetes_efficiency_report = CreateKubernetesEfficiencyReport(
         title=report_name,
         workspace_token=settings.workspace_token,
-        date_interval=DateInterval7DateInterval.this_month,
+        date_interval=CreateKubernetesEfficiencyReportDateInterval.this_month,
         aggregated_by=None,
         date_bucket=None,
         groupings=None,
@@ -826,10 +824,10 @@ def network_flow_report_fixture(vantage_sdk):
         title=report_name,
         workspace_token=settings.workspace_token,
         filter=None,
-        date_interval=DateInterval9DateInterval.last_7_days,
-        groupings=[GroupingGrouping.region],
-        flow_direction=FlowDirectionFlowDirection.ingress,
-        flow_weight=FlowWeightFlowWeight.costs,
+        date_interval=CreateNetworkFlowReportDateInterval.last_7_days,
+        groupings=[CreateNetworkFlowReportGrouping.region],
+        flow_direction=CreateNetworkFlowReportFlowDirection.ingress,
+        flow_weight=CreateNetworkFlowReportFlowWeight.costs,
     )
 
     network_flow_report: NetworkFlowReport = vantage_sdk.create_network_flow_report(new_network_flow_report)

@@ -70,7 +70,7 @@ from .common import (  # type: ignore[assignment]
     Recommendation,
     Recommendations,
     Me,
-    Value,
+    CreateVirtualTagConfigValue,
 )
 
 __all__ = [
@@ -131,7 +131,7 @@ __all__ = [
     "TeamTokenParams",
     "UnitCostsDataExportsPostRequest",
     "UserTokenParams",
-    "Value",
+    "CreateVirtualTagConfigValue",
     "VirtualTagTokenParams",
     "WorkspaceTokenParams",
     "WorkspacesWorkspaceTokenPutRequest",

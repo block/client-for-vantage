@@ -32,8 +32,7 @@ from vantage_sdk.models.gen_models import (
     budgets as budgets_model,
     anomaly_notification as anomaly_notification_model,
     anomaly_notifications as anomaly_notifications_model,
-    aggregation as aggregation_model,
-    settings as settings_model,
+    cost_report_settings as cost_report_settings_model,
     create_budget_alert as create_budget_alert_model,
     budget_alert as budget_alert_model,
     budget_alerts as budget_alerts_model,
@@ -41,7 +40,6 @@ from vantage_sdk.models.gen_models import (
     chart_settings as chart_settings_model,
     cost_report as cost_report_model,
     cost_alert as cost_alert_model,
-    cost_metric as cost_metric_model,
     virtual_tag_config_value_cost_metric_aggregation as virtual_tag_config_value_cost_metric_aggregation_model,
     cost_alerts as cost_alerts_model,
     cost_reports as cost_reports_model,
@@ -55,7 +53,7 @@ from vantage_sdk.models.gen_models import (
     create_unit_costs_export as create_unit_costs_export_model,
     data_export as data_export_model,
     data_export_manifest as data_export_manifest_model,
-    value2 as value2_model,
+    create_virtual_tag_config_value as create_virtual_tag_config_value_model,
     virtual_tag_config_value_cost_metric as virtual_tag_config_value_cost_metric_model,
     provider_resource as provider_resource_model,
     recommendation as recommendation_model,
@@ -66,7 +64,9 @@ from vantage_sdk.models.gen_models import (
     update_workspace as update_workspace_model,
 )
 
-VirtualTagConfigValueCostMetricAggregation = virtual_tag_config_value_cost_metric_aggregation_model.VirtualTagConfigValueCostMetricAggregation
+VirtualTagConfigValueCostMetricAggregation = (
+    virtual_tag_config_value_cost_metric_aggregation_model.VirtualTagConfigValueCostMetricAggregation
+)
 
 # --------------------------------
 # Token Parameter Classes
@@ -622,11 +622,6 @@ class CostAlerts(cost_alerts_model.CostAlerts):
     cost_alerts: Sequence[CostAlert]  # type: ignore[assignment]
 
 
-class CostMetric(cost_metric_model.CostMetric):
-    """Extends CostMetric to allow virtual tag aggregation model"""
-
-    aggregation: VirtualTagConfigValueCostMetricAggregation | aggregation_model.Aggregation | None = None  # type: ignore[assignment]
-
 class IntegrationsIntegrationTokenPutRequest(update_integration_model.UpdateIntegration):
     """Alias for UpdateIntegration model"""
 
@@ -639,8 +634,8 @@ class VirtualTagConfigValueCostMetric(virtual_tag_config_value_cost_metric_model
 
     filter: str | None = None  # type: ignore[assignment]
 
-class Value(value2_model.Value):
-    """Extends Value to use virtual tag cost metric models
+class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVirtualTagConfigValue):
+    """Extends CreateVirtualTagConfigValue to use virtual tag cost metric models
 
     The fields ``name``, ``cost_metric``, and ``percentages`` are mutually
     exclusive according to the Vantage API
@@ -658,13 +653,8 @@ class Value(value2_model.Value):
         return values
 
 
-class Aggregation(aggregation_model.Aggregation):
-    """Extends Aggregation to allow nullable tag values"""
-
-    tag: str | None = None  # type: ignore[assignment]
-
-class CostReportSettings(settings_model.Settings):
-    """Extends Settings to allow nullable fields for report settings"""
+class CostReportSettings(cost_report_settings_model.CostReportSettings):
+    """Extends CostReportSettings to allow nullable fields for report settings"""
 
     include_credits: bool | None = None  # type: ignore[assignment]
     include_refunds: bool | None = None  # type: ignore[assignment]
