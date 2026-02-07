@@ -33,7 +33,7 @@ dev = [
     "ruff>=0.12.0",
     "nox>=2025.05.01",
     "pytest-mock>=3.14.0",
-    "datamodel-code-generator>=0.53.0",
+    "datamodel-code-generator[http]>=0.53.0",
     "pytest-timeout>=2.4.0",
     "basedpyright>=1.29.0",
 ]
@@ -58,6 +58,20 @@ include = ["vantage_sdk"]
 exclude = ["**/gen_models/**"]
 typeCheckingMode = "strict"
 failOnWarnings = false
+[[tool.basedpyright.executionEnvironments]]
+root = "tests"
+reportUnknownMemberType = "none"
+reportUnknownParameterType = "none"
+reportMissingParameterType = "none"
+reportUnknownVariableType = "none"
+reportUnknownArgumentType = "none"
+reportCallIssue = "none"
+reportMissingTypeStubs = "none"
+reportUnusedImport = "none"
+reportOptionalMemberAccess = "none"
+reportAttributeAccessIssue = "none"
+reportArgumentType = "none"
+reportUnusedVariable = "none"
 
 [tool.ruff]
 target-version = "py310"
@@ -71,6 +85,28 @@ exclude = [
 [tool.pytest.ini_options]
 log_level = "WARNING"
 log_cli = false
+
+[tool.datamodel-codegen]
+input = "openapi_spec.json"
+output = "vantage_sdk/models/gen_models"
+input-file-type = "openapi"
+output-model-type = "pydantic_v2.BaseModel"
+target-python-version = "3.10"
+module-split-mode = "single"
+use-generic-container-types = true
+use-subclass-enum = true
+use-union-operator = true
+reuse-model = true
+use-schema-description = true
+collapse-root-models = true
+field-constraints = true
+use-annotated = true
+strict-nullable = true
+use-default-kwarg = true
+naming-strategy = "primary-first"
+all-exports-scope = "recursive"
+all-exports-collision-strategy = "minimal-prefix"
+openapi-scopes = ["schemas", "paths", "parameters"]
 
 [tool.ruff.lint]
 select = [

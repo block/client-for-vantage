@@ -212,8 +212,9 @@ class VantageSDK:
         self.base_url = BASE_URL
         # Preventing mutable default arguments
         if session is None:
-            session = Client()
+            session = Client(timeout=self._timeout)
         self.session = session
+        self.session.timeout = self._timeout
         self.session.headers.update(
             {
                 "Accept": "application/json",
@@ -221,6 +222,15 @@ class VantageSDK:
                 "Content-Type": "application/json",
             }
         )
+
+    @property
+    def timeout(self) -> Timeout:
+        return self._timeout
+
+    @timeout.setter
+    def timeout(self, value: Timeout) -> None:
+        self._timeout = value
+        self.session.timeout = value
 
     # ---- Private Methods ----
 
@@ -245,7 +255,7 @@ class VantageSDK:
                 exclude_defaults=True,
             )
 
-        response = self.session.get(url, params=params, timeout=self._timeout)
+        response = self.session.get(url, params=params)
         response.raise_for_status()
         return response.json()
 
@@ -637,7 +647,6 @@ class VantageSDK:
             if data_export_query_params
             else None,
             headers=self.session.headers,
-            timeout=self._timeout,
         )
         if response.is_success:
             location = response.headers["location"]
@@ -668,7 +677,7 @@ class VantageSDK:
         """
         token_value = data_export_token_params.data_export_token
         response = self.session.get(
-            urljoin(self.base_url, f"data_exports/{token_value}"), headers=self.session.headers, timeout=self._timeout
+            urljoin(self.base_url, f"data_exports/{token_value}"), headers=self.session.headers
         )
 
         if response.is_success:
@@ -1092,7 +1101,7 @@ class VantageSDK:
         files = {"csv": ("costs.csv", csv_data, "text/csv")}
 
         # Send the request
-        response = self.session.post(url, files=files, headers=self.session.headers, timeout=self._timeout)
+        response = self.session.post(url, files=files, headers=self.session.headers)
         response.raise_for_status()
         return response.json()
 
@@ -2377,7 +2386,9 @@ class VantageSDK:
         paginated_data = self._get_paginated(f"tags/{key}/values", query_params)
         return TagValues.model_validate(paginated_data)
 
-    def update_tags(self, tag_update: UpdateTag) -> Tag:
+    # NOTE: The OpenAPI spec declares the response as a singular Tag, but the
+    # actual API returns {"tags": [...]}, matching the Tags collection format
+    def update_tags(self, tag_update: UpdateTag) -> Tags:
         """
         Update tags - PUT /tags
 
@@ -2385,10 +2396,10 @@ class VantageSDK:
             tag_update: The update tag object
 
         Returns:
-            The updated Tag object
+            The updated Tags object
         """
         data = self._put("tags", tag_update)
-        return Tag.model_validate(data)
+        return Tags.model_validate(data)
 
     def get_network_flow_report(
         self, network_flow_report_token_params: NetworkFlowReportTokenParams
@@ -2584,7 +2595,7 @@ class VantageSDK:
             urljoin(self.base_url, "unit_costs/data_exports"),
             json=unit_costs_export_request.model_dump(exclude_none=True, by_alias=True),
             headers=self.session.headers,
-            timeout=self._timeout,
+            timeout=None,
         )
         response.raise_for_status()
 

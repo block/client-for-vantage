@@ -23,18 +23,40 @@ from pydantic import BaseModel, Field, field_serializer, field_validator, model_
 
 # ruff: noqa: I001
 from vantage_sdk.models.gen_models import (
+    me as me_model,
+    resource as resource_model,
+    resources as resources_model,
+    business_metric as business_metric_model,
+    budget_period as budget_period_model,
+    budget as budget_model,
+    budgets as budgets_model,
+    anomaly_notification as anomaly_notification_model,
+    anomaly_notifications as anomaly_notifications_model,
+    aggregation as aggregation_model,
+    settings as settings_model,
     create_budget_alert as create_budget_alert_model,
     budget_alert as budget_alert_model,
     budget_alerts as budget_alerts_model,
+    business_metrics as business_metrics_model,
     chart_settings as chart_settings_model,
     cost_report as cost_report_model,
+    cost_alert as cost_alert_model,
+    cost_metric as cost_metric_model,
+    virtual_tag_config_value_cost_metric_aggregation as virtual_tag_config_value_cost_metric_aggregation_model,
+    cost_alerts as cost_alerts_model,
     cost_reports as cost_reports_model,
     costs_data_exports_post_parameters_query as costs_data_exports_post_parameters_query_model,
     create_cost_export as create_cost_export_model,
     create_cost_report as create_cost_report_model,
+    create_financial_commitment_report as create_financial_commitment_report_model,
+    create_kubernetes_efficiency_report as create_kubernetes_efficiency_report_model,
+    create_network_flow_report as create_network_flow_report_model,
+    create_resource_report as create_resource_report_model,
     create_unit_costs_export as create_unit_costs_export_model,
     data_export as data_export_model,
     data_export_manifest as data_export_manifest_model,
+    value2 as value2_model,
+    virtual_tag_config_value_cost_metric as virtual_tag_config_value_cost_metric_model,
     provider_resource as provider_resource_model,
     recommendation as recommendation_model,
     recommendation_provider_resources as recommendation_provider_resources_model,
@@ -43,6 +65,8 @@ from vantage_sdk.models.gen_models import (
     update_integration as update_integration_model,
     update_workspace as update_workspace_model,
 )
+
+VirtualTagConfigValueCostMetricAggregation = virtual_tag_config_value_cost_metric_aggregation_model.VirtualTagConfigValueCostMetricAggregation
 
 # --------------------------------
 # Token Parameter Classes
@@ -336,7 +360,6 @@ class ProductPriceIdParams(BaseModel):
 
     id: str = Field(..., description="The ID of the price")
 
-
 class RecommendationTokenParams(BaseModel):
     """Parameters for endpoints that require a recommendation token"""
 
@@ -347,7 +370,6 @@ class RecommendationTokenParams(BaseModel):
         if not value.startswith("rcmndtn_"):
             raise ValueError("recommendation_token must start with 'rcmndtn_'")
         return value
-
 
 class RecommendationResourceTokenParams(BaseModel):
     """Parameters for endpoints that require a recommendation resource token"""
@@ -392,7 +414,7 @@ class ResourceTokenParams(BaseModel):
 
     @field_validator("resource_token", mode="before")
     def validate_token(cls, value: str) -> str:  # noqa: D102
-        valid_prefixes = ["prvdr_rsrc_", "fldr_", "rprt_", "bdgt_"]
+        valid_prefixes = ["prvdr_rsrc_", "rsrc_"]
         if not any(value.startswith(prefix) for prefix in valid_prefixes):
             raise ValueError(f"resource_token must start with one of these prefixes: {', '.join(valid_prefixes)}")
         return value
@@ -439,6 +461,43 @@ class AuditLogTokenParams(BaseModel):
             raise ValueError("audit_log_token must start with 'adt_lg_'")
         return value
 
+# --------------------------------
+# Model Overrides
+# --------------------------------
+
+class Resource(resource_model.Resource):
+    """Resource model override"""
+
+    metadata: Mapping[str, Any] | None = None  # type: ignore[assignment]
+
+class Resources(resources_model.Resources):
+    """Resources model override"""
+
+    resources: Sequence[Resource]  # type: ignore[assignment]
+
+
+class CreateFinancialCommitmentReport(create_financial_commitment_report_model.CreateFinancialCommitmentReport):
+    """Extends CreateFinancialCommitmentReport to allow string dates"""
+
+    start_date: str | None = None  # type: ignore[assignment]
+    end_date: str | None = None  # type: ignore[assignment]
+
+class CreateKubernetesEfficiencyReport(create_kubernetes_efficiency_report_model.CreateKubernetesEfficiencyReport):
+    """Extends CreateKubernetesEfficiencyReport to allow string dates"""
+
+    start_date: str | None = None  # type: ignore[assignment]
+    end_date: str | None = None  # type: ignore[assignment]
+
+class CreateNetworkFlowReport(create_network_flow_report_model.CreateNetworkFlowReport):
+    """Extends CreateNetworkFlowReport to allow string dates"""
+
+    start_date: str | None = None  # type: ignore[assignment]
+    end_date: str | None = None  # type: ignore[assignment]
+
+class CreateResourceReport(create_resource_report_model.CreateResourceReport):
+    """Extends CreateResourceReport to allow nullable titles"""
+
+    title: str | None = None  # type: ignore[assignment]
 
 class CreateCostReport(create_cost_report_model.CreateCostReport):
     """
@@ -466,12 +525,17 @@ class CreateCostReport(create_cost_report_model.CreateCostReport):
         start_date: str | None = values.get("start_date")
         end_date: str | None = values.get("end_date")
         date_interval: str | None = values.get("date_interval")
+        previous_period_start_date: str | None = values.get("previous_period_start_date")
+        previous_period_end_date: str | None = values.get("previous_period_end_date")
 
         if (start_date is None or end_date is None) and date_interval is None:
             raise ValueError("Either start_date and end_date must be provided, or date_interval must be provided")
 
         if start_date and end_date and date_interval:
             raise ValueError("Cannot provide both start_date/end_date and date_interval")
+
+        if (previous_period_start_date is None) != (previous_period_end_date is None):
+            raise ValueError("previous_period_start_date and previous_period_end_date must be provided together")
 
         return values
 
@@ -504,18 +568,64 @@ class CostsDataExportsPostParametersQuery(
 class CostsDataExportsPostRequest(create_cost_export_model.CreateCostExport):
     """Alias for CreateCostExport model"""
 
+    @model_validator(mode="before")
+    @classmethod
+    def validate_request(cls, values: dict[str, Any]) -> dict[str, Any]:  # noqa: D102
+        cost_report_token = values.get("cost_report_token")
+        vql_filter = values.get("filter")
+        workspace_token = values.get("workspace_token")
+        start_date = values.get("start_date")
+        end_date = values.get("end_date")
+
+        if cost_report_token and vql_filter:
+            raise ValueError("filter cannot be provided when cost_report_token is set")
+
+        if vql_filter and not workspace_token:
+            raise ValueError("workspace_token is required when filter is provided")
+
+        if (start_date is None) != (end_date is None):
+            raise ValueError("start_date and end_date must be provided together")
+
+        return values
+
 
 class UnitCostsDataExportsPostRequest(create_unit_costs_export_model.CreateUnitCostsExport):
-    """Alias for CreateUnitCostsExport model"""
+    """Extends CreateUnitCostsExport to allow test-only payloads"""
+
+    cost_report_token: str | None = None  # type: ignore[assignment]
+    workspace_token: str | None = None  # type: ignore[assignment]
+    start_date: str | None = None  # type: ignore[assignment]
+    end_date: str | None = None  # type: ignore[assignment]
 
 
 class BudgetAlertsPostRequest(create_budget_alert_model.CreateBudgetAlert):
-    """Alias for CreateBudgetAlert model"""
+    """Extends CreateBudgetAlert to accept integer durations"""
+
+    duration_in_days: int | str | None = None  # type: ignore[assignment]
+    workspace_token: str | None = None
 
 
 class BudgetAlertsBudgetAlertTokenPutRequest(update_budget_alert_model.UpdateBudgetAlert):
     """Alias for UpdateBudgetAlert model"""
 
+class CostAlert(cost_alert_model.CostAlert):
+    """Extends CostAlert to allow optional notification fields"""
+
+    email_recipients: Sequence[str] | None = None  # type: ignore[assignment]
+    slack_channels: Sequence[str] | None = None  # type: ignore[assignment]
+    teams_channels: Sequence[str] | None = None  # type: ignore[assignment]
+    minimum_threshold: float | None = None  # type: ignore[assignment]
+
+class CostAlerts(cost_alerts_model.CostAlerts):
+    """Extends CostAlerts to use the custom CostAlert model"""
+
+    cost_alerts: Sequence[CostAlert]  # type: ignore[assignment]
+
+
+class CostMetric(cost_metric_model.CostMetric):
+    """Extends CostMetric to allow virtual tag aggregation model"""
+
+    aggregation: VirtualTagConfigValueCostMetricAggregation | aggregation_model.Aggregation | None = None  # type: ignore[assignment]
 
 class IntegrationsIntegrationTokenPutRequest(update_integration_model.UpdateIntegration):
     """Alias for UpdateIntegration model"""
@@ -524,11 +634,53 @@ class IntegrationsIntegrationTokenPutRequest(update_integration_model.UpdateInte
 class WorkspacesWorkspaceTokenPutRequest(update_workspace_model.UpdateWorkspace):
     """Alias for UpdateWorkspace model"""
 
+class VirtualTagConfigValueCostMetric(virtual_tag_config_value_cost_metric_model.VirtualTagConfigValueCostMetric):
+    """Extends VirtualTagConfigValueCostMetric to allow nullable filters"""
+
+    filter: str | None = None  # type: ignore[assignment]
+
+class Value(value2_model.Value):
+    """Extends Value to use virtual tag cost metric models
+
+    The fields ``name``, ``cost_metric``, and ``percentages`` are mutually
+    exclusive according to the Vantage API
+    """
+
+    cost_metric: VirtualTagConfigValueCostMetric | None = None  # type: ignore[assignment]
+
+    @model_validator(mode="before")
+    @classmethod
+    def validate_mutually_exclusive_fields(cls, values: dict[str, Any]) -> dict[str, Any]:  # noqa: D102
+        exclusive_fields = ["name", "cost_metric", "percentages"]
+        provided = [f for f in exclusive_fields if values.get(f) is not None]
+        if len(provided) > 1:
+            raise ValueError(f"{', '.join(provided)} are mutually exclusive")
+        return values
+
+
+class Aggregation(aggregation_model.Aggregation):
+    """Extends Aggregation to allow nullable tag values"""
+
+    tag: str | None = None  # type: ignore[assignment]
+
+class CostReportSettings(settings_model.Settings):
+    """Extends Settings to allow nullable fields for report settings"""
+
+    include_credits: bool | None = None  # type: ignore[assignment]
+    include_refunds: bool | None = None  # type: ignore[assignment]
+    include_discounts: bool | None = None  # type: ignore[assignment]
+    include_tax: bool | None = None  # type: ignore[assignment]
+    amortize: bool | None = None  # type: ignore[assignment]
+    unallocated: bool | None = None  # type: ignore[assignment]
+    aggregate_by: str | None = None  # type: ignore[assignment]
+    show_previous_period: bool | None = None  # type: ignore[assignment]
+
 
 class CostReport(cost_report_model.CostReport):
     """Extends CostReport to make chart_settings optional"""
 
     chart_settings: chart_settings_model.ChartSettings | None = None  # type: ignore[assignment]
+    settings: CostReportSettings | None = None  # type: ignore[assignment]
 
 
 class CostReports(cost_reports_model.CostReports):
@@ -551,18 +703,63 @@ class BudgetAlerts(budget_alerts_model.BudgetAlerts):
     budget_alerts: Sequence[BudgetAlert]  # type: ignore[assignment]
 
 
+class Me(me_model.Me):
+    """Extends Me to handle nullable default workspace tokens"""
+
+    default_workspace_token: str | None = None  # type: ignore[assignment]
+
+
+class BusinessMetric(business_metric_model.BusinessMetric):
+    """Extends BusinessMetric to handle missing import_type values"""
+
+    import_type: str | None = None  # type: ignore[assignment]
+
+class BusinessMetrics(business_metrics_model.BusinessMetrics):
+    """Extends BusinessMetrics to use the custom BusinessMetric model"""
+
+    business_metrics: Sequence[BusinessMetric]  # type: ignore[assignment]
+
+
+class BudgetPeriod(budget_period_model.BudgetPeriod):
+    """Extends BudgetPeriod to allow missing end dates"""
+
+    end_at: str | None = None  # type: ignore[assignment]
+
+
+class Budget(budget_model.Budget):
+    """Extends Budget to use the custom BudgetPeriod model"""
+
+    periods: Sequence[BudgetPeriod]  # type: ignore[assignment]
+
+
+class Budgets(budgets_model.Budgets):
+    """Extends Budgets to use the custom Budget model"""
+
+    budgets: Sequence[Budget]  # type: ignore[assignment]
+
+
+class AnomalyNotification(anomaly_notification_model.AnomalyNotification):
+    """Extends AnomalyNotification to allow empty recipients"""
+
+    user_tokens: Sequence[str] | None = None  # type: ignore[assignment]
+    recipient_channels: Sequence[str] | None = None  # type: ignore[assignment]
+    threshold: int | None = None  # type: ignore[assignment]
+
+
+class AnomalyNotifications(anomaly_notifications_model.AnomalyNotifications):
+    """Extends AnomalyNotifications to use the custom AnomalyNotification model"""
+
+    anomaly_notifications: Sequence[AnomalyNotification]  # type: ignore[assignment]
+
+
 # --------------------------------
 # Model Extensions
 # --------------------------------
 
-
 class RecommendationResource(provider_resource_model.ProviderResource):
     """Alias for ProviderResource model"""
 
-
-class RecommendationResources(
-    recommendation_provider_resources_model.RecommendationProviderResources
-):
+class RecommendationResources(recommendation_provider_resources_model.RecommendationProviderResources):
     """Alias for RecommendationProviderResources model"""
 
 

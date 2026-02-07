@@ -125,7 +125,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "basedpyright" },
-    { name = "datamodel-code-generator" },
+    { name = "datamodel-code-generator", extra = ["http"] },
     { name = "nox" },
     { name = "pytest" },
     { name = "pytest-mock" },
@@ -145,7 +145,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "basedpyright", specifier = ">=1.29.0" },
-    { name = "datamodel-code-generator", specifier = ">=0.53.0" },
+    { name = "datamodel-code-generator", extras = ["http"], specifier = ">=0.53.0" },
     { name = "nox", specifier = ">=2025.5.1" },
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "pytest-mock", specifier = ">=3.14.0" },
@@ -193,6 +193,11 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/40/65/3802abca0291263862a16e032e984e61e4d0d30a344d9be97815721d64ff/datamodel_code_generator-0.53.0.tar.gz", hash = "sha256:af46b57ad78e6435873132c52843ef0ec7b768a591d3b9917d3409dfc1ab1c90", size = 809949, upload-time = "2026-01-12T18:14:05.459Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ff/43/5dbb6fe09842e10062f94016ccb48c9613f2443253866de3d7b815713b4d/datamodel_code_generator-0.53.0-py3-none-any.whl", hash = "sha256:d1cc2abe79f99b8208c363f5f4b603c29290327ff4e3219a08c0fff45f42aff4", size = 258912, upload-time = "2026-01-12T18:14:02.737Z" },
+]
+
+[package.optional-dependencies]
+http = [
+    { name = "httpx" },
 ]
 
 [[package]]
