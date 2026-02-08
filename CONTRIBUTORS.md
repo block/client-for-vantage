@@ -13,10 +13,15 @@ uv run nox
 All tests are integration tests that call the actual Vantage API. For an SDK, this is somewhat unavoidable, the primary value is correctness against the actual API rather than testing isolated logic.
 
 - A Vantage API key and workspace token are required - use `.sample.env` as a template to create your `.env` file
-  - **IMPORTANT:** Use a sandbox/test workspace token, NOT a production workspace
+  - **IMPORTANT:** Create a fresh Vantage account at `vantage.sh` and use the API key and workspace token from that account
+- Use the `just` recipes to run tests locally or in CI
+  - VCR-backed CI run: `just test-vcr`
+  - Record VCR cassettes: `just test-vcr-record tests/test_main.py::test_get_dashboard`
+  - Rewrite VCR cassettes: `just test-vcr-rewrite tests/test_main.py::test_get_dashboard`
+  - Live tests without recording: `just test-live`
 - Some tests require polling endpoints and take longer to complete
-  - Run these with `uv run pytest -m slow`
-  - Exclude them with `uv run pytest -k 'not slow'`
+  - Run these with `just test -- -m slow`
+  - Exclude them with `just test -- -k 'not slow'`
 
 ## Regenerating Models
 

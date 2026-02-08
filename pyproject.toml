@@ -30,6 +30,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
+    "pytest-recording>=0.13.4",
     "ruff>=0.12.0",
     "nox>=2025.05.01",
     "pytest-mock>=3.14.0",

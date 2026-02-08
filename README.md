@@ -59,7 +59,13 @@ The following endpoints are available but should be used with caution as they ha
 - **Unit Costs**: Requires actual cost data for exports
 - **User Feedback**: Limited testing to avoid creating test data in production
 - **Workspaces**: Limited testing to avoid affecting production workspaces
+- **Teams**: Sandbox account lacks team permissions, so related tests are skipped in VCR recordings
+- **Tags**: Sandbox account has no tags configured, so tag update and value tests are skipped in VCR recordings
 
 ## Contributing
 
 See [CONTRIBUTORS.md](CONTRIBUTORS.md) for development setup, testing guidelines, and instructions for regenerating models.
+
+## Testing
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for VCR-backed and live testing workflows.

@@ -1,3 +1,5 @@
+import os
+
 import nox
 
 nox.options.default_venv_backend = "uv"
@@ -11,7 +13,14 @@ DEV_DEPS = nox.project.dependency_groups(PYPROJECT, "dev")
 def tests(session):
     session.install(*CORE_DEPS)
     session.install(*DEV_DEPS)
-    session.run("pytest", *session.posargs)
+    pytest_args = list(session.posargs)
+    if os.getenv("CI") == "true":
+        session.env["VCR_ENABLED"] = "true"
+        session.env["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
+        session.env["PYTEST_PLUGINS"] = "pytest_recording.plugin"
+        if not any(arg.startswith("--record-mode") for arg in pytest_args):
+            pytest_args.extend(["--record-mode=none", "--block-network"])
+    session.run("python", "-m", "pytest", *pytest_args)
 
 @nox.session
 def lint(session):

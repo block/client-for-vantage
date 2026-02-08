@@ -3,6 +3,7 @@ from datetime import datetime
 # This fixes a type issue with the generated code in models.py
 import builtins
 import time
+from pathlib import Path
 
 builtins.bytes_aliased = bytes
 
@@ -106,11 +107,41 @@ from vantage_sdk.models import (
 
 RESOURCES = ResourceNameFactory()
 settings = Settings()
+CASSETTE_DIR = Path(__file__).parent / "cassettes"
+
+def _scrub_request(request):
+    if "authorization" in request.headers:
+        request.headers["authorization"] = "REDACTED"
+    return request
+
+def _scrub_response(response):
+    response["headers"].pop("Date", None)
+    response["headers"].pop("X-Request-Id", None)
+    return response
 
 
 def pytest_configure(config) -> None:
     """Register custom markers"""
     config.addinivalue_line("markers", "slow: mark test as a long running test")
+    config.addinivalue_line("markers", "live: mark test as requiring the live API")
+
+def pytest_collection_modifyitems(items):
+    use_vcr = settings.vcr_enabled
+    if not use_vcr:
+        return
+    for item in items:
+        item.add_marker(pytest.mark.vcr)
+
+@pytest.fixture(scope="session")
+def vcr_config():
+    return {
+        "cassette_library_dir": str(CASSETTE_DIR),
+        "filter_headers": ["authorization"],
+        "before_record_request": _scrub_request,
+        "before_record_response": _scrub_response,
+        "match_on": ["method", "scheme", "host", "port", "path", "query"],
+        "decode_compressed_response": True,
+    }
 
 
 @pytest.fixture()

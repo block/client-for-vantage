@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/financial_commitment_reports?page=1
+  response:
+    body:
+      string: '{"links":{"self":"https://api.vantage.sh/v2/financial_commitment_reports?page=1","first":"https://api.vantage.sh/v2/financial_commitment_reports?page=1","next":null,"last":null,"prev":null},"financial_commitment_reports":[]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"16109812c6dfb86bf5f3d5d71875f9f2"
+      Set-Cookie:
+      - _stratus_session=kwrIvCMQfVEwUPDX6qZJZ0fnVf09Mhe%2FPZhc0xCTQOM9zQi3SZhqoZW9GEjHxZsqkT8NBOegChV9PR%2BU2PBslXT2TxvEmBYT8MAcMvBbHNdv0BT5MtaHGaJ4V7SqTGtCONaQt6njCzEJPYPRc25kuN0nN%2BhBPQWDAlxsxE3ZcMzix7WISBAyq9AnogQaR8S3BMMmyv7Jlkw%3D--u6cfFsO%2BpS8uQl6g--t%2Bayi6%2F5Bvf6FHlc7vFGGQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '298'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.045528'
+      content-length:
+      - '224'
+    status:
+      code: 200
+      message: OK
+version: 1

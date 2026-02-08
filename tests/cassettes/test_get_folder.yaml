@@ -1,0 +1,238 @@
+interactions:
+- request:
+    body: '{"title":"test_folder_vcr","workspace_token":"wrkspc_576fafc861f024a4"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '71'
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://api.vantage.sh/v2/folders
+  response:
+    body:
+      string: '{"token":"fldr_852bc56c7a32e110","title":"test_folder_vcr","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-02-08T18:30:43Z","updated_at":"2026-02-08T18:30:43Z","workspace_token":"wrkspc_576fafc861f024a4"}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"57aba8eb47fe9b915db76b99bc31a45c"
+      Set-Cookie:
+      - _stratus_session=7K8L1fFKJppsb4Z4jaMnqkKrKysSX%2BD79P2teRIG5mkvCAJqMS0oLKZfgouw9BmiuXTobNDRzRgUssZsIBXscUtlh2vmuLgsZmkWcs06%2FQVGpaZUuJcTL6S8UxoeH4VzuUqglEpNeW7s31bvP1AJDdwV8a7BA0W4fqS99%2FFI1bR0pqm9cq1HRQjDbXiGT9YFRguZtbKpckc%3D--z57ZQZj4Jr1tGNJ%2F--6hGDeyMCyYV1XMpvqctHTQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '424'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.076670'
+      content-length:
+      - '227'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=7K8L1fFKJppsb4Z4jaMnqkKrKysSX%2BD79P2teRIG5mkvCAJqMS0oLKZfgouw9BmiuXTobNDRzRgUssZsIBXscUtlh2vmuLgsZmkWcs06%2FQVGpaZUuJcTL6S8UxoeH4VzuUqglEpNeW7s31bvP1AJDdwV8a7BA0W4fqS99%2FFI1bR0pqm9cq1HRQjDbXiGT9YFRguZtbKpckc%3D--z57ZQZj4Jr1tGNJ%2F--6hGDeyMCyYV1XMpvqctHTQ%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/folders/fldr_852bc56c7a32e110
+  response:
+    body:
+      string: '{"token":"fldr_852bc56c7a32e110","title":"test_folder_vcr","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-02-08T18:30:43Z","updated_at":"2026-02-08T18:30:43Z","workspace_token":"wrkspc_576fafc861f024a4"}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"57aba8eb47fe9b915db76b99bc31a45c"
+      Set-Cookie:
+      - _stratus_session=qSP4AlLWWOndtmWUl2l3mPTTaUd0vXRPHi3YDhYAtVJJLlRBi1nmoiIEbF0DHP2NhUzDfVkKeGwpP0iIEZI87U1mvIBc7ZbNDY1WsslgUR%2FK30xju5bmAPnKZM5anVr3IQ%2BQI0xNqL%2FTdh4qHJSdzabGT3bWjfFONnjxvJNnVV6wM1K8WgwLJf8UyFxD1SDRz3TKmn7seSM%3D--xkgnar5pbdjK%2FDcv--rmqcHR54S2ocleUJsJKAYA%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '423'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.042050'
+      content-length:
+      - '227'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=qSP4AlLWWOndtmWUl2l3mPTTaUd0vXRPHi3YDhYAtVJJLlRBi1nmoiIEbF0DHP2NhUzDfVkKeGwpP0iIEZI87U1mvIBc7ZbNDY1WsslgUR%2FK30xju5bmAPnKZM5anVr3IQ%2BQI0xNqL%2FTdh4qHJSdzabGT3bWjfFONnjxvJNnVV6wM1K8WgwLJf8UyFxD1SDRz3TKmn7seSM%3D--xkgnar5pbdjK%2FDcv--rmqcHR54S2ocleUJsJKAYA%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: DELETE
+    uri: https://api.vantage.sh/v2/folders/fldr_852bc56c7a32e110
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Set-Cookie:
+      - _stratus_session=FNrB6ffCYH%2F0PJcz4dx4OAVLX7GP7A4XVMnLQlh%2F0LhuJ%2BZLxX9vpmYUUfEgmw3HZOmHB5jXqv%2FrkU27mB0E8fy2ULy5hbZAQ4GmZlIjG9fS0gqdhxrnA2NztIA8hCP0KFertfjONle5u67s0ZHmcz7%2FFurRGDi1JA15pVg3LvflgmZeY2Ozrd2Mhd4xMrKfd08nJ9ZnAsg%3D--S1lZ7SnC2PtwyLsq--8KbRrPJHDgr5nwBqLvPN%2Bg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '422'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.062989'
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=FNrB6ffCYH%2F0PJcz4dx4OAVLX7GP7A4XVMnLQlh%2F0LhuJ%2BZLxX9vpmYUUfEgmw3HZOmHB5jXqv%2FrkU27mB0E8fy2ULy5hbZAQ4GmZlIjG9fS0gqdhxrnA2NztIA8hCP0KFertfjONle5u67s0ZHmcz7%2FFurRGDi1JA15pVg3LvflgmZeY2Ozrd2Mhd4xMrKfd08nJ9ZnAsg%3D--S1lZ7SnC2PtwyLsq--8KbRrPJHDgr5nwBqLvPN%2Bg%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/folders/fldr_852bc56c7a32e110
+  response:
+    body:
+      string: '{"errors":["Folder fldr_852bc56c7a32e110 not found."]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - _stratus_session=bXZFArXkTA9nBA5N4nMyLGNdrXlYX5VVYq6F6JcH8FKDNZoEwIuoI2nO2mQNA1rUBDFJCqtQ9uHwKEX7L7Rj1vwm46t2oqjKVmk6jIV0XnPrE9zvHj8Xy7DEZABlLPd0mMl5cADtPqwxe1LQUBvB%2FqeeA9xOOaZ3dYq5Wab7IdhsKZE8bv3zBvmss2JtAR6DB7mVRfvBi6s%3D--MPTx58J3aBq1jNHj--lol57uP9AChrRu3%2BVpE2Pw%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '421'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.030525'
+      content-length:
+      - '54'
+    status:
+      code: 404
+      message: Not Found
+version: 1

@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=WORKSPACE.env_path, env_file_encoding="utf-8")
     vantage_api_key: str
     workspace_token: str
+    vcr_enabled: bool = False
 
 
 class ResourcePrefix(str, Enum):
@@ -50,9 +51,13 @@ class ResourcePrefix(str, Enum):
 class ResourceNameFactory(BaseModel):
     """Test resource name generator and container"""
 
-    name_generator: Callable[[str], str] = Field(
-        default_factory=lambda: lambda prefix: f"{prefix}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}"
-    )
+    name_generator: Callable[[str], str] = Field(default_factory=lambda: ResourceNameFactory._build_name)
+
+    @staticmethod
+    def _build_name(prefix: str) -> str:
+        if Settings().vcr_enabled:
+            return f"{prefix.value}_vcr"
+        return f"{prefix.value}_{datetime.now().strftime('%Y%m%d_%H%M%S_%f')}"
 
     @property
     def team_name(self) -> str:

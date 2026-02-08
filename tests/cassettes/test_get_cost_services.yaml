@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/cost_services?workspace_token=wrkspc_576fafc861f024a4
+  response:
+    body:
+      string: '{"cost_services":[]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"783ee2809cce6426f95c164011895ae7"
+      Set-Cookie:
+      - _stratus_session=Q%2FwCstPcfUduFE%2BjfF33V7yrLFH50GPg29eqnDZXbs9idow6LlwLl6K%2FhVv4iwCnTG%2FWXxdxLj87enHAqSnrCz%2BZ8%2BfVv91XZV87Z%2BCBI0Zt9Pa3Yn6EfFvrCBrOtVkUYOrngL1702Gx1rFwvnfnYcsCT0l0CCK5%2Fux8ICmMLzpEn7PfKIOgUqutAq8T%2FHOdm2JieLeSzSI%3D--cAI3RaF6xLF26k4p--nk%2FaLOxYSRjuWqahB4RJOg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '344'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.031437'
+      content-length:
+      - '20'
+    status:
+      code: 200
+      message: OK
+version: 1
