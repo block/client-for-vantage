@@ -1,3 +1,16 @@
+"""Test fixtures and VCR configuration for the Vantage SDK integration tests.
+
+Tests run against the live Vantage API by default. When VCR_ENABLED=true,
+pytest-recording intercepts HTTP traffic and replays it from YAML cassettes
+stored in tests/cassettes/. This lets CI run without network access or API
+credentials.
+
+Scrubbing functions (_scrub_request, _scrub_response) strip secrets and
+non-deterministic headers before cassettes are written to disk so that
+API keys never end up in version control and replayed responses match
+regardless of when they were recorded.
+"""
+
 from datetime import datetime
 
 # This fixes a type issue with the generated code in models.py
@@ -106,8 +119,9 @@ from vantage_sdk.models import (
 )
 
 RESOURCES = ResourceNameFactory()
-settings = Settings()
 CASSETTE_DIR = Path(__file__).parent / "cassettes"
+
+settings = Settings()
 
 def _scrub_request(request):
     if "authorization" in request.headers:
