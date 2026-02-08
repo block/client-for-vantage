@@ -360,6 +360,7 @@ class ProductPriceIdParams(BaseModel):
 
     id: str = Field(..., description="The ID of the price")
 
+
 class RecommendationTokenParams(BaseModel):
     """Parameters for endpoints that require a recommendation token"""
 
@@ -370,6 +371,7 @@ class RecommendationTokenParams(BaseModel):
         if not value.startswith("rcmndtn_"):
             raise ValueError("recommendation_token must start with 'rcmndtn_'")
         return value
+
 
 class RecommendationResourceTokenParams(BaseModel):
     """Parameters for endpoints that require a recommendation resource token"""
@@ -461,14 +463,17 @@ class AuditLogTokenParams(BaseModel):
             raise ValueError("audit_log_token must start with 'adt_lg_'")
         return value
 
+
 # --------------------------------
 # Model Overrides
 # --------------------------------
+
 
 class Resource(resource_model.Resource):
     """Resource model override"""
 
     metadata: Mapping[str, Any] | None = None  # type: ignore[assignment]
+
 
 class Resources(resources_model.Resources):
     """Resources model override"""
@@ -482,11 +487,13 @@ class CreateFinancialCommitmentReport(create_financial_commitment_report_model.C
     start_date: str | None = None  # type: ignore[assignment]
     end_date: str | None = None  # type: ignore[assignment]
 
+
 class CreateKubernetesEfficiencyReport(create_kubernetes_efficiency_report_model.CreateKubernetesEfficiencyReport):
     """Extends CreateKubernetesEfficiencyReport to allow string dates"""
 
     start_date: str | None = None  # type: ignore[assignment]
     end_date: str | None = None  # type: ignore[assignment]
+
 
 class CreateNetworkFlowReport(create_network_flow_report_model.CreateNetworkFlowReport):
     """Extends CreateNetworkFlowReport to allow string dates"""
@@ -494,10 +501,12 @@ class CreateNetworkFlowReport(create_network_flow_report_model.CreateNetworkFlow
     start_date: str | None = None  # type: ignore[assignment]
     end_date: str | None = None  # type: ignore[assignment]
 
+
 class CreateResourceReport(create_resource_report_model.CreateResourceReport):
     """Extends CreateResourceReport to allow nullable titles"""
 
     title: str | None = None  # type: ignore[assignment]
+
 
 class CreateCostReport(create_cost_report_model.CreateCostReport):
     """
@@ -608,6 +617,7 @@ class BudgetAlertsPostRequest(create_budget_alert_model.CreateBudgetAlert):
 class BudgetAlertsBudgetAlertTokenPutRequest(update_budget_alert_model.UpdateBudgetAlert):
     """Alias for UpdateBudgetAlert model"""
 
+
 class CostAlert(cost_alert_model.CostAlert):
     """Extends CostAlert to allow optional notification fields"""
 
@@ -615,6 +625,7 @@ class CostAlert(cost_alert_model.CostAlert):
     slack_channels: Sequence[str] | None = None  # type: ignore[assignment]
     teams_channels: Sequence[str] | None = None  # type: ignore[assignment]
     minimum_threshold: float | None = None  # type: ignore[assignment]
+
 
 class CostAlerts(cost_alerts_model.CostAlerts):
     """Extends CostAlerts to use the custom CostAlert model"""
@@ -629,10 +640,12 @@ class IntegrationsIntegrationTokenPutRequest(update_integration_model.UpdateInte
 class WorkspacesWorkspaceTokenPutRequest(update_workspace_model.UpdateWorkspace):
     """Alias for UpdateWorkspace model"""
 
+
 class VirtualTagConfigValueCostMetric(virtual_tag_config_value_cost_metric_model.VirtualTagConfigValueCostMetric):
     """Extends VirtualTagConfigValueCostMetric to allow nullable filters"""
 
     filter: str | None = None  # type: ignore[assignment]
+
 
 class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVirtualTagConfigValue):
     """Extends CreateVirtualTagConfigValue to use virtual tag cost metric models
@@ -704,6 +717,7 @@ class BusinessMetric(business_metric_model.BusinessMetric):
 
     import_type: str | None = None  # type: ignore[assignment]
 
+
 class BusinessMetrics(business_metrics_model.BusinessMetrics):
     """Extends BusinessMetrics to use the custom BusinessMetric model"""
 
@@ -746,8 +760,10 @@ class AnomalyNotifications(anomaly_notifications_model.AnomalyNotifications):
 # Model Extensions
 # --------------------------------
 
+
 class RecommendationResource(provider_resource_model.ProviderResource):
     """Alias for ProviderResource model"""
+
 
 class RecommendationResources(recommendation_provider_resources_model.RecommendationProviderResources):
     """Alias for RecommendationProviderResources model"""

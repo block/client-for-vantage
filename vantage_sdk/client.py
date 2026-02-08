@@ -138,7 +138,6 @@ from vantage_sdk.models import (
     Segment,
     Segments,
     SegmentTokenParams,
-    Tag,
     TagKeyParams,
     Tags,
     TagsGetParametersQuery,
@@ -225,6 +224,7 @@ class VantageSDK:
 
     @property
     def timeout(self) -> Timeout:
+        """Get the current timeout setting for API requests"""
         return self._timeout
 
     @timeout.setter
@@ -676,9 +676,7 @@ class VantageSDK:
             This is useful for polling the status of the data export
         """
         token_value = data_export_token_params.data_export_token
-        response = self.session.get(
-            urljoin(self.base_url, f"data_exports/{token_value}"), headers=self.session.headers
-        )
+        response = self.session.get(urljoin(self.base_url, f"data_exports/{token_value}"), headers=self.session.headers)
 
         if response.is_success:
             body = response.json()
