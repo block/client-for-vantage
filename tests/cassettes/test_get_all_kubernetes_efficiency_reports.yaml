@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/kubernetes_efficiency_reports?page=1
+  response:
+    body:
+      string: '{"links":{"self":"https://api.vantage.sh/v2/kubernetes_efficiency_reports?page=1","first":"https://api.vantage.sh/v2/kubernetes_efficiency_reports?page=1","next":null,"last":null,"prev":null},"kubernetes_efficiency_reports":[]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"cc3b922e4578cf9f1c8c1197bc9ce5db"
+      Set-Cookie:
+      - _stratus_session=UzRnwQzFs9K2xogsJhkHvCk%2FpyBDGNqQpIzBcH7mHQ%2BukPbNStYAbHCtTaPzGbArtGdrMOMq%2FjpnaPO4YO7LBA1IIWG0RmBRUq%2BCRM65uQoXVOrjp23iMqfXk0qPQje4EvoKUuk4oS1UXYc4rCVFiM%2BHHWI1pe8P2ZTZwQuDwkBDBIsygv%2BrKumNevJflOrCnqtfCejeiA4%3D--Z9Li%2FcoZxDI7U8Zm--hvBnQcRPE51P3n6oPTgmHQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '289'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.038237'
+      content-length:
+      - '227'
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,241 @@
+interactions:
+- request:
+    body: '{"workspace_token":"wrkspc_576fafc861f024a4","title":"test_fin_commitment_report_vcr","date_interval":"last_3_months"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '118'
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://api.vantage.sh/v2/financial_commitment_reports
+  response:
+    body:
+      string: '{"token":"fncl_cmnt_rprt_dd7cdb5bb6715c8b","title":"test_fin_commitment_report_vcr","default":false,"created_at":"2026-02-08T18:32:43Z","workspace_token":"wrkspc_576fafc861f024a4","user_token":null,"start_date":"2025-11-01","end_date":"2026-02-06","date_interval":"last_3_months","date_bucket":"month","groupings":"cost_type","on_demand_costs_scope":"discountable","filter":"(financial_commitments.provider
+        = ''aws'')"}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"4c27f5b8723e12ba3936e05112823612"
+      Set-Cookie:
+      - _stratus_session=U5JaX6evg4xUv1uxTRhjNY5Y9Gtqe7nr%2FfMjDmDZMrrcx5VZP2YfSrkau2KCNCBOAT%2B4nuf%2BT01R8bMiEi5EOATCQs7YWTMQFrRQoDG9kWUHBWd5QDMDgD4mB98p3UR43ejVtEI6rEmdL4BAJ1zTN59vyqsWrH2qbhiAiE2PpcvdHWZk3DISRfFII%2FHFDjgwHnMFQp%2FEJDs%3D--ABMyPevS6Kuy01Hg--CWoCxq5aHXD5DigBOlerRQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '297'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.066147'
+      content-length:
+      - '417'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=U5JaX6evg4xUv1uxTRhjNY5Y9Gtqe7nr%2FfMjDmDZMrrcx5VZP2YfSrkau2KCNCBOAT%2B4nuf%2BT01R8bMiEi5EOATCQs7YWTMQFrRQoDG9kWUHBWd5QDMDgD4mB98p3UR43ejVtEI6rEmdL4BAJ1zTN59vyqsWrH2qbhiAiE2PpcvdHWZk3DISRfFII%2FHFDjgwHnMFQp%2FEJDs%3D--ABMyPevS6Kuy01Hg--CWoCxq5aHXD5DigBOlerRQ%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/financial_commitment_reports/fncl_cmnt_rprt_dd7cdb5bb6715c8b
+  response:
+    body:
+      string: '{"token":"fncl_cmnt_rprt_dd7cdb5bb6715c8b","title":"test_fin_commitment_report_vcr","default":false,"created_at":"2026-02-08T18:32:43Z","workspace_token":"wrkspc_576fafc861f024a4","user_token":null,"start_date":"2025-11-01","end_date":"2026-02-06","date_interval":"last_3_months","date_bucket":"month","groupings":"cost_type","on_demand_costs_scope":"discountable","filter":"(financial_commitments.provider
+        = ''aws'')"}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"0aa5c8db7123776527d3fa2625a25899"
+      Set-Cookie:
+      - _stratus_session=PlOeDVxPRoH6gG1ANHQh5XqVh9it1rm10%2BvW3JRcrvjDEXI0dQi9RLphmpjambYE4N2EhWaaHeJrxXV023AK686tDOTH%2BpGQ7GedES9e%2ByCVbYmrp833qdVau52UajKV0LNyWqibIRdpp1yy4XkLyruKEikrGJmpRrHaVEC%2F0GPuD2zSnHAdoWmdhOohrElSM%2BwBjtkM0uQ%3D--WjgAHvVXoBBv3cf%2B--6gGXcWQahdMpgZzAtIPM6A%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '296'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.052619'
+      content-length:
+      - '417'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=PlOeDVxPRoH6gG1ANHQh5XqVh9it1rm10%2BvW3JRcrvjDEXI0dQi9RLphmpjambYE4N2EhWaaHeJrxXV023AK686tDOTH%2BpGQ7GedES9e%2ByCVbYmrp833qdVau52UajKV0LNyWqibIRdpp1yy4XkLyruKEikrGJmpRrHaVEC%2F0GPuD2zSnHAdoWmdhOohrElSM%2BwBjtkM0uQ%3D--WjgAHvVXoBBv3cf%2B--6gGXcWQahdMpgZzAtIPM6A%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: DELETE
+    uri: https://api.vantage.sh/v2/financial_commitment_reports/fncl_cmnt_rprt_dd7cdb5bb6715c8b
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Set-Cookie:
+      - _stratus_session=0GMxPQyVcyEOGYvef6DcxR6Z%2BxE%2B8FPc15BTC3N0zxaxhOmu6XhqdrqRdmVrMQUqL7xuiGoXKgpW2L%2Bhfy6gJXi2BkAUQq0DY9S2SOdpJocL9Tm0MsPcF5KiNZfsPfliqsym9uFhu0%2Bvo6ATatw55K5jQZHFacx7ywCNZwwhLKX1KHr1XCCJ60rRIDpLhrB3ZtQg7uiYMk8%3D--rPUvGDRuaRnUDTYm--CVmdMNe5Xgf2qAvtGC81eg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '295'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.056573'
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=0GMxPQyVcyEOGYvef6DcxR6Z%2BxE%2B8FPc15BTC3N0zxaxhOmu6XhqdrqRdmVrMQUqL7xuiGoXKgpW2L%2Bhfy6gJXi2BkAUQq0DY9S2SOdpJocL9Tm0MsPcF5KiNZfsPfliqsym9uFhu0%2Bvo6ATatw55K5jQZHFacx7ywCNZwwhLKX1KHr1XCCJ60rRIDpLhrB3ZtQg7uiYMk8%3D--rPUvGDRuaRnUDTYm--CVmdMNe5Xgf2qAvtGC81eg%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/financial_commitment_reports/fncl_cmnt_rprt_dd7cdb5bb6715c8b
+  response:
+    body:
+      string: '{"errors":["FinancialCommitmentReport fncl_cmnt_rprt_dd7cdb5bb6715c8b
+        not found."]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - _stratus_session=Mz8rUf%2BSVN1AkSzJytAufVTS7iRRvulJs1KTiTisT%2BfJ90pk64o7dOh7d0lU9d8xa1vu03asBzGXC3mfygw1IVPGRRo%2BkODjfUSH9j9ZuNXmpy4UFKDkWIgUd%2BBV74o6ItRY8F82GSmJVc2wTYuamTb3jaQ2LTlbMPuDJx8S3ogOmrXTCdntu5MbW%2BMICc1yBqXGpih26Kc%3D--wW5I%2F7Szx3lqXyn6--q%2FIgI3e8CEJzQxh4IlQU4A%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '294'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.024671'
+      content-length:
+      - '83'
+    status:
+      code: 404
+      message: Not Found
+version: 1

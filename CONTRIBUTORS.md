@@ -12,88 +12,89 @@ uv run nox
 
 All tests are integration tests that call the actual Vantage API. For an SDK, this is somewhat unavoidable, the primary value is correctness against the actual API rather than testing isolated logic.
 
-- A Vantage API key and workspace token are required - use `.sample.env` as a template to create your `.env` file
-  - **IMPORTANT:** Use a sandbox/test workspace token, NOT a production workspace
-- Some tests require polling endpoints and take longer to complete
-  - Run these with `uv run pytest -m slow`
-  - Exclude them with `uv run pytest -k 'not slow'`
+### Setting up a sandbox
+
+1. Create a free account at [vantage.sh](https://vantage.sh)
+2. Generate an API key from the Vantage console under Settings -> API Access Tokens
+3. Copy your workspace token from the URL bar (the `wrkspc_*` value) or from Settings -> Workspaces
+4. Copy `.sample.env` to `.env` at the project root and fill in the values:
+   ```
+   VANTAGE_API_KEY=<your-api-key>
+   WORKSPACE_TOKEN=<your-workspace-token>
+   ```
+5. Verify the setup by running a single test against the live API:
+   ```bash
+   just test tests/test_main.py::test_get_me
+   ```
+
+### Running tests
+
+Use the `just` recipes to run tests locally or in CI:
+
+| Command | Description |
+|---|---|
+| `just test` | Run tests against the live API |
+| `just test-vcr` | Run tests using recorded cassettes (no network) |
+| `just test-vcr-record` | Record cassettes for tests that don't have one yet |
+| `just test-vcr-rewrite` | Re-record all cassettes from scratch |
+| `just test-live` | Run tests against the live API with recording disabled |
+
+Pass additional flags after any command:
+
+```bash
+just test -k 'not slow'
+just test-vcr-record tests/test_main.py::test_get_dashboard
+just test-vcr-rewrite tests/test_main.py::test_get_dashboard
+```
+
+Some tests require polling endpoints and take longer to complete:
+- Run only slow tests: `just test -- -m slow`
+- Exclude slow tests: `just test -- -k 'not slow'`
+
+### How VCR cassette testing works
+
+The test suite uses [pytest-recording](https://github.com/kiwicom/pytest-recording), a pytest plugin wrapping [VCR.py](https://vcrpy.readthedocs.io/), to record and replay HTTP interactions.
+
+When you run tests with `VCR_ENABLED=true`, the following happens:
+
+1. `conftest.py` checks `Settings.vcr_enabled` and auto-applies `@pytest.mark.vcr` to every test via `pytest_collection_modifyitems`
+2. `ResourceNameFactory` switches to deterministic names with a `_vcr` suffix (e.g. `test_folder_vcr`) so that request URLs and payloads match the recorded cassettes
+3. The session-scoped `vcr_config` fixture configures VCR to:
+   - Store YAML cassettes in `tests/cassettes/`
+   - Scrub `authorization` headers from recorded requests
+   - Strip `Date` and `X-Request-Id` headers from responses
+   - Match requests on method, scheme, host, port, path, and query
+4. Depending on the `--record-mode` flag:
+   - `none` - replay only, fail if no cassette exists (used in CI with `--block-network`)
+   - `once` - record if no cassette exists, replay if it does
+   - `rewrite` - always re-record, replacing existing cassettes
+
+In CI (`noxfile.py`), when `CI=true` is set, VCR is auto-enabled with `--record-mode=none --block-network` so tests never make real HTTP calls.
+
+### When to re-record cassettes
+
+Re-record cassettes when:
+- You add a new test function (use `just test-vcr-record tests/test_main.py::test_your_new_test`)
+- An API response schema changes (use `just test-vcr-rewrite tests/test_main.py::test_affected_test`)
+- A fixture changes the request payload (field values, resource names, etc.)
 
 ## Regenerating Models
 
-`vantage_sdk/models/gen_models/` is generated using the `datamodel-codegen` tool via a JSON file containing the official Vantage API spec.
+`vantage_sdk/models/gen_models/` is generated using the `datamodel-codegen` tool. All codegen configuration lives in `pyproject.toml` under `[tool.datamodel-codegen]`.
 
 > **Important:** Do not manually edit files in `vantage_sdk/models/gen_models/`. Any changes will be overwritten when models are regenerated.
 
 If you encounter type issues, bugs in the generated models, or need to extend functionality:
 1. Overload the class in `vantage_sdk/models/common.py` by inheriting from the generated model.
-2. Add your overrides (using `# type: ignore[assignment]` if changing types).
+2. Add your overrides (using `# pyright: ignore[reportIncompatibleVariableOverride]` if changing types).
 3. Import your new class in `vantage_sdk/models/__init__.py` so it overrides the generated version in the package interface.
 
 See `vantage_sdk/models/common.py` for detailed instructions and examples.
 
-To download the latest OpenAPI spec from Vantage:
-
-```bash
-just download-api
-```
-
-To regenerate the models from the downloaded spec:
+To regenerate the models:
 
 ```bash
 just generate-models
 ```
 
-This command will:
-1. Read `openapi_spec.json`
-2. Generate Pydantic v2 models with full type safety
-
-### datamodel-codegen Flags Explained
-
-- **`--input-file-type openapi`**  
-  Instructs the generator that the input file (or URL) is in OpenAPI format (other options include jsonschema, json, yaml, dict, csv)
-
-- **`--output-model-type pydantic_v2.BaseModel`**  
-  Tells the tool to generate models using **Pydantic v2** style classes (`BaseModel` from Pydantic v2)
-
-- **`--target-python-version 3.10`**  
-  Generates code compatible with Python 3.10 syntax and features
-
-- **`--use-generic-container-types`**  
-  Uses generic collection types like `Sequence[str]` and `Mapping[str, Any]` instead of concrete types like `list[str]` and `dict[str, Any]`
-
-- **`--use-subclass-enum`**  
-  If an enum has a type (string, int, etc.), generates an enum class that subclasses that type (e.g., `class Color(str, Enum): ...`) for better type hints and serialization
-
-- **`--use-union-operator`**  
-  Enables the `|` operator syntax for unions (PEP 604) instead of `Union[]` (e.g., `str | None` instead of `Union[str, None]`)
-
-- **`--reuse-model`**  
-  When identical schemas appear multiple times, creates a single model and reuses it, preventing duplicate class definitions
-
-- **`--use-schema-description`**  
-  Uses the `description` field from the OpenAPI spec to populate class docstrings for better documentation
-
-- **`--collapse-root-models`**  
-  Merges models that have a root-type field into the models that use them, reducing the number of intermediate wrapper models
-
-- **`--field-constraints`**  
-  Uses Pydantic field constraints (like `min_length`, `max_length`) instead of `constr()` style annotations
-
-- **`--use-annotated`**  
-  Uses `typing.Annotated` with `Field()` for field definitions, which is the recommended Pydantic v2 style
-
-- **`--strict-nullable`**  
-  Treats fields without explicit `nullable: true` as required (non-nullable), following strict OpenAPI interpretation
-
-- **`--use-default-kwarg`**  
-  Uses `default=` keyword argument in `Field()` definitions instead of positional arguments for better readability
-
-- **`--parent-scoped-naming`**  
-  Names inline models based on their parent context (e.g., `CreateUserAddress` instead of generic `Address1`), making model names more descriptive and avoiding generic numbered suffixes
-
-- **`--openapi-scopes schemas paths parameters`**  
-  Specifies which OpenAPI scopes to include in the generated models
-
-## Versioning
-
-Please bump the major version if you make a breaking change, and the minor version if you are making a small change/bug fix. The CI will only upload the library to Artifactory if it encounters a version of the package in the repository that has never been uploaded.
+This fetches the latest OpenAPI spec from `https://api.vantage.sh/v2/oas_v3.json` and generates Pydantic v2 models.

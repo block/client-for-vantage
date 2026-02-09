@@ -45,11 +45,11 @@ response = vantage.create_cost_report(cost_report)
 
 ## Supported Endpoints
 
-This SDK supports all endpoints from the Vantage API. While comprehensive test coverage exists for most endpoints, some endpoints have limited test coverage due to various constraints.
+This SDK supports all endpoints from the Vantage API. Most endpoints are covered by live API tests, but a small set of methods are skipped in CI because they require special permissions or account configuration. Those skipped methods are expected to work based on the OpenAPI spec and we keep the request and response models aligned with it, but we cannot validate them in automated tests. The remaining methods are verified against the live API and are expected to work as implemented.
 
 ### Endpoints with Testing Limitations
 
-The following endpoints are available but should be used with caution as they have limited automated test coverage:
+The following endpoints are available but should be used with caution as they have limited automated test coverage
 
 - **Anomaly Alerts**: API access is limited as these can only be created via the UI
 - **Billing Rules**: Requires special enterprise permissions
@@ -59,7 +59,13 @@ The following endpoints are available but should be used with caution as they ha
 - **Unit Costs**: Requires actual cost data for exports
 - **User Feedback**: Limited testing to avoid creating test data in production
 - **Workspaces**: Limited testing to avoid affecting production workspaces
+- **Teams**: Sandbox account lacks team permissions, so related tests are skipped in VCR recordings
+- **Tags**: Sandbox account has no tags configured, so tag update and value tests are skipped in VCR recordings
 
 ## Contributing
 
 See [CONTRIBUTORS.md](CONTRIBUTORS.md) for development setup, testing guidelines, and instructions for regenerating models.
+
+## Testing
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for VCR-backed and live testing workflows.

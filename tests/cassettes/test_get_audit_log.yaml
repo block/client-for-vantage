@@ -1,0 +1,390 @@
+interactions:
+- request:
+    body: '{"title":"test_cost_report_vcr","workspace_token":"wrkspc_576fafc861f024a4","groupings":"provider,service","filter":"costs.provider
+      = ''aws''","settings":{"include_credits":true,"include_refunds":true},"date_interval":"last_3_months","date_bin":"month","chart_settings":{"x_axis_dimension":["date"],"y_axis_dimension":"cost"}}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '324'
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: POST
+    uri: https://api.vantage.sh/v2/cost_reports
+  response:
+    body:
+      string: '{"token":"rprt_14cd31cad0d86805","title":"test_cost_report_vcr","folder_token":null,"saved_filter_tokens":[],"business_metric_tokens_with_metadata":[],"filter":"costs.provider
+        = ''aws''","groupings":"provider,service","settings":{"include_credits":true,"include_refunds":true,"include_discounts":true,"include_tax":true,"amortize":true,"unallocated":false,"aggregate_by":"cost","show_previous_period":true},"created_at":"2026-02-08T18:33:08Z","workspace_token":"wrkspc_576fafc861f024a4","previous_period_start_date":null,"previous_period_end_date":null,"start_date":"2025-11-01","end_date":"2026-02-06","date_interval":"last_3_months","chart_type":"line","date_bin":"month","chart_settings":{"y_axis_dimension":"cost","x_axis_dimension":["date"]}}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"ff84681aa8fc68c8185b9b1fc6aa058c"
+      Set-Cookie:
+      - _stratus_session=8Mhg6R9hKlm5lfeIbMImF%2FsTPif4MilGwIIBvR8Qru3FCv5KeGpL9MW84opDhZfghOc%2BMze1NjNP4cVh0g9EWBZDfAd9U6mQ0BzJbLC5Sfxu33UddKMOvTwA5U9q%2FiGTNSlAW9G98AdCD27eM2662eg0MnP9zQ4We4WfDruYERHJ62jeMNIuisl6VrkMBJDMA5tdlMdDa0k%3D--2hKOYI8G2raQu%2FZt--7r1TJ77P1j1oJ8EkrXPlzA%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '243'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.281675'
+      content-length:
+      - '745'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"title":"updated_vcr_test_cost_report_vcr"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '44'
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=8Mhg6R9hKlm5lfeIbMImF%2FsTPif4MilGwIIBvR8Qru3FCv5KeGpL9MW84opDhZfghOc%2BMze1NjNP4cVh0g9EWBZDfAd9U6mQ0BzJbLC5Sfxu33UddKMOvTwA5U9q%2FiGTNSlAW9G98AdCD27eM2662eg0MnP9zQ4We4WfDruYERHJ62jeMNIuisl6VrkMBJDMA5tdlMdDa0k%3D--2hKOYI8G2raQu%2FZt--7r1TJ77P1j1oJ8EkrXPlzA%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: PUT
+    uri: https://api.vantage.sh/v2/cost_reports/rprt_14cd31cad0d86805
+  response:
+    body:
+      string: '{"token":"rprt_14cd31cad0d86805","title":"updated_vcr_test_cost_report_vcr","folder_token":null,"saved_filter_tokens":[],"business_metric_tokens_with_metadata":[],"filter":"costs.provider
+        = ''aws''","groupings":"provider,service","settings":{"include_credits":true,"include_refunds":true,"include_discounts":true,"include_tax":true,"amortize":true,"unallocated":false,"aggregate_by":"cost","show_previous_period":true},"created_at":"2026-02-08T18:33:08Z","workspace_token":"wrkspc_576fafc861f024a4","previous_period_start_date":null,"previous_period_end_date":null,"start_date":"2025-11-01","end_date":"2026-02-06","date_interval":"last_3_months","chart_type":"line","date_bin":"cumulative","chart_settings":{"y_axis_dimension":"cost","x_axis_dimension":["date"]}}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"b4c3f5024b41eacfd396fa7269e2bda3"
+      Set-Cookie:
+      - _stratus_session=DeV2eLyf1TJVQ5XxR1JH830gxdWOfb71178rimX0Mi%2FL5uatPHNM32CRDzn56MMX5f6ixNDiMsra%2FoUd4MEcqf1Ep2SK3N%2BO0tNoQ89NuHq9jnaeSTsH9%2FBgRETjurNy7eibvK34cNvVdJHRm1L%2FGbZljKlkWNKBCXD6tTDD8D8FWwlKfzlPcQgbul8STjf82SRIgihgL6g%3D--ydDNxYkpowNgqaPv--FWWPD660pUqjYZOdU%2F5myA%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '242'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.271460'
+      content-length:
+      - '762'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=DeV2eLyf1TJVQ5XxR1JH830gxdWOfb71178rimX0Mi%2FL5uatPHNM32CRDzn56MMX5f6ixNDiMsra%2FoUd4MEcqf1Ep2SK3N%2BO0tNoQ89NuHq9jnaeSTsH9%2FBgRETjurNy7eibvK34cNvVdJHRm1L%2FGbZljKlkWNKBCXD6tTDD8D8FWwlKfzlPcQgbul8STjf82SRIgihgL6g%3D--ydDNxYkpowNgqaPv--FWWPD660pUqjYZOdU%2F5myA%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/audit_logs?object_token=rprt_14cd31cad0d86805&page=1
+  response:
+    body:
+      string: "{\"links\":{\"self\":\"https://api.vantage.sh/v2/audit_logs?object_token=rprt_14cd31cad0d86805\\u0026page=1\",\"first\":\"https://api.vantage.sh/v2/audit_logs?object_token=rprt_14cd31cad0d86805\\u0026page=1\",\"next\":null,\"last\":\"https://api.vantage.sh/v2/audit_logs?object_token=rprt_14cd31cad0d86805\\u0026page=1\",\"prev\":null},\"audit_logs\":[{\"token\":\"adt_lg_453c1c4275a19390\",\"object_token\":\"rprt_14cd31cad0d86805\",\"object_type\":\"Report\",\"object_title\":\"updated_vcr_test_cost_report_vcr\",\"event\":\"record_updated\",\"source\":\"api\",\"user\":\"Krunal
+        Amin\",\"workspace_title\":\"Default\",\"workspace_token\":\"wrkspc_576fafc861f024a4\",\"created_at\":\"2026-02-08T18:33:09Z\",\"changed_values\":{\"Title\":[\"test_cost_report_vcr\",\"updated_vcr_test_cost_report_vcr\"],\"Date
+        Bucket\":[\"month\",\"cumulative\"]},\"unchanged_values\":{\"Chart Type\":\"line\",\"Token\":\"rprt_14cd31cad0d86805\",\"Default\":\"false\",\"Refreshed
+        At\":\"\u2013\",\"Settings\":\"{\\\"include_credits\\\":true,\\\"include_refunds\\\":true,\\\"include_discounts\\\":true,\\\"include_tax\\\":true,\\\"unallocated\\\":false,\\\"amortize\\\":true,\\\"show_previous_period\\\":true,\\\"aggregate_by\\\":\\\"cost\\\"}\",\"Generated
+        At\":\"\u2013\",\"Folder Id\":\"\u2013\",\"Slug\":\"\u2013\",\"Type\":\"Cost
+        Report\",\"Start Date\":\"\u2013\",\"End Date\":\"\u2013\",\"Grouping\":\"\u2013\",\"Date
+        Interval\":\"last_3_months\",\"Groupings\":\"[\\\"provider\\\", \\\"service\\\"]\",\"Table
+        Layout\":\"0\",\"Change Unit\":\"0\",\"Deleted At\":\"\u2013\",\"Previous
+        Period Start Date\":\"\u2013\",\"Previous Period End Date\":\"\u2013\",\"Created
+        By Type\":\"Team\",\"Chart Settings\":\"{\\\"x_axis_dimension\\\":[\\\"date\\\"],\\\"y_axis_dimension\\\":\\\"cost\\\"}\",\"Created
+        By\":\"Krunal Amin\",\"Filter\":\"\u2013\",\"Business Metrics\":\"\u2013\",\"Workspace\":\"Default\"}},{\"token\":\"adt_lg_3bc3ee370d473c67\",\"object_token\":\"rprt_14cd31cad0d86805\",\"object_type\":\"Report\",\"object_title\":\"updated_vcr_test_cost_report_vcr\",\"event\":\"record_created\",\"source\":\"api\",\"user\":\"Krunal
+        Amin\",\"workspace_title\":\"Default\",\"workspace_token\":\"wrkspc_576fafc861f024a4\",\"created_at\":\"2026-02-08T18:33:08Z\",\"changed_values\":{\"Title\":[\"\u2013\",\"test_cost_report_vcr\"],\"Settings\":[\"\u2013\",\"{\\\"include_credits\\\":true,\\\"include_refunds\\\":true,\\\"include_discounts\\\":true,\\\"include_tax\\\":true,\\\"unallocated\\\":false,\\\"amortize\\\":true,\\\"show_previous_period\\\":true,\\\"aggregate_by\\\":\\\"cost\\\"}\"],\"Date
+        Bucket\":[\"\u2013\",\"month\"],\"Date Interval\":[\"\u2013\",\"last_3_months\"],\"Groupings\":[\"\u2013\",\"[\\\"provider\\\",
+        \\\"service\\\"]\"],\"Token\":[\"\u2013\",\"rprt_14cd31cad0d86805\"],\"Created
+        By Type\":[\"\u2013\",\"Team\"],\"Created By\":[null,\"Krunal Amin\"],\"Workspace\":[null,\"Default\"]},\"unchanged_values\":{\"Filter\":\"\u2013\",\"Business
+        Metrics\":\"\u2013\"}}]}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"9395805e085b7e34b0de3efdbdd588ad"
+      Set-Cookie:
+      - _stratus_session=cP0PYAxaTHC3JLSJkL5ibNSk1CDWILLzY7eAUQTxOsfAqbuyR0m3kCqtRmCg6F%2B9fwgAaK16wYwH4VuL9%2Ffdz6%2Fsi2d0ZuwmEcSQWPmoCimWdtrqKey1CC1OSULQ1PaIzpbfZRvir8eDIhB8hTEwI45ClxA%2FD7IE9%2F4muFIih7%2FX6xcDgQz3V4w4Jke0MnMhDIodkZHVycY%3D--n%2F1t1dMx0YVP30nJ--tjby2tuup4WaKmfvMIiA%2BQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '10000'
+      X-Rate-Limit-Remaining:
+      - '9989'
+      X-Rate-Limit-Reset:
+      - '1770576596'
+      X-Runtime:
+      - '0.079893'
+      content-length:
+      - '2522'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=cP0PYAxaTHC3JLSJkL5ibNSk1CDWILLzY7eAUQTxOsfAqbuyR0m3kCqtRmCg6F%2B9fwgAaK16wYwH4VuL9%2Ffdz6%2Fsi2d0ZuwmEcSQWPmoCimWdtrqKey1CC1OSULQ1PaIzpbfZRvir8eDIhB8hTEwI45ClxA%2FD7IE9%2F4muFIih7%2FX6xcDgQz3V4w4Jke0MnMhDIodkZHVycY%3D--n%2F1t1dMx0YVP30nJ--tjby2tuup4WaKmfvMIiA%2BQ%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/audit_logs/adt_lg_453c1c4275a19390
+  response:
+    body:
+      string: "{\"token\":\"adt_lg_453c1c4275a19390\",\"object_token\":\"rprt_14cd31cad0d86805\",\"object_type\":\"Report\",\"object_title\":\"updated_vcr_test_cost_report_vcr\",\"event\":\"record_updated\",\"source\":\"api\",\"user\":\"Krunal
+        Amin\",\"workspace_title\":\"Default\",\"workspace_token\":\"wrkspc_576fafc861f024a4\",\"created_at\":\"2026-02-08T18:33:09Z\",\"changed_values\":{\"Title\":[\"test_cost_report_vcr\",\"updated_vcr_test_cost_report_vcr\"],\"Date
+        Bucket\":[\"month\",\"cumulative\"]},\"unchanged_values\":{\"Chart Type\":\"line\",\"Token\":\"rprt_14cd31cad0d86805\",\"Default\":\"false\",\"Refreshed
+        At\":\"\u2013\",\"Settings\":\"{\\\"include_credits\\\":true,\\\"include_refunds\\\":true,\\\"include_discounts\\\":true,\\\"include_tax\\\":true,\\\"unallocated\\\":false,\\\"amortize\\\":true,\\\"show_previous_period\\\":true,\\\"aggregate_by\\\":\\\"cost\\\"}\",\"Generated
+        At\":\"\u2013\",\"Folder Id\":\"\u2013\",\"Slug\":\"\u2013\",\"Type\":\"Cost
+        Report\",\"Start Date\":\"\u2013\",\"End Date\":\"\u2013\",\"Grouping\":\"\u2013\",\"Date
+        Interval\":\"last_3_months\",\"Groupings\":\"[\\\"provider\\\", \\\"service\\\"]\",\"Table
+        Layout\":\"0\",\"Change Unit\":\"0\",\"Deleted At\":\"\u2013\",\"Previous
+        Period Start Date\":\"\u2013\",\"Previous Period End Date\":\"\u2013\",\"Created
+        By Type\":\"Team\",\"Chart Settings\":\"{\\\"x_axis_dimension\\\":[\\\"date\\\"],\\\"y_axis_dimension\\\":\\\"cost\\\"}\",\"Created
+        By\":\"Krunal Amin\",\"Filter\":\"\u2013\",\"Business Metrics\":\"\u2013\",\"Workspace\":\"Default\"}}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"3fa33db4bfd49a3072aecdb25f29a922"
+      Set-Cookie:
+      - _stratus_session=y4qDDlV4zQo5yPlKKrWTXfXfUPR0KfXih5nJrKXy%2FGS6p7LUitWxe%2F3gh4dNz4tEdV4IF0pvsPXhdKWUFYz4Z%2FQXfozF8hbI%2BCY7H9RPkhQlGMslXXS%2BrSfm%2Be0nQZT5AbQ%2Boa%2BA4wlKXuCUYjTbFJyW%2BbKiZWOCm6BtF0WoImW0ahV9XX%2BWh64hE0dM5FAMXjYbcSLekHQ%3D--ZruSvJwxESgs5izl--uyMcuZkLwWobNk1VK%2BtHhg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '10000'
+      X-Rate-Limit-Remaining:
+      - '10000'
+      X-Rate-Limit-Reset:
+      - '1770579190'
+      X-Runtime:
+      - '0.071404'
+      content-length:
+      - '1282'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=y4qDDlV4zQo5yPlKKrWTXfXfUPR0KfXih5nJrKXy%2FGS6p7LUitWxe%2F3gh4dNz4tEdV4IF0pvsPXhdKWUFYz4Z%2FQXfozF8hbI%2BCY7H9RPkhQlGMslXXS%2BrSfm%2Be0nQZT5AbQ%2Boa%2BA4wlKXuCUYjTbFJyW%2BbKiZWOCm6BtF0WoImW0ahV9XX%2BWh64hE0dM5FAMXjYbcSLekHQ%3D--ZruSvJwxESgs5izl--uyMcuZkLwWobNk1VK%2BtHhg%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: DELETE
+    uri: https://api.vantage.sh/v2/cost_reports/rprt_14cd31cad0d86805
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Set-Cookie:
+      - _stratus_session=cLFO7hDJnSWfzRjUW3vTZtk2kOzOJrX37jfTAMv8atx3qRDh70JDjZcNGAiQ2JuWUNXQ8XgSoHfFo8VvRawkM97c2rg7CZJvpWQuOqnJO9ED6TByKPK%2FByrQ42fDOXcEweGijsL3sW1I8hveCVgjSPgzcMNgnJe2wgFTuk%2BNtfBNBEQrLLuO57hl3CFnyi%2Bz7xD5CCzPT7I%3D--RukVJQXqKr7fiIro--NZsP4PwufpNK3iVF8KARIg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '241'
+      X-Rate-Limit-Reset:
+      - '1770576040'
+      X-Runtime:
+      - '0.053486'
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=cLFO7hDJnSWfzRjUW3vTZtk2kOzOJrX37jfTAMv8atx3qRDh70JDjZcNGAiQ2JuWUNXQ8XgSoHfFo8VvRawkM97c2rg7CZJvpWQuOqnJO9ED6TByKPK%2FByrQ42fDOXcEweGijsL3sW1I8hveCVgjSPgzcMNgnJe2wgFTuk%2BNtfBNBEQrLLuO57hl3CFnyi%2Bz7xD5CCzPT7I%3D--RukVJQXqKr7fiIro--NZsP4PwufpNK3iVF8KARIg%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/cost_reports/rprt_14cd31cad0d86805
+  response:
+    body:
+      string: '{"errors":["CostReport rprt_14cd31cad0d86805 not found."]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      Set-Cookie:
+      - _stratus_session=g8nmEFEU%2F4b9J5Hxwfja%2B81Oqa3Lg7vPqZ1%2BU%2BB7sOXMVlZ5%2FlRMSueLY8nY4%2F1YntwCSp2SvomUicUAdpUp9mFhOcNiJPm511nLe7PaV0nCY4i%2BWUH7ZAGkXf1d2vToxDbThOkHGqpug%2F%2BOucmnOtfkgZ%2BizTJtTyh0xOMUlEDeuBrtS0TWzhyhjydSJVOT9xJwjdTFfCQ%3D--BwBhaucb4u65cFBS--s5l5JCbYSivsPOLk0iRfhg%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '10000'
+      X-Rate-Limit-Remaining:
+      - '10000'
+      X-Rate-Limit-Reset:
+      - '1770579190'
+      X-Runtime:
+      - '0.031211'
+      content-length:
+      - '58'
+    status:
+      code: 404
+      message: Not Found
+version: 1
