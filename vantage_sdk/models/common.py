@@ -23,20 +23,12 @@ from pydantic import BaseModel, Field, field_serializer, field_validator, model_
 
 # ruff: noqa: I001
 from vantage_sdk.models.gen_models import (
-    me as me_model,
-    resource as resource_model,
-    resources as resources_model,
-    business_metric as business_metric_model,
     budget_period as budget_period_model,
     budget as budget_model,
     budgets as budgets_model,
     anomaly_notification as anomaly_notification_model,
     anomaly_notifications as anomaly_notifications_model,
-    cost_report_settings as cost_report_settings_model,
     create_budget_alert as create_budget_alert_model,
-    budget_alert as budget_alert_model,
-    budget_alerts as budget_alerts_model,
-    business_metrics as business_metrics_model,
     chart_settings as chart_settings_model,
     cost_report as cost_report_model,
     cost_alert as cost_alert_model,
@@ -469,18 +461,6 @@ class AuditLogTokenParams(BaseModel):
 # --------------------------------
 
 
-class Resource(resource_model.Resource):
-    """Resource model override"""
-
-    metadata: Mapping[str, Any] | None = None  # type: ignore[assignment]
-
-
-class Resources(resources_model.Resources):
-    """Resources model override"""
-
-    resources: Sequence[Resource]  # type: ignore[assignment]
-
-
 class CreateFinancialCommitmentReport(create_financial_commitment_report_model.CreateFinancialCommitmentReport):
     """Extends CreateFinancialCommitmentReport to allow string dates"""
 
@@ -666,62 +646,16 @@ class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVi
         return values
 
 
-class CostReportSettings(cost_report_settings_model.CostReportSettings):
-    """Extends CostReportSettings to allow nullable fields for report settings"""
-
-    include_credits: bool | None = None  # type: ignore[assignment]
-    include_refunds: bool | None = None  # type: ignore[assignment]
-    include_discounts: bool | None = None  # type: ignore[assignment]
-    include_tax: bool | None = None  # type: ignore[assignment]
-    amortize: bool | None = None  # type: ignore[assignment]
-    unallocated: bool | None = None  # type: ignore[assignment]
-    aggregate_by: str | None = None  # type: ignore[assignment]
-    show_previous_period: bool | None = None  # type: ignore[assignment]
-
-
 class CostReport(cost_report_model.CostReport):
     """Extends CostReport to make chart_settings optional"""
 
     chart_settings: chart_settings_model.ChartSettings | None = None  # type: ignore[assignment]
-    settings: CostReportSettings | None = None  # type: ignore[assignment]
 
 
 class CostReports(cost_reports_model.CostReports):
     """Extends CostReports to use the custom CostReport model"""
 
     cost_reports: Sequence[CostReport]  # type: ignore[assignment]
-
-
-class BudgetAlert(budget_alert_model.BudgetAlert):
-    """Extends BudgetAlert to match API response types"""
-
-    threshold: int | None = None  # type: ignore[assignment]
-    duration_in_days: int | None = None  # type: ignore[assignment]
-    recipient_channels: Sequence[str] | None = None  # type: ignore[assignment]
-
-
-class BudgetAlerts(budget_alerts_model.BudgetAlerts):
-    """Extends BudgetAlerts to use the custom BudgetAlert model"""
-
-    budget_alerts: Sequence[BudgetAlert]  # type: ignore[assignment]
-
-
-class Me(me_model.Me):
-    """Extends Me to handle nullable default workspace tokens"""
-
-    default_workspace_token: str | None = None  # type: ignore[assignment]
-
-
-class BusinessMetric(business_metric_model.BusinessMetric):
-    """Extends BusinessMetric to handle missing import_type values"""
-
-    import_type: str | None = None  # type: ignore[assignment]
-
-
-class BusinessMetrics(business_metrics_model.BusinessMetrics):
-    """Extends BusinessMetrics to use the custom BusinessMetric model"""
-
-    business_metrics: Sequence[BusinessMetric]  # type: ignore[assignment]
 
 
 class BudgetPeriod(budget_period_model.BudgetPeriod):
