@@ -1,4 +1,4 @@
-# Client for Vantage
+<h1 align="center">Client for Vantage</h1>
 
 <p align="center">
 <a href="https://github.com/block/client-for-vantage/actions/workflows/python-test.yml?query=event%3Apush+branch%3Amain" target="_blank">
