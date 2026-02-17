@@ -14,7 +14,7 @@
     <img src="https://img.shields.io/pypi/l/client-for-vantage?color=%2334D058" alt="License">
 </a>
 <a href="https://docs.pydantic.dev" target="_blank">
-    <img src="https://img.shields.io/badge/Pydantic-v2-%23e92063" alt="Pydantic v2">
+    <img src="https://img.shields.io/badge/Pydantic-v2-%23D338E2" alt="Pydantic v2">
 </a>
 </p>
 
