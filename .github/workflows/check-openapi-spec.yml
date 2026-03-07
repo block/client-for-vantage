@@ -30,10 +30,10 @@ jobs:
     - name: Check for differences
       id: diff
       run: |
-        if git diff --quiet vantage_sdk/models/gen_models/; then
-          echo "changed=false" >> "$GITHUB_OUTPUT"
-        else
+        if [[ -n "$(git status --porcelain --untracked-files=all -- vantage_sdk/models/gen_models/)" ]]; then
           echo "changed=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "changed=false" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Create pull request

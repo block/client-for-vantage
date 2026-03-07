@@ -109,6 +109,7 @@ parent-scoped-naming = true
 all-exports-scope = "recursive"
 all-exports-collision-strategy = "minimal-prefix"
 openapi-scopes = ["schemas", "paths", "parameters"]
+disable-timestamp = true
 formatters = ["ruff-format", "ruff-check"]
 
 [tool.ruff.lint]
