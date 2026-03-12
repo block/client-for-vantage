@@ -1,0 +1,18 @@
+#!/bin/sh
+
+commit_msg=$(head -1 "$1")
+
+if ! echo "$commit_msg" | grep -qE '^(feat|fix|chore|docs|ci|test|refactor|perf|build|style|revert)(\(.+\))?(!)?: .+'; then
+  echo "ERROR: Commit message must follow Conventional Commits format"
+  echo ""
+  echo "  <type>[optional scope][!]: <description>"
+  echo ""
+  echo "  Types: feat, fix, chore, docs, ci, test, refactor, perf, build, style, revert"
+  echo ""
+  echo "  Examples:"
+  echo "    feat: add dashboard endpoints"
+  echo "    fix(models): handle null chart_settings"
+  echo "    feat!: rename VantageSDK to VantageClient"
+  echo ""
+  exit 1
+fi

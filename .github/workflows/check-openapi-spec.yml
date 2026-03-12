@@ -1,0 +1,50 @@
+name: Check OpenAPI Spec
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Daily at 9am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-spec:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+    - name: Install the latest version of uv
+      uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      with:
+        version: "latest"
+        enable-cache: true
+
+    - name: Fetch latest spec and regenerate models
+      run: |
+        curl -sS https://api.vantage.sh/v2/oas_v3.json -o openapi_spec.json
+        uv run datamodel-codegen
+
+    - name: Check for differences
+      id: diff
+      run: |
+        if [[ -n "$(git status --porcelain --untracked-files=all -- vantage_sdk/models/gen_models/)" ]]; then
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Create pull request
+      if: steps.diff.outputs.changed == 'true'
+      uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
+      with:
+        commit-message: "chore: update OpenAPI spec and regenerate models"
+        title: "chore: update OpenAPI spec and regenerate models"
+        body: |
+          The upstream Vantage OpenAPI spec has changed. This PR updates `openapi_spec.json` and regenerates the models in `vantage_sdk/models/gen_models/`.
+
+          Please review the generated model changes for any breaking impacts.
+        branch: chore/update-openapi-spec
+        delete-branch: true

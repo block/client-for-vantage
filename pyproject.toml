@@ -24,7 +24,6 @@ dependencies = [
     "pydantic-settings>=2.7.1",
     "pydantic-extra-types>=2.10.2",
     "httpx>=0.28.1",
-    "pendulum>=3.0.0",
 ]
 
 [dependency-groups]
@@ -34,7 +33,7 @@ dev = [
     "ruff>=0.12.0",
     "nox>=2025.05.01",
     "pytest-mock>=3.14.0",
-    "datamodel-code-generator[http,ruff]>=0.53.0",
+    "datamodel-code-generator[http,ruff]>=0.55.0",
     "pytest-timeout>=2.4.0",
     "basedpyright>=1.29.0",
 ]
@@ -104,11 +103,14 @@ field-constraints = true
 use-annotated = true
 strict-nullable = true
 use-default-kwarg = true
+set-default-enum-member = true
+allow-population-by-field-name = true
 naming-strategy = "primary-first"
 parent-scoped-naming = true
 all-exports-scope = "recursive"
 all-exports-collision-strategy = "minimal-prefix"
 openapi-scopes = ["schemas", "paths", "parameters"]
+disable-timestamp = true
 formatters = ["ruff-format", "ruff-check"]
 
 [tool.ruff.lint]

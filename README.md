@@ -32,7 +32,11 @@ This SDK is a Python client built around the [Vantage API], providing a streamli
 
 ```python
 from vantage_sdk import VantageSDK
-from vantage_sdk.models import CreateCostReport
+from vantage_sdk.models import (
+    CreateCostReport,
+    CreateCostReportChartType,
+    CreateCostReportDateBin,
+)
 
 vantage = VantageSDK(vantage_api_key)
 
@@ -49,9 +53,8 @@ cost_report = CreateCostReport(
     previous_period_end_date="2024-01-31",
     start_date="2024-02-01",
     end_date="2024-02-28",
-    date_interval=DateInterval.this_month,
-    chart_type=ChartType.line,
-    date_bin=DateBin.cumulative
+    chart_type=CreateCostReportChartType.line,
+    date_bin=CreateCostReportDateBin.cumulative,
 )
 
 response = vantage.create_cost_report(cost_report)

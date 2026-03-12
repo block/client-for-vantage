@@ -138,10 +138,14 @@ def pytest_configure(config) -> None:
     """Register custom markers"""
     config.addinivalue_line("markers", "slow: mark test as a long running test")
     config.addinivalue_line("markers", "live: mark test as requiring the live API")
+    config.addinivalue_line("markers", "vcr_only: mark test as requiring VCR cassettes (skipped against live API)")
 
 def pytest_collection_modifyitems(items):
     use_vcr = settings.vcr_enabled
     if not use_vcr:
+        for item in items:
+            if item.get_closest_marker("vcr_only"):
+                item.add_marker(pytest.mark.skip(reason="Test requires VCR cassettes, not runnable against live API"))
         return
     for item in items:
         item.add_marker(pytest.mark.vcr)

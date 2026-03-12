@@ -2,7 +2,13 @@
 
 ## Development Setup
 
-Install the sdk locally and run tests when you finish making changes:
+```bash
+just setup
+```
+
+This configures git hooks that enforce [Conventional Commits](https://www.conventionalcommits.org/) on commit messages (see [Releases](#releases)).
+
+To run all checks (format, lint, typecheck, test):
 
 ```bash
 uv run nox
@@ -77,6 +83,19 @@ Re-record cassettes when:
 - You add a new test function (use `just test-vcr-record tests/test_main.py::test_your_new_test`)
 - An API response schema changes (use `just test-vcr-rewrite tests/test_main.py::test_affected_test`)
 - A fixture changes the request payload (field values, resource names, etc.)
+
+## Releases
+
+Releases are automated via [release-please](https://github.com/googleapis/release-please). PR titles must use [Conventional Commits](https://www.conventionalcommits.org/) prefixes, and PRs must be squash-merged so the title becomes the commit message.
+
+| Prefix | Version bump | Example |
+|---|---|---|
+| `fix:` | Patch (1.1.1 -> 1.1.2) | `fix: handle null chart_settings in cost reports` |
+| `feat:` | Minor (1.1.1 -> 1.2.0) | `feat: add dashboard endpoints` |
+| `feat!:` | Major (1.1.1 -> 2.0.0) | `feat!: rename VantageSDK to VantageClient` |
+| `chore:`, `docs:`, `ci:` | No release | `chore: update dev dependencies` |
+
+When commits land on `main`, release-please opens (or updates) a Release PR that bumps the version in `pyproject.toml` and updates `CHANGELOG.md`. Merging that Release PR triggers the publish to PyPI. Do not manually edit the version in `pyproject.toml`.
 
 ## Regenerating Models
 
