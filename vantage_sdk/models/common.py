@@ -47,8 +47,8 @@ from vantage_sdk.models.gen_models import (
     data_export_manifest as data_export_manifest_model,
     create_virtual_tag_config_value as create_virtual_tag_config_value_model,
     virtual_tag_config_value_cost_metric as virtual_tag_config_value_cost_metric_model,
-    provider_resource as provider_resource_model,
     recommendation as recommendation_model,
+    recommendation_provider_resource as recommendation_provider_resource_model,
     recommendation_provider_resources as recommendation_provider_resources_model,
     recommendations as recommendations_model,
     update_budget_alert as update_budget_alert_model,
@@ -555,7 +555,14 @@ class CostsDataExportsPostParametersQuery(
 
 
 class CostsDataExportsPostRequest(create_cost_export_model.CreateCostExport):
-    """Alias for CreateCostExport model"""
+    """Extends CreateCostExport to allow schema_ to be set by field name
+
+    The generated model defines schema_ with alias='schema' but no
+    populate_by_name, so passing schema_= in the constructor is silently
+    ignored
+    """
+
+    model_config = {"populate_by_name": True}
 
     @model_validator(mode="before")
     @classmethod
@@ -695,8 +702,16 @@ class AnomalyNotifications(anomaly_notifications_model.AnomalyNotifications):
 # --------------------------------
 
 
-class RecommendationResource(provider_resource_model.ProviderResource):
-    """Alias for ProviderResource model"""
+class RecommendationTypeParams(BaseModel):
+    """Parameters for endpoints that require a recommendation type"""
+
+    recommendation_type: str = Field(
+        ..., description="The recommendation type to filter by (e.g. aws, aws:ec2, aws:ec2:rightsizing)"
+    )
+
+
+class RecommendationResource(recommendation_provider_resource_model.RecommendationProviderResource):
+    """Alias for RecommendationProviderResource model"""
 
 
 class RecommendationResources(recommendation_provider_resources_model.RecommendationProviderResources):

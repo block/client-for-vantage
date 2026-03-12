@@ -73,6 +73,7 @@ from vantage_sdk.models import (
     CreateKubernetesEfficiencyReport,
     CreateManagedAccount,
     CreateNetworkFlowReport,
+    CreateSsoConnectionForManagedAccount,
     CreateReportNotification,
     CreateResourceReport,
     CreateSavedFilter,
@@ -121,7 +122,9 @@ from vantage_sdk.models import (
     RecommendationResources,
     RecommendationResourceTokenParams,
     Recommendations,
+    RecommendationsByTypeTypeResourcesGetParametersQuery,
     RecommendationTokenParams,
+    RecommendationTypeParams,
     ReportNotification,
     ReportNotifications,
     ReportNotificationTokenParams,
@@ -161,13 +164,18 @@ from vantage_sdk.models import (
     UpdateFolder,
     UpdateKubernetesEfficiencyReport,
     UpdateManagedAccount,
+    UpdateMe,
     UpdateNetworkFlowReport,
     UpdateReportNotification,
     UpdateResourceReport,
     UpdateSegment,
+    UpdateSsoConnectionForManagedAccount,
     UpdateTag,
     UpdateTeam,
+    UpdateUser,
     UpdateVirtualTagConfig,
+    UpdateAsyncVirtualTagConfig,
+    AsyncVirtualTagConfigUpdate,
     User,
     UserCostsUploads,
     UserFeedback,
@@ -764,20 +772,85 @@ class VantageSDK:
 
     def update_virtual_tag(
         self, virtual_tag_token_params: VirtualTagTokenParams, virtual_tag_update: UpdateVirtualTagConfig
-    ) -> VirtualTagConfig:
+    ) -> VirtualTagConfig | AsyncVirtualTagConfigUpdate:
         """
-        Update a specific custom tag - PUT /virtual_tag_configs/{token}
+        Update a specific custom tag synchronously - PUT /virtual_tag_configs/{token}
+
+        This is the standard update path. The API typically returns 200 with the
+        updated VirtualTagConfig, but for large or complex tag configurations
+        (e.g. many values, cost-based allocations, long backfill periods) the
+        server may respond with 202 instead, indicating that the update was
+        accepted but will be processed asynchronously. In that case, the response
+        contains a request_id and status_url for polling.
+
+        If you know the update will be large, prefer update_virtual_tag_async
+        which uses the dedicated async endpoint
 
         Args:
             virtual_tag_token_params: The token of the custom tag to update, begins with 'vtag_'
             virtual_tag_update: The updated custom tag object
 
         Returns:
-            The updated custom tag object
+            VirtualTagConfig if the update completed synchronously (200),
+            or AsyncVirtualTagConfigUpdate if the server deferred processing (202)
         """
         virtual_tag_value = virtual_tag_token_params.virtual_tag_token
-        data = self._put(f"virtual_tag_configs/{virtual_tag_value}", virtual_tag_update)
+        url = urljoin(self.base_url, f"virtual_tag_configs/{virtual_tag_value}")
+
+        json_data = virtual_tag_update.model_dump(
+            mode="json",
+            by_alias=True,
+            exclude_none=True,
+            exclude_defaults=True,
+        )
+
+        response = self.session.put(url, json=json_data)
+        response.raise_for_status()
+        data = response.json()
+
+        if response.status_code == 202:
+            return AsyncVirtualTagConfigUpdate.model_validate(data)
         return VirtualTagConfig.model_validate(data)
+
+    def update_virtual_tag_async(
+        self,
+        virtual_tag_token_params: VirtualTagTokenParams,
+        virtual_tag_update: UpdateAsyncVirtualTagConfig,
+    ) -> AsyncVirtualTagConfigUpdate:
+        """
+        Update a custom tag asynchronously - PUT /virtual_tag_configs/{token}/async
+
+        This is the dedicated async endpoint for virtual tag updates. Unlike the
+        sync endpoint (update_virtual_tag), this always returns 202 immediately
+        without waiting for the update to complete. Use this when updating tags
+        with many values, cost-based allocations, or long backfill periods where
+        processing may take significant time.
+
+        Poll the returned status_url via get_virtual_tag_async_status to check
+        whether the update has completed
+
+        Args:
+            virtual_tag_token_params: The token of the custom tag to update, begins with 'vtag_'
+            virtual_tag_update: The updated custom tag object
+
+        Returns:
+            AsyncVirtualTagConfigUpdate with request_id and status_url for polling
+        """
+        virtual_tag_value = virtual_tag_token_params.virtual_tag_token
+        data = self._put(f"virtual_tag_configs/{virtual_tag_value}/async", virtual_tag_update)
+        return AsyncVirtualTagConfigUpdate.model_validate(data)
+
+    def get_virtual_tag_async_status(self, request_id: str) -> dict[str, Any]:
+        """
+        Check the status of an async virtual tag update - GET /virtual_tag_configs/async/{request_id}
+
+        Args:
+            request_id: The request_id returned from update_virtual_tag_async
+
+        Returns:
+            The status of the async update
+        """
+        return self._get(f"virtual_tag_configs/async/{request_id}")
 
     # ---- Saved Filters APIs ----
 
@@ -1182,6 +1255,19 @@ class VantageSDK:
             A Me object containing information about the authenticated user's token and workspaces
         """
         data = self._get("me")
+        return Me.model_validate(data)
+
+    def update_me(self, me_update: UpdateMe) -> Me:
+        """
+        Update the authenticated user - PUT /me
+
+        Args:
+            me_update: The update payload
+
+        Returns:
+            The updated Me object
+        """
+        data = self._put("me", me_update)
         return Me.model_validate(data)
 
     # ---- Teams APIs ----
@@ -1940,6 +2026,25 @@ class VantageSDK:
         data = self._get(f"recommendations/{recommendation_token}/resources/{resource_token}")
         return RecommendationResource.model_validate(data)
 
+    def get_recommendation_type_resources(
+        self,
+        recommendation_type_params: RecommendationTypeParams,
+        query_params: RecommendationsByTypeTypeResourcesGetParametersQuery | None = None,
+    ) -> RecommendationResources:
+        """
+        Get all resources for a recommendation type - GET /recommendations/by_type/{type}/resources
+
+        Args:
+            recommendation_type_params: The recommendation type to filter by
+            query_params: Optional query parameters for filtering resources
+
+        Returns:
+            A RecommendationResources object containing the resources
+        """
+        recommendation_type = recommendation_type_params.recommendation_type
+        paginated_data = self._get_paginated(f"recommendations/by_type/{recommendation_type}/resources", query_params)
+        return RecommendationResources.model_validate(paginated_data)
+
     # ---- Report Notifications APIs ----
 
     def get_all_report_notifications(self) -> ReportNotifications:
@@ -2340,6 +2445,61 @@ class VantageSDK:
         token_value = managed_account_token_params.managed_account_token
         return self._delete(f"managed_accounts/{token_value}")
 
+    # ---- Managed Account SSO APIs ----
+
+    def create_managed_account_sso_connection(
+        self,
+        managed_account_token_params: ManagedAccountTokenParams,
+        sso_connection: CreateSsoConnectionForManagedAccount,
+    ) -> ManagedAccount:
+        """
+        Configure SSO for a managed account - POST /managed_accounts/{managed_account_token}/sso_connection
+
+        Args:
+            managed_account_token_params: The token of the managed account
+            sso_connection: The SSO connection configuration
+
+        Returns:
+            The updated managed account object
+        """
+        token_value = managed_account_token_params.managed_account_token
+        data = self._post(f"managed_accounts/{token_value}/sso_connection", sso_connection)
+        return ManagedAccount.model_validate(data)
+
+    def update_managed_account_sso_connection(
+        self,
+        managed_account_token_params: ManagedAccountTokenParams,
+        sso_connection_update: UpdateSsoConnectionForManagedAccount,
+    ) -> ManagedAccount:
+        """
+        Update SSO configuration for a managed account - PUT /managed_accounts/{managed_account_token}/sso_connection
+
+        Args:
+            managed_account_token_params: The token of the managed account
+            sso_connection_update: The updated SSO connection configuration
+
+        Returns:
+            The updated managed account object
+        """
+        token_value = managed_account_token_params.managed_account_token
+        data = self._put(f"managed_accounts/{token_value}/sso_connection", sso_connection_update)
+        return ManagedAccount.model_validate(data)
+
+    def delete_managed_account_sso_connection(
+        self, managed_account_token_params: ManagedAccountTokenParams
+    ) -> HttpStatusCode:
+        """
+        Delete SSO connection for a managed account - DELETE /managed_accounts/{managed_account_token}/sso_connection
+
+        Args:
+            managed_account_token_params: The token of the managed account
+
+        Returns:
+            The HTTP status code of the response
+        """
+        token_value = managed_account_token_params.managed_account_token
+        return self._delete(f"managed_accounts/{token_value}/sso_connection")
+
     # ---- Network Flow Reports APIs ----
 
     def get_all_network_flow_reports(self) -> NetworkFlowReports:
@@ -2649,6 +2809,21 @@ class VantageSDK:
         """
         token = user_token_params.user_token
         data = self._get(f"users/{token}")
+        return User.model_validate(data)
+
+    def update_user(self, user_token_params: UserTokenParams, user_update: UpdateUser) -> User:
+        """
+        Update a specific user - PUT /users/{user_token}
+
+        Args:
+            user_token_params: The token of the user to update
+            user_update: The update payload
+
+        Returns:
+            The updated User object
+        """
+        token = user_token_params.user_token
+        data = self._put(f"users/{token}", user_update)
         return User.model_validate(data)
 
     # ---- Workspaces APIs ----

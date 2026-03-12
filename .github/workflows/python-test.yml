@@ -7,7 +7,7 @@ on:
     branches: '*'
 
 jobs:
-  tests:
+  python-test.yml:
     runs-on: ubuntu-latest
 
     steps:

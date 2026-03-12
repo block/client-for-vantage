@@ -60,12 +60,21 @@ from vantage_sdk.models import (
     UpdateFolder,
     UpdateKubernetesEfficiencyReport,
     UpdateManagedAccount,
+    UpdateMe,
     UpdateNetworkFlowReport,
     UpdateResourceReport,
     UpdateTag,
     UpdateTeam,
+    UpdateUser,
+    AsyncVirtualTagConfigUpdate,
     UpdateVirtualTagConfig,
     UpdateVirtualTagConfigValue,
+    CreateSsoConnectionForManagedAccount,
+    CreateSsoConnectionForManagedAccountType,
+    UpdateSsoConnectionForManagedAccount,
+    RecommendationTypeParams,
+    RecommendationsByTypeTypeResourcesGetParametersQuery,
+    UserTokenParams,
     VirtualTagTokenParams,
     WorkspacesWorkspaceTokenPutRequest,
     WorkspaceTokenParams,
@@ -210,13 +219,17 @@ def test_update_virtual_tag(vantage_sdk, virtual_tag_fixture):
 
     virtual_tag_token_params = VirtualTagTokenParams(virtual_tag_token=virtual_tag_fixture.token)
 
-    updated_virtual_tag = vantage_sdk.update_virtual_tag(virtual_tag_token_params, virtual_tag_update_params)
+    result = vantage_sdk.update_virtual_tag(virtual_tag_token_params, virtual_tag_update_params)
 
-    assert updated_virtual_tag is not None
-    assert updated_virtual_tag.key == updated_key
+    assert result is not None
 
-    value_names = [value.name for value in updated_virtual_tag.values]
-    assert new_value_name in value_names
+    if isinstance(result, AsyncVirtualTagConfigUpdate):
+        assert result.request_id is not None
+        assert result.status_url is not None
+    else:
+        assert result.key == updated_key
+        value_names = [value.name for value in result.values]
+        assert new_value_name in value_names
 
 
 def test_get_all_virtual_tags(vantage_sdk, virtual_tag_fixture):
@@ -356,6 +369,14 @@ def test_update_team(vantage_sdk, team_fixture):
 def test_get_me(vantage_sdk):
     me_info = vantage_sdk.get_me()
     assert me_info is not None
+
+
+@pytest.mark.skip(reason="API token does not have write scope for /me endpoint")
+def test_update_me(vantage_sdk):
+    me_update = UpdateMe(default_dashboard_token=None)
+    updated_me = vantage_sdk.update_me(me_update)
+    assert updated_me is not None
+
 
 # ---- Anomaly Alerts & Notifications Tests ----
 
@@ -725,6 +746,39 @@ def test_update_managed_account(vantage_sdk, managed_account_fixture):
     assert updated.contact_email == updated_email
 
 
+# ---- Managed Account SSO Tests ----
+
+
+@pytest.mark.skip(reason="Managed accounts require enterprise permissions")
+def test_create_managed_account_sso_connection(vantage_sdk, managed_account_fixture):
+    params = ManagedAccountTokenParams(managed_account_token=managed_account_fixture.token)
+    sso_connection = CreateSsoConnectionForManagedAccount(
+        type=CreateSsoConnectionForManagedAccountType.saml,
+        saml_metadata_url="https://example.com/saml/metadata",
+    )
+    result = vantage_sdk.create_managed_account_sso_connection(params, sso_connection)
+    assert result is not None
+    assert result.token == managed_account_fixture.token
+
+
+@pytest.mark.skip(reason="Managed accounts require enterprise permissions")
+def test_update_managed_account_sso_connection(vantage_sdk, managed_account_fixture):
+    params = ManagedAccountTokenParams(managed_account_token=managed_account_fixture.token)
+    sso_update = UpdateSsoConnectionForManagedAccount(
+        saml_metadata_url="https://example.com/saml/metadata-updated",
+    )
+    result = vantage_sdk.update_managed_account_sso_connection(params, sso_update)
+    assert result is not None
+    assert result.token == managed_account_fixture.token
+
+
+@pytest.mark.skip(reason="Managed accounts require enterprise permissions")
+def test_delete_managed_account_sso_connection(vantage_sdk, managed_account_fixture):
+    params = ManagedAccountTokenParams(managed_account_token=managed_account_fixture.token)
+    status_code = vantage_sdk.delete_managed_account_sso_connection(params)
+    assert status_code == 204
+
+
 # ---- Network Flow Reports Tests ----
 
 
@@ -841,6 +895,23 @@ def test_get_recommendation_and_resources():
     # We can't test with actual data without knowing the recommendation tokens
     # which would require a specific account setup
     pass
+
+
+def test_get_recommendation_type_resources(vantage_sdk):
+    recommendations = vantage_sdk.get_all_recommendations()
+    if not recommendations.recommendations:
+        pytest.skip("No recommendations available in test environment")
+
+    recommendation = recommendations.recommendations[0]
+    if not recommendation.type:
+        pytest.skip("Recommendation does not have a type field")
+
+    type_params = RecommendationTypeParams(recommendation_type=recommendation.type)
+    query_params = RecommendationsByTypeTypeResourcesGetParametersQuery(
+        workspace_token=settings.workspace_token,
+    )
+    resources = vantage_sdk.get_recommendation_type_resources(type_params, query_params)
+    assert resources is not None
 
 
 # ---- Report Notifications Tests ----
@@ -1042,6 +1113,18 @@ def test_get_user(vantage_sdk):
     via the API, and we do not have access to user tokens in the test environment.
     """
     pass
+
+
+def test_update_user(vantage_sdk):
+    users = vantage_sdk.get_all_users()
+    assert len(users.users) > 0
+
+    user = users.users[0]
+    params = UserTokenParams(user_token=user.token)
+    user_update = UpdateUser(default_dashboard_token=None)
+    updated_user = vantage_sdk.update_user(params, user_update)
+    assert updated_user is not None
+    assert updated_user.token == user.token
 
 
 # ---- Workspaces APIs Tests ----

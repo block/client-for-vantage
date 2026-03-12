@@ -104,6 +104,7 @@ field-constraints = true
 use-annotated = true
 strict-nullable = true
 use-default-kwarg = true
+set-default-enum-member = true
 naming-strategy = "primary-first"
 parent-scoped-naming = true
 all-exports-scope = "recursive"

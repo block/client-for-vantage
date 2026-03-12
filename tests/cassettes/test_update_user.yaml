@@ -1,0 +1,125 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.vantage.sh/v2/users?page=1
+  response:
+    body:
+      string: '{"links":{"self":"https://api.vantage.sh/v2/users?page=1","first":"https://api.vantage.sh/v2/users?page=1","next":null,"last":"https://api.vantage.sh/v2/users?page=1","prev":null},"users":[{"token":"usr_3b8e93c36c581811","name":"Block
+        Open Source","email":"blockopensource@gmail.com","role":"Owner","default_dashboard_token":null,"last_seen_at":"2025-11-25"}]}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"f25d06f5a4e978f3373b4424ed03435e"
+      Set-Cookie:
+      - _stratus_session=LUF1z%2BSIWHEFDGBa9rZFdsIVVvOqFjYT3qfgEzd0N7IcHL8pK%2FXqRjUFaWn01IQe%2BW%2F08LcO46sTQrWOZltgpL5ifNJQFUMy5g2JeOenn2PE9MPrUzkvY38j73tU%2FmTvl3omju0NgYdV%2F2YAczChgYY0kqJFfHSK6fXMUHrSBw%2B6DcZ3U%2FX3ZUM0nMOQBgXdwSW46M7wods%3D--cvXgs%2BI4F%2BxY2fVd--61tp8gkQszvf4D0WKVyoDw%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '991'
+      X-Rate-Limit-Reset:
+      - '1773342605'
+      X-Runtime:
+      - '0.051649'
+      content-length:
+      - '360'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      Cookie:
+      - _stratus_session=LUF1z%2BSIWHEFDGBa9rZFdsIVVvOqFjYT3qfgEzd0N7IcHL8pK%2FXqRjUFaWn01IQe%2BW%2F08LcO46sTQrWOZltgpL5ifNJQFUMy5g2JeOenn2PE9MPrUzkvY38j73tU%2FmTvl3omju0NgYdV%2F2YAczChgYY0kqJFfHSK6fXMUHrSBw%2B6DcZ3U%2FX3ZUM0nMOQBgXdwSW46M7wods%3D--cvXgs%2BI4F%2BxY2fVd--61tp8gkQszvf4D0WKVyoDw%3D%3D
+      Host:
+      - api.vantage.sh
+      User-Agent:
+      - python-httpx/0.28.1
+    method: PUT
+    uri: https://api.vantage.sh/v2/users/usr_3b8e93c36c581811
+  response:
+    body:
+      string: '{"token":"usr_3b8e93c36c581811","name":"Block Open Source","email":"blockopensource@gmail.com","role":"Owner","default_dashboard_token":null,"last_seen_at":"2025-11-25"}'
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Request-Method:
+      - '*'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
+        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
+        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
+        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
+        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      Content-Type:
+      - application/json
+      ETag:
+      - W/"7efcead6f0b62066feb211c8d4a6f709"
+      Set-Cookie:
+      - _stratus_session=24Qe4NLMltYtIyRoAte0R22jxIibxUDcM1NuZSplqlYQ4B8EMLseVSHkFXf3LsB2EXI%2Fyo9d6ve6sCplXhH4Q5jojWtl%2FkizyBJOYnd%2FzH9H4MOVc7f%2BerYbNkZ1ujnkdL7BK9jYvPPKYoW501su8Np%2BR3vwyLGAtPUarMaTV2l%2BCRXwieR%2F0PcSgcVUreQGhyUyxBwsAYA%3D--Wd7T0TuUk%2Bj7tMCz--VYBX43iS64r6d5YrX5pGAQ%3D%3D;
+        path=/; secure; HttpOnly; SameSite=Lax
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Rate-Limit-Limit:
+      - '1000'
+      X-Rate-Limit-Remaining:
+      - '990'
+      X-Rate-Limit-Reset:
+      - '1773342605'
+      X-Runtime:
+      - '0.062798'
+      content-length:
+      - '169'
+    status:
+      code: 200
+      message: OK
+version: 1

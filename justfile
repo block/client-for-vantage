@@ -42,4 +42,4 @@ check: format lint typecheck test
 generate-models:
   uv run datamodel-codegen \
     --url https://api.vantage.sh/v2/oas_v3.json \
-    --output model.py
+    --output vantage_sdk/models/gen_models/
