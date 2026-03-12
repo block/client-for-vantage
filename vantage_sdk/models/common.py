@@ -41,7 +41,6 @@ from vantage_sdk.models.gen_models import (
     create_financial_commitment_report as create_financial_commitment_report_model,
     create_kubernetes_efficiency_report as create_kubernetes_efficiency_report_model,
     create_network_flow_report as create_network_flow_report_model,
-    create_resource_report as create_resource_report_model,
     create_unit_costs_export as create_unit_costs_export_model,
     data_export as data_export_model,
     data_export_manifest as data_export_manifest_model,
@@ -482,12 +481,6 @@ class CreateNetworkFlowReport(create_network_flow_report_model.CreateNetworkFlow
     end_date: str | None = None  # type: ignore[assignment]
 
 
-class CreateResourceReport(create_resource_report_model.CreateResourceReport):
-    """Extends CreateResourceReport to allow nullable titles"""
-
-    title: str | None = None  # type: ignore[assignment]
-
-
 class CreateCostReport(create_cost_report_model.CreateCostReport):
     """
     CreateCostReport model with additional validation
@@ -611,7 +604,6 @@ class CostAlert(cost_alert_model.CostAlert):
     email_recipients: Sequence[str] | None = None  # type: ignore[assignment]
     slack_channels: Sequence[str] | None = None  # type: ignore[assignment]
     teams_channels: Sequence[str] | None = None  # type: ignore[assignment]
-    minimum_threshold: float | None = None  # type: ignore[assignment]
 
 
 class CostAlerts(cost_alerts_model.CostAlerts):
@@ -628,12 +620,6 @@ class WorkspacesWorkspaceTokenPutRequest(update_workspace_model.UpdateWorkspace)
     """Alias for UpdateWorkspace model"""
 
 
-class VirtualTagConfigValueCostMetric(virtual_tag_config_value_cost_metric_model.VirtualTagConfigValueCostMetric):
-    """Extends VirtualTagConfigValueCostMetric to allow nullable filters"""
-
-    filter: str | None = None  # type: ignore[assignment]
-
-
 class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVirtualTagConfigValue):
     """Extends CreateVirtualTagConfigValue to use virtual tag cost metric models
 
@@ -641,7 +627,7 @@ class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVi
     exclusive according to the Vantage API
     """
 
-    cost_metric: VirtualTagConfigValueCostMetric | None = None  # type: ignore[assignment]
+    cost_metric: virtual_tag_config_value_cost_metric_model.VirtualTagConfigValueCostMetric | None = None  # type: ignore[assignment]
 
     @model_validator(mode="before")
     @classmethod

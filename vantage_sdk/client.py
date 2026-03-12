@@ -650,8 +650,8 @@ class VantageSDK:
         """
         response = self.session.post(
             urljoin(self.base_url, "costs/data_exports"),
-            json=new_data_export.model_dump(exclude_none=True, by_alias=True),
-            params=data_export_query_params.model_dump(exclude_none=True, by_alias=True)
+            json=new_data_export.model_dump(mode="json", exclude_none=True, by_alias=True),
+            params=data_export_query_params.model_dump(mode="json", exclude_none=True, by_alias=True)
             if data_export_query_params
             else None,
             headers=self.session.headers,
@@ -2042,7 +2042,9 @@ class VantageSDK:
             A RecommendationResources object containing the resources
         """
         recommendation_type = recommendation_type_params.recommendation_type
-        paginated_data = self._get_paginated(f"recommendations/by_type/{recommendation_type}/resources", query_params)
+        paginated_data = self._get_paginated(
+            f"recommendations/by_type/{recommendation_type}/resources", query_params
+        )
         return RecommendationResources.model_validate(paginated_data)
 
     # ---- Report Notifications APIs ----
@@ -2751,7 +2753,7 @@ class VantageSDK:
         """
         response = self.session.post(
             urljoin(self.base_url, "unit_costs/data_exports"),
-            json=unit_costs_export_request.model_dump(exclude_none=True, by_alias=True),
+            json=unit_costs_export_request.model_dump(mode="json", exclude_none=True, by_alias=True),
             headers=self.session.headers,
             timeout=None,
         )
