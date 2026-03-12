@@ -2,7 +2,13 @@
 
 ## Development Setup
 
-Install the sdk locally and run tests when you finish making changes:
+```bash
+just setup
+```
+
+This configures git hooks that enforce [Conventional Commits](https://www.conventionalcommits.org/) on commit messages (see [Releases](#releases)).
+
+To run all checks (format, lint, typecheck, test):
 
 ```bash
 uv run nox

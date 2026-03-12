@@ -37,6 +37,11 @@ typecheck-tests:
 
 check: format lint typecheck test
 
+# --- Setup ---
+
+setup:
+  git config core.hooksPath .githooks
+
 # --- Code Generation ---
 
 generate-models:
