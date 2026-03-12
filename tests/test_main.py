@@ -222,14 +222,32 @@ def test_update_virtual_tag(vantage_sdk, virtual_tag_fixture):
     result = vantage_sdk.update_virtual_tag(virtual_tag_token_params, virtual_tag_update_params)
 
     assert result is not None
+    assert not isinstance(result, AsyncVirtualTagConfigUpdate)
+    assert result.key == updated_key
+    value_names = [value.name for value in result.values]
+    assert new_value_name in value_names
 
-    if isinstance(result, AsyncVirtualTagConfigUpdate):
-        assert result.request_id is not None
-        assert result.status_url is not None
-    else:
-        assert result.key == updated_key
-        value_names = [value.name for value in result.values]
-        assert new_value_name in value_names
+
+@pytest.mark.vcr_only
+def test_update_virtual_tag_async_response(vantage_sdk, virtual_tag_fixture):
+    updated_key = f"{RESOURCES.updated_prefix}_{virtual_tag_fixture.key}"
+    new_value_name = f"{RESOURCES.updated_prefix}_virtual_tag_value"
+
+    new_value = UpdateVirtualTagConfigValue(
+        filter="costs.provider = 'aws' AND costs.service = 'Amazon Simple Storage Service'",
+        name=new_value_name,
+    )
+
+    virtual_tag_update_params = UpdateVirtualTagConfig(key=updated_key, values=[new_value])
+
+    virtual_tag_token_params = VirtualTagTokenParams(virtual_tag_token=virtual_tag_fixture.token)
+
+    result = vantage_sdk.update_virtual_tag(virtual_tag_token_params, virtual_tag_update_params)
+
+    assert result is not None
+    assert isinstance(result, AsyncVirtualTagConfigUpdate)
+    assert result.request_id is not None
+    assert result.status_url is not None
 
 
 def test_get_all_virtual_tags(vantage_sdk, virtual_tag_fixture):
