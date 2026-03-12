@@ -4,9 +4,12 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import business_information_custom_field
 
 
 class BusinessInformationMetadata(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     custom_fields: Annotated[Sequence[business_information_custom_field.BusinessInformationCustomField] | None, Field(description='Array of custom field objects')] = None

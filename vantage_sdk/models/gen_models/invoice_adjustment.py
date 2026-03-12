@@ -4,10 +4,13 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import adjustment_item
 
 
 class InvoiceAdjustment(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     adjustment_items: Annotated[Sequence[adjustment_item.AdjustmentItem], Field(description='Array of adjustment items (taxes, fees, etc.)')]

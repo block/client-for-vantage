@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateCustomProviderIntegration(BaseModel):
     """
     Create a Custom Provider Integration
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='Name of the Custom Provider Integration.')]
     description: Annotated[str | None, Field(description='Description of the Custom Provider Integration.')] = None

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_unit_costs_export_date_bin
 
 
@@ -11,6 +11,9 @@ class CreateUnitCostsExport(BaseModel):
     """
     Generate a DataExport of unit costs.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_token: Annotated[str, Field(description='The CostReport token.')]
     workspace_token: Annotated[str | None, Field(description='The token of the Workspace to query costs from. Required if the API token is associated with multiple Workspaces.')] = None
     start_date: Annotated[str | None, Field(description="First date you would like to filter unit costs from. Defaults to the report's default. ISO 8601 formatted.")] = None

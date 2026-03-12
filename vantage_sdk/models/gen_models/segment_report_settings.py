@@ -2,13 +2,16 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class SegmentReportSettings(BaseModel):
     """
     Report settings configurable on top-level Segments.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     include_credits: bool | None = None
     include_refunds: bool | None = None
     include_discounts: bool | None = None

@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import update_async_virtual_tag_config_value_cost_metric, update_async_virtual_tag_config_value_date_range, update_async_virtual_tag_config_value_percentage
 
 
 class UpdateAsyncVirtualTagConfigValue(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     filter: Annotated[str, Field(description='The filter query language to apply to the value. Additional documentation available at https://docs.vantage.sh/vql.')]
     name: Annotated[str | None, Field(description='The name of the value.')] = None
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None

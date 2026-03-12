@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateVirtualTagConfigValueDateRange(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start_date: Annotated[str | None, Field(description='Inclusive start date (YYYY-MM-DD), or null for unbounded.')] = None
     end_date: Annotated[str | None, Field(description='Inclusive end date (YYYY-MM-DD), or null for unbounded.')] = None

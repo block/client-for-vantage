@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VirtualTagConfigProviderStatus(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     provider: Annotated[str, Field(description='The provider name.', examples=['aws'])]
     status: Annotated[str, Field(description='The processing status for this provider. Possible values: queued, processing, complete, failed.', examples=['processing'])]

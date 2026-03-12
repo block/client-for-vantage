@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BusinessMetricValue(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     date: Annotated[str, Field(description='The date of the Business Metric Value. ISO 8601 formatted.', examples=['2024-03-01+00:00'])]
     amount: Annotated[str, Field(description='The amount of the Business Metric Value as a string to ensure precision.', examples=['100.00'])]
     label: Annotated[str | None, Field(description='The label of the Business Metric Value.', examples=['Cost Center A'])] = None

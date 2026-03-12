@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class ResourceReport(BaseModel):
     """
     ResourceReport model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     title: Annotated[str, Field(description='The title of the ResourceReport.', examples=['Acme123 Active Resources'])]
     filter: Annotated[str | None, Field(description='The filter applied to the ResourceReport. Additional documentation available at https://docs.vantage.sh/vql.')]

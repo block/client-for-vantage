@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateUser(BaseModel):
     """
     Update a specific User.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     default_dashboard_token: Annotated[str | None, Field(description='The token of a Dashboard to set as the User default. Send null to clear.')] = None

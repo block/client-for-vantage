@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateBillingProfileBankingInformationAttributesSecureData(BaseModel):
     """
     Encrypted banking details
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     account_number: Annotated[str | None, Field(description='Bank account number (US)')] = None
     routing_number: Annotated[str | None, Field(description='Bank routing number (US)')] = None
     iban: Annotated[str | None, Field(description='International Bank Account Number (EU)')] = None

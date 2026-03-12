@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CostProviderAccount(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The display name of the provider account.', examples=['Production Account'])]
     account_id: Annotated[str, Field(description='The provider account identifier (e.g., AWS account ID, Azure subscription ID).', examples=['123456789012'])]
     provider_uuid: Annotated[str, Field(description='The provider-specific unique identifier.', examples=['arn:aws:organizations::123456789012:account/o-example12345/123456789012'])]

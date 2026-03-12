@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateFolder(BaseModel):
     """
     Update a Folder for CostReports.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the Folder.')] = None
     parent_folder_token: Annotated[str | None, Field(description='The token of the parent Folder.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the SavedFilters to apply to any Cost Report contained within the Folder.')] = None

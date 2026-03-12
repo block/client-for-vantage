@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AsyncVirtualTagConfigUpdate(BaseModel):
     """
     AsyncVirtualTagConfigUpdate model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     request_id: Annotated[str, Field(description='The request ID of the async virtual tag config update.', examples=['550e8400-e29b-41d4-a716-446655440000'])]
     status_url: Annotated[str, Field(description='The status path of the async virtual tag config update.', examples=['/v2/virtual_tag_configs/async/550e8400-e29b-41d4-a716-446655440000'])]

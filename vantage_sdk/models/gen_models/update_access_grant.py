@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import update_access_grant_access
 
 
@@ -11,4 +11,7 @@ class UpdateAccessGrant(BaseModel):
     """
     Update an AccessGrant.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     access: Annotated[update_access_grant_access.UpdateAccessGrantAccess, Field(description='Allowed or denied access to resource.')]

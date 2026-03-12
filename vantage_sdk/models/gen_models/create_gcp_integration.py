@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateGCPIntegration(BaseModel):
     """
     Create a GCP Integration
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     billing_account_id: Annotated[str, Field(description='GCP billing account ID.')]
     project_id: Annotated[str, Field(description='GCP project ID.')]
     dataset_name: Annotated[str, Field(description='BigQuery dataset name.')]

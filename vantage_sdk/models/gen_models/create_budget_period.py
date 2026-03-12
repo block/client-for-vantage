@@ -4,10 +4,13 @@
 from __future__ import annotations
 from datetime import date
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateBudgetPeriod(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start_at: Annotated[date, Field(description='The start date of the period.')]
     end_at: Annotated[date | None, Field(description='The end date of the period.')] = None
     amount: Annotated[float, Field(description='The amount of the period.')]

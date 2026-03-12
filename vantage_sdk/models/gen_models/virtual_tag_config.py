@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import virtual_tag_config_collapsed_tag_key, virtual_tag_config_value
 
@@ -12,6 +12,9 @@ class VirtualTagConfig(BaseModel):
     """
     VirtualTagConfig model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: Annotated[str, Field(description='The token of the VirtualTagConfig.', examples=['vtag_1234'])]
     created_by_token: Annotated[str | None, Field(description='The token of the Creator of the VirtualTagConfig.', examples=['usr_1234'])]
     key: Annotated[str, Field(description='The key of the VirtualTagConfig.', examples=['Cost Center'])]

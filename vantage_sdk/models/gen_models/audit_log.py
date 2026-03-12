@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping
 
 
@@ -11,6 +11,9 @@ class AuditLog(BaseModel):
     """
     AuditLog model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: Annotated[str, Field(description='The unique token identifying the audit log.', examples=['adt_lg_1234567890abcdef'])]
     object_token: Annotated[str | None, Field(description='The token of the audited object.', examples=['rpt_1234567890abcdef'])]
     object_type: Annotated[str, Field(description='The type of the audited object.', examples=['Report'])]

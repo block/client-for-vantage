@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
 from collections.abc import Sequence
 from . import create_financial_commitment_report_date_bucket, create_financial_commitment_report_date_interval, create_financial_commitment_report_on_demand_costs_scope
@@ -13,6 +13,9 @@ class CreateFinancialCommitmentReport(BaseModel):
     """
     Create a FinancialCommitmentReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     workspace_token: Annotated[str, Field(description='The Workspace in which the FinancialCommitmentReport will be created.')]
     title: Annotated[str, Field(description='The title of the FinancialCommitmentReport.')]
     filter: Annotated[str | None, Field(description='The filter query language to apply to the FinancialCommitmentReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None

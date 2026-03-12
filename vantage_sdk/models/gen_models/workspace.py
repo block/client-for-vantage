@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Workspace(BaseModel):
     """
     Workspace model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     name: Annotated[str, Field(description='The name of the Workspace.', examples=['Acme Corp.'])]
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Workspace was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]

@@ -4,7 +4,7 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import cost, cost_partial, links as links_1, usage_partial
 
 
@@ -12,6 +12,9 @@ class Costs(BaseModel):
     """
     Costs model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     total_cost: cost_partial.CostPartial
     total_usage: Annotated[Sequence[usage_partial.UsagePartial] | None, Field(description='The sum of all usage for the CostReport for the requested period, rounded to 2 decimal places, grouped by usage unit.')] = None

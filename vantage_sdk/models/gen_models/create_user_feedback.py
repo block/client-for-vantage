@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateUserFeedback(BaseModel):
     """
     Provide UserFeedback for our product and features.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     message: Annotated[str, Field(description='UserFeedback message')]

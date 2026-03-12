@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import attached_business_metric_for_cost_report_unit_scale
 
 
 class AttachedBusinessMetricForCostReport(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     business_metric_token: Annotated[str, Field(description="The token of the BusinessMetric that's attached to the CostReport.", examples=['bsnss_mtrc_1234'])]
     unit_scale: Annotated[attached_business_metric_for_cost_report_unit_scale.AttachedBusinessMetricForCostReportUnitScale, Field(description="Determines the scale of the BusinessMetric's values within a particular CostReport.", examples=['per_hundred'])]
     label_filter: Annotated[Sequence[str] | None, Field(description='The labels that the BusinessMetric is filtered by within a particular CostReport.')] = None

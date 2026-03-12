@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class RecommendationView(BaseModel):
     """
     RecommendationView model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str | None = None
     title: Annotated[str | None, Field(description='The title of the RecommendationView.', examples=['Production Recommendations'])] = None
     workspace_token: Annotated[str | None, Field(description='The token for the Workspace the RecommendationView is a part of.')] = None

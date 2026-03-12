@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import dashboard_date_bin, dashboard_date_interval, dashboard_widget
 
@@ -12,6 +12,9 @@ class Dashboard(BaseModel):
     """
     Dashboard model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: Annotated[str, Field(examples=['dshbrd_abcd1234567890'])]
     title: Annotated[str, Field(description='The title of the Dashboard.', examples=['AWS Dashboard'])]
     widgets: Sequence[dashboard_widget.DashboardWidget]

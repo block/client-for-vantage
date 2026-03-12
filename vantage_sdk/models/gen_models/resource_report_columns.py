@@ -4,11 +4,14 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ResourceReportColumns(BaseModel):
     """
     ResourceReportColumns model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     columns: Annotated[Sequence[str], Field(description='Array of available column names for the specified resource type.')]

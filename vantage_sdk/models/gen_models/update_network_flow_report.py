@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
 from collections.abc import Sequence
 from . import update_network_flow_report_date_interval, update_network_flow_report_flow_direction, update_network_flow_report_flow_weight, update_network_flow_report_grouping
@@ -13,6 +13,9 @@ class UpdateNetworkFlowReport(BaseModel):
     """
     Update a NetworkFlowReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the NetworkFlowReport.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the NetworkFlowReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     start_date: Annotated[date | None, Field(description="The start date of the NetworkFlowReport. YYYY-MM-DD formatted. Incompatible with 'date_interval' parameter.")] = None

@@ -2,10 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import AwareDatetime, BaseModel
+from pydantic import AwareDatetime, BaseModel, ConfigDict
 
 
 class UpdateBusinessMetricForecastedValue(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     date: AwareDatetime
     amount: float
     label: str | None = None

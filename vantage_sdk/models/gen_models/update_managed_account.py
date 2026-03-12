@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import update_managed_account_billing_information_attributes, update_managed_account_business_information_attributes
 
@@ -12,6 +12,9 @@ class UpdateManagedAccount(BaseModel):
     """
     Update a Managed Account.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str | None, Field(description='The name of the Managed Account.')] = None
     contact_email: Annotated[str | None, Field(description='The contact email address for the Managed Account.')] = None
     access_credential_tokens: Annotated[Sequence[str] | None, Field(description='Access Credential (aka Integrations) tokens to assign to the Managed Account.')] = None

@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_business_metric_cost_report_tokens_with_metadatum_unit_scale
 
 
 class CreateBusinessMetricCostReportTokensWithMetadatum(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_token: Annotated[str, Field(description='The token of the CostReport the BusinessMetric is attached to.')]
     unit_scale: Annotated[create_business_metric_cost_report_tokens_with_metadatum_unit_scale.CreateBusinessMetricCostReportTokensWithMetadatumUnitScale, Field(description="Determines the scale of the BusinessMetric's values within the CostReport.")] = create_business_metric_cost_report_tokens_with_metadatum_unit_scale.CreateBusinessMetricCostReportTokensWithMetadatumUnitScale.per_unit
     label_filter: Annotated[Sequence[str] | None, Field(description='Include only values with these labels in the CostReport.')] = None

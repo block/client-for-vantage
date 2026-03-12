@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import links as links_1
 
 
 class UnitCost(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     business_metric_token: Annotated[str, Field(description='The token of the BusinessMetric for which the unit cost was calculated.', examples=['bsnss_mtrc_1234'])]
     business_metric_title: Annotated[str, Field(description='The title of the BusinessMetric for which the unit cost was calculated.', examples=['Total Revenue'])]

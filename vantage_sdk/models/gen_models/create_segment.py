@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_segment_report_settings
 
 
@@ -11,6 +11,9 @@ class CreateSegment(BaseModel):
     """
     Create a Segment.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the Segment.')]
     description: Annotated[str | None, Field(description='The description of the Segment.')] = None
     priority: Annotated[int | None, Field(description='The priority of the Segment.')] = None

@@ -548,14 +548,7 @@ class CostsDataExportsPostParametersQuery(
 
 
 class CostsDataExportsPostRequest(create_cost_export_model.CreateCostExport):
-    """Extends CreateCostExport to allow schema_ to be set by field name
-
-    The generated model defines schema_ with alias='schema' but no
-    populate_by_name, so passing schema_= in the constructor is silently
-    ignored
-    """
-
-    model_config = {"populate_by_name": True}
+    """Extends CreateCostExport with custom validation"""
 
     @model_validator(mode="before")
     @classmethod

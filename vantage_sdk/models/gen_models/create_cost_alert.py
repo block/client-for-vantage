@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class CreateCostAlert(BaseModel):
     """
     Create a new Cost Alert
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the Cost Alert.')]
     interval: Annotated[str, Field(description="The period of time used to compare costs. Options are 'day', 'week', 'month', 'quarter'.")]
     threshold: Annotated[float, Field(description='The threshold value for the Cost Alert.')]

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import integration_status
 
@@ -12,6 +12,9 @@ class Integration(BaseModel):
     """
     Integration model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     provider: Annotated[str, Field(description='The name of the Integration.', examples=['AWS'])]
     account_identifier: Annotated[str | None, Field(description='The account identifier. For GCP this is the billing Account ID, for Azure this is the account ID', examples=['011389-EF4C3E-3ED7AE'])]

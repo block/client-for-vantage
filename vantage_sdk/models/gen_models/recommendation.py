@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Recommendation(BaseModel):
     """
     Recommendation model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     type: Annotated[str, Field(description='The type of the Recommendation. This is analogous to category, but with a uniform format.', examples=['aws:ec2:co-rightsizing'])]
     category: Annotated[str, Field(description='The category of the Recommendation.', examples=['ec2_compute_optimizer_recommender'])]

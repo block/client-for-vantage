@@ -4,10 +4,13 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DataExportManifest(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     files: Sequence[str]
     completed_at: Annotated[str | None, Field(examples=['2025-03-20T12:00:00Z'])]
     valid_until: Annotated[str | None, Field(examples=['2025-03-20T12:00:00Z'])]

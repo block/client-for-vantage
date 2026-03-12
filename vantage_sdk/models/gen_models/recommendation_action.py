@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class RecommendationAction(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     action: str
     description: str
     potential_savings: Annotated[str, Field(description='Potential savings in dollars', examples=['100.00'])]

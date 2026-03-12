@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_dashboard_date_bin, create_dashboard_date_interval, create_dashboard_widget
 
@@ -12,6 +12,9 @@ class CreateDashboard(BaseModel):
     """
     Create a Dashboard.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the Dashboard.')]
     widgets: Annotated[Sequence[create_dashboard_widget.CreateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Currently supports CostReport, ResourceReport, KubernetesEfficiencyReport, and FinancialCommitmentReport.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Saved Filters used in the Dashboard.')] = None

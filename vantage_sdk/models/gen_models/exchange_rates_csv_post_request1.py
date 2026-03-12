@@ -3,8 +3,11 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ExchangeRatesCsvPostRequest(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     csv: Annotated[bytes, Field(description='CSV file containing exchange rates. Format: base_currency_code, currency_code, rate, date (YYYY-MM-DD)')]

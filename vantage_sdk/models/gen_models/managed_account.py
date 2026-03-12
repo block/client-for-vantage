@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import billing_information, business_information
 
@@ -12,6 +12,9 @@ class ManagedAccount(BaseModel):
     """
     ManagedAccount model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     name: str
     contact_email: str

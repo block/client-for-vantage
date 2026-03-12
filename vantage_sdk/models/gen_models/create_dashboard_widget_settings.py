@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import create_dashboard_widget_settings_display_type
 
 
@@ -10,4 +10,7 @@ class CreateDashboardWidgetSettings(BaseModel):
     """
     The settings for the DashboardWidget.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     display_type: create_dashboard_widget_settings_display_type.CreateDashboardWidgetSettingsDisplayType

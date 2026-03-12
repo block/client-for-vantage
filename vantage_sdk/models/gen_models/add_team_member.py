@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import add_team_member_role
 
 
@@ -11,5 +11,8 @@ class AddTeamMember(BaseModel):
     """
     Add a member to a Team.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     user_email: Annotated[str, Field(description='The email address of the user to add to the Team.')]
     role: Annotated[add_team_member_role.AddTeamMemberRole, Field(description="The role to assign to the user. Defaults to 'editor'.")]

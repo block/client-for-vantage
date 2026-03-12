@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class SavedFilter(BaseModel):
     """
     SavedFilter model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     title: Annotated[str, Field(description='The title of the SavedFilter.', examples=['Platform Team Reports'])]
     cost_report_tokens: Annotated[Sequence[str], Field(description='The tokens for any CostReports the SavedFilter is applied to.')]

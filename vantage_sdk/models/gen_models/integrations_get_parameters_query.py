@@ -2,11 +2,14 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import integrations_get_parameters_query_provider
 
 
 class IntegrationsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     provider: integrations_get_parameters_query_provider.IntegrationsGetParametersQueryProvider | None = None
     account_identifier: str | None = None
     page: int | None = None

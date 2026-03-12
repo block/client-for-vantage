@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_billing_profile_banking_information_attributes, create_billing_profile_billing_information_attributes, create_billing_profile_business_information_attributes, create_billing_profile_invoice_adjustment_attributes
 
 
@@ -11,6 +11,9 @@ class CreateBillingProfile(BaseModel):
     """
     Create a billing profile (MSP invoicing required).
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     nickname: Annotated[str, Field(description='Display name for the billing profile')]
     billing_information_attributes: Annotated[create_billing_profile_billing_information_attributes.CreateBillingProfileBillingInformationAttributes | None, Field(description='Billing address and contact information')] = None
     business_information_attributes: Annotated[create_billing_profile_business_information_attributes.CreateBillingProfileBusinessInformationAttributes | None, Field(description='Business information and custom fields')] = None

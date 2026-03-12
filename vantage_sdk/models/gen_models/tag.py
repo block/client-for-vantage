@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
 class Tag(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tag_key: Annotated[str, Field(description='The Tag key.', examples=['aws:createdBy'])]
     hidden: Annotated[bool, Field(description='Whether the Tag has been hidden from the Vantage UI.')]
     providers: Annotated[Sequence[str], Field(description='The unique providers that are covered by the Tag key.')]

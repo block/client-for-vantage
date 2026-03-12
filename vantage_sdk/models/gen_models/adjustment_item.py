@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import adjustment_item_adjustment_type, adjustment_item_calculation_type
 
 
 class AdjustmentItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description="Name of the adjustment (e.g., 'State Tax', 'Processing Fee')")]
     adjustment_type: Annotated[adjustment_item_adjustment_type.AdjustmentItemAdjustmentType, Field(description='Type of adjustment')]
     calculation_type: Annotated[adjustment_item_calculation_type.AdjustmentItemCalculationType, Field(description='How the adjustment is calculated')]

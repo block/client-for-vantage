@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping
 
 
@@ -11,6 +11,9 @@ class Price(BaseModel):
     """
     Price model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: str
     unit: Annotated[str, Field(description='The unit in which the amount is billed.', examples=['hour'])]
     region: Annotated[str, Field(description='The region the price is specific to.', examples=['us-east-1'])]

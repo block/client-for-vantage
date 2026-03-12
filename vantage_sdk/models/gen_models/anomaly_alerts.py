@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import anomaly_alert, links as links_1
 
 
@@ -11,5 +11,8 @@ class AnomalyAlerts(BaseModel):
     """
     AnomalyAlerts model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     anomaly_alerts: Sequence[anomaly_alert.AnomalyAlert]

@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import tags_get_parameters_query_provider, tags_get_parameters_query_sort_direction
 
 
 class TagsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     providers: Sequence[tags_get_parameters_query_provider.TagsGetParametersQueryProvider] | None = None
     search_query: str | None = None
     sort_direction: tags_get_parameters_query_sort_direction.TagsGetParametersQuerySortDirection | None = None

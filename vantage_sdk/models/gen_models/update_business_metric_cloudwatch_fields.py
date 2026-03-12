@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import update_business_metric_cloudwatch_fields_dimension
 
@@ -12,6 +12,9 @@ class UpdateBusinessMetricCloudwatchFields(BaseModel):
     """
     Cloudwatch configuration fields.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     integration_token: Annotated[str | None, Field(description='Integration token for the account from which you would like to fetch metrics.')] = None
     stat: str | None = None
     region: str | None = None

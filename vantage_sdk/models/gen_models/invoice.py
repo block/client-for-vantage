@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Invoice(BaseModel):
     """
     Invoice model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     invoice_number: Annotated[str, Field(description='Sequential invoice number for the MSP account')]
     total: Annotated[str | None, Field(description='Total amount for the invoice period')]

@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateAzureIntegration(BaseModel):
     """
     Create an Azure Integration
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tenant: Annotated[str, Field(description='Azure AD Tenant ID.')]
     app_id: Annotated[str, Field(description='Service Principal Application ID.')]
     password: Annotated[str, Field(description='Service Principal Password.')]

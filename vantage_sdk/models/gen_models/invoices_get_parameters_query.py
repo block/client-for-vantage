@@ -2,10 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class InvoicesGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     page: int | None = None
     limit: int | None = None
     managed_account_token: str | None = None

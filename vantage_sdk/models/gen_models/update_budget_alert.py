@@ -4,13 +4,16 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateBudgetAlert(BaseModel):
     """
     Updates an existing BudgetAlert.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Budget that has the alert.')] = None
     threshold: Annotated[int | None, Field(description='The threshold amount that must be met for the alert to fire.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the users that receive the alert.')] = None

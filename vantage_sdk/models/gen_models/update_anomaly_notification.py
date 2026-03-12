@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateAnomalyNotification(BaseModel):
     """
     Update an Anomaly Notification.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     threshold: Annotated[int | None, Field(description='The threshold amount that must be met for the notification to fire.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the users that receive the notification.')] = None
     recipient_channels: Annotated[Sequence[str] | None, Field(description='The Slack/MS Teams channels that receive the notification.')] = None

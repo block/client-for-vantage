@@ -4,11 +4,14 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateIntegration(BaseModel):
     """
     Update an Integration.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     workspace_tokens: Annotated[Sequence[str] | None, Field(description='The Workspace tokens to associate to the Integration.')] = None

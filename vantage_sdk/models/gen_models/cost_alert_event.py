@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping
 
 
@@ -11,6 +11,9 @@ class CostAlertEvent(BaseModel):
     """
     CostAlertEvent model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     created_at: Annotated[str, Field(description='The date and time, in UTC, the CostAlertEvent was created. ISO 8601 Formatted.', examples=['2021-07-09T00:00:00Z'])]
     triggered_at: Annotated[str, Field(description='The date and time, in UTC, the CostAlertEvent is sent. ISO 8601 Formatted.', examples=['2021-07-09T00:00:00Z'])]

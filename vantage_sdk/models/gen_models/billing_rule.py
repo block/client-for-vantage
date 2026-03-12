@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BillingRule(BaseModel):
     """
     BillingRule model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     title: Annotated[str, Field(description='The title of the BillingRule.', examples=['Credit for Unused EC2 Instances'])]
     type: Annotated[str, Field(description='The type of the BillingRule.', examples=['credit'])]

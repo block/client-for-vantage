@@ -2,11 +2,14 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import cost_provider_accounts_get_parameters_query_provider
 
 
 class CostProviderAccountsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     workspace_token: str | None = None
     provider: cost_provider_accounts_get_parameters_query_provider.CostProviderAccountsGetParametersQueryProvider | None = None
     account_id: str | None = None

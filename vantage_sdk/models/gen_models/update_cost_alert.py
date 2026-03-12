@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateCostAlert(BaseModel):
     """
     Update a Cost Alert
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the Cost Alert.')] = None
     email_recipients: Annotated[Sequence[str] | None, Field(description='The email recipients for the Cost Alert.')] = None
     interval: Annotated[str | None, Field(description="The period of time used to compare costs. Options are 'day', 'week', 'month', 'quarter'.")] = None

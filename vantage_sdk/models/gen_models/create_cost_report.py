@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_cost_report_business_metric_tokens_with_metadatum, create_cost_report_chart_settings, create_cost_report_chart_type, create_cost_report_date_bin, create_cost_report_date_interval, create_cost_report_settings
 
@@ -12,6 +12,9 @@ class CreateCostReport(BaseModel):
     """
     Create a CostReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the CostReport.')]
     workspace_token: Annotated[str | None, Field(description="The token of the Workspace to add the Cost Report to. Ignored if 'folder_token' is set. Required if the API token is associated with multiple Workspaces.")] = None
     groupings: Annotated[str | None, Field(description='Grouping values for aggregating costs on the report. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region')] = None

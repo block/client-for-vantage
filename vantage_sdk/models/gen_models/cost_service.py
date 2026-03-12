@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CostService(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='The name of the CostService.', examples=['Amazon Simple Storage Service'])]
     provider: Annotated[str, Field(description='The key value of the CostProvider.', examples=['aws'])]

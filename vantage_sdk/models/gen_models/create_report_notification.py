@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class CreateReportNotification(BaseModel):
     """
     Create a ReportNotification.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the ReportNotification.')]
     cost_report_token: Annotated[str, Field(description='The CostReport token.')]
     workspace_token: Annotated[str | None, Field(description='The token of the Workspace to add the ReportNotification to. Required if the API token is associated with multiple Workspaces.')] = None

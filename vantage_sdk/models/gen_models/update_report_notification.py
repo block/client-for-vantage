@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateReportNotification(BaseModel):
     """
     Update a ReportNotification.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the ReportNotification.')] = None
     cost_report_token: Annotated[str | None, Field(description='The CostReport token.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The Users that receive the notification.')] = None

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping
 
 
@@ -11,6 +11,9 @@ class Product(BaseModel):
     """
     Product model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: str
     category: Annotated[str, Field(description='The category of the cloud product', examples=['compute'])]
     name: Annotated[str, Field(description='The common name of the product.', examples=['EC2'])]

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import update_billing_profile_banking_information_attributes_secure_data
 
 
@@ -11,6 +11,9 @@ class UpdateBillingProfileBankingInformationAttributes(BaseModel):
     """
     Banking details (MSP accounts only)
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str | None = None
     bank_name: Annotated[str | None, Field(description='Name of the bank')] = None
     beneficiary_name: Annotated[str | None, Field(description='Name of the account beneficiary')] = None

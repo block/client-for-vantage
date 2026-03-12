@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import banking_information_secure_data
 
 
 class BankingInformation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     bank_name: Annotated[str | None, Field(description='Name of the bank')]
     beneficiary_name: Annotated[str | None, Field(description='Name of the account beneficiary')]

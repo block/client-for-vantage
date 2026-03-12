@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class FinancialCommitment(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     commitment_type: Annotated[str, Field(description='The commitment type (eg Savings Plan or Reserved Instance).', examples=['Savings Plan'])]
     service: Annotated[str, Field(description='The service this commitment applies towards.', examples=['Compute'])]
     account: Annotated[str, Field(description='The account for this financial commitment.', examples=['113074892135'])]

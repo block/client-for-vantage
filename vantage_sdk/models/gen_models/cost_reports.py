@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import cost_report, links as links_1
 
 
@@ -11,5 +11,8 @@ class CostReports(BaseModel):
     """
     CostReports model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     cost_reports: Sequence[cost_report.CostReport]

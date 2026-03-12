@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated, Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping, Sequence
 from . import resource_cost
 
@@ -12,6 +12,9 @@ class Resource(BaseModel):
     """
     Resource model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     uuid: Annotated[str, Field(description='The unique identifier for the resource.', examples=['i-0a1b2c3d4e5f6g7h8'])]
     type: Annotated[str, Field(description='The kind of resource.', examples=['aws_instance'])]

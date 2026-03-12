@@ -2,10 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ExchangeRate(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     base_currency_code: str
     currency_code: str
     rate: str

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateManagedAccountBillingInformationAttributes(BaseModel):
     """
     Billing address and contact information (MSP invoicing accounts only)
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: int | None = None
     token: str | None = None
     company_name: Annotated[str | None, Field(description='Company name for billing')] = None

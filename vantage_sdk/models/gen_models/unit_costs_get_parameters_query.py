@@ -2,11 +2,14 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import unit_costs_get_parameters_query_date_bin, unit_costs_get_parameters_query_order
 
 
 class UnitCostsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_token: str
     start_date: str | None = None
     end_date: str | None = None

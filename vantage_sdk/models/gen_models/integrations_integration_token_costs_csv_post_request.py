@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class IntegrationsIntegrationTokenCostsCsvPostRequest(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     csv: Annotated[bytes, Field(description='CSV file containing custom costs')]
     auto_transform: Annotated[bool, Field(description='Attempt to automatically transform the CSV file to match the FOCUS format.')] = False

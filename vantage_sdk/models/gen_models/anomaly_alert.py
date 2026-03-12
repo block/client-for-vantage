@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class AnomalyAlert(BaseModel):
     """
     AnomalyAlert model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     created_at: Annotated[str, Field(description='The date and time, in UTC, the AnomalyAlert was created. ISO 8601 Formatted.', examples=['2021-07-09T00:00:00Z'])]
     alerted_at: Annotated[str | None, Field(description='The date and time, in UTC, the AnomalyAlert is sent. ISO 8601 Formatted.', examples=['2021-07-09T00:00:00Z'])] = None

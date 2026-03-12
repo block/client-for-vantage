@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CostReportUrl(BaseModel):
     """
     CostReportUrl model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_url: Annotated[str, Field(description='The URL of the cost report.', examples=['https://example.com/cost_report.pdf'])]

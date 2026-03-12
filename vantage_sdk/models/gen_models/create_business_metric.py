@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_business_metric_cloudwatch_fields, create_business_metric_cost_report_tokens_with_metadatum, create_business_metric_datadog_metric_fields, create_business_metric_forecasted_value, create_business_metric_value
 
@@ -12,6 +12,9 @@ class CreateBusinessMetric(BaseModel):
     """
     Create a new BusinessMetric.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str, Field(description='The title of the BusinessMetrics.')]
     cost_report_tokens_with_metadata: Annotated[Sequence[create_business_metric_cost_report_tokens_with_metadatum.CreateBusinessMetricCostReportTokensWithMetadatum] | None, Field(description='The tokens for any CostReports that use the BusinessMetric, the unit scale, and label filter.')] = None
     values: Annotated[Sequence[create_business_metric_value.CreateBusinessMetricValue] | None, Field(description='The dates, amounts, and (optional) labels for the BusinessMetric.')] = None

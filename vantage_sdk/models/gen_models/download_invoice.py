@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import download_invoice_file_type
 
 
@@ -11,4 +11,7 @@ class DownloadInvoice(BaseModel):
     """
     Download invoice file (PDF or CSV).
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     file_type: Annotated[download_invoice_file_type.DownloadInvoiceFileType, Field(description='Type of file to download (pdf or csv)')]

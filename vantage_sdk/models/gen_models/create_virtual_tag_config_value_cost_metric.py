@@ -2,10 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import create_virtual_tag_config_value_cost_metric_aggregation
 
 
 class CreateVirtualTagConfigValueCostMetric(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     filter: str
     aggregation: create_virtual_tag_config_value_cost_metric_aggregation.CreateVirtualTagConfigValueCostMetricAggregation

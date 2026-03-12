@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CostPartial(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     amount: Annotated[str, Field(description='The amount of the cost.', examples=['4.25'])]
     currency: Annotated[str, Field(description='The currency of the cost.', examples=['USD'])]

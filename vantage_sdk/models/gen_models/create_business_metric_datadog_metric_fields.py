@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateBusinessMetricDatadogMetricFields(BaseModel):
     """
     Datadog metric configuration fields
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     integration_token: Annotated[str | None, Field(description='Integration token for the account from which you would like to fetch metrics.')] = None
     query: Annotated[str | None, Field(description='Datadog metrics query string. e.g. sum:aws.applicationelb.request_count{region:us-east-1}.rollup(avg,daily)')] = None

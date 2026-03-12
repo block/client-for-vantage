@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DownloadInvoice(BaseModel):
     """
     DownloadInvoice model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     download_url: Annotated[str, Field(description='The URL to download the invoice file.', examples=['https://example.com/invoice.pdf'])]

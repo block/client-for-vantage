@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import business_metric
 
 
@@ -11,4 +11,7 @@ class BusinessMetrics(BaseModel):
     """
     BusinessMetrics model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     business_metrics: Sequence[business_metric.BusinessMetric]

@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateSegmentReportSettings(BaseModel):
     """
     Report settings configurable on top-level Segments.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     include_credits: Annotated[bool | None, Field(description='Reports created under this Segment will include credits.')] = None
     include_refunds: Annotated[bool | None, Field(description='Reports created under this Segment will include refunds.')] = None
     include_discounts: Annotated[bool | None, Field(description='Reports created under this Segment will include discounts.')] = None

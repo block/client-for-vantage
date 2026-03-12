@@ -2,10 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import AwareDatetime, BaseModel
+from pydantic import AwareDatetime, BaseModel, ConfigDict
 
 
 class AnomalyAlertsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     page: int | None = None
     limit: int | None = None
     start_date: AwareDatetime | None = None

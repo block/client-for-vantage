@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import attached_business_metric_for_cost_report, chart_settings as chart_settings_1, cost_report_settings
 
@@ -12,6 +12,9 @@ class CostReport(BaseModel):
     """
     CostReport model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     title: Annotated[str, Field(description='The title of the CostReport.', examples=['Production Environment'])]
     folder_token: Annotated[str | None, Field(description='The token for the Folder the CostReport is a part of.')] = None

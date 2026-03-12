@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import cost_alert_event, links as links_1
 
 
@@ -11,5 +11,8 @@ class CostAlertEvents(BaseModel):
     """
     CostAlertEvents model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     cost_alert_events: Sequence[cost_alert_event.CostAlertEvent]

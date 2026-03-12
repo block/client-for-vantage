@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_workspace_exchange_rate_date
 
 
@@ -11,6 +11,9 @@ class CreateWorkspace(BaseModel):
     """
     Create a workspace
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='Name of the workspace.')]
     enable_currency_conversion: Annotated[bool, Field(description='Enable currency conversion for the workspace.')] = True
     currency: Annotated[str | None, Field(description='Currency code for the workspace.')] = None

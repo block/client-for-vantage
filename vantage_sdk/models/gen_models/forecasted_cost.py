@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import forecasted_cost_provider, links as links_1
 
 
 class ForecastedCost(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     date: Annotated[str, Field(description='The date the forecasted cost is projected to accrue. ISO 8601 Formatted.', examples=['2035-09-05+00:00'])]
     amount: Annotated[str, Field(description='The amount of the forecasted cost.', examples=['4.25'])]

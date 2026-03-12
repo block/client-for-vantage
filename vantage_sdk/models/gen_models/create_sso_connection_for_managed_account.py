@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_sso_connection_for_managed_account_type
 
@@ -12,6 +12,9 @@ class CreateSsoConnectionForManagedAccount(BaseModel):
     """
     Configure SSO for a Managed Account.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Annotated[create_sso_connection_for_managed_account_type.CreateSsoConnectionForManagedAccountType, Field(description='The type of SSO connection. Currently supported: saml.')]
     saml_metadata_url: Annotated[str | None, Field(description='The SAML metadata URL for the identity provider. Required when type is saml.')] = None
     additional_domains: Annotated[Sequence[str] | None, Field(description="Additional email domains to associate with this SSO configuration. The account's SSO domain is always included.")] = None

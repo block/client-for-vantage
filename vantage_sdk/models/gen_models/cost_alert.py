@@ -4,13 +4,16 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CostAlert(BaseModel):
     """
     CostAlert model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     title: str
     email_recipients: Annotated[Sequence[str], Field(description='The email addresses that will receive the alert.')]

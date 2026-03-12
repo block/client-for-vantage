@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class UpdateResourceReport(BaseModel):
     """
     Update a ResourceReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the ResourceReport.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the ResourceReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     columns: Annotated[Sequence[str] | None, Field(description='Array of column names to display in the table. Column names should match those returned by the /resource_reports/columns endpoint. The order determines the display order. Only available for reports with a single resource type filter.')] = None

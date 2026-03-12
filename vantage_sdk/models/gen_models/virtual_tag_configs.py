@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import virtual_tag_config
 
 
@@ -11,4 +11,7 @@ class VirtualTagConfigs(BaseModel):
     """
     VirtualTagConfigs model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     virtual_tag_configs: Sequence[virtual_tag_config.VirtualTagConfig]

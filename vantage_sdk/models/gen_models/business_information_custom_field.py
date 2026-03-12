@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BusinessInformationCustomField(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='Custom field name')]
     value: Annotated[str | None, Field(description='Custom field value')]

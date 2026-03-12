@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import financial_commitment, links as links_1
 
 
@@ -11,5 +11,8 @@ class FinancialCommitments(BaseModel):
     """
     FinancialCommitments model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     financial_commitments: Sequence[financial_commitment.FinancialCommitment]

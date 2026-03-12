@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateInvoice(BaseModel):
     """
     Create an invoice (MSP accounts only).
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     billing_period_start: Annotated[str, Field(description='Start date of billing period (YYYY-MM-DD)')]
     billing_period_end: Annotated[str, Field(description='End date of billing period (YYYY-MM-DD)')]
     account_token: Annotated[str, Field(description='Token of the managed account to invoice')]

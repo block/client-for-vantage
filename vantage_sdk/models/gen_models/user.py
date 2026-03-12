@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class User(BaseModel):
     """
     User model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     name: Annotated[str | None, Field(description='The name of the User.', examples=['John Doe'])]
     email: Annotated[str, Field(description='The email of the User.', examples=['john_doe@acme.com'])]

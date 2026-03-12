@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AccessGrant(BaseModel):
     """
     AccessGrant model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     resource_token: Annotated[str, Field(description='The token for any resource the AccessGrant is applied to.', examples=['rprt_abcd1234'])]
     access: Annotated[str, Field(description='The access status of the AccessGrant.')]

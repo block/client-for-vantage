@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VirtualTagConfigValuePercentage(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Annotated[str, Field(description='The tag value associated with a percentage of matched costs.', examples=['cost-center-a'])]
     pct: Annotated[float, Field(description='The percentage of matched costs associated with the value.', examples=[50.0])]

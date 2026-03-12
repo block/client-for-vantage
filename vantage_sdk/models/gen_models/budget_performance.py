@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BudgetPerformance(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     date: Annotated[str, Field(description='The date and time, in UTC, the Budget was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
     actual: Annotated[str, Field(description='The date and time, in UTC, the Budget was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
     amount: Annotated[str, Field(description='The amount of the Budget Period as a string to ensure precision.', examples=['100.00'])]

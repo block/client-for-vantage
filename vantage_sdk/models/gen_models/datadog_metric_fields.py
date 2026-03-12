@@ -3,8 +3,11 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DatadogMetricFields(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     query: Annotated[str, Field(description='The query used to import Datadog metrics.', examples=['sum:aws.applicationelb.request_count{region:us-east-1}.rollup(avg,daily)'])]

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import create_budget_period
 
@@ -12,6 +12,9 @@ class CreateBudget(BaseModel):
     """
     Create a Budget.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='The name of the Budget.')]
     workspace_token: Annotated[str | None, Field(description='The token of the Workspace to add the Budget to.')] = None
     cost_report_token: Annotated[str | None, Field(description='The CostReport token. Ignored for hierarchical Budgets.')] = None

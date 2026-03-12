@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CreateCostReportSettings(BaseModel):
     """
     Report settings.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     include_credits: Annotated[bool, Field(description='Report will include credits.')] = False
     include_refunds: Annotated[bool, Field(description='Report will include refunds.')] = False
     include_discounts: Annotated[bool, Field(description='Report will include discounts.')] = True

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import update_billing_profile_business_information_attributes_metadata
 
 
@@ -11,5 +11,8 @@ class UpdateBillingProfileBusinessInformationAttributes(BaseModel):
     """
     Business information and custom fields
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str | None = None
     metadata: Annotated[update_billing_profile_business_information_attributes_metadata.UpdateBillingProfileBusinessInformationAttributesMetadata | None, Field(description='Business metadata including custom fields')] = None

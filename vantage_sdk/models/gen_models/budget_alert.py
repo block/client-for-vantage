@@ -4,13 +4,16 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BudgetAlert(BaseModel):
     """
     BudgetAlert model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     budget_tokens: Annotated[Sequence[str], Field(description='The tokens for the Budgets that the Budget Alert is monitoring to trigger alerts on.')]
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Budget Alert was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]

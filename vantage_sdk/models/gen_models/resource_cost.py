@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ResourceCost(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     category: Annotated[str, Field(description='The category of the cost.')]
     amount: Annotated[float, Field(description='The cost amount.')]

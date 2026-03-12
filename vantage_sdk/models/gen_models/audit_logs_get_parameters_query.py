@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import audit_logs_get_parameters_query_action, audit_logs_get_parameters_query_object_type, audit_logs_get_parameters_query_source
 
 
 class AuditLogsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     page: int | None = None
     limit: int | None = None
     user: int | None = None

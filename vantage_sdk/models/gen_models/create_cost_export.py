@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_cost_export_date_bin, create_cost_export_schema
 
 
@@ -11,6 +11,9 @@ class CreateCostExport(BaseModel):
     """
     Generate a DataExport of costs.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_token: Annotated[str | None, Field(description='The CostReport token.')] = None
     filter: Annotated[str | None, Field(description='The VQL filter to apply to the costs. If this is supplied you do not need cost_report_token.')] = None
     workspace_token: Annotated[str | None, Field(description="The token of the Workspace to query costs from. Ignored if 'cost_report_token' is set. Required if the API token is associated with multiple Workspaces.")] = None

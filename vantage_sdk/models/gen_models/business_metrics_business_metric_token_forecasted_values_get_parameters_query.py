@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     page: int | None = None
     limit: int | None = None
     start_date: date | None = None

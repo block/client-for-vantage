@@ -4,7 +4,7 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_billing_profile_business_information_attributes_metadata_custom_field
 
 
@@ -12,4 +12,7 @@ class CreateBillingProfileBusinessInformationAttributesMetadata(BaseModel):
     """
     Business metadata including custom fields
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     custom_fields: Annotated[Sequence[create_billing_profile_business_information_attributes_metadata_custom_field.CreateBillingProfileBusinessInformationAttributesMetadataCustomField] | None, Field(description='Array of custom field objects')] = None

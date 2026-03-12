@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
 from collections.abc import Sequence
 from . import create_kubernetes_efficiency_report_aggregated_by, create_kubernetes_efficiency_report_date_bucket, create_kubernetes_efficiency_report_date_interval
@@ -13,6 +13,9 @@ class CreateKubernetesEfficiencyReport(BaseModel):
     """
     Create a KubernetesEfficiencyReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     workspace_token: Annotated[str, Field(description='The Workspace in which the KubernetesEfficiencyReport will be created.')]
     title: Annotated[str, Field(description='The title of the KubernetesEfficiencyReport.')]
     filter: Annotated[str | None, Field(description='The filter query language to apply to the KubernetesEfficiencyReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None

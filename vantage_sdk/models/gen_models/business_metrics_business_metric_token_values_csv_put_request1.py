@@ -3,9 +3,12 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BusinessMetricsBusinessMetricTokenValuesCsvPutRequest(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     csv: Annotated[bytes, Field(description='CSV file containing BusinessMetric dates and amounts')]
     forecasted: Annotated[bool, Field(description='When true, imports values as forecasted metrics instead of historical metrics.')] = False

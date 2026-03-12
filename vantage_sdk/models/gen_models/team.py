@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
@@ -11,6 +11,9 @@ class Team(BaseModel):
     """
     Team model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str
     name: Annotated[str, Field(description='The name of the Team.', examples=['Cost Savers'])]
     description: Annotated[str | None, Field(description='The description of the Team.', examples=['The Team that saves costs'])]

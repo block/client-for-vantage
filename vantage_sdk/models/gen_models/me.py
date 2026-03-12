@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import bearer_token as bearer_token_1, workspace
 
@@ -12,6 +12,9 @@ class Me(BaseModel):
     """
     Me model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     default_workspace_token: Annotated[str | None, Field(...)]
     default_dashboard_token: Annotated[str | None, Field(description='The token of the default Dashboard for the User.')] = None
     workspaces: Sequence[workspace.Workspace]

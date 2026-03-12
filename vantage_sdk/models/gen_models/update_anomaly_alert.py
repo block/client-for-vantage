@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateAnomalyAlert(BaseModel):
     """
     Update an AnomalyAlert.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     status: Annotated[str, Field(description='The status of the Anomaly Alert.')]
     feedback: Annotated[str | None, Field(description='Optional additional comments for why this alert is ignored.')] = None

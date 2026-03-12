@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_dashboard_widget_settings
 
 
 class CreateDashboardWidget(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     widgetable_token: Annotated[str, Field(description='The token of the represented Resource.')]
     title: Annotated[str | None, Field(description='The title of the Widget (defaults to the title of the Resource).')] = None
     settings: Annotated[create_dashboard_widget_settings.CreateDashboardWidgetSettings | None, Field(description='The settings for the DashboardWidget.')] = None

@@ -4,11 +4,14 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import costs_get_parameters_query_date_bin, costs_get_parameters_query_order
 
 
 class CostsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cost_report_token: str | None = None
     filter: str | None = None
     workspace_token: str | None = None

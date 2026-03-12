@@ -4,7 +4,7 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_billing_profile_invoice_adjustment_attributes_adjustment_item
 
 
@@ -12,5 +12,8 @@ class CreateBillingProfileInvoiceAdjustmentAttributes(BaseModel):
     """
     Invoice adjustments (taxes, fees, etc.)
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: str | None = None
     adjustment_items: Annotated[Sequence[create_billing_profile_invoice_adjustment_attributes_adjustment_item.CreateBillingProfileInvoiceAdjustmentAttributesAdjustmentItem] | None, Field(description='Array of adjustment items')] = None

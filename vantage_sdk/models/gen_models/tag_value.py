@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 
 
 class TagValue(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tag_value: Annotated[str, Field(description='The TagValue.', examples=['vantage'])]
     providers: Annotated[Sequence[str], Field(description='The unique providers that are covered by the TagValue.')]

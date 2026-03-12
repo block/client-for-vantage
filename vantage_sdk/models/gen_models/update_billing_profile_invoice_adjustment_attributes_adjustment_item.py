@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import update_billing_profile_invoice_adjustment_attributes_adjustment_item_adjustment_type, update_billing_profile_invoice_adjustment_attributes_adjustment_item_calculation_type
 
 
 class UpdateBillingProfileInvoiceAdjustmentAttributesAdjustmentItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Annotated[str, Field(description='Name of the adjustment')]
     adjustment_type: Annotated[update_billing_profile_invoice_adjustment_attributes_adjustment_item_adjustment_type.UpdateBillingProfileInvoiceAdjustmentAttributesAdjustmentItemAdjustmentType, Field(description='Type of adjustment')] = update_billing_profile_invoice_adjustment_attributes_adjustment_item_adjustment_type.UpdateBillingProfileInvoiceAdjustmentAttributesAdjustmentItemAdjustmentType.charge
     calculation_type: Annotated[update_billing_profile_invoice_adjustment_attributes_adjustment_item_calculation_type.UpdateBillingProfileInvoiceAdjustmentAttributesAdjustmentItemCalculationType, Field(description='How the adjustment is calculated')]

@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from . import create_kubernetes_efficiency_report_export_date_bin
 
 
@@ -11,6 +11,9 @@ class CreateKubernetesEfficiencyReportExport(BaseModel):
     """
     Generate a DataExport of Kubernetes efficiency data.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     kubernetes_efficiency_report_token: Annotated[str | None, Field(description='The KubernetesEfficiencyReport token. If not provided, the default report for the workspace will be used.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the KubernetesEfficiencyReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     workspace_token: Annotated[str | None, Field(description="The token of the Workspace to export data from. Ignored if 'kubernetes_efficiency_report_token' is set. Required if the API token is associated with multiple Workspaces.")] = None

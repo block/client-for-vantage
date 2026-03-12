@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UpdateBillingRule(BaseModel):
     """
     Update a BillingRule.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the BillingRule.')] = None
     charge_type: Annotated[str | None, Field(description='The charge type of the BillingRule.')] = None
     percentage: Annotated[float | None, Field(description='The percentage of the cost shown. Example value: 75.0')] = None

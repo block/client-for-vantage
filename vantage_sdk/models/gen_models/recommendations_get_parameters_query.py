@@ -3,11 +3,14 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import recommendations_get_parameters_query_provider, recommendations_get_parameters_query_provider_id, recommendations_get_parameters_query_status
 
 
 class RecommendationsGetParametersQuery(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     provider_ids: Sequence[recommendations_get_parameters_query_provider_id.RecommendationsGetParametersQueryProviderId] | None = None
     billing_account_ids: Sequence[str] | None = None
     account_ids: Sequence[str] | None = None

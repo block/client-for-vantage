@@ -3,10 +3,13 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Links(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     self: Annotated[str | None, Field(description='The URL of the current page of results.')] = None
     first: Annotated[str | None, Field(description='The URL of the first page of results.')] = None
     next: Annotated[str | None, Field(description='The URL of the next page of results, if one exists.')] = None

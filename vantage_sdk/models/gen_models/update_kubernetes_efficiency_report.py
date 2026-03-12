@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
 from collections.abc import Sequence
 from . import update_kubernetes_efficiency_report_aggregated_by, update_kubernetes_efficiency_report_date_bucket, update_kubernetes_efficiency_report_date_interval
@@ -13,6 +13,9 @@ class UpdateKubernetesEfficiencyReport(BaseModel):
     """
     Update a KubernetesEfficiencyReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the KubernetesEfficiencyReport.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the KubernetesEfficiencyReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     start_date: Annotated[date | None, Field(description="The start date of the KubernetesEfficiencyReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None

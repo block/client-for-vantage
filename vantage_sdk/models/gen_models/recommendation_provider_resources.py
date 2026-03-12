@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from collections.abc import Sequence
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from . import links as links_1, recommendation_provider_resource
 
 
@@ -11,5 +11,8 @@ class RecommendationProviderResources(BaseModel):
     """
     RecommendationProviderResources model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     links: links_1.Links | None = None
     resources: Sequence[recommendation_provider_resource.RecommendationProviderResource]

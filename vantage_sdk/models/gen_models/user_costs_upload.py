@@ -3,13 +3,16 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UserCostsUpload(BaseModel):
     """
     UserCostsUpload model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: Annotated[str, Field(description='The token of the UserCostsUpload.', examples=['usr_csts_upld_1234'])]
     filename: Annotated[str, Field(description='The filename of the uploaded costs UserCostsUpload.', examples=['usr_csts_upld_1234.parquet'])]
     amount: Annotated[str, Field(description='The total amount of the costs in the UserCostsUpload.', examples=['1234.56'])]

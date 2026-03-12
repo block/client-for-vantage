@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import virtual_tag_config_provider_status
 
@@ -12,6 +12,9 @@ class VirtualTagConfigStatus(BaseModel):
     """
     VirtualTagConfigStatus model
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     token: Annotated[str, Field(description='The token of the VirtualTagConfig.', examples=['vtag_1234'])]
     processing: Annotated[bool, Field(description='Whether the VirtualTagConfig is currently processing. True if any provider has not completed processing.')]
     providers: Annotated[Sequence[virtual_tag_config_provider_status.VirtualTagConfigProviderStatus], Field(description='Processing status broken down by provider.')]

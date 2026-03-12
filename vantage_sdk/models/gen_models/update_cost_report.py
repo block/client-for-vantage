@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from typing import Annotated
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
 from . import update_cost_report_business_metric_tokens_with_metadatum, update_cost_report_chart_settings, update_cost_report_chart_type, update_cost_report_date_bin, update_cost_report_date_interval, update_cost_report_settings
 
@@ -12,6 +12,9 @@ class UpdateCostReport(BaseModel):
     """
     Update a CostReport.
     """
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     title: Annotated[str | None, Field(description='The title of the CostReport.')] = None
     groupings: Annotated[str | None, Field(description='Grouping values for aggregating costs on the report. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the CostReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
