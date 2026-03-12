@@ -2042,9 +2042,7 @@ class VantageSDK:
             A RecommendationResources object containing the resources
         """
         recommendation_type = recommendation_type_params.recommendation_type
-        paginated_data = self._get_paginated(
-            f"recommendations/by_type/{recommendation_type}/resources", query_params
-        )
+        paginated_data = self._get_paginated(f"recommendations/by_type/{recommendation_type}/resources", query_params)
         return RecommendationResources.model_validate(paginated_data)
 
     # ---- Report Notifications APIs ----
