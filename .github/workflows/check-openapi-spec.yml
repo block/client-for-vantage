@@ -2,7 +2,7 @@ name: Check OpenAPI Spec
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Daily at 9am UTC
+    - cron: '0 9 * * 1'  # Weekly on Monday at 9am UTC
   workflow_dispatch:
 
 permissions:
@@ -47,4 +47,5 @@ jobs:
 
           Please review the generated model changes for any breaking impacts.
         branch: chore/update-openapi-spec
+        signoff: true
         delete-branch: true
