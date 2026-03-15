@@ -9,3 +9,4 @@ class AuditLogsGetParametersQueryObjectType(str, Enum):
     virtual_tag = 'virtual_tag'
     cost_report = 'cost_report'
     recommendation_commitment = 'recommendation_commitment'
+    segment = 'segment'

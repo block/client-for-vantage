@@ -36,4 +36,5 @@ class CostReportsCostReportTokenForecastedCostsGetParametersQueryProvider(str, E
     cursor = 'cursor'
     elastic = 'elastic'
     vercel = 'vercel'
+    redis_cloud = 'redis_cloud'
     all = 'all'
