@@ -17,4 +17,5 @@ class VirtualTagConfigValue(BaseModel):
     business_metric_token: Annotated[str | None, Field(description='The token of the associated BusinessMetric.', examples=['bsnss_mtrc_abc123'])] = None
     cost_metric: virtual_tag_config_value_cost_metric.VirtualTagConfigValueCostMetric | None = None
     percentages: Annotated[Sequence[virtual_tag_config_value_percentage.VirtualTagConfigValuePercentage] | None, Field(description='Labeled percentage allocations for matching costs.')] = None
+    percentages_display_name: Annotated[str | None, Field(description='The display name for this percentage-based allocation.')] = None
     date_ranges: Annotated[Sequence[virtual_tag_config_value_date_range.VirtualTagConfigValueDateRange] | None, Field(description='Date ranges restricting when this value applies.')] = None

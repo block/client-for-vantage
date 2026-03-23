@@ -21,4 +21,5 @@ class ResourceReport(BaseModel):
     workspace_token: Annotated[str, Field(description='The token for the Workspace the ResourceReport is a part of.')]
     user_token: Annotated[str | None, Field(description='The token for the User who created this ResourceReport.')]
     created_by_token: Annotated[str | None, Field(description='The token for the User or Team who created this ResourceReport.')]
+    folder_token: Annotated[str | None, Field(description='The token for the Folder the ResourceReport is a part of.')] = None
     columns: Annotated[Sequence[str], Field(description='Array of column names configured for the ResourceReport table display.')]
