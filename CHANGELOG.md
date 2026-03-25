@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [1.3.0](https://github.com/block/client-for-vantage/compare/v1.2.0...v1.3.0) (2026-03-25)
+
+
+### Features
+
+* remove CostsDataExportsPostParametersQuery in favor of inline groupings ([fa47910](https://github.com/block/client-for-vantage/commit/fa47910f251b4a2c1549abd6de6daa92740cdb57))
+
 ## [1.2.0](https://github.com/block/client-for-vantage/compare/v1.1.1...v1.2.0) (2026-03-12)
 
 
