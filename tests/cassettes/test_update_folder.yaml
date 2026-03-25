@@ -20,7 +20,7 @@ interactions:
     uri: https://api.vantage.sh/v2/folders
   response:
     body:
-      string: '{"token":"fldr_dab596a35da38fb9","title":"test_folder_vcr","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-02-08T18:30:45Z","updated_at":"2026-02-08T18:30:45Z","workspace_token":"wrkspc_576fafc861f024a4"}'
+      string: '{"token":"fldr_e540761b36bf14bc","title":"test_folder_vcr","type":"CostFolder","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-03-24T16:56:12Z","updated_at":"2026-03-24T16:56:12Z","workspace_token":"wrkspc_576fafc861f024a4"}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -31,17 +31,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"7f53feaec1d9dc8c03cef83e541b9ab3"
+      - W/"1af2ff830eedeef680b588ea2e4e2b1e"
       Set-Cookie:
-      - _stratus_session=JyHeM3Z38tn3mqubTOG4bSTkwg2HFLIosNtkIs5ZVPeX5sDB%2FFc%2FylRJ7MSY8K11kmUcGj6BIMYZLWWax%2Fvef01R%2BsY4%2FP0WjsYDv1wNK2KaolERdl5NLGzVF8iVGoDDExP87XQ8gRT46fsdZeJh6B4gp5NvJIY7tAv%2BZ43pl3YvJ4D9pzwLr9Ixz9iR4XqlHsK3qt7FRLA%3D--Xw2sRTUrsIqeFxoT--WYJLa%2Fu%2Fiq3DO%2FsaDUgVjw%3D%3D;
+      - _stratus_session=i3ygweR6LGoQ7HICIMx28WUqevfBoTmwxxCHCEc9LNHm%2BwCdVQgQNZnKFEhpd%2BAqukcYDVBmjPG9UL74FfyFhNJPlXY7IUDhMyGrB4bZusQIjRTndzHI698%2Bcvf6HnjHQgSUitPrFbmaF8b669O1PKg7mulFTJLNrFVNF3CTXgbKmvKMQ5Rqhf65qKizBdAY0IU%2B5II3zwE%3D--rO4OWx%2FJWvWsBBCu--7xfMQWbnJ2%2BiUvKMYtgxDQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -50,13 +50,13 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '419'
+      - '995'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1774374970'
       X-Runtime:
-      - '0.039676'
+      - '0.076557'
       content-length:
-      - '227'
+      - '247'
     status:
       code: 201
       message: Created
@@ -74,16 +74,16 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=JyHeM3Z38tn3mqubTOG4bSTkwg2HFLIosNtkIs5ZVPeX5sDB%2FFc%2FylRJ7MSY8K11kmUcGj6BIMYZLWWax%2Fvef01R%2BsY4%2FP0WjsYDv1wNK2KaolERdl5NLGzVF8iVGoDDExP87XQ8gRT46fsdZeJh6B4gp5NvJIY7tAv%2BZ43pl3YvJ4D9pzwLr9Ixz9iR4XqlHsK3qt7FRLA%3D--Xw2sRTUrsIqeFxoT--WYJLa%2Fu%2Fiq3DO%2FsaDUgVjw%3D%3D
+      - _stratus_session=i3ygweR6LGoQ7HICIMx28WUqevfBoTmwxxCHCEc9LNHm%2BwCdVQgQNZnKFEhpd%2BAqukcYDVBmjPG9UL74FfyFhNJPlXY7IUDhMyGrB4bZusQIjRTndzHI698%2Bcvf6HnjHQgSUitPrFbmaF8b669O1PKg7mulFTJLNrFVNF3CTXgbKmvKMQ5Rqhf65qKizBdAY0IU%2B5II3zwE%3D--rO4OWx%2FJWvWsBBCu--7xfMQWbnJ2%2BiUvKMYtgxDQ%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: PUT
-    uri: https://api.vantage.sh/v2/folders/fldr_dab596a35da38fb9
+    uri: https://api.vantage.sh/v2/folders/fldr_e540761b36bf14bc
   response:
     body:
-      string: '{"token":"fldr_dab596a35da38fb9","title":"updated_vcr_test_folder_vcr","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-02-08T18:30:45Z","updated_at":"2026-02-08T18:30:45Z","workspace_token":"wrkspc_576fafc861f024a4"}'
+      string: '{"token":"fldr_e540761b36bf14bc","title":"updated_vcr_test_folder_vcr","type":"CostFolder","parent_folder_token":null,"saved_filter_tokens":[],"created_at":"2026-03-24T16:56:12Z","updated_at":"2026-03-24T16:56:13Z","workspace_token":"wrkspc_576fafc861f024a4"}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -94,17 +94,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"0800522f38ca26fcaea62ac5bd54c6db"
+      - W/"6bc7cb8bf62b332cc92b9c9681a1847f"
       Set-Cookie:
-      - _stratus_session=fss9dVMDAOkPhND406ddKnxED69HsnWLi9L0VAfrr13BPXdCbA%2BwlNdzpIGQTLs7nIThzeyqAnLI0bWbFoYbATjwaFMwSErHH5uJF2Je15y6DA%2BiaPxfeZN8PJq%2B8aJk6ADvio7QldF%2BLPjLfjbihxl2Cf8%2BgWcJ9s9HougtMNE8MbQjlNcn2SEt55pody85xtl9A%2BIIB0k%3D--shTciGIH4rMmwm7l--Sqacm%2Fyz5EcKDfTq1vBgrA%3D%3D;
+      - _stratus_session=vS8h1mB4sb3h9cvyAibM1Upoo2U3ChwLUFTU2yXF0LWzjExtHKp7mkuaJWLkdoZlo6Ce5%2Fr%2BxBRYTRr1JJ79RxqMXM6Sk5c5Y2BfZKyDu8CK2AOuZwUYjX73BhWHEr856G6N0z7Hh4a9jsoj2DE9280GwmuYNTgiPzfKIPKWxHBuyqYHsuuRmEmu6Dob0FQVm9QGUI7MrKQ%3D--lhY3iQ6UC3MIdRop--Ymljb%2FO2VsNfwDV0Vgodrg%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -113,13 +113,13 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '418'
+      - '994'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1774374970'
       X-Runtime:
-      - '0.075603'
+      - '0.113150'
       content-length:
-      - '239'
+      - '259'
     status:
       code: 200
       message: OK
@@ -135,13 +135,13 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=fss9dVMDAOkPhND406ddKnxED69HsnWLi9L0VAfrr13BPXdCbA%2BwlNdzpIGQTLs7nIThzeyqAnLI0bWbFoYbATjwaFMwSErHH5uJF2Je15y6DA%2BiaPxfeZN8PJq%2B8aJk6ADvio7QldF%2BLPjLfjbihxl2Cf8%2BgWcJ9s9HougtMNE8MbQjlNcn2SEt55pody85xtl9A%2BIIB0k%3D--shTciGIH4rMmwm7l--Sqacm%2Fyz5EcKDfTq1vBgrA%3D%3D
+      - _stratus_session=vS8h1mB4sb3h9cvyAibM1Upoo2U3ChwLUFTU2yXF0LWzjExtHKp7mkuaJWLkdoZlo6Ce5%2Fr%2BxBRYTRr1JJ79RxqMXM6Sk5c5Y2BfZKyDu8CK2AOuZwUYjX73BhWHEr856G6N0z7Hh4a9jsoj2DE9280GwmuYNTgiPzfKIPKWxHBuyqYHsuuRmEmu6Dob0FQVm9QGUI7MrKQ%3D--lhY3iQ6UC3MIdRop--Ymljb%2FO2VsNfwDV0Vgodrg%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: DELETE
-    uri: https://api.vantage.sh/v2/folders/fldr_dab596a35da38fb9
+    uri: https://api.vantage.sh/v2/folders/fldr_e540761b36bf14bc
   response:
     body:
       string: ''
@@ -155,24 +155,24 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Set-Cookie:
-      - _stratus_session=9NO4QN%2B19BCtW7G8OQaJD5iqwjG1KbNx7igfO6ongaa9ptkjqxKiLpeAtkhg7tu%2BUrL%2Fvkw7KuGjUxK1NuuOaHGvzGW0EMf9JGcOCwt3Ydj7ZSw4NQvavmU5pyfpeMzYWrGY%2FaYfVFZPhFryQrvqDqeV1k9T5N%2F%2B%2BAEKpwrHK5tEtRxw5xrJGEzmIMxW9oi4%2Bnef%2FbAoA4U%3D--42C9uPC6lRRZQmCY--dTcLFPXzCa5KwIecqYlHuw%3D%3D;
+      - _stratus_session=4UlUV%2BTFOBqOeA4kbyTvCTiSSmPIdLxZMmbVISGE8wlPrKdHp8xLc1ybaq7Myo1lADo9b9ZishfaV%2F9hyiSdKns3RPwDFydQAqR5MfM53O%2FP0eQ3KqucGuYOAO%2BDns3vrbpcNA6%2BE%2BA506vDzFdXQ%2BPI0hs0gAGesuTfRtoTkw3Jeedy4ncIIH2EssmYea52R%2FLaeEWbuUw%3D--I4qlSHHj0g6l%2BmhG--tcB02j%2Fsg9L3d4uvJwICDQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '417'
+      - '993'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1774374970'
       X-Runtime:
-      - '0.066926'
+      - '0.133887'
     status:
       code: 204
       message: No Content
@@ -188,16 +188,16 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=9NO4QN%2B19BCtW7G8OQaJD5iqwjG1KbNx7igfO6ongaa9ptkjqxKiLpeAtkhg7tu%2BUrL%2Fvkw7KuGjUxK1NuuOaHGvzGW0EMf9JGcOCwt3Ydj7ZSw4NQvavmU5pyfpeMzYWrGY%2FaYfVFZPhFryQrvqDqeV1k9T5N%2F%2B%2BAEKpwrHK5tEtRxw5xrJGEzmIMxW9oi4%2Bnef%2FbAoA4U%3D--42C9uPC6lRRZQmCY--dTcLFPXzCa5KwIecqYlHuw%3D%3D
+      - _stratus_session=4UlUV%2BTFOBqOeA4kbyTvCTiSSmPIdLxZMmbVISGE8wlPrKdHp8xLc1ybaq7Myo1lADo9b9ZishfaV%2F9hyiSdKns3RPwDFydQAqR5MfM53O%2FP0eQ3KqucGuYOAO%2BDns3vrbpcNA6%2BE%2BA506vDzFdXQ%2BPI0hs0gAGesuTfRtoTkw3Jeedy4ncIIH2EssmYea52R%2FLaeEWbuUw%3D--I4qlSHHj0g6l%2BmhG--tcB02j%2Fsg9L3d4uvJwICDQ%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: GET
-    uri: https://api.vantage.sh/v2/folders/fldr_dab596a35da38fb9
+    uri: https://api.vantage.sh/v2/folders/fldr_e540761b36bf14bc
   response:
     body:
-      string: '{"errors":["Folder fldr_dab596a35da38fb9 not found."]}'
+      string: '{"errors":["Folder fldr_e540761b36bf14bc not found."]}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -208,15 +208,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       Set-Cookie:
-      - _stratus_session=WRf2RzE0UZvY4VFioaxTwA4BknDT%2FFBgQH%2FAZNT%2FEeJnVG70YRpCqcS4O4%2Bdm0dSqwTvbTQWaERI8IFQMa5%2F%2BSzWXfwSurNzzjWnQbnKsnau5HlkPpbGVBuX80hz2WoptN60WIUW2XM9eEVfVHuPvgEpUUuFHZ9dfj3ZGNcHev8VWHD6E%2Fa5CB4MdQMtpYkQax2ZbHwThy4%3D--4lifKVo7gb%2BBNFah--UfcnYIFUohNEXdTTaHmefQ%3D%3D;
+      - _stratus_session=Ksp3PuaRSr5RPKEKymx5KKiGxVZVaryj8w8MfAGtgKztGG0xoLFFzBy%2F4SXMfmVgG%2BcAg2Bndv6xEjbOZBqCAuFUa%2FYjxchqXoGqRseaXZn20FQLq%2BF4UuB8S2jb5LEqqJ6lgB5hW9yV3DG%2BNcDK6rCCQcPep2N6RHu2SsdAz1jpDpbqpK%2F5bLt2D7uXI%2FikNrD3LIYX%2BDY%3D--3J69TPq%2FVd%2FHREjL--sbMX3dPl4birwRfrmFHtsQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -227,11 +227,11 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '416'
+      - '992'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1774374970'
       X-Runtime:
-      - '0.039095'
+      - '0.036669'
       content-length:
       - '54'
     status:

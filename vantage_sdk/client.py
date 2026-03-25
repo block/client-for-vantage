@@ -54,7 +54,6 @@ from vantage_sdk.models import (
     CostReportsCostReportTokenForecastedCostsGetParametersQuery,
     CostReportTokenParams,
     Costs,
-    CostsDataExportsPostParametersQuery,
     CostsDataExportsPostRequest,
     CostServices,
     CostsGetParametersQuery,
@@ -629,14 +628,12 @@ class VantageSDK:
     def create_data_export(
         self,
         new_data_export: CostsDataExportsPostRequest,
-        data_export_query_params: CostsDataExportsPostParametersQuery | None = None,
     ) -> str:
         """
         Create a new data export - POST /costs/data_exports
 
         Args:
             new_data_export: The new data export object to create
-            data_export_query_params: Optional query parameters for the data export
 
         Returns:
             str: The token of the created data export
@@ -651,9 +648,6 @@ class VantageSDK:
         response = self.session.post(
             urljoin(self.base_url, "costs/data_exports"),
             json=new_data_export.model_dump(mode="json", exclude_none=True, by_alias=True),
-            params=data_export_query_params.model_dump(mode="json", exclude_none=True, by_alias=True)
-            if data_export_query_params
-            else None,
             headers=self.session.headers,
         )
         if response.is_success:

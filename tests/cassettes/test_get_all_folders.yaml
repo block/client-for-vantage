@@ -29,17 +29,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"2175f811f701d624c129a8a68ebb5aa0"
+      - W/"a5171562471f39a220b0eaccc183af77"
       Set-Cookie:
-      - _stratus_session=ju8uio%2FryG8oUNY9C8O9qZBX7M4JK8q0BzVKyjVFJeuEo%2FAMrW3sI5Hn9oeupAypSCF4c21sXzBrjEnrSL%2BXrIeILumAqSqBsIUBn%2Fs7FkggVPAouNEhvMQcN53jSyvv8jQ1RIil%2FPOdUy5UqUGQt1UytoydJtHO2amuNG1MEat%2BfXfzga%2Fuf%2B2htEIsLjAJtFjRsZgxHF4%3D--DGOtlV0MCx9HmEPO--5bO7LG8Ymght7KaDw4rl2w%3D%3D;
+      - _stratus_session=LlyvAb2hw%2FeDF%2FsrtyNDbMpbNGEcBxvRVDaYTZ%2Fz59E39zEI4ho9Tq1d8bwPH%2F1pr%2BSJw7amSB9Plm5nWoVTT4LgIIHNn61HsqYVUMyp56yqdmhTN5At8wcZXDs51HXYzCUs0p9NIYeCPDoFYldKhi70l%2BEXI89cdo65szztR8tIDMGS47AYBZaR0frTZZZjcKE3elX43AA%3D--Ko0335eHpRpfHEgw--Zvzb0vGr3g7ilusyLhouDQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -48,11 +48,11 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '420'
+      - '996'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1774374970'
       X-Runtime:
-      - '0.030934'
+      - '0.037905'
       content-length:
       - '161'
     status:
