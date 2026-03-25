@@ -1,9 +1,8 @@
 """Test fixtures and VCR configuration for the Vantage SDK integration tests.
 
-Tests run against the live Vantage API by default. When VCR_ENABLED=true,
-pytest-recording intercepts HTTP traffic and replays it from YAML cassettes
-stored in tests/cassettes/. This lets CI run without network access or API
-credentials.
+Tests replay pre-recorded YAML cassettes by default so contributors can run
+the suite without API credentials. When VCR_ENABLED=false, pytest-recording
+is disabled and tests hit the live Vantage API.
 
 Scrubbing functions (_scrub_request, _scrub_response) strip secrets and
 non-deterministic headers before cassettes are written to disk so that
@@ -55,7 +54,6 @@ from vantage_sdk.models import (
     CreateKubernetesEfficiencyReportDateInterval,
     CreateNetworkFlowReportDateInterval,
     CreateCostExportSchema,
-    CostsGetParametersQuery,
     CreateAccessGrant,
     CreateAccessGrantAccess,
     CreateAnomalyNotification,
@@ -485,20 +483,16 @@ def billing_rule_fixture(vantage_sdk):
 
 @pytest.fixture
 def create_data_export(vantage_sdk, cost_report_fixture):
-    query_params = CostsGetParametersQuery(
-        groupings=["service", "provider", "account_id"],
-        filter="costs.provider = 'aws'",
-        start_date="2024-01-01",
-        end_date="2024-01-31",
-        date_interval=None,
-    )
     request_body = CostsDataExportsPostRequest(
         cost_report_token=cost_report_fixture.token,
         workspace_token=settings.workspace_token,
         schema=CreateCostExportSchema.focus,
+        groupings=["service", "provider", "account_id"],
+        start_date="2024-01-01",
+        end_date="2024-01-31",
     )
     data_export_token: str = vantage_sdk.create_data_export(
-        new_data_export=request_body, data_export_query_params=query_params
+        new_data_export=request_body,
     )
     print(f"Data export token: {data_export_token}")
     assert data_export_token is not None

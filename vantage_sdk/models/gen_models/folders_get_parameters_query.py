@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 from pydantic import BaseModel, ConfigDict
+from . import folders_get_parameters_query_type
 
 
 class FoldersGetParametersQuery(BaseModel):
@@ -11,3 +12,4 @@ class FoldersGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    type: folders_get_parameters_query_type.FoldersGetParametersQueryType | None = None

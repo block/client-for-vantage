@@ -35,7 +35,6 @@ from vantage_sdk.models.gen_models import (
     virtual_tag_config_value_cost_metric_aggregation as virtual_tag_config_value_cost_metric_aggregation_model,
     cost_alerts as cost_alerts_model,
     cost_reports as cost_reports_model,
-    costs_data_exports_post_parameters_query as costs_data_exports_post_parameters_query_model,
     create_cost_export as create_cost_export_model,
     create_cost_report as create_cost_report_model,
     create_financial_commitment_report as create_financial_commitment_report_model,
@@ -535,20 +534,12 @@ class DataExport(data_export_model.DataExport):
     attributes: Mapping[str, Any] | None = None  # type: ignore[assignment]
 
 
-class CostsDataExportsPostParametersQuery(
-    costs_data_exports_post_parameters_query_model.CostsDataExportsPostParametersQuery
-):
-    """Parameters for the Costs Data Exports POST request"""
-
-    groupings: Sequence[str] | None = None
+class CostsDataExportsPostRequest(create_cost_export_model.CreateCostExport):
+    """Extends CreateCostExport with custom validation"""
 
     @field_serializer("groupings", when_used="always")
     def _serialize_groupings(self, groupings: Sequence[str] | None) -> str | None:
         return ",".join(groupings) if groupings else None
-
-
-class CostsDataExportsPostRequest(create_cost_export_model.CreateCostExport):
-    """Extends CreateCostExport with custom validation"""
 
     @model_validator(mode="before")
     @classmethod

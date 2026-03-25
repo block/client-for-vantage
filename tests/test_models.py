@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=WORKSPACE.env_path, env_file_encoding="utf-8")
     vantage_api_key: str
     workspace_token: str
-    vcr_enabled: bool = False
+    vcr_enabled: bool = True
 
 
 class ResourcePrefix(str, Enum):

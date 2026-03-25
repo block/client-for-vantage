@@ -17,3 +17,4 @@ class UpdateResourceReport(BaseModel):
     title: Annotated[str | None, Field(description='The title of the ResourceReport.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the ResourceReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     columns: Annotated[Sequence[str] | None, Field(description='Array of column names to display in the table. Column names should match those returned by the /resource_reports/columns endpoint. The order determines the display order. Only available for reports with a single resource type filter.')] = None
+    folder_token: Annotated[str | None, Field(description='The token of the Folder to move the ResourceReport to.')] = None

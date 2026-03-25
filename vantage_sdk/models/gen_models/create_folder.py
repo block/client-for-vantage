@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
+from . import create_folder_type
 
 
 class CreateFolder(BaseModel):
@@ -18,3 +19,4 @@ class CreateFolder(BaseModel):
     parent_folder_token: Annotated[str | None, Field(description='The token of the parent Folder.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the SavedFilters to apply to any Cost Report contained within the Folder.')] = None
     workspace_token: Annotated[str | None, Field(description="The token of the Workspace to add the Folder to. Ignored if 'parent_folder_token' is set. Required if the API token is associated with multiple Workspaces.")] = None
+    type: Annotated[create_folder_type.CreateFolderType, Field(description='The type of the Folder.')] = create_folder_type.CreateFolderType.CostFolder

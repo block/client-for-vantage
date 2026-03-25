@@ -21,3 +21,4 @@ class UpdateCostReportSettings(BaseModel):
     unallocated: Annotated[bool | None, Field(description='Report will show unallocated costs.')] = None
     aggregate_by: Annotated[str | None, Field(description='Report will aggregate by cost or usage.')] = None
     show_previous_period: Annotated[bool | None, Field(description='Report will show previous period costs or usage comparison.')] = None
+    complete_period: Annotated[bool | None, Field(description='Report will restrict date ranges to completed periods only.')] = None

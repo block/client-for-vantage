@@ -4,7 +4,8 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import create_cost_export_date_bin, create_cost_export_schema
+from collections.abc import Sequence
+from . import create_cost_export_date_bin, create_cost_export_schema, create_cost_export_settings
 
 
 class CreateCostExport(BaseModel):
@@ -19,5 +20,7 @@ class CreateCostExport(BaseModel):
     workspace_token: Annotated[str | None, Field(description="The token of the Workspace to query costs from. Ignored if 'cost_report_token' is set. Required if the API token is associated with multiple Workspaces.")] = None
     start_date: Annotated[str | None, Field(description='First date you would like to filter costs from. ISO 8601 formatted.')] = None
     end_date: Annotated[str | None, Field(description='Last date you would like to filter costs to. ISO 8601 formatted.')] = None
+    groupings: Annotated[Sequence[str] | None, Field(description='Group the results by specific field(s). Defaults to provider, service, account_id. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region')] = None
     date_bin: Annotated[create_cost_export_date_bin.CreateCostExportDateBin | None, Field(description="The date bin of the costs. Defaults to the report's default or day.")] = None
     schema_: Annotated[create_cost_export_schema.CreateCostExportSchema, Field(alias='schema', description='The schema of the data export.')] = create_cost_export_schema.CreateCostExportSchema.vntg
+    settings: Annotated[create_cost_export_settings.CreateCostExportSettings | None, Field(description='Cost-related settings.')] = None

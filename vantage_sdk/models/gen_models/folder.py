@@ -16,6 +16,7 @@ class Folder(BaseModel):
     )
     token: str
     title: Annotated[str | None, Field(description='The title of the Folder.', examples=['Platform Team Reports'])]
+    type: Annotated[str, Field(description='The type of the Folder.')]
     parent_folder_token: Annotated[str | None, Field(description='The token for the parent Folder, if any.')] = None
     saved_filter_tokens: Annotated[Sequence[str], Field(description='The tokens for the SavedFilters assigned to the Folder.')]
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Folder was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
