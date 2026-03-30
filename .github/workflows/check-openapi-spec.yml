@@ -36,19 +36,11 @@ jobs:
           echo "changed=false" >> "$GITHUB_OUTPUT"
         fi
 
-    - name: Generate GitHub App token
-      if: steps.diff.outputs.changed == 'true'
-      id: app-token
-      uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2
-      with:
-        app-id: ${{ vars.OPENAPI_APP_ID }}
-        private-key: ${{ secrets.OPENAPI_APP_PRIVATE_KEY }}
-
     - name: Create pull request
       if: steps.diff.outputs.changed == 'true'
       uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
       with:
-        token: ${{ steps.app-token.outputs.token }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: "chore: update OpenAPI spec and regenerate models"
         title: "chore: update OpenAPI spec and regenerate models"
         body: |
