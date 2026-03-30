@@ -15,6 +15,7 @@ class CreateVirtualTagConfigValue(BaseModel):
     filter: Annotated[str, Field(description='The filter query language to apply to the value. Additional documentation available at https://docs.vantage.sh/vql.')]
     name: Annotated[str | None, Field(description='The name of the value.')] = None
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None
+    display_name: Annotated[str | None, Field(description='The display name for an allocation value (cost_metric or percentages). Invalid when name is set.')] = None
     cost_metric: create_virtual_tag_config_value_cost_metric.CreateVirtualTagConfigValueCostMetric | None = None
     percentages: Sequence[create_virtual_tag_config_value_percentage.CreateVirtualTagConfigValuePercentage] | None = None
     date_ranges: Annotated[Sequence[create_virtual_tag_config_value_date_range.CreateVirtualTagConfigValueDateRange] | None, Field(description='Date ranges restricting when this value applies. Each range has optional start_date and end_date (inclusive, YYYY-MM-DD).')] = None

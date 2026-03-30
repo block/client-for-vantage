@@ -11,6 +11,5 @@ class VirtualTagConfigValueCostMetric(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    display_name: Annotated[str | None, Field(description='The display name for this cost-based allocation.')] = None
     filter: Annotated[str | None, Field(description='The filter VQL for the cost metric.')]
     aggregation: virtual_tag_config_value_cost_metric_aggregation.VirtualTagConfigValueCostMetricAggregation

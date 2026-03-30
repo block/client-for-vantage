@@ -42,6 +42,7 @@ class CostProvider(str, Enum):
     elastic = 'elastic'
     vercel = 'vercel'
     redis_cloud = 'redis_cloud'
+    circle_ci = 'circle_ci'
 
 
 class CostProviderModel(BaseModel):

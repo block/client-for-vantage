@@ -37,3 +37,4 @@ class IntegrationsGetParametersQueryProvider(str, Enum):
     elastic = 'elastic'
     vercel = 'vercel'
     redis_cloud = 'redis_cloud'
+    circle_ci = 'circle_ci'

@@ -13,4 +13,5 @@ class Tag(BaseModel):
     )
     tag_key: Annotated[str, Field(description='The Tag key.', examples=['aws:createdBy'])]
     hidden: Annotated[bool, Field(description='Whether the Tag has been hidden from the Vantage UI.')]
+    preferred: Annotated[bool, Field(description='Whether the Tag has been marked as preferred.')]
     providers: Annotated[Sequence[str], Field(description='The unique providers that are covered by the Tag key.')]
