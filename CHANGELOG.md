@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [1.3.1](https://github.com/block/client-for-vantage/compare/v1.3.0...v1.3.1) (2026-03-31)
+
+
+### Bug Fixes
+
+* use GITHUB_TOKEN instead of missing GitHub App token ([da13ba0](https://github.com/block/client-for-vantage/commit/da13ba0dc600cd40d4fc7b7e5da3c040114597ab))
+* use GITHUB_TOKEN instead of missing GitHub App token ([e7a5354](https://github.com/block/client-for-vantage/commit/e7a5354bf88c4c70d4ad27385538ba45c87b2baa))
+
 ## [1.3.0](https://github.com/block/client-for-vantage/compare/v1.2.0...v1.3.0) (2026-03-25)
 
 
