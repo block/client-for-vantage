@@ -12,4 +12,5 @@ class VirtualTagConfigCollapsedTagKey(BaseModel):
         populate_by_name=True,
     )
     key: Annotated[str, Field(description='The tag key to collapse values for.', examples=['team'])]
-    providers: Annotated[Sequence[str], Field(description='The providers this collapsed tag key applies to. Defaults to all providers.')]
+    providers: Annotated[Sequence[str] | None, Field(description='The providers this collapsed tag key applies to. Defaults to all providers when omitted.')] = None
+    filter: Annotated[str | None, Field(description='The VQL filter this collapsed tag key applies to.', examples=["(costs.provider = 'aws') OR (costs.provider = 'gcp')"])] = None

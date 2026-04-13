@@ -13,3 +13,4 @@ class CreateVirtualTagConfigCollapsedTagKey(BaseModel):
     )
     key: Annotated[str, Field(description='The tag key to collapse values for.')]
     providers: Annotated[Sequence[str] | None, Field(description='The providers this collapsed tag key applies to. Defaults to all providers.')] = None
+    filter: Annotated[str | None, Field(description='The VQL filter this collapsed tag key applies to.')] = None

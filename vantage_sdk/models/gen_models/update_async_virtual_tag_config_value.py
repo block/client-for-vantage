@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import update_async_virtual_tag_config_value_cost_metric, update_async_virtual_tag_config_value_date_range, update_async_virtual_tag_config_value_percentage
+from . import update_async_virtual_tag_config_value_cost_metric, update_async_virtual_tag_config_value_date_range, update_async_virtual_tag_config_value_label_transform, update_async_virtual_tag_config_value_percentage
 
 
 class UpdateAsyncVirtualTagConfigValue(BaseModel):
@@ -16,6 +16,7 @@ class UpdateAsyncVirtualTagConfigValue(BaseModel):
     name: Annotated[str | None, Field(description='The name of the value.')] = None
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None
     display_name: Annotated[str | None, Field(description='The display name for an allocation value (cost_metric or percentages). Invalid when name is set.')] = None
+    label_transforms: Sequence[update_async_virtual_tag_config_value_label_transform.UpdateAsyncVirtualTagConfigValueLabelTransform] | None = None
     cost_metric: update_async_virtual_tag_config_value_cost_metric.UpdateAsyncVirtualTagConfigValueCostMetric | None = None
     percentages: Sequence[update_async_virtual_tag_config_value_percentage.UpdateAsyncVirtualTagConfigValuePercentage] | None = None
     date_ranges: Annotated[Sequence[update_async_virtual_tag_config_value_date_range.UpdateAsyncVirtualTagConfigValueDateRange] | None, Field(description='Date ranges restricting when this value applies. Each range has optional start_date and end_date (inclusive, YYYY-MM-DD).')] = None

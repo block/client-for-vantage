@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import create_virtual_tag_config_value_cost_metric, create_virtual_tag_config_value_date_range, create_virtual_tag_config_value_percentage
+from . import create_virtual_tag_config_value_cost_metric, create_virtual_tag_config_value_date_range, create_virtual_tag_config_value_label_transform, create_virtual_tag_config_value_percentage
 
 
 class CreateVirtualTagConfigValue(BaseModel):
@@ -16,6 +16,7 @@ class CreateVirtualTagConfigValue(BaseModel):
     name: Annotated[str | None, Field(description='The name of the value.')] = None
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None
     display_name: Annotated[str | None, Field(description='The display name for an allocation value (cost_metric or percentages). Invalid when name is set.')] = None
+    label_transforms: Sequence[create_virtual_tag_config_value_label_transform.CreateVirtualTagConfigValueLabelTransform] | None = None
     cost_metric: create_virtual_tag_config_value_cost_metric.CreateVirtualTagConfigValueCostMetric | None = None
     percentages: Sequence[create_virtual_tag_config_value_percentage.CreateVirtualTagConfigValuePercentage] | None = None
     date_ranges: Annotated[Sequence[create_virtual_tag_config_value_date_range.CreateVirtualTagConfigValueDateRange] | None, Field(description='Date ranges restricting when this value applies. Each range has optional start_date and end_date (inclusive, YYYY-MM-DD).')] = None

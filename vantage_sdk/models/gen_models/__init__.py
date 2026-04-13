@@ -9,6 +9,8 @@ from .workspaces import Workspaces
 from .workspace import Workspace
 from .virtual_tag_configs import VirtualTagConfigs
 from .virtual_tag_config_value_percentage import VirtualTagConfigValuePercentage
+from .virtual_tag_config_value_label_transform_type import VirtualTagConfigValueLabelTransformType
+from .virtual_tag_config_value_label_transform import VirtualTagConfigValueLabelTransform
 from .virtual_tag_config_value_date_range import VirtualTagConfigValueDateRange
 from .virtual_tag_config_value_cost_metric_aggregation import VirtualTagConfigValueCostMetricAggregation
 from .virtual_tag_config_value_cost_metric import VirtualTagConfigValueCostMetric
@@ -28,6 +30,7 @@ from .update_workspace_exchange_rate_date import UpdateWorkspaceExchangeRateDate
 from .update_workspace_currency import UpdateWorkspaceCurrency
 from .update_workspace import UpdateWorkspace
 from .update_virtual_tag_config_value_percentage import UpdateVirtualTagConfigValuePercentage
+from .update_virtual_tag_config_value_label_transform import UpdateVirtualTagConfigValueLabelTransform
 from .update_virtual_tag_config_value_date_range import UpdateVirtualTagConfigValueDateRange
 from .update_virtual_tag_config_value_cost_metric_aggregation import UpdateVirtualTagConfigValueCostMetricAggregation
 from .update_virtual_tag_config_value_cost_metric import UpdateVirtualTagConfigValueCostMetric
@@ -105,6 +108,7 @@ from .update_billing_profile_banking_information_attributes_secure_data import U
 from .update_billing_profile_banking_information_attributes import UpdateBillingProfileBankingInformationAttributes
 from .update_billing_profile import UpdateBillingProfile
 from .update_async_virtual_tag_config_value_percentage import UpdateAsyncVirtualTagConfigValuePercentage
+from .update_async_virtual_tag_config_value_label_transform import UpdateAsyncVirtualTagConfigValueLabelTransform
 from .update_async_virtual_tag_config_value_date_range import UpdateAsyncVirtualTagConfigValueDateRange
 from .update_async_virtual_tag_config_value_cost_metric_aggregation import UpdateAsyncVirtualTagConfigValueCostMetricAggregation
 from .update_async_virtual_tag_config_value_cost_metric import UpdateAsyncVirtualTagConfigValueCostMetric
@@ -234,6 +238,7 @@ from .dashboard import Dashboard
 from .create_workspace_exchange_rate_date import CreateWorkspaceExchangeRateDate
 from .create_workspace import CreateWorkspace
 from .create_virtual_tag_config_value_percentage import CreateVirtualTagConfigValuePercentage
+from .create_virtual_tag_config_value_label_transform import CreateVirtualTagConfigValueLabelTransform
 from .create_virtual_tag_config_value_date_range import CreateVirtualTagConfigValueDateRange
 from .create_virtual_tag_config_value_cost_metric_aggregation import CreateVirtualTagConfigValueCostMetricAggregation
 from .create_virtual_tag_config_value_cost_metric import CreateVirtualTagConfigValueCostMetric
@@ -595,6 +600,7 @@ __all__ = [
     "CreateVirtualTagConfigValueCostMetric",
     "CreateVirtualTagConfigValueCostMetricAggregation",
     "CreateVirtualTagConfigValueDateRange",
+    "CreateVirtualTagConfigValueLabelTransform",
     "CreateVirtualTagConfigValuePercentage",
     "CreateWorkspace",
     "CreateWorkspaceExchangeRateDate",
@@ -730,6 +736,7 @@ __all__ = [
     "UpdateAsyncVirtualTagConfigValueCostMetric",
     "UpdateAsyncVirtualTagConfigValueCostMetricAggregation",
     "UpdateAsyncVirtualTagConfigValueDateRange",
+    "UpdateAsyncVirtualTagConfigValueLabelTransform",
     "UpdateAsyncVirtualTagConfigValuePercentage",
     "UpdateBillingProfile",
     "UpdateBillingProfileBankingInformationAttributes",
@@ -807,6 +814,7 @@ __all__ = [
     "UpdateVirtualTagConfigValueCostMetric",
     "UpdateVirtualTagConfigValueCostMetricAggregation",
     "UpdateVirtualTagConfigValueDateRange",
+    "UpdateVirtualTagConfigValueLabelTransform",
     "UpdateVirtualTagConfigValuePercentage",
     "UpdateWorkspace",
     "UpdateWorkspaceCurrency",
@@ -826,6 +834,8 @@ __all__ = [
     "VirtualTagConfigValueCostMetric",
     "VirtualTagConfigValueCostMetricAggregation",
     "VirtualTagConfigValueDateRange",
+    "VirtualTagConfigValueLabelTransform",
+    "VirtualTagConfigValueLabelTransformType",
     "VirtualTagConfigValuePercentage",
     "VirtualTagConfigs",
     "Workspace",

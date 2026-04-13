@@ -19,6 +19,6 @@ class VirtualTagConfig(BaseModel):
     created_by_token: Annotated[str | None, Field(description='The token of the Creator of the VirtualTagConfig.', examples=['usr_1234'])]
     key: Annotated[str, Field(description='The key of the VirtualTagConfig.', examples=['Cost Center'])]
     overridable: Annotated[bool, Field(description='Whether the VirtualTagConfig can override a provider-supplied tag on a matching Cost.')]
-    backfill_until: Annotated[str, Field(description='The earliest month VirtualTagConfig should be backfilled to.', examples=['2025-09-01'])]
+    backfill_until: Annotated[str, Field(description='The earliest month VirtualTagConfig should be backfilled to.', examples=['2025-10-01'])]
     collapsed_tag_keys: Annotated[Sequence[virtual_tag_config_collapsed_tag_key.VirtualTagConfigCollapsedTagKey] | None, Field(description='Tag keys to collapse values for.')] = None
     values: Annotated[Sequence[virtual_tag_config_value.VirtualTagConfigValue], Field(description='Values for the VirtualTagConfig, with match precedence determined by their relative order in the list.')]
