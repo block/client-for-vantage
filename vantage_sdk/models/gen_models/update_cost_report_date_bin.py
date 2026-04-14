@@ -14,3 +14,4 @@ class UpdateCostReportDateBin(str, Enum):
     week = 'week'
     month = 'month'
     quarter = 'quarter'
+    hour = 'hour'
