@@ -38,9 +38,11 @@ from vantage_sdk.models import (
     BudgetTokenParams,
     BusinessMetric,
     BusinessMetrics,
+    BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesGetParametersQuery,
     BusinessMetricTokenParams,
     BusinessMetricValues,
+    BusinessMetricValuesDeleteResponse,
     CostAlert,
     CostAlertEvent,
     CostAlertEvents,
@@ -1002,6 +1004,28 @@ class VantageSDK:
             f"business_metrics/{business_metric_token_value}/values", business_metric_token_values
         )
         return BusinessMetricValues.model_validate(paginated_data)
+
+    def delete_business_metric_values(
+        self,
+        business_metric_token_params: BusinessMetricTokenParams,
+        delete_params: BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery,
+    ) -> BusinessMetricValuesDeleteResponse:
+        """
+        Delete values of a specific business metric - DELETE /business_metrics/{business_metric_token}/values
+
+        Args:
+            business_metric_token_params: The token of the business metric whose values to delete
+            delete_params: The query parameters to filter which values to delete
+
+        Returns:
+            A BusinessMetricValuesDeleteResponse containing the count of deleted rows
+        """
+        business_metric_token_value = business_metric_token_params.business_metric_token
+        url = urljoin(self.base_url, f"business_metrics/{business_metric_token_value}/values")
+        query = delete_params.model_dump(mode="json", by_alias=True, exclude_none=True, exclude_defaults=True)
+        response = self.session.delete(url, params=query)
+        response.raise_for_status()
+        return BusinessMetricValuesDeleteResponse.model_validate(response.json())
 
     # ---- Integration APIs ----
 
