@@ -26,3 +26,4 @@ class Resource(BaseModel):
     region: Annotated[str | None, Field(description='The region where the resource is located. Region values are specific to each provider.', examples=['us-west-2'])]
     costs: Annotated[Sequence[resource_cost.ResourceCost] | None, Field(description='The cost of the resource broken down by category.')] = None
     created_at: Annotated[str, Field(description='The date and time when Vantage first observed the resource.')]
+    tags: Annotated[Mapping[str, Any], Field(description='Key-value pairs of tags associated with the resource.')]

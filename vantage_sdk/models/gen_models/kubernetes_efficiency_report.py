@@ -24,5 +24,5 @@ class KubernetesEfficiencyReport(BaseModel):
     date_interval: Annotated[str | None, Field(description='The date range for the KubernetesEfficiencyReport. Only present if a custom date range is not specified.', examples=['last_month'])]
     date_bucket: Annotated[str, Field(description='How costs are grouped and displayed in the KubernetesEfficiencyReport. Possible values: day, week, month.', examples=['month'])]
     aggregated_by: Annotated[str, Field(description='How costs are aggregated by. Possible values: idle_cost, amount, cost_efficiency.')]
-    groupings: Annotated[str | None, Field(description='Grouping values for aggregating costs on the KubernetesEfficiencyReport. Valid groupings: cluster_id, namespace, labeled, category, pod, label, label:<label_name>.', examples=['cluster_id, namespace'])]
+    groupings: Annotated[str | None, Field(description='Grouping values for aggregating costs on the KubernetesEfficiencyReport. Valid groupings: cluster_id, namespace, region, labeled, category, pod, label, label:<label_name>.', examples=['cluster_id, namespace'])]
     filter: Annotated[str | None, Field(description='The filter applied to the KubernetesEfficiencyReport. Additional documentation available at https://docs.vantage.sh/vql.')]
