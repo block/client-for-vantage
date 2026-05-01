@@ -26,5 +26,6 @@ class RecommendationProviderResource(BaseModel):
     region: Annotated[str | None, Field(description='The region where the resource is located. Region values are specific to each provider.', examples=['us-west-2'])]
     costs: Annotated[Sequence[resource_cost.ResourceCost] | None, Field(description='The cost of the resource broken down by category.')] = None
     created_at: Annotated[str, Field(description='The date and time when Vantage first observed the resource.')]
+    tags: Annotated[Mapping[str, Any], Field(description='Key-value pairs of tags associated with the resource.')]
     resource_id: Annotated[str, Field(description='The unique identifier of the Active Resource.', examples=['i-0a1b2c3d4e5f6g7h8'])]
     recommendation_actions: Annotated[Sequence[recommendation_action.RecommendationAction] | None, Field(description='The actions to take to implement the Recommendation.')] = None

@@ -360,8 +360,10 @@ from .cloudwatch_dimension import CloudwatchDimension
 from .chart_settings import ChartSettings
 from .business_metrics_get_parameters_query import BusinessMetricsGetParametersQuery
 from .business_metrics_business_metric_token_values_get_parameters_query import BusinessMetricsBusinessMetricTokenValuesGetParametersQuery
+from .business_metrics_business_metric_token_values_delete_parameters_query import BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery
 from .business_metrics_business_metric_token_forecasted_values_get_parameters_query import BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery
 from .business_metrics import BusinessMetrics
+from .business_metric_values_delete_response import BusinessMetricValuesDeleteResponse
 from .business_metric_values import BusinessMetricValues
 from .business_metric_value import BusinessMetricValue
 from .business_metric_import_type import BusinessMetricImportType
@@ -474,10 +476,12 @@ __all__ = [
     "BusinessMetricImportType",
     "BusinessMetricValue",
     "BusinessMetricValues",
+    "BusinessMetricValuesDeleteResponse",
     "BusinessMetrics",
     "BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery",
     "BusinessMetricsBusinessMetricTokenValuesCsvPutRequest1BusinessMetricsBusinessMetricTokenValuesCsvPutRequest",
     "BusinessMetricsBusinessMetricTokenValuesCsvPutRequestBusinessMetricsBusinessMetricTokenValuesCsvPutRequest",
+    "BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery",
     "BusinessMetricsBusinessMetricTokenValuesGetParametersQuery",
     "BusinessMetricsGetParametersQuery",
     "ChartSettings",

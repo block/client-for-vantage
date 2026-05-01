@@ -17,9 +17,11 @@ from vantage_sdk.models import (
     BudgetAlertTokenParams,
     BudgetsBudgetTokenGetParametersQuery,
     BudgetTokenParams,
+    BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesGetParametersQuery,
     BusinessMetricTokenParams,
     BusinessMetricValues,
+    BusinessMetricValuesDeleteResponse,
     UpdateCostReportChartSettings,
     UpdateCostReportChartType,
     CostAlertsCostAlertTokenEventsGetParametersQuery,
@@ -273,6 +275,17 @@ def test_get_business_metric_values(vantage_sdk, business_metric_fixture):
 
     # This can't truly be tested unless a csv file is uploaded to the business metric, for now we just check if the object has the expected attribute
     assert hasattr(business_metric_values, "values")
+
+
+def test_delete_business_metric_values(vantage_sdk, business_metric_fixture):
+    business_metric_token_params = BusinessMetricTokenParams(business_metric_token=business_metric_fixture.token)
+    delete_params = BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery()
+    result: BusinessMetricValuesDeleteResponse = vantage_sdk.delete_business_metric_values(
+        business_metric_token_params, delete_params
+    )
+
+    assert isinstance(result, BusinessMetricValuesDeleteResponse)
+    assert hasattr(result, "deleted_count")
 
 
 # ---- Access Grants Tests ----
