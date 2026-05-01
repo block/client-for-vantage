@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [1.4.0](https://github.com/block/client-for-vantage/compare/v1.3.1...v1.4.0) (2026-05-01)
+
+
+### Features
+
+* add delete_business_metric_values method for DELETE /business_metrics/{token}/values ([663957c](https://github.com/block/client-for-vantage/commit/663957c9c8ac49e122c171e42d646be95f15987f))
+
 ## [1.3.1](https://github.com/block/client-for-vantage/compare/v1.3.0...v1.3.1) (2026-03-31)
 
 
