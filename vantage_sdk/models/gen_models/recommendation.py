@@ -20,6 +20,7 @@ class Recommendation(BaseModel):
     provider: Annotated[str, Field(description='The provider the Recommendation is for.')]
     provider_account_id: Annotated[str | None, Field(description='The account ID of the provider. For Azure, this is the subscription ID.')]
     description: str
+    documentation_url: Annotated[str | None, Field(description='A URL to related documentation if available.', examples=['https://handbook.vantage.sh/aws/services/s3-pricing/#intelligent-tiering'])]
     potential_savings: Annotated[str | None, Field(description="The monthly potential savings of the Recommendation, converted to the organization's selected currency.", examples=['100.00'])]
     service: Annotated[str, Field(description='The service the Recommendation is for.', examples=['Amazon EC2'])]
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Recommendation was created. ISO 8601 Formatted.')]

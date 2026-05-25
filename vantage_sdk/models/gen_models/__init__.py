@@ -140,6 +140,7 @@ from .tags import Tags
 from .tag_values import TagValues
 from .tag_value import TagValue
 from .tag import Tag
+from .snowflake_metric_fields import SnowflakeMetricFields
 from .send_invoice import SendInvoice
 from .segments_get_parameters_query import SegmentsGetParametersQuery
 from .segments import Segments
@@ -709,6 +710,7 @@ __all__ = [
     "Segments",
     "SegmentsGetParametersQuery",
     "SendInvoice",
+    "SnowflakeMetricFields",
     "Tag",
     "TagValue",
     "TagValues",

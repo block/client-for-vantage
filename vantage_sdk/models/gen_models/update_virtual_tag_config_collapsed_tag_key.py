@@ -12,5 +12,5 @@ class UpdateVirtualTagConfigCollapsedTagKey(BaseModel):
         populate_by_name=True,
     )
     key: Annotated[str, Field(description='The tag key to collapse values for.')]
-    providers: Annotated[Sequence[str] | None, Field(description='The providers this collapsed tag key applies to. Defaults to all providers.')] = None
-    filter: Annotated[str | None, Field(description='The VQL filter this collapsed tag key applies to.')] = None
+    providers: Annotated[Sequence[str] | None, Field(description='Provider-only scope for this collapsed tag key. Invalid when filter is set; include provider restrictions in filter instead. Defaults to all providers.')] = None
+    filter: Annotated[str | None, Field(description='The VQL filter this collapsed tag key applies to. When set, do not also set providers; include any provider restrictions directly in filter.')] = None

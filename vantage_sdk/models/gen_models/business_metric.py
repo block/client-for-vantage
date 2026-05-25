@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import attached_cost_report_for_business_metric, business_metric_import_type, cloudwatch_fields as cloudwatch_fields_1, datadog_metric_fields as datadog_metric_fields_1
+from . import attached_cost_report_for_business_metric, business_metric_import_type, cloudwatch_fields as cloudwatch_fields_1, datadog_metric_fields as datadog_metric_fields_1, snowflake_metric_fields as snowflake_metric_fields_1
 
 
 class BusinessMetric(BaseModel):
@@ -23,3 +23,4 @@ class BusinessMetric(BaseModel):
     integration_token: Annotated[str | None, Field(description='The Integration token used to import the BusinessMetric.')]
     cloudwatch_fields: cloudwatch_fields_1.CloudwatchFields | None = None
     datadog_metric_fields: datadog_metric_fields_1.DatadogMetricFields | None = None
+    snowflake_metric_fields: snowflake_metric_fields_1.SnowflakeMetricFields | None = None

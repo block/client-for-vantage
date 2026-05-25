@@ -11,4 +11,6 @@ class BusinessMetricImportType(str, Enum):
     """
     datadog_metrics = 'datadog_metrics'
     cloudwatch = 'cloudwatch'
+    snowflake_metrics = 'snowflake_metrics'
+    metronome_metrics = 'metronome_metrics'
     csv = 'csv'

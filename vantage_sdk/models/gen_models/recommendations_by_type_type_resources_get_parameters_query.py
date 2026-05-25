@@ -20,6 +20,7 @@ class RecommendationsByTypeTypeResourcesGetParametersQuery(BaseModel):
     start_date: str | None = None
     end_date: str | None = None
     status: recommendations_by_type_type_resources_get_parameters_query_status.RecommendationsByTypeTypeResourcesGetParametersQueryStatus | None = None
+    min_savings: float | None = None
     page: int | None = None
     limit: int | None = None
     workspace_token: str
