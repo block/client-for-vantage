@@ -638,12 +638,13 @@ class VirtualTagConfigCollapsedTagKey(
     filter: str | None = None  # type: ignore[assignment]
 
 
+_LabelTransform = virtual_tag_config_value_label_transform_model.VirtualTagConfigValueLabelTransform
+
+
 class VirtualTagConfigValue(virtual_tag_config_value_model.VirtualTagConfigValue):
     """Override: API may return null for label_transforms, percentages, and date_ranges"""
 
-    label_transforms: (
-        Sequence[virtual_tag_config_value_label_transform_model.VirtualTagConfigValueLabelTransform] | None
-    ) = None  # type: ignore[assignment]
+    label_transforms: Sequence[_LabelTransform] | None = None  # type: ignore[assignment]
     percentages: Sequence[virtual_tag_config_value_percentage_model.VirtualTagConfigValuePercentage] | None = None  # type: ignore[assignment]
     date_ranges: Sequence[virtual_tag_config_value_date_range_model.VirtualTagConfigValueDateRange] | None = None  # type: ignore[assignment]
 
