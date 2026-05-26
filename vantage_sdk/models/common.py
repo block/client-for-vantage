@@ -44,7 +44,14 @@ from vantage_sdk.models.gen_models import (
     data_export as data_export_model,
     data_export_manifest as data_export_manifest_model,
     create_virtual_tag_config_value as create_virtual_tag_config_value_model,
+    virtual_tag_config as virtual_tag_config_model,
+    virtual_tag_config_collapsed_tag_key as virtual_tag_config_collapsed_tag_key_model,
+    virtual_tag_config_value as virtual_tag_config_value_model,
     virtual_tag_config_value_cost_metric as virtual_tag_config_value_cost_metric_model,
+    virtual_tag_config_value_date_range as virtual_tag_config_value_date_range_model,
+    virtual_tag_config_value_label_transform as virtual_tag_config_value_label_transform_model,
+    virtual_tag_config_value_percentage as virtual_tag_config_value_percentage_model,
+    virtual_tag_configs as virtual_tag_configs_model,
     recommendation as recommendation_model,
     recommendation_provider_resource as recommendation_provider_resource_model,
     recommendation_provider_resources as recommendation_provider_resources_model,
@@ -621,6 +628,37 @@ class CreateVirtualTagConfigValue(create_virtual_tag_config_value_model.CreateVi
         if len(provided) > 1:
             raise ValueError(f"{', '.join(provided)} are mutually exclusive")
         return values
+
+
+class VirtualTagConfigCollapsedTagKey(
+    virtual_tag_config_collapsed_tag_key_model.VirtualTagConfigCollapsedTagKey,
+):
+    """Override: API may return null/omitted filter for collapsed tag keys"""
+
+    filter: str | None = None  # type: ignore[assignment]
+
+
+class VirtualTagConfigValue(virtual_tag_config_value_model.VirtualTagConfigValue):
+    """Override: API may return null for label_transforms, percentages, and date_ranges"""
+
+    label_transforms: (
+        Sequence[virtual_tag_config_value_label_transform_model.VirtualTagConfigValueLabelTransform] | None
+    ) = None  # type: ignore[assignment]
+    percentages: Sequence[virtual_tag_config_value_percentage_model.VirtualTagConfigValuePercentage] | None = None  # type: ignore[assignment]
+    date_ranges: Sequence[virtual_tag_config_value_date_range_model.VirtualTagConfigValueDateRange] | None = None  # type: ignore[assignment]
+
+
+class VirtualTagConfig(virtual_tag_config_model.VirtualTagConfig):
+    """Override: use the relaxed nested types for collapsed_tag_keys and values"""
+
+    collapsed_tag_keys: Sequence[VirtualTagConfigCollapsedTagKey] | None = None  # type: ignore[assignment]
+    values: Sequence[VirtualTagConfigValue]  # type: ignore[assignment]
+
+
+class VirtualTagConfigs(virtual_tag_configs_model.VirtualTagConfigs):
+    """Override: use the custom VirtualTagConfig model"""
+
+    virtual_tag_configs: Sequence[VirtualTagConfig]  # type: ignore[assignment]
 
 
 class CostReport(cost_report_model.CostReport):

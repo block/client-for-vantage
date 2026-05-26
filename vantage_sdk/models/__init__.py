@@ -64,6 +64,10 @@ from .common import (  # type: ignore[assignment]
     Recommendation,
     Recommendations,
     CreateVirtualTagConfigValue,
+    VirtualTagConfig,
+    VirtualTagConfigCollapsedTagKey,
+    VirtualTagConfigValue,
+    VirtualTagConfigs,
 )
 
 __all__ = [
@@ -118,6 +122,10 @@ __all__ = [
     "TeamTokenParams",
     "UnitCostsDataExportsPostRequest",
     "UserTokenParams",
+    "VirtualTagConfig",
+    "VirtualTagConfigCollapsedTagKey",
+    "VirtualTagConfigValue",
+    "VirtualTagConfigs",
     "VirtualTagTokenParams",
     "WorkspaceTokenParams",
     "WorkspacesWorkspaceTokenPutRequest",
