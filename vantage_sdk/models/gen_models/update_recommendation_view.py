@@ -19,7 +19,9 @@ class UpdateRecommendationView(BaseModel):
     billing_account_ids: Annotated[Sequence[str] | None, Field(description='Filter by billing account identifiers.')] = None
     account_ids: Annotated[Sequence[str] | None, Field(description='Filter by cloud account identifiers.')] = None
     regions: Annotated[Sequence[str] | None, Field(description='Filter by region slugs (e.g. us-east-1, eastus, asia-east1).')] = None
+    types: Annotated[Sequence[str] | None, Field(description='Filter by one or more recommendation type slugs.')] = None
     tag_key: Annotated[str | None, Field(description='Filter by tag key (must be used with tag_value).')] = None
     tag_value: Annotated[str | None, Field(description='Filter by tag value (requires tag_key).')] = None
     start_date: Annotated[str | None, Field(description='Filter recommendations created on/after this YYYY-MM-DD date.')] = None
     end_date: Annotated[str | None, Field(description='Filter recommendations created on/before this YYYY-MM-DD date.')] = None
+    min_savings: Annotated[float | None, Field(description='Filter recommendations with at least this amount of potential savings.')] = None

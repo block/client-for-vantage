@@ -26,6 +26,7 @@ class Cost(BaseModel):
     service: Annotated[str | None, Field(description='The service which incurred the cost.', examples=['Amazon Elastic Compute Cloud - Compute'])] = None
     region: Annotated[str | None, Field(description='The region which incurred the cost.', examples=['us-east-1'])] = None
     resource_id: Annotated[str | None, Field(description='The resource id which incurred the cost.', examples=['arn:aws:ec2:us-east-1:123456789012:instance/i-1234567890abcdef0'])] = None
+    resource_name: Annotated[str | None, Field(description='The human-readable resource name when Vantage can enrich the resource id.', examples=['claude_code_key_name'])] = None
     tag: Annotated[str | None, Field(description='The tag attached to the cost that was incurred.\nDEPRECATED: does not support multiple tags.', examples=['production'])] = None
     tags: Annotated[Sequence[str] | None, Field(description='The tag pairs attached to the cost that was incurred.')] = None
     cost_category: Annotated[str | None, Field(description='The category for the cost.', examples=['Data Transfer'])] = None

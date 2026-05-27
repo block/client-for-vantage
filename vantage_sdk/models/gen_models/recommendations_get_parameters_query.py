@@ -20,6 +20,7 @@ class RecommendationsGetParametersQuery(BaseModel):
     start_date: str | None = None
     end_date: str | None = None
     status: recommendations_get_parameters_query_status.RecommendationsGetParametersQueryStatus | None = None
+    min_savings: float | None = None
     page: int | None = None
     limit: int | None = None
     workspace_token: str | None = None

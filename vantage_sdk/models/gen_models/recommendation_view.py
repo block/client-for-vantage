@@ -23,7 +23,9 @@ class RecommendationView(BaseModel):
     billing_account_ids: Annotated[Sequence[str] | None, Field(description='Filter by billing account identifiers.')] = None
     account_ids: Annotated[Sequence[str] | None, Field(description='Filter by cloud account identifiers.')] = None
     regions: Annotated[Sequence[str] | None, Field(description='Filter by region slugs (e.g. us-east-1, eastus, asia-east1).')] = None
+    types: Annotated[Sequence[str] | None, Field(description='Filter by one or more recommendation type slugs.')] = None
     tag_key: Annotated[str | None, Field(description='Filter by tag key (must be used with tag_value).', examples=['environment'])] = None
     tag_value: Annotated[str | None, Field(description='Filter by tag value (requires tag_key).', examples=['production'])] = None
+    min_savings: Annotated[float | None, Field(description='Filter recommendations with at least this amount of potential savings.', examples=[100.5])] = None
     created_at: Annotated[str | None, Field(description='The date and time, in UTC, the view was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])] = None
     created_by: Annotated[str | None, Field(description='The token for the Creator of this RecommendationView.')] = None
