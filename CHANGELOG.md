@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [2.0.0](https://github.com/block/client-for-vantage/compare/v1.4.1...v2.0.0) (2026-06-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* drops support for Python 3.10
+
+### Features
+
+* support Python 3.13 and drop Python 3.10 ([2182aac](https://github.com/block/client-for-vantage/commit/2182aac45fee856b65ec1339ec3f207c8dd86e94))
+
 ## [1.4.1](https://github.com/block/client-for-vantage/compare/v1.4.0...v1.4.1) (2026-05-27)
 
 
