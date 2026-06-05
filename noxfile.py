@@ -4,7 +4,7 @@ import nox
 
 nox.options.default_venv_backend = "uv"
 
-PYTHON_VERSIONS = ["3.10", "3.11", "3.12"]
+PYTHON_VERSIONS = ["3.11", "3.12", "3.13"]
 PYPROJECT = nox.project.load_toml("pyproject.toml")
 CORE_DEPS = PYPROJECT["project"]["dependencies"]
 DEV_DEPS = nox.project.dependency_groups(PYPROJECT, "dev")

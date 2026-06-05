@@ -2,7 +2,7 @@ import asyncio
 import logging
 import warnings
 from collections.abc import Sequence
-from typing import Any, NewType, TypeVar, cast
+from typing import Any, NewType, cast
 from urllib.parse import urljoin
 
 from httpx import AsyncClient, Client, HTTPError, HTTPStatusError, Timeout
@@ -200,9 +200,6 @@ logger = logging.getLogger(__name__)
 # Http status code
 HttpStatusCode = NewType("HttpStatusCode", int)
 PollInterval = NewType("PollInterval", int)
-# Generic type
-T = TypeVar("T")
-# This type accepts only BaseModel subclasses
 
 
 # ---- Consts ----
