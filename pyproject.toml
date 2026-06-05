@@ -7,15 +7,15 @@ name = "client-for-vantage"
 version = "1.4.1"
 description = "An SDK for interacting with the Vantage API, attempts to maintain parity with the API, provides type safety via codegen Pydantic classes and manages pagination"
 readme = "README.md"
-requires-python = ">=3.10,<3.13"
+requires-python = ">=3.11,<3.14"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Orest Tokovenko", email = "oresttokovenko@block.xyz" }]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 keywords = ["vantage", "api", "sdk"]
@@ -53,7 +53,7 @@ module-name = "vantage_sdk"
 module-root = ""
 
 [tool.basedpyright]
-pythonVersion = "3.10"
+pythonVersion = "3.11"
 include = ["vantage_sdk"]
 exclude = ["**/gen_models/**"]
 typeCheckingMode = "strict"
@@ -74,7 +74,7 @@ reportArgumentType = "none"
 reportUnusedVariable = "none"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 120
 exclude = [
     "**/gen_models/**",
@@ -91,7 +91,7 @@ input = "openapi_spec.json"
 output = "vantage_sdk/models/gen_models"
 input-file-type = "openapi"
 output-model-type = "pydantic_v2.BaseModel"
-target-python-version = "3.10"
+target-python-version = "3.11"
 module-split-mode = "single"
 use-generic-container-types = true
 use-subclass-enum = true
