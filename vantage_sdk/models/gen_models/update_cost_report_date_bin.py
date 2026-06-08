@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class UpdateCostReportDateBin(str, Enum):
+class UpdateCostReportDateBin(StrEnum):
     """
     The date bin of the CostReport.
     """

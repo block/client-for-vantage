@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateCostExportDateBin(str, Enum):
+class CreateCostExportDateBin(StrEnum):
     """
     The date bin of the costs. Defaults to the report's default or day.
     """

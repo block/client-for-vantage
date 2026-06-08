@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateWorkspaceExchangeRateDate(str, Enum):
+class CreateWorkspaceExchangeRateDate(StrEnum):
     """
     The date to use for currency conversion.
     """

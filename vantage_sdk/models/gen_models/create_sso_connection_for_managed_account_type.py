@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateSsoConnectionForManagedAccountType(str, Enum):
+class CreateSsoConnectionForManagedAccountType(StrEnum):
     """
     The type of SSO connection. Currently supported: saml.
     """

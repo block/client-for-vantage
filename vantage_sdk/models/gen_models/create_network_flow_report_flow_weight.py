@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateNetworkFlowReportFlowWeight(str, Enum):
+class CreateNetworkFlowReportFlowWeight(StrEnum):
     """
     The dimension by which the logs in the report are sorted. Defaults to costs.
     """

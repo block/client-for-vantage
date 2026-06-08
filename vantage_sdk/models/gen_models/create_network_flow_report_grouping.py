@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateNetworkFlowReportGrouping(str, Enum):
+class CreateNetworkFlowReportGrouping(StrEnum):
     account_id = 'account_id'
     az_id = 'az_id'
     dstaddr = 'dstaddr'

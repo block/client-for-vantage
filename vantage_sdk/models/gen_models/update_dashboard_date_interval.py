@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class UpdateDashboardDateInterval(str, Enum):
+class UpdateDashboardDateInterval(StrEnum):
     """
     Determines the date range in the Dashboard. Incompatible with 'start_date' and 'end_date' parameters.
     """

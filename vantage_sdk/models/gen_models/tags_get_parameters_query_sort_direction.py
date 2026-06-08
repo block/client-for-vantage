@@ -2,9 +2,9 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class TagsGetParametersQuerySortDirection(str, Enum):
+class TagsGetParametersQuerySortDirection(StrEnum):
     asc = 'asc'
     desc = 'desc'

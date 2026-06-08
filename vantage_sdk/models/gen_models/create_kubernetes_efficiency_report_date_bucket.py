@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateKubernetesEfficiencyReportDateBucket(str, Enum):
+class CreateKubernetesEfficiencyReportDateBucket(StrEnum):
     """
     The date bucket of the KubernetesEfficiencyReport.
     """

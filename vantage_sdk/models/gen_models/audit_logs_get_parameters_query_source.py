@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class AuditLogsGetParametersQuerySource(str, Enum):
+class AuditLogsGetParametersQuerySource(StrEnum):
     console = 'console'
     api = 'api'
     finops_agent = 'finops_agent'

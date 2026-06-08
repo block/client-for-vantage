@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateAccessGrantAccess(str, Enum):
+class CreateAccessGrantAccess(StrEnum):
     """
     The access level you want to grant. Defaults to 'allowed'.
     """

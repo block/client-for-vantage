@@ -16,7 +16,7 @@ class UpdateDashboard(BaseModel):
         populate_by_name=True,
     )
     title: Annotated[str | None, Field(description='The title of the Dashboard.')] = None
-    widgets: Annotated[Sequence[update_dashboard_widget.UpdateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Currently supports CostReport, ResourceReport, KubernetesEfficiencyReport, and FinancialCommitmentReport.')] = None
+    widgets: Annotated[Sequence[update_dashboard_widget.UpdateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Currently supports CostReport, ResourceReport, KubernetesEfficiencyReport, FinancialCommitmentReport, and RecommendationView.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Saved Filters used in the Dashboard.')] = None
     date_bin: Annotated[update_dashboard_date_bin.UpdateDashboardDateBin | None, Field(description='Determines how to group costs in the Dashboard.')] = None
     date_interval: Annotated[update_dashboard_date_interval.UpdateDashboardDateInterval | None, Field(description="Determines the date range in the Dashboard. Incompatible with 'start_date' and 'end_date' parameters.")] = None

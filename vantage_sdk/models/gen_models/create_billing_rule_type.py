@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateBillingRuleType(str, Enum):
+class CreateBillingRuleType(StrEnum):
     """
     The type of the BillingRule. Note: the values are case insensitive.
     """
