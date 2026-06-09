@@ -37,6 +37,7 @@ class ResourcePrefix(str, Enum):
     BUDGET = "test_budget"
     COST_ALERT = "test_cost_alert"
     DASHBOARD = "test_dashboard"
+    CANVAS = "test_canvas"
     FINANCIAL_COMMITMENT_REPORT = "test_fin_commitment_report"
     KUBERNETES_EFFICIENCY_REPORT = "test_k8s_efficiency_report"
     MANAGED_ACCOUNT = "test_managed_account"
@@ -102,6 +103,10 @@ class ResourceNameFactory(BaseModel):
     @property
     def dashboard_name(self) -> str:
         return self.name_generator(ResourcePrefix.DASHBOARD)
+
+    @property
+    def canvas_name(self) -> str:
+        return self.name_generator(ResourcePrefix.CANVAS)
 
     @property
     def financial_commitment_report_name(self) -> str:
