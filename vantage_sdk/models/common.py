@@ -294,6 +294,18 @@ class DashboardTokenParams(BaseModel):
         return value
 
 
+class CanvasTokenParams(BaseModel):
+    """Parameters for endpoints that require a canvas token"""
+
+    canvas_token: str = Field(..., description="The token for the Canvas you want to access")
+
+    @field_validator("canvas_token", mode="before")
+    def validate_token(cls, value: str) -> str:  # noqa: D102
+        if not value.startswith("cnvs_"):
+            raise ValueError("canvas_token must start with 'cnvs_'")
+        return value
+
+
 class FinancialCommitmentReportTokenParams(BaseModel):
     """Parameters for endpoints that require a financial commitment report token"""
 
@@ -663,9 +675,10 @@ class VirtualTagConfigs(virtual_tag_configs_model.VirtualTagConfigs):
 
 
 class CostReport(cost_report_model.CostReport):
-    """Extends CostReport to make chart_settings optional"""
+    """Extends CostReport to make chart_settings and default_forecast optional"""
 
     chart_settings: chart_settings_model.ChartSettings | None = None  # type: ignore[assignment]
+    default_forecast: Mapping[str, Any] | None = None  # type: ignore[assignment]
 
 
 class CostReports(cost_reports_model.CostReports):

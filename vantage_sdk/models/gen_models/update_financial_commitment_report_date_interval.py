@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class UpdateFinancialCommitmentReportDateInterval(str, Enum):
+class UpdateFinancialCommitmentReportDateInterval(StrEnum):
     """
     The date interval of the FinancialCommitmentReport. Unless 'custom' is used, this is incompatible with 'start_date' and 'end_date' parameters. Defaults to 'last_3_months'.
     """

@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class AddTeamMemberRole(str, Enum):
+class AddTeamMemberRole(StrEnum):
     """
     The role to assign to the user. Defaults to 'editor'.
     """

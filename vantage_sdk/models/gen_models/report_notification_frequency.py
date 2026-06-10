@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class ReportNotificationFrequency(str, Enum):
+class ReportNotificationFrequency(StrEnum):
     """
     The frequency the ReportNotification is sent.
     """

@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateBusinessMetricCostReportTokensWithMetadatumUnitScale(str, Enum):
+class CreateBusinessMetricCostReportTokensWithMetadatumUnitScale(StrEnum):
     """
     Determines the scale of the BusinessMetric's values within the CostReport.
     """

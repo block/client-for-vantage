@@ -29,6 +29,7 @@ from vantage_sdk.models import (
     CostReportTokenParams,
     CreateBusinessMetric,
     CreateUserFeedback,
+    CanvasTokenParams,
     DashboardTokenParams,
     DataExport,
     DataExportTokenParams,
@@ -57,6 +58,7 @@ from vantage_sdk.models import (
     UpdateBudget,
     UpdateCostAlert,
     UpdateCostReport,
+    UpdateCanvas,
     UpdateDashboard,
     UpdateFinancialCommitmentReport,
     UpdateFolder,
@@ -647,6 +649,36 @@ def test_update_dashboard(vantage_sdk, dashboard_fixture):
     updated_dashboard = vantage_sdk.update_dashboard(params, dashboard_update)
     assert updated_dashboard is not None
     assert updated_dashboard.title == updated_title
+
+
+# ---- Canvases Tests ----
+
+
+@pytest.mark.skip(reason="Canvases require a User API token; the test environment uses a Team API token")
+def test_get_all_canvases(vantage_sdk, canvas_fixture):
+    canvases = vantage_sdk.get_all_canvases()
+    assert canvases is not None
+    assert canvases.canvases is not None
+
+
+@pytest.mark.skip(reason="Canvases require a User API token; the test environment uses a Team API token")
+def test_get_canvas(vantage_sdk, canvas_fixture):
+    params = CanvasTokenParams(canvas_token=canvas_fixture.token)
+    canvas = vantage_sdk.get_canvas(params)
+    assert canvas is not None
+    assert canvas.token == canvas_fixture.token
+
+
+@pytest.mark.skip(reason="Canvases require a User API token; the test environment uses a Team API token")
+def test_update_canvas(vantage_sdk, canvas_fixture):
+    params = CanvasTokenParams(canvas_token=canvas_fixture.token)
+    updated_title = f"{RESOURCES.updated_prefix}_{canvas_fixture.title}"
+
+    canvas_update = UpdateCanvas(title=updated_title)
+
+    updated_canvas = vantage_sdk.update_canvas(params, canvas_update)
+    assert updated_canvas is not None
+    assert updated_canvas.title == updated_title
 
 
 # ---- Financial Commitments & Reports Tests ----

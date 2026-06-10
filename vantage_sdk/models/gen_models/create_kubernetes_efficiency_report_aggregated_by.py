@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateKubernetesEfficiencyReportAggregatedBy(str, Enum):
+class CreateKubernetesEfficiencyReportAggregatedBy(StrEnum):
     """
     The column by which the costs are aggregated.
     """

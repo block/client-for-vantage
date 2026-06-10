@@ -63,6 +63,7 @@ from vantage_sdk.models import (
     CreateBusinessMetric,
     CreateBusinessMetricCostReportTokensWithMetadatum,
     CreateBusinessMetricValue,
+    CreateCanvas,
     CreateCostAlert,
     CreateCostReport,
     CreateDashboard,
@@ -76,6 +77,8 @@ from vantage_sdk.models import (
     CreateTeam,
     CreateTeamRole,
     CreateVirtualTagConfig,
+    Canvas,
+    CanvasTokenParams,
     Dashboard,
     DashboardTokenParams,
     CreateNetworkFlowReportFlowDirection,
@@ -715,6 +718,36 @@ def dashboard_fixture(vantage_sdk, cost_report_fixture):
         vantage_sdk.get_dashboard(params)
 
     # assert that the dashboard was deleted
+    assert exc_info.value.response.status_code == 404
+
+
+@pytest.fixture()
+def canvas_fixture(vantage_sdk):
+    """Fixture to create a canvas for testing"""
+
+    # setup - create a test canvas
+    canvas_title = RESOURCES.canvas_name
+
+    new_canvas = CreateCanvas(
+        title=canvas_title,
+        prompt="Show me my total costs grouped by service for the last 30 days",
+        workspace_token=settings.workspace_token,
+    )
+
+    canvas: Canvas = vantage_sdk.create_canvas(new_canvas)
+    assert canvas is not None
+    assert canvas.title == canvas_title
+
+    yield canvas
+
+    # teardown
+    params = CanvasTokenParams(canvas_token=canvas.token)
+    vantage_sdk.delete_canvas(params)
+
+    with pytest.raises(HTTPError) as exc_info:
+        vantage_sdk.get_canvas(params)
+
+    # assert that the canvas was deleted
     assert exc_info.value.response.status_code == 404
 
 

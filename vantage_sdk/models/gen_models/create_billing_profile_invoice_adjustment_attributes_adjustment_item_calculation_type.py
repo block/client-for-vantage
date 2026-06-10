@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateBillingProfileInvoiceAdjustmentAttributesAdjustmentItemCalculationType(str, Enum):
+class CreateBillingProfileInvoiceAdjustmentAttributesAdjustmentItemCalculationType(StrEnum):
     """
     How the adjustment is calculated
     """

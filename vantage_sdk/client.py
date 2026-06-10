@@ -43,6 +43,10 @@ from vantage_sdk.models import (
     BusinessMetricTokenParams,
     BusinessMetricValues,
     BusinessMetricValuesDeleteResponse,
+    Canvas,
+    Canvases,
+    CanvasesGetParametersQuery,
+    CanvasTokenParams,
     CostAlert,
     CostAlertEvent,
     CostAlertEvents,
@@ -65,6 +69,7 @@ from vantage_sdk.models import (
     CreateBillingRule,
     CreateBudget,
     CreateBusinessMetric,
+    CreateCanvas,
     CreateCostAlert,
     CreateCostReport,
     CreateCustomProviderIntegration,
@@ -160,6 +165,7 @@ from vantage_sdk.models import (
     UpdateAsyncVirtualTagConfig,
     UpdateBillingRule,
     UpdateBudget,
+    UpdateCanvas,
     UpdateCostAlert,
     UpdateCostReport,
     UpdateDashboard,
@@ -1909,6 +1915,76 @@ class VantageSDK:
         """
         dashboard_token = dashboard_token_params.dashboard_token
         return self._delete(f"dashboards/{dashboard_token}")
+
+    # ---- Canvases APIs ----
+
+    def get_all_canvases(self, canvases_query_params: CanvasesGetParametersQuery | None = None) -> Canvases:
+        """
+        Get all canvases - GET /canvases
+
+        Args:
+            canvases_query_params: Optional pagination parameters
+
+        Returns:
+            A Canvases object containing all canvases
+        """
+        paginated_data = self._get_paginated("canvases", canvases_query_params)
+        return Canvases.model_validate(paginated_data)
+
+    def get_canvas(self, canvas_token_params: CanvasTokenParams) -> Canvas:
+        """
+        Get a single canvas - GET /canvases/{canvas_token}
+
+        Args:
+            canvas_token_params: The token of the canvas to retrieve
+
+        Returns:
+            A Canvas object
+        """
+        canvas_token = canvas_token_params.canvas_token
+        data = self._get(f"canvases/{canvas_token}")
+        return Canvas.model_validate(data)
+
+    def create_canvas(self, new_canvas: CreateCanvas) -> Canvas:
+        """
+        Create a new canvas - POST /canvases
+
+        Args:
+            new_canvas: The canvas configuration to create
+
+        Returns:
+            The created Canvas object
+        """
+        data = self._post("canvases", new_canvas)
+        return Canvas.model_validate(data)
+
+    def update_canvas(self, canvas_token_params: CanvasTokenParams, canvas_update: UpdateCanvas) -> Canvas:
+        """
+        Update an existing canvas - PUT /canvases/{canvas_token}
+
+        Args:
+            canvas_token_params: The token of the canvas to update
+            canvas_update: The updated canvas configuration
+
+        Returns:
+            The updated Canvas object
+        """
+        canvas_token = canvas_token_params.canvas_token
+        data = self._put(f"canvases/{canvas_token}", canvas_update)
+        return Canvas.model_validate(data)
+
+    def delete_canvas(self, canvas_token_params: CanvasTokenParams) -> HttpStatusCode:
+        """
+        Delete a canvas - DELETE /canvases/{canvas_token}
+
+        Args:
+            canvas_token_params: The token of the canvas to delete
+
+        Returns:
+            HTTP 204 No Content on successful deletion
+        """
+        canvas_token = canvas_token_params.canvas_token
+        return self._delete(f"canvases/{canvas_token}")
 
     # ---- OpenAPI Specification ----
 

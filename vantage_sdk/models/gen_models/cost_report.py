@@ -2,9 +2,9 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from typing import Annotated
+from typing import Annotated, Any
 from pydantic import BaseModel, ConfigDict, Field
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from . import attached_business_metric_for_cost_report, chart_settings as chart_settings_1, cost_report_settings
 
 
@@ -20,6 +20,7 @@ class CostReport(BaseModel):
     folder_token: Annotated[str | None, Field(description='The token for the Folder the CostReport is a part of.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens for the SavedFilters assigned to the CostReport.')] = None
     business_metric_tokens_with_metadata: Annotated[Sequence[attached_business_metric_for_cost_report.AttachedBusinessMetricForCostReport], Field(description='The tokens for the BusinessMetrics assigned to the CostReport, the unit scale, and label filter.')]
+    default_forecast: Annotated[Mapping[str, Any], Field(description='The default forecast selection for the CostReport.', examples=[{'kind': 'baseline'}])]
     filter: Annotated[str | None, Field(description='The filter applied to the CostReport. Additional documentation available at https://docs.vantage.sh/vql.')]
     groupings: Annotated[str | None, Field(description='The grouping aggregations applied to the filtered data.', examples=['provider, service'])] = None
     settings: Annotated[cost_report_settings.CostReportSettings | None, Field(description='Report settings.')] = None

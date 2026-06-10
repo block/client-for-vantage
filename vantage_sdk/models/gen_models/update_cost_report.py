@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import update_cost_report_business_metric_tokens_with_metadatum, update_cost_report_chart_settings, update_cost_report_chart_type, update_cost_report_date_bin, update_cost_report_date_interval, update_cost_report_settings
+from . import update_cost_report_business_metric_tokens_with_metadatum, update_cost_report_chart_settings, update_cost_report_chart_type, update_cost_report_date_bin, update_cost_report_date_interval, update_cost_report_default_forecast, update_cost_report_settings
 
 
 class UpdateCostReport(BaseModel):
@@ -21,6 +21,7 @@ class UpdateCostReport(BaseModel):
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the SavedFilters to apply to the CostReport.')] = None
     business_metric_tokens_with_metadata: Annotated[Sequence[update_cost_report_business_metric_tokens_with_metadatum.UpdateCostReportBusinessMetricTokensWithMetadatum] | None, Field(description='The tokens for any BusinessMetrics to attach to the CostReport, and the unit scale.')] = None
     folder_token: Annotated[str | None, Field(description='The token of the Folder to add the CostReport to. Determines the Workspace the report is assigned to.')] = None
+    default_forecast: Annotated[update_cost_report_default_forecast.UpdateCostReportDefaultForecast | None, Field(description='The default forecast selection for the CostReport.')] = None
     settings: Annotated[update_cost_report_settings.UpdateCostReportSettings | None, Field(description='Report settings.')] = None
     chart_settings: Annotated[update_cost_report_chart_settings.UpdateCostReportChartSettings | None, Field(description='Report chart settings.')] = None
     previous_period_start_date: Annotated[str | None, Field(description='The previous period start date of the CostReport. ISO 8601 Formatted.')] = None
@@ -28,5 +29,5 @@ class UpdateCostReport(BaseModel):
     start_date: Annotated[str | None, Field(description="The start date of the CostReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
     end_date: Annotated[str | None, Field(description="The end date of the CostReport. ISO 8601 Formatted. Required when start_date is provided. Incompatible with 'date_interval' parameter.")] = None
     date_interval: Annotated[update_cost_report_date_interval.UpdateCostReportDateInterval | None, Field(description="The date interval of the CostReport. Incompatible with 'start_date' and 'end_date' parameters. Defaults to 'this_month' if start_date and end_date are not provided.")] = None
-    chart_type: Annotated[update_cost_report_chart_type.UpdateCostReportChartType, Field(description='The chart type of the CostReport.')] = update_cost_report_chart_type.UpdateCostReportChartType.line
-    date_bin: Annotated[update_cost_report_date_bin.UpdateCostReportDateBin, Field(description='The date bin of the CostReport.')] = update_cost_report_date_bin.UpdateCostReportDateBin.cumulative
+    chart_type: Annotated[update_cost_report_chart_type.UpdateCostReportChartType | None, Field(description='The chart type of the CostReport.')] = None
+    date_bin: Annotated[update_cost_report_date_bin.UpdateCostReportDateBin | None, Field(description='The date bin of the CostReport.')] = None

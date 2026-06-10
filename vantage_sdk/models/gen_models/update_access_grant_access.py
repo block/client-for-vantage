@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class UpdateAccessGrantAccess(str, Enum):
+class UpdateAccessGrantAccess(StrEnum):
     """
     Allowed or denied access to resource.
     """

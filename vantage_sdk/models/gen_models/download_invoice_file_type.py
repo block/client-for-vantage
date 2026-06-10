@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class DownloadInvoiceFileType(str, Enum):
+class DownloadInvoiceFileType(StrEnum):
     """
     Type of file to download (pdf or csv)
     """

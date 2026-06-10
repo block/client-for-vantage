@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class ForecastedCostProvider(str, Enum):
+class ForecastedCostProvider(StrEnum):
     """
     The cost provider which incurred the cost. Will be 'all' for all combined providers.
     """

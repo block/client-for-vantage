@@ -76,6 +76,8 @@ from .update_dashboard_date_interval import UpdateDashboardDateInterval
 from .update_dashboard_date_bin import UpdateDashboardDateBin
 from .update_dashboard import UpdateDashboard
 from .update_cost_report_settings import UpdateCostReportSettings
+from .update_cost_report_default_forecast_kind import UpdateCostReportDefaultForecastKind
+from .update_cost_report_default_forecast import UpdateCostReportDefaultForecast
 from .update_cost_report_date_interval import UpdateCostReportDateInterval
 from .update_cost_report_date_bin import UpdateCostReportDateBin
 from .update_cost_report_chart_type import UpdateCostReportChartType
@@ -84,6 +86,7 @@ from .update_cost_report_business_metric_tokens_with_metadatum_unit_scale import
 from .update_cost_report_business_metric_tokens_with_metadatum import UpdateCostReportBusinessMetricTokensWithMetadatum
 from .update_cost_report import UpdateCostReport
 from .update_cost_alert import UpdateCostAlert
+from .update_canvas import UpdateCanvas
 from .update_business_metric_value import UpdateBusinessMetricValue
 from .update_business_metric_forecasted_value import UpdateBusinessMetricForecastedValue
 from .update_business_metric_datadog_metric_fields import UpdateBusinessMetricDatadogMetricFields
@@ -299,6 +302,7 @@ from .create_cost_export_schema import CreateCostExportSchema
 from .create_cost_export_date_bin import CreateCostExportDateBin
 from .create_cost_export import CreateCostExport
 from .create_cost_alert import CreateCostAlert
+from .create_canvas import CreateCanvas
 from .create_business_metric_value import CreateBusinessMetricValue
 from .create_business_metric_forecasted_value import CreateBusinessMetricForecastedValue
 from .create_business_metric_datadog_metric_fields import CreateBusinessMetricDatadogMetricFields
@@ -359,6 +363,10 @@ from .cloudwatch_fields_stat import CloudwatchFieldsStat
 from .cloudwatch_fields import CloudwatchFields
 from .cloudwatch_dimension import CloudwatchDimension
 from .chart_settings import ChartSettings
+from .canvases_get_parameters_query import CanvasesGetParametersQuery
+from .canvases import Canvases
+from .canvas_status import CanvasStatus
+from .canvas import Canvas
 from .business_metrics_get_parameters_query import BusinessMetricsGetParametersQuery
 from .business_metrics_business_metric_token_values_get_parameters_query import BusinessMetricsBusinessMetricTokenValuesGetParametersQuery
 from .business_metrics_business_metric_token_values_delete_parameters_query import BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery
@@ -485,6 +493,10 @@ __all__ = [
     "BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery",
     "BusinessMetricsBusinessMetricTokenValuesGetParametersQuery",
     "BusinessMetricsGetParametersQuery",
+    "Canvas",
+    "CanvasStatus",
+    "Canvases",
+    "CanvasesGetParametersQuery",
     "ChartSettings",
     "CloudwatchDimension",
     "CloudwatchFields",
@@ -546,6 +558,7 @@ __all__ = [
     "CreateBusinessMetricDatadogMetricFields",
     "CreateBusinessMetricForecastedValue",
     "CreateBusinessMetricValue",
+    "CreateCanvas",
     "CreateCostAlert",
     "CreateCostExport",
     "CreateCostExportDateBin",
@@ -767,6 +780,7 @@ __all__ = [
     "UpdateBusinessMetricDatadogMetricFields",
     "UpdateBusinessMetricForecastedValue",
     "UpdateBusinessMetricValue",
+    "UpdateCanvas",
     "UpdateCostAlert",
     "UpdateCostReport",
     "UpdateCostReportBusinessMetricTokensWithMetadatum",
@@ -775,6 +789,8 @@ __all__ = [
     "UpdateCostReportChartType",
     "UpdateCostReportDateBin",
     "UpdateCostReportDateInterval",
+    "UpdateCostReportDefaultForecast",
+    "UpdateCostReportDefaultForecastKind",
     "UpdateCostReportSettings",
     "UpdateDashboard",
     "UpdateDashboardDateBin",

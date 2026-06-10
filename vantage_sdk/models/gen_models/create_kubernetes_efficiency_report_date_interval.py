@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateKubernetesEfficiencyReportDateInterval(str, Enum):
+class CreateKubernetesEfficiencyReportDateInterval(StrEnum):
     """
     The date interval of the KubernetesEfficiencyReport. Incompatible with 'start_date' and 'end_date' parameters. Defaults to 'this_month' if start_date and end_date are not provided.
     """

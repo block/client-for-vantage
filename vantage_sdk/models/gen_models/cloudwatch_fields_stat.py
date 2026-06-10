@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CloudwatchFieldsStat(str, Enum):
+class CloudwatchFieldsStat(StrEnum):
     """
     The time aggregation function used to import Cloudwatch metrics.
     """

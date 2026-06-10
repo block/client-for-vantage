@@ -2,12 +2,12 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class CostProvider(str, Enum):
+class CostProvider(StrEnum):
     """
     The cost provider which incurred the cost.
     """

@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class AuditLogsGetParametersQueryObjectType(str, Enum):
+class AuditLogsGetParametersQueryObjectType(StrEnum):
     virtual_tag = 'virtual_tag'
     cost_report = 'cost_report'
     recommendation_commitment = 'recommendation_commitment'

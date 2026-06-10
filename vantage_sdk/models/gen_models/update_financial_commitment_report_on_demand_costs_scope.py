@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class UpdateFinancialCommitmentReportOnDemandCostsScope(str, Enum):
+class UpdateFinancialCommitmentReportOnDemandCostsScope(StrEnum):
     """
     The scope for the costs. Possible values: discountable, all.
     """

@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CostProviderAccountsGetParametersQueryProvider(str, Enum):
+class CostProviderAccountsGetParametersQueryProvider(StrEnum):
     aws = 'aws'
     azure = 'azure'
     gcp = 'gcp'

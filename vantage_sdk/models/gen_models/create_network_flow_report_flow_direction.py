@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateNetworkFlowReportFlowDirection(str, Enum):
+class CreateNetworkFlowReportFlowDirection(StrEnum):
     """
     The flow direction of the NetworkFlowReport.
     """

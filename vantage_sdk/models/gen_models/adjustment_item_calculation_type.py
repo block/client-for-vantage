@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class AdjustmentItemCalculationType(str, Enum):
+class AdjustmentItemCalculationType(StrEnum):
     """
     How the adjustment is calculated
     """

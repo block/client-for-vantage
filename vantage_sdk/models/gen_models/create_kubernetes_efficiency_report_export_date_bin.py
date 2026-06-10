@@ -2,10 +2,10 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from enum import Enum
+from enum import StrEnum
 
 
-class CreateKubernetesEfficiencyReportExportDateBin(str, Enum):
+class CreateKubernetesEfficiencyReportExportDateBin(StrEnum):
     """
     The date bin of the data. Defaults to the report's default or day.
     """
