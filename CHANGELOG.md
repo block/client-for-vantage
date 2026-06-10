@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [2.1.0](https://github.com/block/client-for-vantage/compare/v2.0.0...v2.1.0) (2026-06-10)
+
+
+### Features
+
+* add Canvases CRUD methods ([83078ec](https://github.com/block/client-for-vantage/commit/83078ecad7ad4ac8ee70e002901115f7ca5bfa1c))
+
+
+### Bug Fixes
+
+* **models:** make CostReport.default_forecast optional ([e3d1727](https://github.com/block/client-for-vantage/commit/e3d17276a52f0b31a397085af927699a05d96263))
+
 ## [2.0.0](https://github.com/block/client-for-vantage/compare/v1.4.1...v2.0.0) (2026-06-05)
 
 
