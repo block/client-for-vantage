@@ -675,9 +675,10 @@ class VirtualTagConfigs(virtual_tag_configs_model.VirtualTagConfigs):
 
 
 class CostReport(cost_report_model.CostReport):
-    """Extends CostReport to make chart_settings optional"""
+    """Extends CostReport to make chart_settings and default_forecast optional"""
 
     chart_settings: chart_settings_model.ChartSettings | None = None  # type: ignore[assignment]
+    default_forecast: Mapping[str, Any] | None = None  # type: ignore[assignment]
 
 
 class CostReports(cost_reports_model.CostReports):
