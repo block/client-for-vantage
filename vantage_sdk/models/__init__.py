@@ -6,6 +6,7 @@ relevant checks
 
 # ruff: noqa: I001, F403
 # Import everything from gen_models first
+from . import gen_models
 from .gen_models import *
 
 # Then import custom models to override the generated ones
@@ -132,3 +133,9 @@ __all__ = [
     "WorkspaceTokenParams",
     "WorkspacesWorkspaceTokenPutRequest",
 ]
+
+# Re-export the generated models (brought in via the wildcard import above) so that
+# downstream consumers' type checkers do not flag them as private re-exports
+# (reportPrivateImportUsage). Declaring __all__ above otherwise makes it the
+# authoritative public interface, excluding the wildcard-imported names.
+__all__ += gen_models.__all__
