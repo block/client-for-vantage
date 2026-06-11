@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [2.1.1](https://github.com/block/client-for-vantage/compare/v2.1.0...v2.1.1) (2026-06-11)
+
+
+### Bug Fixes
+
+* adding module to export ([27f095d](https://github.com/block/client-for-vantage/commit/27f095daaf90a77583c0bafff4323b39f499fc04))
+* adding module to export ([f7181e8](https://github.com/block/client-for-vantage/commit/f7181e8e75c7359232d3148fc6ed5717f2c448ec))
+
 ## [2.1.0](https://github.com/block/client-for-vantage/compare/v2.0.0...v2.1.0) (2026-06-10)
 
 
