@@ -38,3 +38,5 @@ class TagsKeyValuesGetParametersQueryProvider(StrEnum):
     vercel = 'vercel'
     redis_cloud = 'redis_cloud'
     circle_ci = 'circle_ci'
+    modal = 'modal'
+    eleven_labs = 'eleven_labs'
