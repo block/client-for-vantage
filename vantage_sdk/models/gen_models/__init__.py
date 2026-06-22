@@ -365,7 +365,8 @@ from .cloudwatch_dimension import CloudwatchDimension
 from .chart_settings import ChartSettings
 from .canvases_get_parameters_query import CanvasesGetParametersQuery
 from .canvases import Canvases
-from .canvas_status import CanvasStatus
+from .canvas_table import CanvasTable
+from .canvas_data import CanvasData
 from .canvas import Canvas
 from .business_metrics_get_parameters_query import BusinessMetricsGetParametersQuery
 from .business_metrics_business_metric_token_values_get_parameters_query import BusinessMetricsBusinessMetricTokenValuesGetParametersQuery
@@ -494,7 +495,8 @@ __all__ = [
     "BusinessMetricsBusinessMetricTokenValuesGetParametersQuery",
     "BusinessMetricsGetParametersQuery",
     "Canvas",
-    "CanvasStatus",
+    "CanvasData",
+    "CanvasTable",
     "Canvases",
     "CanvasesGetParametersQuery",
     "ChartSettings",
