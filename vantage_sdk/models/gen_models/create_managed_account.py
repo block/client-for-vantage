@@ -17,5 +17,5 @@ class CreateManagedAccount(BaseModel):
     name: Annotated[str, Field(description='The name of the Managed Account.')]
     contact_email: Annotated[str, Field(description='The contact email address for the Managed Account.')]
     access_credential_tokens: Annotated[Sequence[str] | None, Field(description='Access Credential (aka Integrations) tokens to assign to the Managed Account.')] = None
-    billing_rule_tokens: Annotated[Sequence[str] | None, Field(description='Billing Rule tokens to assign to the Managed Account.')] = None
+    billing_rule_tokens: Annotated[Sequence[str] | None, Field(description='Billing Rule tokens to assign to the Managed Account, in their desired execution order. Tokens must be ordered by execution group: AWS transforms, then COST inserts, then COST transforms, then monthly post-transform inserts. Within a group any order is accepted and persisted as-is. Submitting a list whose cross-group ordering does not match the pipeline returns a 400.Existing rules with apply_to_all enabled will be added implicity to the end of their execution group.')] = None
     email_domain: Annotated[str | None, Field(description='Email domain to associate with this Managed Account for SSO.')] = None

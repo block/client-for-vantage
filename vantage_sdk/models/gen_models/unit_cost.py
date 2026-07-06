@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import links as links_1
+from . import links as links_1, unit_cost_calculation_type
 
 
 class UnitCost(BaseModel):
@@ -14,7 +14,8 @@ class UnitCost(BaseModel):
     links: links_1.Links | None = None
     business_metric_token: Annotated[str, Field(description='The token of the BusinessMetric for which the unit cost was calculated.', examples=['bsnss_mtrc_1234'])]
     business_metric_title: Annotated[str, Field(description='The title of the BusinessMetric for which the unit cost was calculated.', examples=['Total Revenue'])]
-    unit_cost_amount: Annotated[str, Field(description='The amount of the unit cost.', examples=['4.25'])]
+    calculation_type: Annotated[unit_cost_calculation_type.UnitCostCalculationType | None, Field(description='The calculation type applied to produce this result.', examples=['unit_cost'])] = None
+    unit_cost_amount: Annotated[str, Field(description='The amount of the unit cost. For raw_business_metric types, this equals the business_metric_amount.', examples=['4.25'])]
     business_metric_amount: Annotated[str, Field(description='The amount of the business metric.', examples=['0.371'])]
     scale: Annotated[float, Field(description="The scale of the BusinessMetric's values within a particular CostReport.", examples=[1.0])]
     date: Annotated[str, Field(description='The date for which the unit cost was calculated. ISO 8601 Formatted.', examples=['2023-09-05+00:00'])]

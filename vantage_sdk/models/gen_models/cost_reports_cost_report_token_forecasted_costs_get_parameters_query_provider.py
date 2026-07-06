@@ -40,4 +40,5 @@ class CostReportsCostReportTokenForecastedCostsGetParametersQueryProvider(StrEnu
     circle_ci = 'circle_ci'
     modal = 'modal'
     eleven_labs = 'eleven_labs'
+    baseten = 'baseten'
     all = 'all'

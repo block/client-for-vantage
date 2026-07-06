@@ -40,3 +40,4 @@ class TagsGetParametersQueryProvider(StrEnum):
     circle_ci = 'circle_ci'
     modal = 'modal'
     eleven_labs = 'eleven_labs'
+    baseten = 'baseten'
