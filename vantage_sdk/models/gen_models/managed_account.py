@@ -20,7 +20,7 @@ class ManagedAccount(BaseModel):
     contact_email: str
     parent_account_token: Annotated[str, Field(description='The token for the parent Account.')]
     access_credential_tokens: Annotated[Sequence[str], Field(description='The tokens for the Access Credentials assigned to the Managed Account.')]
-    billing_rule_tokens: Annotated[Sequence[str], Field(description='The tokens for the Billing Rules assigned to the Managed Account.')]
+    billing_rule_tokens: Annotated[Sequence[str], Field(description="The tokens for the Billing Rules assigned to the Managed Account, in the order they will execute against this account's cost data.")]
     email_domain: Annotated[str | None, Field(description='Email domain associated with this Managed Account for SSO.')] = None
     msp_billing_profile_token: Annotated[str | None, Field(description='Token of the MSP billing profile used for this managed account (MSP invoicing accounts only)')] = None
     payment_terms_days: Annotated[int | None, Field(description='Number of days until payment is due after invoice date (MSP invoicing accounts only)')] = None

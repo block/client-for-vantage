@@ -18,7 +18,7 @@ class UpdateManagedAccount(BaseModel):
     name: Annotated[str | None, Field(description='The name of the Managed Account.')] = None
     contact_email: Annotated[str | None, Field(description='The contact email address for the Managed Account.')] = None
     access_credential_tokens: Annotated[Sequence[str] | None, Field(description='Access Credential (aka Integrations) tokens to assign to the Managed Account.')] = None
-    billing_rule_tokens: Annotated[Sequence[str] | None, Field(description='Billing Rule tokens to assign to the Managed Account.')] = None
+    billing_rule_tokens: Annotated[Sequence[str] | None, Field(description='Billing Rule tokens to assign to the Managed Account, in their desired execution order. Tokens must be ordered by execution group: AWS transforms, then COST inserts, then COST transforms, then monthly post-transform inserts. Within a group any order is accepted and persisted as-is. Submitting a list whose cross-group ordering does not match the pipeline returns a 400.')] = None
     email_domain: Annotated[str | None, Field(description='Email domain to associate with this Managed Account for SSO.')] = None
     msp_billing_profile_token: Annotated[str | None, Field(description='Token of the MSP billing profile to use for this managed account (MSP invoicing accounts only).')] = None
     payment_terms_days: Annotated[int | None, Field(description='Number of days until payment is due after invoice date (MSP invoicing accounts only). Defaults to 10.')] = None

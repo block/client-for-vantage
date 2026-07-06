@@ -126,6 +126,7 @@ from .unit_costs_get_parameters_query_order import UnitCostsGetParametersQueryOr
 from .unit_costs_get_parameters_query_date_bin import UnitCostsGetParametersQueryDateBin
 from .unit_costs_get_parameters_query import UnitCostsGetParametersQuery
 from .unit_costs import UnitCosts
+from .unit_cost_calculation_type import UnitCostCalculationType
 from .unit_cost import UnitCost
 from .teams_team_token_members_get_parameters_query import TeamsTeamTokenMembersGetParametersQuery
 from .teams_get_parameters_query import TeamsGetParametersQuery
@@ -407,8 +408,10 @@ from .audit_logs_get_parameters_query import AuditLogsGetParametersQuery
 from .audit_logs import AuditLogs
 from .audit_log import AuditLog
 from .attached_cost_report_for_business_metric_unit_scale import AttachedCostReportForBusinessMetricUnitScale
+from .attached_cost_report_for_business_metric_calculation_type import AttachedCostReportForBusinessMetricCalculationType
 from .attached_cost_report_for_business_metric import AttachedCostReportForBusinessMetric
 from .attached_business_metric_for_cost_report_unit_scale import AttachedBusinessMetricForCostReportUnitScale
+from .attached_business_metric_for_cost_report_calculation_type import AttachedBusinessMetricForCostReportCalculationType
 from .attached_business_metric_for_cost_report import AttachedBusinessMetricForCostReport
 from .async_virtual_tag_config_update import AsyncVirtualTagConfigUpdate
 from .anomaly_notifications_get_parameters_query import AnomalyNotificationsGetParametersQuery
@@ -451,8 +454,10 @@ __all__ = [
     "AnomalyNotificationsGetParametersQuery",
     "AsyncVirtualTagConfigUpdate",
     "AttachedBusinessMetricForCostReport",
+    "AttachedBusinessMetricForCostReportCalculationType",
     "AttachedBusinessMetricForCostReportUnitScale",
     "AttachedCostReportForBusinessMetric",
+    "AttachedCostReportForBusinessMetricCalculationType",
     "AttachedCostReportForBusinessMetricUnitScale",
     "AuditLog",
     "AuditLogs",
@@ -743,6 +748,7 @@ __all__ = [
     "TeamsGetParametersQuery",
     "TeamsTeamTokenMembersGetParametersQuery",
     "UnitCost",
+    "UnitCostCalculationType",
     "UnitCosts",
     "UnitCostsGetParametersQuery",
     "UnitCostsGetParametersQueryDateBin",
