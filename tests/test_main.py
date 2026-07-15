@@ -27,7 +27,6 @@ from vantage_sdk.models import (
     CostAlertsCostAlertTokenEventsGetParametersQuery,
     CostAlertTokenParams,
     CostReportTokenParams,
-    CreateBusinessMetric,
     CreateUserFeedback,
     CanvasTokenParams,
     DashboardTokenParams,
@@ -56,6 +55,7 @@ from vantage_sdk.models import (
     UpdateAnomalyNotification,
     UpdateBillingRule,
     UpdateBudget,
+    UpdateBusinessMetric,
     UpdateCostAlert,
     UpdateCostReport,
     UpdateCanvas,
@@ -72,6 +72,7 @@ from vantage_sdk.models import (
     UpdateUser,
     AsyncVirtualTagConfigUpdate,
     VirtualTagConfig,
+    VirtualTagConfigsGetParametersQuery,
     UpdateVirtualTagConfig,
     UpdateVirtualTagConfigValue,
     CreateSsoConnectionForManagedAccount,
@@ -231,7 +232,8 @@ def test_update_virtual_tag(vantage_sdk, virtual_tag_fixture):
 
 
 def test_get_all_virtual_tags(vantage_sdk, virtual_tag_fixture):
-    virtual_tags = vantage_sdk.get_all_virtual_tags()
+    query_params = VirtualTagConfigsGetParametersQuery(q=virtual_tag_fixture.key)
+    virtual_tags = vantage_sdk.get_all_virtual_tags(query_params)
     assert virtual_tags is not None
     assert virtual_tag_fixture.token in [vt.token for vt in virtual_tags.virtual_tag_configs]
     first_tag = virtual_tags.virtual_tag_configs[0]
@@ -259,7 +261,7 @@ def test_get_business_metric(business_metric_fixture, vantage_sdk):
 
 def test_update_business_metric(vantage_sdk, business_metric_fixture):
     updated_title = f"{RESOURCES.updated_prefix}_{business_metric_fixture.title}"
-    business_metric_update = CreateBusinessMetric(title=updated_title)
+    business_metric_update = UpdateBusinessMetric(title=updated_title)
     params = BusinessMetricTokenParams(business_metric_token=business_metric_fixture.token)
     updated_business_metric = vantage_sdk.update_business_metric(params, business_metric_update)
 

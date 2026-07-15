@@ -165,6 +165,7 @@ from vantage_sdk.models import (
     UpdateAsyncVirtualTagConfig,
     UpdateBillingRule,
     UpdateBudget,
+    UpdateBusinessMetric,
     UpdateCanvas,
     UpdateCostAlert,
     UpdateCostReport,
@@ -190,6 +191,7 @@ from vantage_sdk.models import (
     UserTokenParams,
     VirtualTagConfig,
     VirtualTagConfigs,
+    VirtualTagConfigsGetParametersQuery,
     VirtualTagConfigStatus,
     VirtualTagTokenParams,
     Workspace,
@@ -740,9 +742,14 @@ class VantageSDK:
         data = self._get(f"virtual_tag_configs/{virtual_tag_value}")
         return VirtualTagConfig.model_validate(data)
 
-    def get_all_virtual_tags(self) -> VirtualTagConfigs:
+    def get_all_virtual_tags(
+        self, query_params: VirtualTagConfigsGetParametersQuery | None = None
+    ) -> VirtualTagConfigs:
         """
         Get all custom tags - GET /virtual_tag_configs
+
+        Args:
+            query_params: Optional query parameters for filtering custom tags
 
         Returns:
             A list of VirtualTagConfig objects
@@ -750,7 +757,7 @@ class VantageSDK:
         Note:
             This method is not paginated
         """
-        data = self._get("virtual_tag_configs")
+        data = self._get("virtual_tag_configs", query_params)
         return VirtualTagConfigs.model_validate(data)
 
     def get_virtual_tag_processing_status(
@@ -971,7 +978,7 @@ class VantageSDK:
         return self._delete(f"business_metrics/{business_metric_token_value}")
 
     def update_business_metric(
-        self, business_metric_token: BusinessMetricTokenParams, business_metric_update: CreateBusinessMetric
+        self, business_metric_token: BusinessMetricTokenParams, business_metric_update: UpdateBusinessMetric
     ) -> BusinessMetric:
         """
         Update a specific business metric - PUT /business_metrics/{business_metric_token}
