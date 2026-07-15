@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-02-08","collapsed_tag_keys":[{"key":"team","providers":["aws"]}],"values":[{"filter":"costs.provider
+    body: '{"key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-07-14","collapsed_tag_keys":[{"key":"team","providers":["aws"]}],"values":[{"filter":"costs.provider
       = ''aws''","name":"Primary"}]}'
     headers:
       Accept:
@@ -21,8 +21,8 @@ interactions:
     uri: https://api.vantage.sh/v2/virtual_tag_configs
   response:
     body:
-      string: '{"token":"vtag_94f8662484649421","created_by_token":"team_ef9127d498c66db2","key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-02-01","collapsed_tag_keys":[{"key":"team","providers":["aws"]}],"values":[{"filter":"costs.provider
-        = ''aws''","name":"Primary"}]}'
+      string: '{"token":"vtag_59745793610aeba5","created_by_token":"team_ef9127d498c66db2","key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-07-01","collapsed_tag_keys":[{"key":"team","providers":["aws"],"filter":null}],"values":[{"filter":"costs.provider
+        = ''aws''","name":"Primary","label_transforms":[],"percentages":[],"date_ranges":[]}]}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -33,17 +33,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"bf0202d02696604bc44d502c7b7db896"
+      - W/"2b3dd8c10d5b7f8f0e2766e6faf861cb"
       Set-Cookie:
-      - _stratus_session=2dix7BgPaAf9w73%2FsX3%2BhrTUlvOCjNIQDkXnKOdiYs99ahazd6v4c1mRPIQy327BUCDapgh46ZFoGgLMc6aYsB%2BXAiQzxuriJ79z0jXWwxdq51qrJikIzLzeeUQ7cjjBomNoad5pLhzA5m3%2FITksebf1ErvusZ8o8kNEDu3oN2x%2FF%2FUfqzaF96ti%2FabDv2TQuj%2FDCZm6uwU%3D--SLommzeKYDju4mXt--1vNTMyVN9ZRnTvsLjnO3nw%3D%3D;
+      - _stratus_session=fDjyGhFySon6hqd5CM6qXJG3NC0zd7Mig0uC%2B4uHREQjGd%2BijZJVohFg4tqr9iJo%2F0vjXo0AvWHvgDP0FB%2BNR0Prq43qG47u3eOt0oi7JNMUdIcc0lc3JFaxi9tMhjWwZfAsAFogqlOC5F9%2FfCN6ORtDMRi3sjajkTgoOdKelxTqDOz1cJu8mtR6oHDCInfg6GqHxeAjRwo%3D--W6l1JvzNw%2BjgRYEJ--8%2FUPPWHV0GApFNcgH%2FEXiw%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -52,13 +52,13 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '393'
+      - '999'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1784092011'
       X-Runtime:
-      - '0.156355'
+      - '0.438707'
       content-length:
-      - '270'
+      - '340'
     status:
       code: 201
       message: Created
@@ -74,17 +74,17 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=2dix7BgPaAf9w73%2FsX3%2BhrTUlvOCjNIQDkXnKOdiYs99ahazd6v4c1mRPIQy327BUCDapgh46ZFoGgLMc6aYsB%2BXAiQzxuriJ79z0jXWwxdq51qrJikIzLzeeUQ7cjjBomNoad5pLhzA5m3%2FITksebf1ErvusZ8o8kNEDu3oN2x%2FF%2FUfqzaF96ti%2FabDv2TQuj%2FDCZm6uwU%3D--SLommzeKYDju4mXt--1vNTMyVN9ZRnTvsLjnO3nw%3D%3D
+      - _stratus_session=fDjyGhFySon6hqd5CM6qXJG3NC0zd7Mig0uC%2B4uHREQjGd%2BijZJVohFg4tqr9iJo%2F0vjXo0AvWHvgDP0FB%2BNR0Prq43qG47u3eOt0oi7JNMUdIcc0lc3JFaxi9tMhjWwZfAsAFogqlOC5F9%2FfCN6ORtDMRi3sjajkTgoOdKelxTqDOz1cJu8mtR6oHDCInfg6GqHxeAjRwo%3D--W6l1JvzNw%2BjgRYEJ--8%2FUPPWHV0GApFNcgH%2FEXiw%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: GET
-    uri: https://api.vantage.sh/v2/virtual_tag_configs
+    uri: https://api.vantage.sh/v2/virtual_tag_configs?q=test_vtag_vcr
   response:
     body:
-      string: '{"virtual_tag_configs":[{"token":"vtag_94f8662484649421","created_by_token":"team_ef9127d498c66db2","key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-02-01","collapsed_tag_keys":[{"key":"team","providers":["aws"]}],"values":[{"filter":"costs.provider
-        = ''aws''","name":"Primary"}]}]}'
+      string: '{"virtual_tag_configs":[{"token":"vtag_59745793610aeba5","created_by_token":"team_ef9127d498c66db2","key":"test_vtag_vcr","overridable":false,"backfill_until":"2026-07-01","collapsed_tag_keys":[{"key":"team","providers":["aws"],"filter":null}],"values":[{"filter":"costs.provider
+        = ''aws''","name":"Primary","label_transforms":[],"percentages":[],"date_ranges":[]}]}]}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -95,17 +95,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"7f5431800396b6b2d6e6105c1e5b7d28"
+      - W/"71f6e261bbb9049d6ebd8ebdb0006413"
       Set-Cookie:
-      - _stratus_session=%2BfqAaGdjJFvR0fKc0uzc671Gu1ZRntsJn63pMEtmASJiigW8bRESvEWqGSSPjmciPYQJc8OFYyGxXqbzxhWdox8nozT4MK2SHycaVV0%2BnLEo1NmvCkMLLr7lU8tqYh8FSRyzuXA5NPZ6EMcLsogCIpgLil2wQZ8VBpJyuXfbtGZjIpTnalJ46Ocx4A8l1OabMHf3W960cOo%3D--mDFjHfavAiecFzxG--7%2FXHD5UIRdUWiXKv7nsW1A%3D%3D;
+      - _stratus_session=BOszLlFuJsFmjQjzcEPZO0n30MB8uNAl6doraERTnCoMpEouml3mumvZIj%2B4I2SI34YnUR4HaS47TwYk4twPen35kUmm3KtjOS%2FIpSaKs6VAoA%2BzKxZQKq2it%2BQEiZDIGaFvmSdzlo2j9PomRkfHTYW9lQNgYEc%2BoDyThgc0MggcO%2BiX%2Fc8NzdU06BUtyfGsRB5xHr9unD8%3D--aMEpnRQGgJVIRFAx--byuJ6MZyUhron5ICKjeeAQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -114,13 +114,13 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '392'
+      - '998'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1784092011'
       X-Runtime:
-      - '0.024811'
+      - '0.074795'
       content-length:
-      - '296'
+      - '366'
     status:
       code: 200
       message: OK
@@ -136,13 +136,13 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=%2BfqAaGdjJFvR0fKc0uzc671Gu1ZRntsJn63pMEtmASJiigW8bRESvEWqGSSPjmciPYQJc8OFYyGxXqbzxhWdox8nozT4MK2SHycaVV0%2BnLEo1NmvCkMLLr7lU8tqYh8FSRyzuXA5NPZ6EMcLsogCIpgLil2wQZ8VBpJyuXfbtGZjIpTnalJ46Ocx4A8l1OabMHf3W960cOo%3D--mDFjHfavAiecFzxG--7%2FXHD5UIRdUWiXKv7nsW1A%3D%3D
+      - _stratus_session=BOszLlFuJsFmjQjzcEPZO0n30MB8uNAl6doraERTnCoMpEouml3mumvZIj%2B4I2SI34YnUR4HaS47TwYk4twPen35kUmm3KtjOS%2FIpSaKs6VAoA%2BzKxZQKq2it%2BQEiZDIGaFvmSdzlo2j9PomRkfHTYW9lQNgYEc%2BoDyThgc0MggcO%2BiX%2Fc8NzdU06BUtyfGsRB5xHr9unD8%3D--aMEpnRQGgJVIRFAx--byuJ6MZyUhron5ICKjeeAQ%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: DELETE
-    uri: https://api.vantage.sh/v2/virtual_tag_configs/vtag_94f8662484649421
+    uri: https://api.vantage.sh/v2/virtual_tag_configs/vtag_59745793610aeba5
   response:
     body:
       string: ''
@@ -156,24 +156,24 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Set-Cookie:
-      - _stratus_session=H%2FtZTCh7kaq%2FLavf2zobVh55%2FMe6iut1Jb3t2LEXKJKyJJq%2FR3WkD5AH%2FJ2qXTehedP1NGaGShJtMJNqu28MrB57XETFxaJES5cG22PDQWzpp8DTYNsEwXtSLWBcjKsJungT9mko1eDcTWqi6O9arRkue1O19%2Bel6uHGDlSoGwXX1Fi%2F0LmYAjgj3iIY8se%2F%2BIHxXEd3NMs%3D--xBLEiuv9woHoirI0--iJ8fRQk%2BTt2pTwtQygO%2BhQ%3D%3D;
+      - _stratus_session=WA33mb%2BttialgHSCb3fH5kr%2FWaof6BgP3QWTrK1PZfYNYE6reqzyveDSwq3e%2Bo7q%2B2mBhhfGuWTEic4Ubzo0Dx1v2ZwGsAmEXF5bXST%2BrZqgg6EO5JZW2sF%2Bafxa7qin%2FG6v1DJWXZHYWPJqLGHnWa7Tc%2BTqoIaRZnPvj%2FOq7LLyBFOlLt%2FhhD7pBSCnwMXv%2F0U%2B1gUTQRA%3D--MnGNhi%2BCD42nuING--Y5BE1QGusucy7LPtgQHw2w%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '391'
+      - '997'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1784092011'
       X-Runtime:
-      - '0.107974'
+      - '0.368633'
     status:
       code: 204
       message: No Content
@@ -189,16 +189,16 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - _stratus_session=H%2FtZTCh7kaq%2FLavf2zobVh55%2FMe6iut1Jb3t2LEXKJKyJJq%2FR3WkD5AH%2FJ2qXTehedP1NGaGShJtMJNqu28MrB57XETFxaJES5cG22PDQWzpp8DTYNsEwXtSLWBcjKsJungT9mko1eDcTWqi6O9arRkue1O19%2Bel6uHGDlSoGwXX1Fi%2F0LmYAjgj3iIY8se%2F%2BIHxXEd3NMs%3D--xBLEiuv9woHoirI0--iJ8fRQk%2BTt2pTwtQygO%2BhQ%3D%3D
+      - _stratus_session=WA33mb%2BttialgHSCb3fH5kr%2FWaof6BgP3QWTrK1PZfYNYE6reqzyveDSwq3e%2Bo7q%2B2mBhhfGuWTEic4Ubzo0Dx1v2ZwGsAmEXF5bXST%2BrZqgg6EO5JZW2sF%2Bafxa7qin%2FG6v1DJWXZHYWPJqLGHnWa7Tc%2BTqoIaRZnPvj%2FOq7LLyBFOlLt%2FhhD7pBSCnwMXv%2F0U%2B1gUTQRA%3D--MnGNhi%2BCD42nuING--Y5BE1QGusucy7LPtgQHw2w%3D%3D
       Host:
       - api.vantage.sh
       User-Agent:
       - python-httpx/0.28.1
     method: GET
-    uri: https://api.vantage.sh/v2/virtual_tag_configs/vtag_94f8662484649421
+    uri: https://api.vantage.sh/v2/virtual_tag_configs/vtag_59745793610aeba5
   response:
     body:
-      string: '{"errors":["VirtualTagConfig vtag_94f8662484649421 not found."]}'
+      string: '{"errors":["VirtualTagConfig vtag_59745793610aeba5 not found."]}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -209,15 +209,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; style-src ''self''
+        https: https://fonts.googleapis.com ''unsafe-inline''; connect-src ''self''
+        https: https://browser-intake-datadoghq.com; report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       Set-Cookie:
-      - _stratus_session=SqMNNVOq9SFfo06K%2Ffr6cP5QqFXlKz7Lxb4i4dj6VWeLz6jNUJGFDDN9d%2BYm3itxRtKSK8VDZxli05QsTOE%2F%2BtZsP14knO1MAVHBocOtHQ%2F1UfOYoCRiWKlmkPMpA1YInOD4OsBa2MpjSygVF8B68m4dph%2FPRfqCB6M%2BHIchAtoMzau30iSrEl0kZNRYXON6co7o52SanRU%3D--uKfxOa3qeJORGG33--iVHnjTKHU4zsz2QV%2BYwwpA%3D%3D;
+      - _stratus_session=Uiwb4d9kN%2Fy66NqGIvoPHrQ4PfLi7BXJ98z05voCfH8LD68WmGZey3bTDJwUiWZvPpLI8UZt3FKz6CwLwulUTo6IsfaUuYzvwljegpDGH27s50TG04ElPhXWmcTmEhn0udRI4g3LRjCfwGVDTczsqCPDiX%2Fs2IJ6NbCqZEG%2Fz4RoOvuoWwKRC2%2FVaITMyi%2F1bVO08naw7nY%3D--N9kDnhAhUrTeh8B3--oLuWI3krItCfgqfKpRURKw%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -228,11 +228,11 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '390'
+      - '996'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1784092011'
       X-Runtime:
-      - '0.027884'
+      - '0.034807'
       content-length:
       - '64'
     status:
