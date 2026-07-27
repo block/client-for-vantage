@@ -41,3 +41,5 @@ class TagsKeyValuesGetParametersQueryProvider(StrEnum):
     modal = 'modal'
     eleven_labs = 'eleven_labs'
     baseten = 'baseten'
+    cloudflare = 'cloudflare'
+    fireworks_ai = 'fireworks_ai'

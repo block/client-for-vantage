@@ -7,6 +7,7 @@ from __future__ import annotations
 from .workspaces_get_parameters_query import WorkspacesGetParametersQuery
 from .workspaces import Workspaces
 from .workspace import Workspace
+from .virtual_tag_configs_get_parameters_query import VirtualTagConfigsGetParametersQuery
 from .virtual_tag_configs import VirtualTagConfigs
 from .virtual_tag_config_value_percentage import VirtualTagConfigValuePercentage
 from .virtual_tag_config_value_label_transform_type import VirtualTagConfigValueLabelTransformType
@@ -75,22 +76,27 @@ from .update_dashboard_widget import UpdateDashboardWidget
 from .update_dashboard_date_interval import UpdateDashboardDateInterval
 from .update_dashboard_date_bin import UpdateDashboardDateBin
 from .update_dashboard import UpdateDashboard
+from .update_cost_report_settings_aggregate_by import UpdateCostReportSettingsAggregateBy
 from .update_cost_report_settings import UpdateCostReportSettings
 from .update_cost_report_default_forecast_kind import UpdateCostReportDefaultForecastKind
 from .update_cost_report_default_forecast import UpdateCostReportDefaultForecast
 from .update_cost_report_date_interval import UpdateCostReportDateInterval
 from .update_cost_report_date_bin import UpdateCostReportDateBin
 from .update_cost_report_chart_type import UpdateCostReportChartType
+from .update_cost_report_chart_settings_y_axis_dimension import UpdateCostReportChartSettingsYAxisDimension
 from .update_cost_report_chart_settings import UpdateCostReportChartSettings
 from .update_cost_report_business_metric_tokens_with_metadatum_unit_scale import UpdateCostReportBusinessMetricTokensWithMetadatumUnitScale
+from .update_cost_report_business_metric_tokens_with_metadatum_calculation_type import UpdateCostReportBusinessMetricTokensWithMetadatumCalculationType
 from .update_cost_report_business_metric_tokens_with_metadatum import UpdateCostReportBusinessMetricTokensWithMetadatum
 from .update_cost_report import UpdateCostReport
 from .update_cost_alert import UpdateCostAlert
 from .update_canvas import UpdateCanvas
 from .update_business_metric_value import UpdateBusinessMetricValue
+from .update_business_metric_snowflake_metric_fields import UpdateBusinessMetricSnowflakeMetricFields
 from .update_business_metric_forecasted_value import UpdateBusinessMetricForecastedValue
 from .update_business_metric_datadog_metric_fields import UpdateBusinessMetricDatadogMetricFields
 from .update_business_metric_cost_report_tokens_with_metadatum_unit_scale import UpdateBusinessMetricCostReportTokensWithMetadatumUnitScale
+from .update_business_metric_cost_report_tokens_with_metadatum_calculation_type import UpdateBusinessMetricCostReportTokensWithMetadatumCalculationType
 from .update_business_metric_cost_report_tokens_with_metadatum import UpdateBusinessMetricCostReportTokensWithMetadatum
 from .update_business_metric_cloudwatch_fields_dimension import UpdateBusinessMetricCloudwatchFieldsDimension
 from .update_business_metric_cloudwatch_fields import UpdateBusinessMetricCloudwatchFields
@@ -193,6 +199,13 @@ from .price import Price
 from .network_flow_reports_get_parameters_query import NetworkFlowReportsGetParametersQuery
 from .network_flow_reports import NetworkFlowReports
 from .network_flow_report import NetworkFlowReport
+from .network_flow_logs_get_parameters_query_grouping import NetworkFlowLogsGetParametersQueryGrouping
+from .network_flow_logs_get_parameters_query_flow_weight import NetworkFlowLogsGetParametersQueryFlowWeight
+from .network_flow_logs_get_parameters_query_flow_direction import NetworkFlowLogsGetParametersQueryFlowDirection
+from .network_flow_logs_get_parameters_query_date_interval import NetworkFlowLogsGetParametersQueryDateInterval
+from .network_flow_logs_get_parameters_query import NetworkFlowLogsGetParametersQuery
+from .network_flow_logs import NetworkFlowLogs
+from .network_flow_log import NetworkFlowLog
 from .me import Me
 from .managed_accounts_get_parameters_query import ManagedAccountsGetParametersQuery
 from .managed_accounts import ManagedAccounts
@@ -229,6 +242,8 @@ from .exchange_rates import ExchangeRates
 from .exchange_rate import ExchangeRate
 from .errors import Errors
 from .download_invoice_file_type import DownloadInvoiceFileType
+from .default_forecast_kind import DefaultForecastKind
+from .default_forecast import DefaultForecast
 from .datadog_metric_fields import DatadogMetricFields
 from .data_export_manifest import DataExportManifest
 from .data_export import DataExport
@@ -290,14 +305,18 @@ from .create_dashboard_date_interval import CreateDashboardDateInterval
 from .create_dashboard_date_bin import CreateDashboardDateBin
 from .create_dashboard import CreateDashboard
 from .create_custom_provider_integration import CreateCustomProviderIntegration
+from .create_cost_report_settings_aggregate_by import CreateCostReportSettingsAggregateBy
 from .create_cost_report_settings import CreateCostReportSettings
 from .create_cost_report_date_interval import CreateCostReportDateInterval
 from .create_cost_report_date_bin import CreateCostReportDateBin
 from .create_cost_report_chart_type import CreateCostReportChartType
+from .create_cost_report_chart_settings_y_axis_dimension import CreateCostReportChartSettingsYAxisDimension
 from .create_cost_report_chart_settings import CreateCostReportChartSettings
 from .create_cost_report_business_metric_tokens_with_metadatum_unit_scale import CreateCostReportBusinessMetricTokensWithMetadatumUnitScale
+from .create_cost_report_business_metric_tokens_with_metadatum_calculation_type import CreateCostReportBusinessMetricTokensWithMetadatumCalculationType
 from .create_cost_report_business_metric_tokens_with_metadatum import CreateCostReportBusinessMetricTokensWithMetadatum
 from .create_cost_report import CreateCostReport
+from .create_cost_export_settings_aggregate_by import CreateCostExportSettingsAggregateBy
 from .create_cost_export_settings import CreateCostExportSettings
 from .create_cost_export_schema import CreateCostExportSchema
 from .create_cost_export_date_bin import CreateCostExportDateBin
@@ -305,9 +324,11 @@ from .create_cost_export import CreateCostExport
 from .create_cost_alert import CreateCostAlert
 from .create_canvas import CreateCanvas
 from .create_business_metric_value import CreateBusinessMetricValue
+from .create_business_metric_snowflake_metric_fields import CreateBusinessMetricSnowflakeMetricFields
 from .create_business_metric_forecasted_value import CreateBusinessMetricForecastedValue
 from .create_business_metric_datadog_metric_fields import CreateBusinessMetricDatadogMetricFields
 from .create_business_metric_cost_report_tokens_with_metadatum_unit_scale import CreateBusinessMetricCostReportTokensWithMetadatumUnitScale
+from .create_business_metric_cost_report_tokens_with_metadatum_calculation_type import CreateBusinessMetricCostReportTokensWithMetadatumCalculationType
 from .create_business_metric_cost_report_tokens_with_metadatum import CreateBusinessMetricCostReportTokensWithMetadatum
 from .create_business_metric_cloudwatch_fields_dimension import CreateBusinessMetricCloudwatchFieldsDimension
 from .create_business_metric_cloudwatch_fields import CreateBusinessMetricCloudwatchFields
@@ -332,6 +353,7 @@ from .create_azure_integration import CreateAzureIntegration
 from .create_anomaly_notification import CreateAnomalyNotification
 from .create_access_grant_access import CreateAccessGrantAccess
 from .create_access_grant import CreateAccessGrant
+from .costs_get_parameters_query_settings_aggregate_by import CostsGetParametersQuerySettingsAggregateBy
 from .costs_get_parameters_query_order import CostsGetParametersQueryOrder
 from .costs_get_parameters_query_date_bin import CostsGetParametersQueryDateBin
 from .costs_get_parameters_query import CostsGetParametersQuery
@@ -344,6 +366,7 @@ from .cost_reports_cost_report_token_forecasted_costs_get_parameters_query_provi
 from .cost_reports_cost_report_token_forecasted_costs_get_parameters_query import CostReportsCostReportTokenForecastedCostsGetParametersQuery
 from .cost_reports import CostReports
 from .cost_report_url import CostReportUrl
+from .cost_report_settings_aggregate_by import CostReportSettingsAggregateBy
 from .cost_report_settings import CostReportSettings
 from .cost_report import CostReport
 from .cost_providers_get_parameters_query import CostProvidersGetParametersQuery
@@ -354,6 +377,7 @@ from .cost_provider_accounts import CostProviderAccounts
 from .cost_provider_account import CostProviderAccount
 from .cost_provider import CostProvider, CostProviderModel
 from .cost_partial import CostPartial
+from .cost_count import CostCount
 from .cost_alerts_cost_alert_token_events_get_parameters_query import CostAlertsCostAlertTokenEventsGetParametersQuery
 from .cost_alerts import CostAlerts
 from .cost_alert_events import CostAlertEvents
@@ -363,6 +387,7 @@ from .cost import Cost
 from .cloudwatch_fields_stat import CloudwatchFieldsStat
 from .cloudwatch_fields import CloudwatchFields
 from .cloudwatch_dimension import CloudwatchDimension
+from .chart_settings_y_axis_dimension import ChartSettingsYAxisDimension
 from .chart_settings import ChartSettings
 from .canvases_get_parameters_query import CanvasesGetParametersQuery
 from .canvases import Canvases
@@ -370,13 +395,17 @@ from .canvas_table import CanvasTable
 from .canvas_data import CanvasData
 from .canvas import Canvas
 from .business_metrics_get_parameters_query import BusinessMetricsGetParametersQuery
+from .business_metrics_business_metric_token_values_get_parameters_query_date_bin import BusinessMetricsBusinessMetricTokenValuesGetParametersQueryDateBin
 from .business_metrics_business_metric_token_values_get_parameters_query import BusinessMetricsBusinessMetricTokenValuesGetParametersQuery
 from .business_metrics_business_metric_token_values_delete_parameters_query import BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery
+from .business_metrics_business_metric_token_labels_get_parameters_query import BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery
 from .business_metrics_business_metric_token_forecasted_values_get_parameters_query import BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery
 from .business_metrics import BusinessMetrics
 from .business_metric_values_delete_response import BusinessMetricValuesDeleteResponse
 from .business_metric_values import BusinessMetricValues
 from .business_metric_value import BusinessMetricValue
+from .business_metric_labels import BusinessMetricLabels
+from .business_metric_label import BusinessMetricLabel
 from .business_metric_import_type import BusinessMetricImportType
 from .business_metric import BusinessMetric
 from .business_information_metadata import BusinessInformationMetadata
@@ -489,15 +518,19 @@ __all__ = [
     "BusinessInformationMetadata",
     "BusinessMetric",
     "BusinessMetricImportType",
+    "BusinessMetricLabel",
+    "BusinessMetricLabels",
     "BusinessMetricValue",
     "BusinessMetricValues",
     "BusinessMetricValuesDeleteResponse",
     "BusinessMetrics",
     "BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery",
+    "BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery",
     "BusinessMetricsBusinessMetricTokenValuesCsvPutRequest1BusinessMetricsBusinessMetricTokenValuesCsvPutRequest",
     "BusinessMetricsBusinessMetricTokenValuesCsvPutRequestBusinessMetricsBusinessMetricTokenValuesCsvPutRequest",
     "BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery",
     "BusinessMetricsBusinessMetricTokenValuesGetParametersQuery",
+    "BusinessMetricsBusinessMetricTokenValuesGetParametersQueryDateBin",
     "BusinessMetricsGetParametersQuery",
     "Canvas",
     "CanvasData",
@@ -505,6 +538,7 @@ __all__ = [
     "Canvases",
     "CanvasesGetParametersQuery",
     "ChartSettings",
+    "ChartSettingsYAxisDimension",
     "CloudwatchDimension",
     "CloudwatchFields",
     "CloudwatchFieldsStat",
@@ -514,6 +548,7 @@ __all__ = [
     "CostAlertEvents",
     "CostAlerts",
     "CostAlertsCostAlertTokenEventsGetParametersQuery",
+    "CostCount",
     "CostPartial",
     "CostProvider",
     "CostProviderAccount",
@@ -525,6 +560,7 @@ __all__ = [
     "CostProvidersGetParametersQuery",
     "CostReport",
     "CostReportSettings",
+    "CostReportSettingsAggregateBy",
     "CostReportUrl",
     "CostReports",
     "CostReportsCostReportTokenForecastedCostsGetParametersQuery",
@@ -537,6 +573,7 @@ __all__ = [
     "CostsGetParametersQuery",
     "CostsGetParametersQueryDateBin",
     "CostsGetParametersQueryOrder",
+    "CostsGetParametersQuerySettingsAggregateBy",
     "CreateAccessGrant",
     "CreateAccessGrantAccess",
     "CreateAnomalyNotification",
@@ -561,9 +598,11 @@ __all__ = [
     "CreateBusinessMetricCloudwatchFields",
     "CreateBusinessMetricCloudwatchFieldsDimension",
     "CreateBusinessMetricCostReportTokensWithMetadatum",
+    "CreateBusinessMetricCostReportTokensWithMetadatumCalculationType",
     "CreateBusinessMetricCostReportTokensWithMetadatumUnitScale",
     "CreateBusinessMetricDatadogMetricFields",
     "CreateBusinessMetricForecastedValue",
+    "CreateBusinessMetricSnowflakeMetricFields",
     "CreateBusinessMetricValue",
     "CreateCanvas",
     "CreateCostAlert",
@@ -571,14 +610,18 @@ __all__ = [
     "CreateCostExportDateBin",
     "CreateCostExportSchema",
     "CreateCostExportSettings",
+    "CreateCostExportSettingsAggregateBy",
     "CreateCostReport",
     "CreateCostReportBusinessMetricTokensWithMetadatum",
+    "CreateCostReportBusinessMetricTokensWithMetadatumCalculationType",
     "CreateCostReportBusinessMetricTokensWithMetadatumUnitScale",
     "CreateCostReportChartSettings",
+    "CreateCostReportChartSettingsYAxisDimension",
     "CreateCostReportChartType",
     "CreateCostReportDateBin",
     "CreateCostReportDateInterval",
     "CreateCostReportSettings",
+    "CreateCostReportSettingsAggregateBy",
     "CreateCustomProviderIntegration",
     "CreateDashboard",
     "CreateDashboardDateBin",
@@ -640,6 +683,8 @@ __all__ = [
     "DataExport",
     "DataExportManifest",
     "DatadogMetricFields",
+    "DefaultForecast",
+    "DefaultForecastKind",
     "DownloadInvoice1DownloadInvoice",
     "DownloadInvoiceDownloadInvoice",
     "DownloadInvoiceFileType",
@@ -682,6 +727,13 @@ __all__ = [
     "ManagedAccounts",
     "ManagedAccountsGetParametersQuery",
     "Me",
+    "NetworkFlowLog",
+    "NetworkFlowLogs",
+    "NetworkFlowLogsGetParametersQuery",
+    "NetworkFlowLogsGetParametersQueryDateInterval",
+    "NetworkFlowLogsGetParametersQueryFlowDirection",
+    "NetworkFlowLogsGetParametersQueryFlowWeight",
+    "NetworkFlowLogsGetParametersQueryGrouping",
     "NetworkFlowReport",
     "NetworkFlowReports",
     "NetworkFlowReportsGetParametersQuery",
@@ -784,22 +836,27 @@ __all__ = [
     "UpdateBusinessMetricCloudwatchFields",
     "UpdateBusinessMetricCloudwatchFieldsDimension",
     "UpdateBusinessMetricCostReportTokensWithMetadatum",
+    "UpdateBusinessMetricCostReportTokensWithMetadatumCalculationType",
     "UpdateBusinessMetricCostReportTokensWithMetadatumUnitScale",
     "UpdateBusinessMetricDatadogMetricFields",
     "UpdateBusinessMetricForecastedValue",
+    "UpdateBusinessMetricSnowflakeMetricFields",
     "UpdateBusinessMetricValue",
     "UpdateCanvas",
     "UpdateCostAlert",
     "UpdateCostReport",
     "UpdateCostReportBusinessMetricTokensWithMetadatum",
+    "UpdateCostReportBusinessMetricTokensWithMetadatumCalculationType",
     "UpdateCostReportBusinessMetricTokensWithMetadatumUnitScale",
     "UpdateCostReportChartSettings",
+    "UpdateCostReportChartSettingsYAxisDimension",
     "UpdateCostReportChartType",
     "UpdateCostReportDateBin",
     "UpdateCostReportDateInterval",
     "UpdateCostReportDefaultForecast",
     "UpdateCostReportDefaultForecastKind",
     "UpdateCostReportSettings",
+    "UpdateCostReportSettingsAggregateBy",
     "UpdateDashboard",
     "UpdateDashboardDateBin",
     "UpdateDashboardDateInterval",
@@ -868,6 +925,7 @@ __all__ = [
     "VirtualTagConfigValueLabelTransformType",
     "VirtualTagConfigValuePercentage",
     "VirtualTagConfigs",
+    "VirtualTagConfigsGetParametersQuery",
     "Workspace",
     "Workspaces",
     "WorkspacesGetParametersQuery",

@@ -4,6 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
+from . import create_cost_export_settings_aggregate_by
 
 
 class CreateCostExportSettings(BaseModel):
@@ -19,5 +20,5 @@ class CreateCostExportSettings(BaseModel):
     include_tax: Annotated[bool, Field(description='Results will include tax.')] = True
     amortize: Annotated[bool, Field(description='Results will amortize.')] = True
     unallocated: Annotated[bool, Field(description='Results will show unallocated costs.')] = False
-    aggregate_by: Annotated[str, Field(description='Results will aggregate by cost or usage.')] = 'cost'
-    show_previous_period: Annotated[bool, Field(description='Results will show previous period costs or usage comparison.')] = True
+    aggregate_by: Annotated[create_cost_export_settings_aggregate_by.CreateCostExportSettingsAggregateBy, Field(description='Results will aggregate by cost, usage, or count.')] = create_cost_export_settings_aggregate_by.CreateCostExportSettingsAggregateBy.cost
+    show_previous_period: Annotated[bool, Field(description='Results will show previous period cost, usage, or count comparison.')] = True

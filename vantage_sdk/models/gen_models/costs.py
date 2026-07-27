@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import cost, cost_partial, links as links_1, usage_partial
+from . import cost, cost_count, cost_partial, links as links_1, usage_partial
 
 
 class Costs(BaseModel):
@@ -18,4 +18,6 @@ class Costs(BaseModel):
     links: links_1.Links | None = None
     total_cost: cost_partial.CostPartial
     total_usage: Annotated[Sequence[usage_partial.UsagePartial] | None, Field(description='The sum of all usage for the CostReport for the requested period, rounded to 2 decimal places, grouped by usage unit.')] = None
+    total_count: Annotated[int | None, Field(description="The sum of the date-binned counts. Present when settings.aggregate_by is 'count'.")] = None
+    counts: Annotated[Sequence[cost_count.CostCount] | None, Field(description="Distinct Group By permutation counts for the full requested period, unaffected by page and limit. Bins without cost are omitted. Present when settings.aggregate_by is 'count'.")] = None
     costs: Sequence[cost.Cost]

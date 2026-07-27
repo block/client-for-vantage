@@ -2,8 +2,11 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
-from pydantic import BaseModel, ConfigDict
+from collections.abc import Sequence
+from . import business_metrics_business_metric_token_values_get_parameters_query_date_bin
 
 
 class BusinessMetricsBusinessMetricTokenValuesGetParametersQuery(BaseModel):
@@ -11,5 +14,7 @@ class BusinessMetricsBusinessMetricTokenValuesGetParametersQuery(BaseModel):
         populate_by_name=True,
     )
     page: int | None = None
-    limit: int | None = None
+    limit: Annotated[int | None, Field(ge=1, le=5000)] = None
     start_date: date | None = None
+    label_values: Sequence[str] | None = None
+    date_bin: business_metrics_business_metric_token_values_get_parameters_query_date_bin.BusinessMetricsBusinessMetricTokenValuesGetParametersQueryDateBin | None = None

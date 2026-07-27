@@ -2,7 +2,8 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel, ConfigDict
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BusinessMetricsGetParametersQuery(BaseModel):
@@ -10,4 +11,4 @@ class BusinessMetricsGetParametersQuery(BaseModel):
         populate_by_name=True,
     )
     page: int | None = None
-    limit: int | None = None
+    limit: Annotated[int | None, Field(ge=1, le=5000)] = None

@@ -2,8 +2,9 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
-from pydantic import BaseModel, ConfigDict
 
 
 class BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery(BaseModel):
@@ -11,5 +12,5 @@ class BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery(BaseM
         populate_by_name=True,
     )
     page: int | None = None
-    limit: int | None = None
+    limit: Annotated[int | None, Field(ge=1, le=5000)] = None
     start_date: date | None = None

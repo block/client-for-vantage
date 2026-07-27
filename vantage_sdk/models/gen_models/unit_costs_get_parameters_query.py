@@ -2,7 +2,8 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel, ConfigDict
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
 from . import unit_costs_get_parameters_query_date_bin, unit_costs_get_parameters_query_order
 
 
@@ -15,5 +16,5 @@ class UnitCostsGetParametersQuery(BaseModel):
     end_date: str | None = None
     date_bin: unit_costs_get_parameters_query_date_bin.UnitCostsGetParametersQueryDateBin | None = None
     order: unit_costs_get_parameters_query_order.UnitCostsGetParametersQueryOrder = unit_costs_get_parameters_query_order.UnitCostsGetParametersQueryOrder.desc
-    limit: int | None = None
+    limit: Annotated[int | None, Field(ge=1, le=1000)] = None
     page: int | None = None

@@ -5,11 +5,12 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
+from . import chart_settings_y_axis_dimension
 
 
 class ChartSettings(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    y_axis_dimension: Annotated[str, Field(description="The metric or measure displayed on the chart’s y-axis. Possible values: 'cost', 'usage'. Defaults to 'cost'.")]
+    y_axis_dimension: Annotated[chart_settings_y_axis_dimension.ChartSettingsYAxisDimension, Field(description="The metric or measure displayed on the chart’s y-axis. Possible values: 'cost', 'usage', 'count'. Defaults to 'cost'.")]
     x_axis_dimension: Annotated[Sequence[str], Field(description="The dimension used to group or label data along the x-axis (e.g., by date, region, or service). NOTE: Only one value is allowed at this time. Defaults to ['date'].")]

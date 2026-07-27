@@ -18,9 +18,9 @@ class UpdateNetworkFlowReport(BaseModel):
     )
     title: Annotated[str | None, Field(description='The title of the NetworkFlowReport.')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the NetworkFlowReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
-    start_date: Annotated[date | None, Field(description="The start date of the NetworkFlowReport. YYYY-MM-DD formatted. Incompatible with 'date_interval' parameter.")] = None
-    end_date: Annotated[date | None, Field(description="The end date of the NetworkFlowReport. YYYY-MM-DD formatted. Incompatible with 'date_interval' parameter.")] = None
-    date_interval: Annotated[update_network_flow_report_date_interval.UpdateNetworkFlowReportDateInterval | None, Field(description="The date interval of the NetworkFlowReport. Unless 'custom' is used, this is incompatible with 'start_date' and 'end_date' parameters. Defaults to 'last_7_days'.")] = None
+    start_date: Annotated[date | None, Field(description='The start date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
+    end_date: Annotated[date | None, Field(description='The end date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
+    date_interval: Annotated[update_network_flow_report_date_interval.UpdateNetworkFlowReportDateInterval | None, Field(description="The date interval of the NetworkFlowReport. Dates are used only for the 'custom' interval. Defaults to 'last_7_days'.")] = None
     groupings: Annotated[Sequence[update_network_flow_report_grouping.UpdateNetworkFlowReportGrouping] | None, Field(description='Grouping values for aggregating data on the NetworkFlowReport. Valid groupings: account_id, az_id, dstaddr, dsthostname, flow_direction, interface_id, instance_id, peer_resource_uuid, peer_account_id, peer_vpc_id, peer_region, peer_az_id, peer_subnet_id, peer_interface_id, peer_instance_id, region, resource_uuid, srcaddr, srchostname, subnet_id, traffic_category, traffic_path, vpc_id.')] = None
     flow_direction: Annotated[update_network_flow_report_flow_direction.UpdateNetworkFlowReportFlowDirection | None, Field(description='The flow direction of the NetworkFlowReport.')] = None
     flow_weight: Annotated[update_network_flow_report_flow_weight.UpdateNetworkFlowReportFlowWeight | None, Field(description='The dimension by which the logs in the report are sorted. Defaults to costs.')] = None

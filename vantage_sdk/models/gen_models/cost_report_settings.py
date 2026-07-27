@@ -4,6 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
+from . import cost_report_settings_aggregate_by
 
 
 class CostReportSettings(BaseModel):
@@ -19,6 +20,6 @@ class CostReportSettings(BaseModel):
     include_tax: Annotated[bool | None, Field(description='Report will include tax.')] = True
     amortize: Annotated[bool | None, Field(description='Report will amortize.')] = True
     unallocated: Annotated[bool | None, Field(description='Report will show unallocated costs.')] = False
-    aggregate_by: Annotated[str | None, Field(description='Report will aggregate by cost or usage.')] = 'cost'
-    show_previous_period: Annotated[bool | None, Field(description='Report will show previous period costs or usage comparison.')] = True
+    aggregate_by: Annotated[cost_report_settings_aggregate_by.CostReportSettingsAggregateBy | None, Field(description='Report will aggregate by cost, usage, or count.')] = cost_report_settings_aggregate_by.CostReportSettingsAggregateBy.cost
+    show_previous_period: Annotated[bool | None, Field(description='Report will show previous period cost, usage, or count comparison.')] = True
     complete_period: Annotated[bool | None, Field(description='Report will restrict date ranges to completed periods only.')] = False
