@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import costs_get_parameters_query_date_bin, costs_get_parameters_query_order
+from . import costs_get_parameters_query_date_bin, costs_get_parameters_query_order, costs_get_parameters_query_settings_aggregate_by
 
 
 class CostsGetParametersQuery(BaseModel):
@@ -28,5 +28,5 @@ class CostsGetParametersQuery(BaseModel):
     settings_include_tax_: Annotated[bool, Field(alias='settings[include_tax]')] = True
     settings_amortize_: Annotated[bool, Field(alias='settings[amortize]')] = True
     settings_unallocated_: Annotated[bool, Field(alias='settings[unallocated]')] = False
-    settings_aggregate_by_: Annotated[str, Field(alias='settings[aggregate_by]')] = 'cost'
+    settings_aggregate_by_: Annotated[costs_get_parameters_query_settings_aggregate_by.CostsGetParametersQuerySettingsAggregateBy, Field(alias='settings[aggregate_by]')] = costs_get_parameters_query_settings_aggregate_by.CostsGetParametersQuerySettingsAggregateBy.cost
     settings_show_previous_period_: Annotated[bool, Field(alias='settings[show_previous_period]')] = True

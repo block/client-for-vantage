@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import create_business_metric_cloudwatch_fields, create_business_metric_cost_report_tokens_with_metadatum, create_business_metric_datadog_metric_fields, create_business_metric_forecasted_value, create_business_metric_value
+from . import create_business_metric_cloudwatch_fields, create_business_metric_cost_report_tokens_with_metadatum, create_business_metric_datadog_metric_fields, create_business_metric_forecasted_value, create_business_metric_snowflake_metric_fields, create_business_metric_value
 
 
 class CreateBusinessMetric(BaseModel):
@@ -21,3 +21,4 @@ class CreateBusinessMetric(BaseModel):
     forecasted_values: Annotated[Sequence[create_business_metric_forecasted_value.CreateBusinessMetricForecastedValue] | None, Field(description='The dates, amounts, and (optional) labels for forecasted BusinessMetric values.')] = None
     datadog_metric_fields: Annotated[create_business_metric_datadog_metric_fields.CreateBusinessMetricDatadogMetricFields | None, Field(description='Datadog metric configuration fields')] = None
     cloudwatch_fields: Annotated[create_business_metric_cloudwatch_fields.CreateBusinessMetricCloudwatchFields | None, Field(description='Cloudwatch configuration fields.')] = None
+    snowflake_metric_fields: Annotated[create_business_metric_snowflake_metric_fields.CreateBusinessMetricSnowflakeMetricFields | None, Field(description='Snowflake metric configuration fields.')] = None

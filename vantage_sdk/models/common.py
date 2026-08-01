@@ -43,6 +43,7 @@ from vantage_sdk.models.gen_models import (
     create_unit_costs_export as create_unit_costs_export_model,
     data_export as data_export_model,
     data_export_manifest as data_export_manifest_model,
+    default_forecast as default_forecast_model,
     create_virtual_tag_config_value as create_virtual_tag_config_value_model,
     virtual_tag_config as virtual_tag_config_model,
     virtual_tag_config_collapsed_tag_key as virtual_tag_config_collapsed_tag_key_model,
@@ -678,7 +679,7 @@ class CostReport(cost_report_model.CostReport):
     """Extends CostReport to make chart_settings and default_forecast optional"""
 
     chart_settings: chart_settings_model.ChartSettings | None = None  # type: ignore[assignment]
-    default_forecast: Mapping[str, Any] | None = None  # type: ignore[assignment]
+    default_forecast: default_forecast_model.DefaultForecast | None = None  # type: ignore[assignment]
 
 
 class CostReports(cost_reports_model.CostReports):

@@ -4,8 +4,8 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from collections.abc import Sequence
-from . import create_cost_report_business_metric_tokens_with_metadatum_unit_scale
+from collections.abc import Mapping, Sequence
+from . import create_cost_report_business_metric_tokens_with_metadatum_calculation_type, create_cost_report_business_metric_tokens_with_metadatum_unit_scale
 
 
 class CreateCostReportBusinessMetricTokensWithMetadatum(BaseModel):
@@ -14,4 +14,7 @@ class CreateCostReportBusinessMetricTokensWithMetadatum(BaseModel):
     )
     business_metric_token: Annotated[str, Field(description='The token of the BusinessMetric to attach to the CostReport.')]
     unit_scale: Annotated[create_cost_report_business_metric_tokens_with_metadatum_unit_scale.CreateCostReportBusinessMetricTokensWithMetadatumUnitScale, Field(description="Determines the scale of the BusinessMetric's values within the CostReport.")] = create_cost_report_business_metric_tokens_with_metadatum_unit_scale.CreateCostReportBusinessMetricTokensWithMetadatumUnitScale.per_unit
+    calculation_type: Annotated[create_cost_report_business_metric_tokens_with_metadatum_calculation_type.CreateCostReportBusinessMetricTokensWithMetadatumCalculationType, Field(description='The calculation type applied when this BusinessMetric is used in the CostReport.')] = create_cost_report_business_metric_tokens_with_metadatum_calculation_type.CreateCostReportBusinessMetricTokensWithMetadatumCalculationType.unit_cost
+    label: Annotated[str | None, Field(description='Optional custom display name for this BusinessMetric on the CostReport. When omitted, a default is derived from the calculation type.')] = None
     label_filter: Annotated[Sequence[str] | None, Field(description='Include only values with these labels in the CostReport.')] = None
+    label_filters: Annotated[Mapping[str, Sequence[str]] | None, Field(description='Include only ClickHouse BusinessMetric values matching every label key and one of its values.', examples=[{'team': ['platform', 'finops'], 'environment': ['production']}])] = None

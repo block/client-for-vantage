@@ -9,5 +9,6 @@ class CreateNetworkFlowReportFlowDirection(StrEnum):
     """
     The flow direction of the NetworkFlowReport.
     """
+    all = 'all'
     ingress = 'ingress'
     egress = 'egress'

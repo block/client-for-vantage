@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
+from . import update_cost_report_chart_settings_y_axis_dimension
 
 
 class UpdateCostReportChartSettings(BaseModel):
@@ -15,4 +16,4 @@ class UpdateCostReportChartSettings(BaseModel):
         populate_by_name=True,
     )
     x_axis_dimension: Annotated[Sequence[str] | None, Field(description="The dimension used to group or label data along the x-axis (e.g., by date, region, or service). NOTE: Only one value is allowed at this time. Defaults to ['date'].")] = None
-    y_axis_dimension: Annotated[str | None, Field(description="The metric or measure displayed on the chart’s y-axis. Possible values: 'cost', 'usage'. Defaults to 'cost'.")] = None
+    y_axis_dimension: Annotated[update_cost_report_chart_settings_y_axis_dimension.UpdateCostReportChartSettingsYAxisDimension | None, Field(description="The metric or measure displayed on the chart’s y-axis. Possible values: 'cost', 'usage', 'count'. Defaults to 'cost'.")] = None

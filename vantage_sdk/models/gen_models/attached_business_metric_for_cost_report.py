@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from . import attached_business_metric_for_cost_report_calculation_type, attached_business_metric_for_cost_report_unit_scale
 
 
@@ -15,4 +15,6 @@ class AttachedBusinessMetricForCostReport(BaseModel):
     business_metric_token: Annotated[str, Field(description="The token of the BusinessMetric that's attached to the CostReport.", examples=['bsnss_mtrc_1234'])]
     unit_scale: Annotated[attached_business_metric_for_cost_report_unit_scale.AttachedBusinessMetricForCostReportUnitScale, Field(description="Determines the scale of the BusinessMetric's values within a particular CostReport.", examples=['per_hundred'])]
     calculation_type: Annotated[attached_business_metric_for_cost_report_calculation_type.AttachedBusinessMetricForCostReportCalculationType, Field(description='The calculation type applied when this BusinessMetric is used in the CostReport.', examples=['unit_cost'])]
+    label: Annotated[str | None, Field(description='Optional custom display name for this BusinessMetric on the CostReport. When omitted, a default is derived from the calculation type.', examples=['Gross Margin'])] = None
     label_filter: Annotated[Sequence[str] | None, Field(description='The labels that the BusinessMetric is filtered by within a particular CostReport.')] = None
+    label_filters: Annotated[Mapping[str, Sequence[str]] | None, Field(description='The ClickHouse BusinessMetric label filters applied within a CostReport. Each key is required and values within a key are alternatives.', examples=[{'team': ['platform', 'finops'], 'environment': ['production']}])] = None

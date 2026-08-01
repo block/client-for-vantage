@@ -7,8 +7,10 @@ from enum import StrEnum
 
 class UpdateNetworkFlowReportDateInterval(StrEnum):
     """
-    The date interval of the NetworkFlowReport. Unless 'custom' is used, this is incompatible with 'start_date' and 'end_date' parameters. Defaults to 'last_7_days'.
+    The date interval of the NetworkFlowReport. Dates are used only for the 'custom' interval. Defaults to 'last_7_days'.
     """
     last_3_days = 'last_3_days'
     last_7_days = 'last_7_days'
+    last_14_days = 'last_14_days'
+    last_30_days = 'last_30_days'
     custom = 'custom'

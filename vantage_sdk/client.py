@@ -37,9 +37,12 @@ from vantage_sdk.models import (
     BudgetsBudgetTokenGetParametersQuery,
     BudgetTokenParams,
     BusinessMetric,
+    BusinessMetricLabels,
     BusinessMetrics,
+    BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesGetParametersQuery,
+    BusinessMetricsGetParametersQuery,
     BusinessMetricTokenParams,
     BusinessMetricValues,
     BusinessMetricValuesDeleteResponse,
@@ -115,8 +118,11 @@ from vantage_sdk.models import (
     ManagedAccounts,
     ManagedAccountTokenParams,
     Me,
+    NetworkFlowLogs,
+    NetworkFlowLogsGetParametersQuery,
     NetworkFlowReport,
     NetworkFlowReports,
+    NetworkFlowReportsGetParametersQuery,
     NetworkFlowReportTokenParams,
     Price,
     Prices,
@@ -165,6 +171,7 @@ from vantage_sdk.models import (
     UpdateAsyncVirtualTagConfig,
     UpdateBillingRule,
     UpdateBudget,
+    UpdateBusinessMetric,
     UpdateCanvas,
     UpdateCostAlert,
     UpdateCostReport,
@@ -190,6 +197,7 @@ from vantage_sdk.models import (
     UserTokenParams,
     VirtualTagConfig,
     VirtualTagConfigs,
+    VirtualTagConfigsGetParametersQuery,
     VirtualTagConfigStatus,
     VirtualTagTokenParams,
     Workspace,
@@ -271,7 +279,13 @@ class VantageSDK:
         response.raise_for_status()
         return response.json()
 
-    def _get_paginated(self, endpoint: str, params: dict[str, Any] | BaseModel | None = None) -> dict[str, Any]:
+    def _get_paginated(
+        self,
+        endpoint: str,
+        params: dict[str, Any] | BaseModel | None = None,
+        *,
+        collection_key: str | None = None,
+    ) -> dict[str, Any]:
         """Fetch paginated results automatically, combining all pages into a single response dictionary
 
         Logic:
@@ -282,6 +296,7 @@ class VantageSDK:
         Args:
             endpoint: The API endpoint to fetch data from
             params: Optional query parameters for the request, can be a Pydantic model or dict
+            collection_key: Optional response key to concatenate while preserving other response metadata
 
         Returns:
             The combined response from all pages
@@ -290,7 +305,7 @@ class VantageSDK:
         if params is None:
             params = {}
         elif isinstance(params, BaseModel):
-            params = params.model_dump(mode="json", exclude_none=True, exclude_defaults=True)
+            params = params.model_dump(mode="json", by_alias=True, exclude_none=True, exclude_defaults=True)
 
         first_response = self._get(endpoint, {**params, "page": 1})
 
@@ -310,7 +325,7 @@ class VantageSDK:
             return first_response
 
         # Identify keys to merge (excluding links)
-        response_keys = [k for k in first_response if k != "links"]
+        response_keys = [collection_key] if collection_key else [k for k in first_response if k != "links"]
 
         # GET /costs is the only paginated endpoint that returns None for total_pages
         # since Vantage doesn't provide the total number of pages
@@ -625,7 +640,7 @@ class VantageSDK:
             UserWarning,
             2,
         )
-        paginated_data = self._get_paginated("costs", cost_report_params)
+        paginated_data = self._get_paginated("costs", cost_report_params, collection_key="costs")
         return Costs.model_validate(paginated_data)
 
     # ---- Data Export APIs ----
@@ -740,9 +755,14 @@ class VantageSDK:
         data = self._get(f"virtual_tag_configs/{virtual_tag_value}")
         return VirtualTagConfig.model_validate(data)
 
-    def get_all_virtual_tags(self) -> VirtualTagConfigs:
+    def get_all_virtual_tags(
+        self, query_params: VirtualTagConfigsGetParametersQuery | None = None
+    ) -> VirtualTagConfigs:
         """
         Get all custom tags - GET /virtual_tag_configs
+
+        Args:
+            query_params: Optional query parameters for filtering custom tags
 
         Returns:
             A list of VirtualTagConfig objects
@@ -750,7 +770,7 @@ class VantageSDK:
         Note:
             This method is not paginated
         """
-        data = self._get("virtual_tag_configs")
+        data = self._get("virtual_tag_configs", query_params)
         return VirtualTagConfigs.model_validate(data)
 
     def get_virtual_tag_processing_status(
@@ -933,14 +953,19 @@ class VantageSDK:
         data = self._post("business_metrics", new_business_metric)
         return BusinessMetric.model_validate(data)
 
-    def get_all_business_metrics(self) -> BusinessMetrics:
+    def get_all_business_metrics(
+        self, query_params: BusinessMetricsGetParametersQuery | None = None
+    ) -> BusinessMetrics:
         """
         Get all business metrics - GET /business_metrics
+
+        Args:
+            query_params: Optional query parameters for fetching business metrics
 
         Returns:
             A BusinessMetrics object which is a list of BusinessMetric objects
         """
-        paginated_data = self._get_paginated("business_metrics")
+        paginated_data = self._get_paginated("business_metrics", query_params)
         return BusinessMetrics.model_validate(paginated_data)
 
     def get_business_metric(self, business_metric_token: BusinessMetricTokenParams) -> BusinessMetric:
@@ -971,7 +996,7 @@ class VantageSDK:
         return self._delete(f"business_metrics/{business_metric_token_value}")
 
     def update_business_metric(
-        self, business_metric_token: BusinessMetricTokenParams, business_metric_update: CreateBusinessMetric
+        self, business_metric_token: BusinessMetricTokenParams, business_metric_update: UpdateBusinessMetric
     ) -> BusinessMetric:
         """
         Update a specific business metric - PUT /business_metrics/{business_metric_token}
@@ -1007,6 +1032,25 @@ class VantageSDK:
             f"business_metrics/{business_metric_token_value}/values", business_metric_token_values
         )
         return BusinessMetricValues.model_validate(paginated_data)
+
+    def get_business_metric_labels(
+        self,
+        business_metric_token_params: BusinessMetricTokenParams,
+        query_params: BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery | None = None,
+    ) -> BusinessMetricLabels:
+        """
+        Get labels for a specific business metric - GET /business_metrics/{business_metric_token}/labels
+
+        Args:
+            business_metric_token_params: The token of the business metric to retrieve labels for
+            query_params: Optional pagination parameters
+
+        Returns:
+            The labels associated with the business metric
+        """
+        business_metric_token = business_metric_token_params.business_metric_token
+        paginated_data = self._get_paginated(f"business_metrics/{business_metric_token}/labels", query_params)
+        return BusinessMetricLabels.model_validate(paginated_data)
 
     def delete_business_metric_values(
         self,
@@ -2593,15 +2637,33 @@ class VantageSDK:
 
     # ---- Network Flow Reports APIs ----
 
-    def get_all_network_flow_reports(self) -> NetworkFlowReports:
+    def get_all_network_flow_reports(
+        self, query_params: NetworkFlowReportsGetParametersQuery | None = None
+    ) -> NetworkFlowReports:
         """
         Get all network flow reports - GET /network_flow_reports
+
+        Args:
+            query_params: Optional query parameters for filtering network flow reports
 
         Returns:
             A NetworkFlowReports object which is a list of NetworkFlowReport objects
         """
-        paginated_data = self._get_paginated("network_flow_reports")
+        paginated_data = self._get_paginated("network_flow_reports", query_params)
         return NetworkFlowReports.model_validate(paginated_data)
+
+    def get_network_flow_logs(self, query_params: NetworkFlowLogsGetParametersQuery) -> NetworkFlowLogs:
+        """
+        Get network flow logs - GET /network_flow_logs
+
+        Args:
+            query_params: Parameters for filtering and grouping network flow logs
+
+        Returns:
+            The matching network flow logs and sampling metadata
+        """
+        paginated_data = self._get_paginated("network_flow_logs", query_params, collection_key="network_flow_logs")
+        return NetworkFlowLogs.model_validate(paginated_data)
 
     # ---- Tags APIs ----
 
