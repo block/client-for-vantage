@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [2.2.0](https://github.com/block/client-for-vantage/compare/v2.1.1...v2.2.0) (2026-08-01)
+
+
+### Features
+
+* expose new API parameters in SDK methods ([cf46e0a](https://github.com/block/client-for-vantage/commit/cf46e0a1cfbe4148ad50390512032b92e6fb6df8))
+* expose new OpenAPI resources in SDK ([1cefec1](https://github.com/block/client-for-vantage/commit/1cefec108a1eff54ee8aaa90eefda06ba25b997e))
+
 ## [2.1.1](https://github.com/block/client-for-vantage/compare/v2.1.0...v2.1.1) (2026-06-11)
 
 
