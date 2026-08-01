@@ -17,8 +17,10 @@ from vantage_sdk.models import (
     BudgetAlertTokenParams,
     BudgetsBudgetTokenGetParametersQuery,
     BudgetTokenParams,
+    BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesDeleteParametersQuery,
     BusinessMetricsBusinessMetricTokenValuesGetParametersQuery,
+    BusinessMetricsGetParametersQuery,
     BusinessMetricTokenParams,
     BusinessMetricValues,
     BusinessMetricValuesDeleteResponse,
@@ -32,6 +34,7 @@ from vantage_sdk.models import (
     DashboardTokenParams,
     DataExport,
     DataExportTokenParams,
+    DefaultForecast,
     UpdateCostReportDateBin,
     CreateUnitCostsExportDateBin,
     UpdateCostReportDateInterval,
@@ -39,8 +42,9 @@ from vantage_sdk.models import (
     FolderTokenParams,
     KubernetesEfficiencyReportTokenParams,
     ManagedAccountTokenParams,
+    NetworkFlowLogsGetParametersQuery,
     NetworkFlowReportTokenParams,
-
+    NetworkFlowReportsGetParametersQuery,
     ProductIdParams,
     ProductPriceIdParams,
     ResourceReportTokenParams,
@@ -115,6 +119,7 @@ def test_get_cost_report(vantage_sdk, cost_report_fixture):
     cost_report = vantage_sdk.get_cost_report(params)
     assert cost_report is not None
     assert cost_report.title == cost_report_fixture.title
+    assert cost_report.default_forecast is None or isinstance(cost_report.default_forecast, DefaultForecast)
 
 
 def test_get_all_cost_reports(vantage_sdk):
@@ -250,6 +255,21 @@ def test_get_all_business_metrics(vantage_sdk, business_metric_fixture):
     assert metric.title is not None
 
 
+def test_get_all_business_metrics_with_query_params(vantage_sdk, monkeypatch):
+    query_params = BusinessMetricsGetParametersQuery(limit=100)
+
+    def get_paginated(endpoint, params):
+        assert endpoint == "business_metrics"
+        assert params is query_params
+        return {"business_metrics": []}
+
+    monkeypatch.setattr(vantage_sdk, "_get_paginated", get_paginated)
+
+    business_metrics = vantage_sdk.get_all_business_metrics(query_params)
+
+    assert business_metrics.business_metrics == []
+
+
 def test_get_business_metric(business_metric_fixture, vantage_sdk):
     business_metric_token = business_metric_fixture.token
     params = BusinessMetricTokenParams(business_metric_token=business_metric_token)
@@ -279,6 +299,22 @@ def test_get_business_metric_values(vantage_sdk, business_metric_fixture):
 
     # This can't truly be tested unless a csv file is uploaded to the business metric, for now we just check if the object has the expected attribute
     assert hasattr(business_metric_values, "values")
+
+
+def test_get_business_metric_labels(vantage_sdk, monkeypatch):
+    token_params = BusinessMetricTokenParams(business_metric_token="bsnss_mtrc_test")
+    query_params = BusinessMetricsBusinessMetricTokenLabelsGetParametersQuery(limit=100)
+
+    def get_paginated(endpoint, params):
+        assert endpoint == "business_metrics/bsnss_mtrc_test/labels"
+        assert params is query_params
+        return {"labels": [{"value": "baseline"}]}
+
+    monkeypatch.setattr(vantage_sdk, "_get_paginated", get_paginated)
+
+    labels = vantage_sdk.get_business_metric_labels(token_params, query_params)
+
+    assert "baseline" in [label.value for label in labels.labels]
 
 
 def test_delete_business_metric_values(vantage_sdk, business_metric_fixture):
@@ -830,6 +866,72 @@ def test_get_all_network_flow_reports(vantage_sdk):
         report = network_flow_reports.network_flow_reports[0]
         assert report.token is not None
         assert report.title is not None
+
+
+def test_get_all_network_flow_reports_with_query_params(vantage_sdk, monkeypatch):
+    query_params = NetworkFlowReportsGetParametersQuery(q="test report")
+
+    def get_paginated(endpoint, params):
+        assert endpoint == "network_flow_reports"
+        assert params is query_params
+        return {"network_flow_reports": []}
+
+    monkeypatch.setattr(vantage_sdk, "_get_paginated", get_paginated)
+
+    network_flow_reports = vantage_sdk.get_all_network_flow_reports(query_params)
+
+    assert network_flow_reports.network_flow_reports == []
+
+
+@pytest.mark.skip(reason="Test workspace does not have a Network Flow Log integration")
+def test_get_network_flow_logs(vantage_sdk, network_flow_report_fixture):
+    query_params = NetworkFlowLogsGetParametersQuery(network_flow_report_token=network_flow_report_fixture.token)
+    network_flow_logs = vantage_sdk.get_network_flow_logs(query_params)
+
+    assert network_flow_logs is not None
+    assert network_flow_logs.network_flow_logs is not None
+
+
+def test_get_network_flow_logs_response(vantage_sdk, monkeypatch):
+    query_params = NetworkFlowLogsGetParametersQuery(network_flow_report_token="ntflw_lg_rprt_test")
+
+    def get_paginated(endpoint, params, *, collection_key):
+        assert endpoint == "network_flow_logs"
+        assert params is query_params
+        assert collection_key == "network_flow_logs"
+        return {"flow_weight": "costs", "sampling": {}, "network_flow_logs": []}
+
+    monkeypatch.setattr(vantage_sdk, "_get_paginated", get_paginated)
+
+    network_flow_logs = vantage_sdk.get_network_flow_logs(query_params)
+
+    assert network_flow_logs.flow_weight == "costs"
+    assert network_flow_logs.network_flow_logs == []
+
+
+def test_paginated_collection_preserves_response_metadata(vantage_sdk, monkeypatch):
+    responses = {
+        1: {
+            "links": {"next": "https://api.vantage.sh/v2/costs?page=2"},
+            "total_count": 2,
+            "counts": [{"accrued_at": "2026-07-01", "count": 2}],
+            "costs": [{"page": 1}],
+        },
+        2: {
+            "links": {},
+            "total_count": 2,
+            "counts": [{"accrued_at": "2026-07-01", "count": 2}],
+            "costs": [{"page": 2}],
+        },
+    }
+
+    monkeypatch.setattr(vantage_sdk, "_get", lambda _endpoint, params: responses[params["page"]])
+
+    result = vantage_sdk._get_paginated("costs", collection_key="costs")
+
+    assert result["total_count"] == 2
+    assert result["counts"] == [{"accrued_at": "2026-07-01", "count": 2}]
+    assert result["costs"] == [{"page": 1}, {"page": 2}]
 
 
 def test_get_network_flow_report(vantage_sdk, network_flow_report_fixture):
