@@ -45,9 +45,13 @@ from .update_tag import UpdateTag
 from .update_sso_connection_for_managed_account import UpdateSsoConnectionForManagedAccount
 from .update_segment_report_settings import UpdateSegmentReportSettings
 from .update_segment import UpdateSegment
+from .update_scenario_model_period_amount_type import UpdateScenarioModelPeriodAmountType
+from .update_scenario_model_period import UpdateScenarioModelPeriod
+from .update_scenario_model import UpdateScenarioModel
 from .update_saved_filter import UpdateSavedFilter
 from .update_resource_report import UpdateResourceReport
 from .update_report_notification import UpdateReportNotification
+from .update_report_forecast import UpdateReportForecast
 from .update_recommendation_view import UpdateRecommendationView
 from .update_network_flow_report_grouping import UpdateNetworkFlowReportGrouping
 from .update_network_flow_report_flow_weight import UpdateNetworkFlowReportFlowWeight
@@ -156,6 +160,11 @@ from .segments_get_parameters_query import SegmentsGetParametersQuery
 from .segments import Segments
 from .segment_report_settings import SegmentReportSettings
 from .segment import Segment
+from .scenario_models_get_parameters_query import ScenarioModelsGetParametersQuery
+from .scenario_models import ScenarioModels
+from .scenario_model_period_amount_type import ScenarioModelPeriodAmountType
+from .scenario_model_period import ScenarioModelPeriod
+from .scenario_model import ScenarioModel
 from .saved_filters_get_parameters_query import SavedFiltersGetParametersQuery
 from .saved_filters import SavedFilters
 from .saved_filter import SavedFilter
@@ -174,6 +183,9 @@ from .report_notifications import ReportNotifications
 from .report_notification_frequency import ReportNotificationFrequency
 from .report_notification_change import ReportNotificationChange
 from .report_notification import ReportNotification
+from .report_forecasts_get_parameters_query import ReportForecastsGetParametersQuery
+from .report_forecasts import ReportForecasts
+from .report_forecast import ReportForecast
 from .recommendations_recommendation_token_resources_get_parameters_query import RecommendationsRecommendationTokenResourcesGetParametersQuery
 from .recommendations_get_parameters_query_status import RecommendationsGetParametersQueryStatus
 from .recommendations_get_parameters_query_provider_id import RecommendationsGetParametersQueryProviderId
@@ -274,9 +286,13 @@ from .create_sso_connection_for_managed_account_type import CreateSsoConnectionF
 from .create_sso_connection_for_managed_account import CreateSsoConnectionForManagedAccount
 from .create_segment_report_settings import CreateSegmentReportSettings
 from .create_segment import CreateSegment
+from .create_scenario_model_period_amount_type import CreateScenarioModelPeriodAmountType
+from .create_scenario_model_period import CreateScenarioModelPeriod
+from .create_scenario_model import CreateScenarioModel
 from .create_saved_filter import CreateSavedFilter
 from .create_resource_report import CreateResourceReport
 from .create_report_notification import CreateReportNotification
+from .create_report_forecast import CreateReportForecast
 from .create_recommendation_view import CreateRecommendationView
 from .create_network_flow_report_grouping import CreateNetworkFlowReportGrouping
 from .create_network_flow_report_flow_weight import CreateNetworkFlowReportFlowWeight
@@ -650,9 +666,13 @@ __all__ = [
     "CreateNetworkFlowReportFlowWeight",
     "CreateNetworkFlowReportGrouping",
     "CreateRecommendationView",
+    "CreateReportForecast",
     "CreateReportNotification",
     "CreateResourceReport",
     "CreateSavedFilter",
+    "CreateScenarioModel",
+    "CreateScenarioModelPeriod",
+    "CreateScenarioModelPeriodAmountType",
     "CreateSegment",
     "CreateSegmentReportSettings",
     "CreateSsoConnectionForManagedAccount",
@@ -759,6 +779,9 @@ __all__ = [
     "RecommendationsGetParametersQueryProviderId",
     "RecommendationsGetParametersQueryStatus",
     "RecommendationsRecommendationTokenResourcesGetParametersQuery",
+    "ReportForecast",
+    "ReportForecasts",
+    "ReportForecastsGetParametersQuery",
     "ReportNotification",
     "ReportNotificationChange",
     "ReportNotificationFrequency",
@@ -777,6 +800,11 @@ __all__ = [
     "SavedFilter",
     "SavedFilters",
     "SavedFiltersGetParametersQuery",
+    "ScenarioModel",
+    "ScenarioModelPeriod",
+    "ScenarioModelPeriodAmountType",
+    "ScenarioModels",
+    "ScenarioModelsGetParametersQuery",
     "Segment",
     "SegmentReportSettings",
     "Segments",
@@ -885,9 +913,13 @@ __all__ = [
     "UpdateNetworkFlowReportFlowWeight",
     "UpdateNetworkFlowReportGrouping",
     "UpdateRecommendationView",
+    "UpdateReportForecast",
     "UpdateReportNotification",
     "UpdateResourceReport",
     "UpdateSavedFilter",
+    "UpdateScenarioModel",
+    "UpdateScenarioModelPeriod",
+    "UpdateScenarioModelPeriodAmountType",
     "UpdateSegment",
     "UpdateSegmentReportSettings",
     "UpdateSsoConnectionForManagedAccount",
