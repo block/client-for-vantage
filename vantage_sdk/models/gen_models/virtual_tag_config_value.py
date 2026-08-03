@@ -15,6 +15,8 @@ class VirtualTagConfigValue(BaseModel):
     filter: Annotated[str | None, Field(description='The filter VQL for the Value.', examples=["costs.provider = 'aws' AND costs.service = 'Amazon Simple Storage Service'"])]
     name: Annotated[str | None, Field(description='The name of the Value.', examples=['Informatics'])] = None
     business_metric_token: Annotated[str | None, Field(description='The token of the associated BusinessMetric.', examples=['bsnss_mtrc_abc123'])] = None
+    label_key: Annotated[str | None, Field(description='The business metric label key used for this virtual tag value.')] = None
+    label_values: Annotated[Sequence[str] | None, Field(description='Optional business metric label values. An empty array includes every value for the label key.')] = None
     cost_metric: virtual_tag_config_value_cost_metric.VirtualTagConfigValueCostMetric | None = None
     display_name: Annotated[str | None, Field(description='The display name for this allocation value.')] = None
     label_transforms: Annotated[Sequence[virtual_tag_config_value_label_transform.VirtualTagConfigValueLabelTransform], Field(description='Label transforms applied to business metric labels.')]

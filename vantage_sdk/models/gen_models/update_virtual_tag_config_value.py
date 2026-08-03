@@ -15,6 +15,8 @@ class UpdateVirtualTagConfigValue(BaseModel):
     filter: Annotated[str, Field(description='The filter query language to apply to the value. Additional documentation available at https://docs.vantage.sh/vql.')]
     name: Annotated[str | None, Field(description='The name of the value.')] = None
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None
+    label_key: Annotated[str | None, Field(description='The business metric label key used for this virtual tag value.')] = None
+    label_values: Annotated[Sequence[str] | None, Field(description='Optional business metric label values. An empty array includes every value for the label key.')] = None
     display_name: Annotated[str | None, Field(description='The display name for an allocation value (cost_metric or percentages). Invalid when name is set.')] = None
     label_transforms: Sequence[update_virtual_tag_config_value_label_transform.UpdateVirtualTagConfigValueLabelTransform] | None = None
     cost_metric: update_virtual_tag_config_value_cost_metric.UpdateVirtualTagConfigValueCostMetric | None = None
