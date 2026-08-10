@@ -5,11 +5,10 @@ from __future__ import annotations
 from pydantic import BaseModel, ConfigDict
 
 
-class RecommendationViewsGetParametersQuery(BaseModel):
+class ReportForecastsGetParametersQuery(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
+    cost_report_token: str
     page: int | None = None
     limit: int | None = None
-    workspace_token: str | None = None
-    q: str | None = None

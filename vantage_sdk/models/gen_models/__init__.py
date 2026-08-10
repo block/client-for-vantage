@@ -35,7 +35,12 @@ from .update_virtual_tag_config_value_label_transform import UpdateVirtualTagCon
 from .update_virtual_tag_config_value_date_range import UpdateVirtualTagConfigValueDateRange
 from .update_virtual_tag_config_value_cost_metric_aggregation import UpdateVirtualTagConfigValueCostMetricAggregation
 from .update_virtual_tag_config_value_cost_metric import UpdateVirtualTagConfigValueCostMetric
-from .update_virtual_tag_config_value import UpdateVirtualTagConfigValue
+from .update_virtual_tag_config_value1_percentage import UpdateVirtualTagConfigValue1Percentage
+from .update_virtual_tag_config_value1_label_transform_type import UpdateVirtualTagConfigValue1LabelTransformType
+from .update_virtual_tag_config_value1_label_transform import UpdateVirtualTagConfigValue1LabelTransform
+from .update_virtual_tag_config_value1_date_range import UpdateVirtualTagConfigValue1DateRange
+from .update_virtual_tag_config_value1_cost_metric_aggregation import UpdateVirtualTagConfigValue1CostMetricAggregation
+from .update_virtual_tag_config_value1_cost_metric import UpdateVirtualTagConfigValue1CostMetric
 from .update_virtual_tag_config_collapsed_tag_key import UpdateVirtualTagConfigCollapsedTagKey
 from .update_virtual_tag_config import UpdateVirtualTagConfig
 from .update_user import UpdateUser
@@ -45,9 +50,13 @@ from .update_tag import UpdateTag
 from .update_sso_connection_for_managed_account import UpdateSsoConnectionForManagedAccount
 from .update_segment_report_settings import UpdateSegmentReportSettings
 from .update_segment import UpdateSegment
+from .update_scenario_model_period_amount_type import UpdateScenarioModelPeriodAmountType
+from .update_scenario_model_period import UpdateScenarioModelPeriod
+from .update_scenario_model import UpdateScenarioModel
 from .update_saved_filter import UpdateSavedFilter
 from .update_resource_report import UpdateResourceReport
 from .update_report_notification import UpdateReportNotification
+from .update_report_forecast import UpdateReportForecast
 from .update_recommendation_view import UpdateRecommendationView
 from .update_network_flow_report_grouping import UpdateNetworkFlowReportGrouping
 from .update_network_flow_report_flow_weight import UpdateNetworkFlowReportFlowWeight
@@ -156,6 +165,11 @@ from .segments_get_parameters_query import SegmentsGetParametersQuery
 from .segments import Segments
 from .segment_report_settings import SegmentReportSettings
 from .segment import Segment
+from .scenario_models_get_parameters_query import ScenarioModelsGetParametersQuery
+from .scenario_models import ScenarioModels
+from .scenario_model_period_amount_type import ScenarioModelPeriodAmountType
+from .scenario_model_period import ScenarioModelPeriod
+from .scenario_model import ScenarioModel
 from .saved_filters_get_parameters_query import SavedFiltersGetParametersQuery
 from .saved_filters import SavedFilters
 from .saved_filter import SavedFilter
@@ -174,6 +188,9 @@ from .report_notifications import ReportNotifications
 from .report_notification_frequency import ReportNotificationFrequency
 from .report_notification_change import ReportNotificationChange
 from .report_notification import ReportNotification
+from .report_forecasts_get_parameters_query import ReportForecastsGetParametersQuery
+from .report_forecasts import ReportForecasts
+from .report_forecast import ReportForecast
 from .recommendations_recommendation_token_resources_get_parameters_query import RecommendationsRecommendationTokenResourcesGetParametersQuery
 from .recommendations_get_parameters_query_status import RecommendationsGetParametersQueryStatus
 from .recommendations_get_parameters_query_provider_id import RecommendationsGetParametersQueryProviderId
@@ -262,7 +279,12 @@ from .create_virtual_tag_config_value_label_transform import CreateVirtualTagCon
 from .create_virtual_tag_config_value_date_range import CreateVirtualTagConfigValueDateRange
 from .create_virtual_tag_config_value_cost_metric_aggregation import CreateVirtualTagConfigValueCostMetricAggregation
 from .create_virtual_tag_config_value_cost_metric import CreateVirtualTagConfigValueCostMetric
-from .create_virtual_tag_config_value import CreateVirtualTagConfigValue
+from .create_virtual_tag_config_value1_percentage import CreateVirtualTagConfigValue1Percentage
+from .create_virtual_tag_config_value1_label_transform_type import CreateVirtualTagConfigValue1LabelTransformType
+from .create_virtual_tag_config_value1_label_transform import CreateVirtualTagConfigValue1LabelTransform
+from .create_virtual_tag_config_value1_date_range import CreateVirtualTagConfigValue1DateRange
+from .create_virtual_tag_config_value1_cost_metric_aggregation import CreateVirtualTagConfigValue1CostMetricAggregation
+from .create_virtual_tag_config_value1_cost_metric import CreateVirtualTagConfigValue1CostMetric
 from .create_virtual_tag_config_collapsed_tag_key import CreateVirtualTagConfigCollapsedTagKey
 from .create_virtual_tag_config import CreateVirtualTagConfig
 from .create_user_feedback import CreateUserFeedback
@@ -274,9 +296,13 @@ from .create_sso_connection_for_managed_account_type import CreateSsoConnectionF
 from .create_sso_connection_for_managed_account import CreateSsoConnectionForManagedAccount
 from .create_segment_report_settings import CreateSegmentReportSettings
 from .create_segment import CreateSegment
+from .create_scenario_model_period_amount_type import CreateScenarioModelPeriodAmountType
+from .create_scenario_model_period import CreateScenarioModelPeriod
+from .create_scenario_model import CreateScenarioModel
 from .create_saved_filter import CreateSavedFilter
 from .create_resource_report import CreateResourceReport
 from .create_report_notification import CreateReportNotification
+from .create_report_forecast import CreateReportForecast
 from .create_recommendation_view import CreateRecommendationView
 from .create_network_flow_report_grouping import CreateNetworkFlowReportGrouping
 from .create_network_flow_report_flow_weight import CreateNetworkFlowReportFlowWeight
@@ -378,6 +404,7 @@ from .cost_provider_account import CostProviderAccount
 from .cost_provider import CostProvider, CostProviderModel
 from .cost_partial import CostPartial
 from .cost_count import CostCount
+from .cost_alerts_get_parameters_query import CostAlertsGetParametersQuery
 from .cost_alerts_cost_alert_token_events_get_parameters_query import CostAlertsCostAlertTokenEventsGetParametersQuery
 from .cost_alerts import CostAlerts
 from .cost_alert_events import CostAlertEvents
@@ -459,12 +486,16 @@ from .access_grants import AccessGrants
 from .access_grant import AccessGrant
 from .business_metrics_business_metric_token_values_csv_put_request1 import BusinessMetricsBusinessMetricTokenValuesCsvPutRequest as BusinessMetricsBusinessMetricTokenValuesCsvPutRequest1BusinessMetricsBusinessMetricTokenValuesCsvPutRequest
 from .business_metrics_business_metric_token_values_csv_put_request import BusinessMetricsBusinessMetricTokenValuesCsvPutRequest as BusinessMetricsBusinessMetricTokenValuesCsvPutRequestBusinessMetricsBusinessMetricTokenValuesCsvPutRequest
+from .create_virtual_tag_config_value1 import CreateVirtualTagConfigValue as CreateVirtualTagConfigValue1CreateVirtualTagConfigValue
+from .create_virtual_tag_config_value import CreateVirtualTagConfigValue as CreateVirtualTagConfigValueCreateVirtualTagConfigValue
 from .download_invoice1 import DownloadInvoice as DownloadInvoice1DownloadInvoice
 from .download_invoice import DownloadInvoice as DownloadInvoiceDownloadInvoice
 from .exchange_rates_csv_post_request1 import ExchangeRatesCsvPostRequest as ExchangeRatesCsvPostRequest1ExchangeRatesCsvPostRequest
 from .exchange_rates_csv_post_request import ExchangeRatesCsvPostRequest as ExchangeRatesCsvPostRequestExchangeRatesCsvPostRequest
 from .integrations_integration_token_costs_csv_post_request1 import IntegrationsIntegrationTokenCostsCsvPostRequest as IntegrationsIntegrationTokenCostsCsvPostRequest1IntegrationsIntegrationTokenCostsCsvPostRequest
 from .integrations_integration_token_costs_csv_post_request import IntegrationsIntegrationTokenCostsCsvPostRequest as IntegrationsIntegrationTokenCostsCsvPostRequestIntegrationsIntegrationTokenCostsCsvPostRequest
+from .update_virtual_tag_config_value1 import UpdateVirtualTagConfigValue as UpdateVirtualTagConfigValue1UpdateVirtualTagConfigValue
+from .update_virtual_tag_config_value import UpdateVirtualTagConfigValue as UpdateVirtualTagConfigValueUpdateVirtualTagConfigValue
 
 __all__ = [
     "AccessGrant",
@@ -548,6 +579,7 @@ __all__ = [
     "CostAlertEvents",
     "CostAlerts",
     "CostAlertsCostAlertTokenEventsGetParametersQuery",
+    "CostAlertsGetParametersQuery",
     "CostCount",
     "CostPartial",
     "CostProvider",
@@ -650,9 +682,13 @@ __all__ = [
     "CreateNetworkFlowReportFlowWeight",
     "CreateNetworkFlowReportGrouping",
     "CreateRecommendationView",
+    "CreateReportForecast",
     "CreateReportNotification",
     "CreateResourceReport",
     "CreateSavedFilter",
+    "CreateScenarioModel",
+    "CreateScenarioModelPeriod",
+    "CreateScenarioModelPeriodAmountType",
     "CreateSegment",
     "CreateSegmentReportSettings",
     "CreateSsoConnectionForManagedAccount",
@@ -664,9 +700,16 @@ __all__ = [
     "CreateUserFeedback",
     "CreateVirtualTagConfig",
     "CreateVirtualTagConfigCollapsedTagKey",
-    "CreateVirtualTagConfigValue",
+    "CreateVirtualTagConfigValue1CostMetric",
+    "CreateVirtualTagConfigValue1CostMetricAggregation",
+    "CreateVirtualTagConfigValue1CreateVirtualTagConfigValue",
+    "CreateVirtualTagConfigValue1DateRange",
+    "CreateVirtualTagConfigValue1LabelTransform",
+    "CreateVirtualTagConfigValue1LabelTransformType",
+    "CreateVirtualTagConfigValue1Percentage",
     "CreateVirtualTagConfigValueCostMetric",
     "CreateVirtualTagConfigValueCostMetricAggregation",
+    "CreateVirtualTagConfigValueCreateVirtualTagConfigValue",
     "CreateVirtualTagConfigValueDateRange",
     "CreateVirtualTagConfigValueLabelTransform",
     "CreateVirtualTagConfigValuePercentage",
@@ -759,6 +802,9 @@ __all__ = [
     "RecommendationsGetParametersQueryProviderId",
     "RecommendationsGetParametersQueryStatus",
     "RecommendationsRecommendationTokenResourcesGetParametersQuery",
+    "ReportForecast",
+    "ReportForecasts",
+    "ReportForecastsGetParametersQuery",
     "ReportNotification",
     "ReportNotificationChange",
     "ReportNotificationFrequency",
@@ -777,6 +823,11 @@ __all__ = [
     "SavedFilter",
     "SavedFilters",
     "SavedFiltersGetParametersQuery",
+    "ScenarioModel",
+    "ScenarioModelPeriod",
+    "ScenarioModelPeriodAmountType",
+    "ScenarioModels",
+    "ScenarioModelsGetParametersQuery",
     "Segment",
     "SegmentReportSettings",
     "Segments",
@@ -885,9 +936,13 @@ __all__ = [
     "UpdateNetworkFlowReportFlowWeight",
     "UpdateNetworkFlowReportGrouping",
     "UpdateRecommendationView",
+    "UpdateReportForecast",
     "UpdateReportNotification",
     "UpdateResourceReport",
     "UpdateSavedFilter",
+    "UpdateScenarioModel",
+    "UpdateScenarioModelPeriod",
+    "UpdateScenarioModelPeriodAmountType",
     "UpdateSegment",
     "UpdateSegmentReportSettings",
     "UpdateSsoConnectionForManagedAccount",
@@ -897,12 +952,19 @@ __all__ = [
     "UpdateUser",
     "UpdateVirtualTagConfig",
     "UpdateVirtualTagConfigCollapsedTagKey",
-    "UpdateVirtualTagConfigValue",
+    "UpdateVirtualTagConfigValue1CostMetric",
+    "UpdateVirtualTagConfigValue1CostMetricAggregation",
+    "UpdateVirtualTagConfigValue1DateRange",
+    "UpdateVirtualTagConfigValue1LabelTransform",
+    "UpdateVirtualTagConfigValue1LabelTransformType",
+    "UpdateVirtualTagConfigValue1Percentage",
+    "UpdateVirtualTagConfigValue1UpdateVirtualTagConfigValue",
     "UpdateVirtualTagConfigValueCostMetric",
     "UpdateVirtualTagConfigValueCostMetricAggregation",
     "UpdateVirtualTagConfigValueDateRange",
     "UpdateVirtualTagConfigValueLabelTransform",
     "UpdateVirtualTagConfigValuePercentage",
+    "UpdateVirtualTagConfigValueUpdateVirtualTagConfigValue",
     "UpdateWorkspace",
     "UpdateWorkspaceCurrency",
     "UpdateWorkspaceExchangeRateDate",

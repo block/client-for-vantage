@@ -5,11 +5,9 @@ from __future__ import annotations
 from pydantic import BaseModel, ConfigDict
 
 
-class RecommendationViewsGetParametersQuery(BaseModel):
+class UpdateVirtualTagConfigValue1DateRange(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    page: int | None = None
-    limit: int | None = None
-    workspace_token: str | None = None
-    q: str | None = None
+    start_date: str | None = None
+    end_date: str | None = None

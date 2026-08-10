@@ -11,3 +11,5 @@ class AnomalyNotificationsGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    workspace_token: str | None = None
+    cost_report_token: str | None = None
