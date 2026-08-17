@@ -19,7 +19,8 @@ class BudgetAlert(BaseModel):
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Budget Alert was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
     workspace_token: Annotated[str | None, Field(description='The token for the Workspace the ResourceReport is a part of.')]
     user_token: Annotated[str | None, Field(description='The token for the User who created this BudgetAlert.')] = None
-    user_tokens: Annotated[Sequence[str], Field(description='The Users that receive the alert.')]
+    user_tokens: Annotated[Sequence[str], Field(description='The tokens of organization users that receive the alert. Freeform verified-domain emails are not included; see recipient_emails.')]
+    recipient_emails: Annotated[Sequence[str], Field(description='The email addresses that receive the alert, including organization users and verified-domain addresses.')]
     duration_in_days: Annotated[int | None, Field(description='The number of days from the start or end of the month to trigger the alert if the threshold is reached.')]
     threshold: Annotated[int, Field(description='Alerts only send if they reach this number (as a percentage). When threshold is 100, that means alerts are triggered once costs reach 100% of the budget.', examples=[75])]
     period_to_track: Annotated[str | None, Field(description='The period tracked on the alert. Used with duration_in_days to determine the time window of the alert. Possible values: start_of_the_month, end_of_the_month.', examples=['start_of_the_month'])]

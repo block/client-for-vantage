@@ -12,3 +12,4 @@ class BusinessMetricsGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: Annotated[int | None, Field(ge=1, le=5000)] = None
+    q: str | None = None

@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from datetime import date
+from datetime import date as date_aliased
 from collections.abc import Sequence
 from . import update_virtual_tag_config_collapsed_tag_key, update_virtual_tag_config_value
 
@@ -18,6 +18,6 @@ class UpdateVirtualTagConfig(BaseModel):
     )
     key: Annotated[str | None, Field(description='The key of the VirtualTagConfig.')] = None
     overridable: Annotated[bool | None, Field(description='Whether the VirtualTagConfig can override a provider-supplied tag on a matching Cost.')] = None
-    backfill_until: Annotated[date | None, Field(description='The earliest month the VirtualTagConfig should be backfilled to.')] = None
+    backfill_until: Annotated[date_aliased | None, Field(description='The earliest month the VirtualTagConfig should be backfilled to.')] = None
     collapsed_tag_keys: Annotated[Sequence[update_virtual_tag_config_collapsed_tag_key.UpdateVirtualTagConfigCollapsedTagKey] | None, Field(description='Tag keys to collapse values for.')] = None
     values: Annotated[Sequence[update_virtual_tag_config_value.UpdateVirtualTagConfigValue] | None, Field(description='Values for the VirtualTagConfig, with match precedence determined by order in the list.')] = None

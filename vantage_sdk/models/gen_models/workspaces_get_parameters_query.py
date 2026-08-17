@@ -11,3 +11,4 @@ class WorkspacesGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    q: str | None = None

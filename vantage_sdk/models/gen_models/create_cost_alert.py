@@ -20,7 +20,7 @@ class CreateCostAlert(BaseModel):
     unit_type: Annotated[str, Field(description="The unit type used to compare costs. Options are 'currency' or 'percentage'.")]
     workspace_token: Annotated[str, Field(description='The token of the Workspace to add the Cost Alert to.')]
     report_tokens: Annotated[Sequence[str], Field(description='The tokens of the reports to alert on.')]
-    email_recipients: Annotated[Sequence[str] | None, Field(description='The email recipients for the Cost Alert.')] = None
+    email_recipients: Annotated[Sequence[str] | None, Field(description='The email recipients for the Cost Alert. Accepts organization users and emails on verified IdP domains.')] = None
     slack_channels: Annotated[Sequence[str] | None, Field(description='The Slack channels that will receive the alert.')] = None
     teams_channels: Annotated[Sequence[str] | None, Field(description='The Microsoft Teams channels that will receive the alert.')] = None
     minimum_threshold: Annotated[float | None, Field(description="The minimum monetary amount threshold for percentage-based alerts. Only applicable when unit_type is 'percentage'.")] = None

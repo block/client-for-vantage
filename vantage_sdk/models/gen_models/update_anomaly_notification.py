@@ -16,4 +16,5 @@ class UpdateAnomalyNotification(BaseModel):
     )
     threshold: Annotated[int | None, Field(description='The threshold amount that must be met for the notification to fire.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the users that receive the notification.')] = None
+    recipient_emails: Annotated[Sequence[str] | None, Field(description='Email addresses that receive the notification. Must be organization users or addresses on a verified domain.')] = None
     recipient_channels: Annotated[Sequence[str] | None, Field(description='The Slack/MS Teams channels that receive the notification.')] = None

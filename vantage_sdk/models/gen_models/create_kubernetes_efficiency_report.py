@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from datetime import date
+from datetime import date as date_aliased
 from collections.abc import Sequence
 from . import create_kubernetes_efficiency_report_aggregated_by, create_kubernetes_efficiency_report_date_bucket, create_kubernetes_efficiency_report_date_interval
 
@@ -19,8 +19,8 @@ class CreateKubernetesEfficiencyReport(BaseModel):
     workspace_token: Annotated[str, Field(description='The Workspace in which the KubernetesEfficiencyReport will be created.')]
     title: Annotated[str, Field(description='The title of the KubernetesEfficiencyReport.')]
     filter: Annotated[str | None, Field(description='The filter query language to apply to the KubernetesEfficiencyReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
-    start_date: Annotated[date | None, Field(description="The start date of the KubernetesEfficiencyReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
-    end_date: Annotated[date | None, Field(description="The end date of the KubernetesEfficiencyReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
+    start_date: Annotated[date_aliased | None, Field(description="The start date of the KubernetesEfficiencyReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
+    end_date: Annotated[date_aliased | None, Field(description="The end date of the KubernetesEfficiencyReport. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
     date_interval: Annotated[create_kubernetes_efficiency_report_date_interval.CreateKubernetesEfficiencyReportDateInterval | None, Field(description="The date interval of the KubernetesEfficiencyReport. Incompatible with 'start_date' and 'end_date' parameters. Defaults to 'this_month' if start_date and end_date are not provided.")] = None
     aggregated_by: Annotated[create_kubernetes_efficiency_report_aggregated_by.CreateKubernetesEfficiencyReportAggregatedBy | None, Field(description='The column by which the costs are aggregated.')] = None
     date_bucket: Annotated[create_kubernetes_efficiency_report_date_bucket.CreateKubernetesEfficiencyReportDateBucket | None, Field(description='The date bucket of the KubernetesEfficiencyReport.')] = None
