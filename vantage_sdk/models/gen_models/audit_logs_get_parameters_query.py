@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from datetime import date
+from datetime import date as date_aliased
 from pydantic import BaseModel, ConfigDict
 from . import audit_logs_get_parameters_query_action, audit_logs_get_parameters_query_object_type, audit_logs_get_parameters_query_source
 
@@ -21,5 +21,5 @@ class AuditLogsGetParametersQuery(BaseModel):
     object_type: audit_logs_get_parameters_query_object_type.AuditLogsGetParametersQueryObjectType | None = None
     token: str | None = None
     object_token: str | None = None
-    start_date: date | None = None
-    end_date: date | None = None
+    start_date: date_aliased | None = None
+    end_date: date_aliased | None = None

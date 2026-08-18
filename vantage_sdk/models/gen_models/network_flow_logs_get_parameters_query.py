@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from datetime import date
+from datetime import date as date_aliased
 from collections.abc import Sequence
 from pydantic import BaseModel, ConfigDict
 from . import network_flow_logs_get_parameters_query_date_interval, network_flow_logs_get_parameters_query_flow_direction, network_flow_logs_get_parameters_query_flow_weight, network_flow_logs_get_parameters_query_grouping
@@ -16,8 +16,8 @@ class NetworkFlowLogsGetParametersQuery(BaseModel):
     workspace_token: str | None = None
     filter: str | None = None
     date_interval: network_flow_logs_get_parameters_query_date_interval.NetworkFlowLogsGetParametersQueryDateInterval | None = None
-    start_date: date | None = None
-    end_date: date | None = None
+    start_date: date_aliased | None = None
+    end_date: date_aliased | None = None
     groupings: Sequence[network_flow_logs_get_parameters_query_grouping.NetworkFlowLogsGetParametersQueryGrouping] | None = None
     flow_direction: network_flow_logs_get_parameters_query_flow_direction.NetworkFlowLogsGetParametersQueryFlowDirection | None = None
     flow_weight: network_flow_logs_get_parameters_query_flow_weight.NetworkFlowLogsGetParametersQueryFlowWeight | None = None

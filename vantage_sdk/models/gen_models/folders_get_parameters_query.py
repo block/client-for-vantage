@@ -13,3 +13,5 @@ class FoldersGetParametersQuery(BaseModel):
     page: int | None = None
     limit: int | None = None
     type: folders_get_parameters_query_type.FoldersGetParametersQueryType | None = None
+    q: str | None = None
+    workspace_token: str | None = None

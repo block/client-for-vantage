@@ -17,6 +17,7 @@ class UpdateReportNotification(BaseModel):
     title: Annotated[str | None, Field(description='The title of the ReportNotification.')] = None
     cost_report_token: Annotated[str | None, Field(description='The CostReport token.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The Users that receive the notification.')] = None
+    recipient_emails: Annotated[Sequence[str] | None, Field(description='Email addresses that receive the notification. Must be organization users or addresses on a verified domain.')] = None
     recipient_channels: Annotated[Sequence[str] | None, Field(description='The Slack or Microsoft Teams channels that receive the notification.')] = None
     frequency: Annotated[str | None, Field(description='The frequency the ReportNotification is sent. Possible values: daily, weekly, monthly.')] = None
     change: Annotated[str | None, Field(description='The type of change the ReportNotification is tracking. Possible values: percentage, dollars.')] = None

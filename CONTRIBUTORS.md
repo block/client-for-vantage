@@ -24,11 +24,14 @@ All tests are integration tests that call the actual Vantage API. For an SDK, th
 2. Generate an API key from the Vantage console under Settings -> API Access Tokens
 3. Copy your workspace token from the URL bar (the `wrkspc_*` value) or from Settings -> Workspaces
 4. Copy `.sample.env` to `.env` at the project root and fill in the values:
+
    ```
    VANTAGE_API_KEY=<your-api-key>
    WORKSPACE_TOKEN=<your-workspace-token>
    ```
+
 5. Verify the setup by running a single test against the live API:
+
    ```bash
    just test tests/test_main.py::test_get_me
    ```
@@ -38,7 +41,7 @@ All tests are integration tests that call the actual Vantage API. For an SDK, th
 Use the `just` recipes to run tests locally or in CI:
 
 | Command | Description |
-|---|---|
+| --- | --- |
 | `just test` | Run tests against the live API |
 | `just test-vcr` | Run tests using recorded cassettes (no network) |
 | `just test-vcr-record` | Record cassettes for tests that don't have one yet |
@@ -54,6 +57,7 @@ just test-vcr-rewrite tests/test_main.py::test_get_dashboard
 ```
 
 Some tests require polling endpoints and take longer to complete:
+
 - Run only slow tests: `just test -- -m slow`
 - Exclude slow tests: `just test -- -k 'not slow'`
 
@@ -80,6 +84,7 @@ In CI (`noxfile.py`), when `CI=true` is set, VCR is auto-enabled with `--record-
 ### When to re-record cassettes
 
 Re-record cassettes when:
+
 - You add a new test function (use `just test-vcr-record tests/test_main.py::test_your_new_test`)
 - An API response schema changes (use `just test-vcr-rewrite tests/test_main.py::test_affected_test`)
 - A fixture changes the request payload (field values, resource names, etc.)
@@ -89,7 +94,7 @@ Re-record cassettes when:
 Releases are automated via [release-please](https://github.com/googleapis/release-please). PR titles must use [Conventional Commits](https://www.conventionalcommits.org/) prefixes, and PRs must be squash-merged so the title becomes the commit message.
 
 | Prefix | Version bump | Example |
-|---|---|---|
+| --- | --- | --- |
 | `fix:` | Patch (1.1.1 -> 1.1.2) | `fix: handle null chart_settings in cost reports` |
 | `feat:` | Minor (1.1.1 -> 1.2.0) | `feat: add dashboard endpoints` |
 | `feat!:` | Major (1.1.1 -> 2.0.0) | `feat!: rename VantageSDK to VantageClient` |
@@ -104,6 +109,7 @@ When commits land on `main`, release-please opens (or updates) a Release PR that
 > **Important:** Do not manually edit files in `vantage_sdk/models/gen_models/`. Any changes will be overwritten when models are regenerated.
 
 If you encounter type issues, bugs in the generated models, or need to extend functionality:
+
 1. Overload the class in `vantage_sdk/models/common.py` by inheriting from the generated model.
 2. Add your overrides (using `# pyright: ignore[reportIncompatibleVariableOverride]` if changing types).
 3. Import your new class in `vantage_sdk/models/__init__.py` so it overrides the generated version in the package interface.
@@ -113,7 +119,22 @@ See `vantage_sdk/models/common.py` for detailed instructions and examples.
 To regenerate the models:
 
 ```bash
-just generate-models
+just regenerate-models
 ```
 
 This fetches the latest OpenAPI spec from `https://api.vantage.sh/v2/oas_v3.json` and generates Pydantic v2 models.
+
+### Name collisions in generated models
+
+We do not control the upstream spec, and sometimes it forces `datamodel-codegen` to mangle names. When two schemas resolve to the same class name, codegen deduplicates by appending a numeric suffix, and the wildcard re-exports in `gen_models/__init__.py` mangle both colliding names.
+
+Example: the spec defines the virtual tag value object twice — once inline in `createVirtualTagConfig.values` / `updateVirtualTagConfig.values`, and once as the named schemas `createVirtualTagConfigValue` / `updateVirtualTagConfigValue` (used by the standalone `/virtual_tag_configs/{token}/values` endpoints). Both resolve to `CreateVirtualTagConfigValue` / `UpdateVirtualTagConfigValue`, so codegen emits `*_value1_*` modules for one of the twins, and the package-level exports become `UpdateVirtualTagConfigValueUpdateVirtualTagConfigValue` and `UpdateVirtualTagConfigValue1UpdateVirtualTagConfigValue` — the plain name disappears from the public interface entirely.
+
+When this happens, do not edit the generated files. Pin a stable alias in `vantage_sdk/models/common.py` that imports the correct class from its specific module and re-export it in `vantage_sdk/models/__init__.py`:
+
+```python
+# common.py — pin the public name to the model referenced by UpdateVirtualTagConfig.values
+UpdateVirtualTagConfigValue = update_virtual_tag_config_value_model.UpdateVirtualTagConfigValue
+```
+
+The collisions disappear on their own if the upstream spec is fixed to `$ref` the shared schema instead of duplicating it inline; the alias keeps working either way.

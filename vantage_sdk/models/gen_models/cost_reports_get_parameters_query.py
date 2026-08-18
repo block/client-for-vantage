@@ -12,3 +12,5 @@ class CostReportsGetParametersQuery(BaseModel):
     page: int | None = None
     limit: int | None = None
     folder_token: str | None = None
+    q: str | None = None
+    workspace_token: str | None = None

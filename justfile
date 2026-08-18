@@ -44,11 +44,6 @@ setup:
 
 # --- Code Generation ---
 
-generate-models:
-  uv run datamodel-codegen \
-    --url https://api.vantage.sh/v2/oas_v3.json \
-    --output vantage_sdk/models/gen_models/
-
 fetch-spec:
   curl -sS https://api.vantage.sh/v2/oas_v3.json -o openapi_spec.json
 

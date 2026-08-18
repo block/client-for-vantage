@@ -11,3 +11,5 @@ class KubernetesEfficiencyReportsGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    workspace_token: str | None = None
+    q: str | None = None

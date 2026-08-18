@@ -5,9 +5,6 @@ from __future__ import annotations
 from enum import StrEnum
 
 
-class CanvasStatus(StrEnum):
-    """
-    The status of the Canvas.
-    """
-    draft = 'draft'
-    published = 'published'
+class UpdateVirtualTagConfigValue1LabelTransformType(StrEnum):
+    split_ = 'split'
+    format_ = 'format'

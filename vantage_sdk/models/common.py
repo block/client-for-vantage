@@ -58,6 +58,7 @@ from vantage_sdk.models.gen_models import (
     recommendation_provider_resources as recommendation_provider_resources_model,
     recommendations as recommendations_model,
     update_budget_alert as update_budget_alert_model,
+    update_virtual_tag_config_value as update_virtual_tag_config_value_model,
     update_integration as update_integration_model,
     update_workspace as update_workspace_model,
 )
@@ -65,6 +66,11 @@ from vantage_sdk.models.gen_models import (
 VirtualTagConfigValueCostMetricAggregation = (
     virtual_tag_config_value_cost_metric_aggregation_model.VirtualTagConfigValueCostMetricAggregation
 )
+
+# Stable alias: the upstream spec duplicates this schema inline and as a named schema, which
+# makes the generated wildcard exports mangle the class name (see *_value1 modules). This pins
+# the public name to the model referenced by UpdateVirtualTagConfig.values
+UpdateVirtualTagConfigValue = update_virtual_tag_config_value_model.UpdateVirtualTagConfigValue
 
 # --------------------------------
 # Token Parameter Classes

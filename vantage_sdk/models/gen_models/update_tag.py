@@ -16,4 +16,5 @@ class UpdateTag(BaseModel):
     )
     tag_key: str | None = None
     tag_keys: Sequence[str] | None = None
-    hidden: Annotated[bool, Field(description='Whether the Tag is hidden from the Vantage UI.')]
+    hidden: Annotated[bool | None, Field(description='Whether the Tag is hidden from the Vantage UI.')] = None
+    preferred: Annotated[bool | None, Field(description='Whether the Tag is marked as preferred in the Vantage UI.')] = None

@@ -11,3 +11,5 @@ class TeamsGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    q: str | None = None
+    workspace_token: str | None = None

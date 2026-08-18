@@ -11,3 +11,5 @@ class BudgetAlertsGetParametersQuery(BaseModel):
     )
     page: int | None = None
     limit: int | None = None
+    workspace_token: str | None = None
+    budget_token: str | None = None

@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from datetime import date
+from datetime import date as date_aliased
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -11,6 +11,6 @@ class UpdateBudgetPeriod(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    start_at: Annotated[date, Field(description='The start date of the period.')]
-    end_at: Annotated[date | None, Field(description='The end date of the period.')] = None
+    start_at: Annotated[date_aliased, Field(description='The start date of the period.')]
+    end_at: Annotated[date_aliased | None, Field(description='The end date of the period.')] = None
     amount: Annotated[float, Field(description='The amount of the period.')]

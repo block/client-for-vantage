@@ -17,6 +17,7 @@ class UpdateBudgetAlert(BaseModel):
     budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Budget that has the alert.')] = None
     threshold: Annotated[int | None, Field(description='The threshold amount that must be met for the alert to fire.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the users that receive the alert.')] = None
+    recipient_emails: Annotated[Sequence[str] | None, Field(description='Email addresses that receive the alert. Must be organization users or addresses on a verified domain.')] = None
     duration_in_days: Annotated[str | None, Field(description='The number of days from the start or end of the month to trigger the alert if the threshold is reached. For the full month, pass an empty value.')] = None
     period_to_track: Annotated[str | None, Field(description='The period tracked on the alert. Used with duration_in_days to determine the time window of the alert. Defaults to start_of_the_month if not passed. Possible values: start_of_the_month, end_of_the_month.')] = None
     recipient_channels: Annotated[Sequence[str] | None, Field(description='The channels receiving the alerts. Requires an integration provider to be connected.')] = None
