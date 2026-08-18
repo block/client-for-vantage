@@ -22,4 +22,4 @@ class UpdateDashboard(BaseModel):
     date_interval: Annotated[update_dashboard_date_interval.UpdateDashboardDateInterval | None, Field(description="Determines the date range in the Dashboard. Incompatible with 'start_date' and 'end_date' parameters.")] = None
     start_date: Annotated[str | None, Field(description="The start date for the date range for costs in the Dashboard. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
     end_date: Annotated[str | None, Field(description="The end date for the date range for costs in the Dashboard. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
-    workspace_token: Annotated[str | None, Field(description='The token of the Workspace the Dashboard belongs to. Required if the API token is associated with multiple Workspaces.')] = None
+    workspace_token: Annotated[str | None, Field(description='The token of the Workspace the Dashboard belongs to. Required when updating widgets if the API token is associated with multiple Workspaces.')] = None

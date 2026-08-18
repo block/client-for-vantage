@@ -48,6 +48,12 @@ class CostProvider(StrEnum):
     baseten = 'baseten'
     cloudflare = 'cloudflare'
     fireworks_ai = 'fireworks_ai'
+    cartesia = 'cartesia'
+    depot = 'depot'
+    xai = 'xai'
+    digital_ocean = 'digital_ocean'
+    together_ai = 'together_ai'
+    coreweave = 'coreweave'
 
 
 class CostProviderModel(BaseModel):

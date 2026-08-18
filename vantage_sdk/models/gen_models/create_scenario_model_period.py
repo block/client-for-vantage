@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from datetime import date
+from datetime import date as date_aliased
 from pydantic import BaseModel, ConfigDict
 from . import create_scenario_model_period_amount_type
 
@@ -11,7 +11,7 @@ class CreateScenarioModelPeriod(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    start_at: date
-    end_at: date | None = None
+    start_at: date_aliased
+    end_at: date_aliased | None = None
     amount: float
     amount_type: create_scenario_model_period_amount_type.CreateScenarioModelPeriodAmountType

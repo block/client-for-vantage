@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from datetime import date
+from datetime import date as date_aliased
 
 
 class BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery(BaseModel):
@@ -13,4 +13,4 @@ class BusinessMetricsBusinessMetricTokenForecastedValuesGetParametersQuery(BaseM
     )
     page: int | None = None
     limit: Annotated[int | None, Field(ge=1, le=5000)] = None
-    start_date: date | None = None
+    start_date: date_aliased | None = None

@@ -2,12 +2,13 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from collections.abc import Sequence
 from pydantic import BaseModel, ConfigDict
 
 
-class CostsDataExportsPostParametersQuery(BaseModel):
+class AnnotationsGetParametersQuery(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    groupings: Sequence[str] | None = None
+    page: int | None = None
+    limit: int | None = None
+    report_token: str | None = None

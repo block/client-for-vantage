@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from datetime import date
+from datetime import date as date_aliased
 from collections.abc import Sequence
 from . import create_network_flow_report_date_interval, create_network_flow_report_flow_direction, create_network_flow_report_flow_weight, create_network_flow_report_grouping
 
@@ -19,8 +19,8 @@ class CreateNetworkFlowReport(BaseModel):
     workspace_token: Annotated[str, Field(description='The Workspace in which the NetworkFlowReport will be created.')]
     title: Annotated[str, Field(description='The title of the NetworkFlowReport.')]
     filter: Annotated[str | None, Field(description='The filter query language to apply to the NetworkFlowReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
-    start_date: Annotated[date | None, Field(description='The start date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
-    end_date: Annotated[date | None, Field(description='The end date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
+    start_date: Annotated[date_aliased | None, Field(description='The start date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
+    end_date: Annotated[date_aliased | None, Field(description='The end date of a custom NetworkFlowReport. YYYY-MM-DD formatted.')] = None
     date_interval: Annotated[create_network_flow_report_date_interval.CreateNetworkFlowReportDateInterval | None, Field(description="The date interval of the NetworkFlowReport. Dates are used only for the 'custom' interval. Defaults to 'last_7_days'.")] = None
     groupings: Annotated[Sequence[create_network_flow_report_grouping.CreateNetworkFlowReportGrouping] | None, Field(description='Grouping values for aggregating data on the NetworkFlowReport. Valid groupings: account_id, az_id, dstaddr, dsthostname, flow_direction, interface_id, instance_id, peer_resource_uuid, peer_account_id, peer_vpc_id, peer_region, peer_az_id, peer_subnet_id, peer_interface_id, peer_instance_id, region, resource_uuid, srcaddr, srchostname, subnet_id, traffic_category, traffic_path, vpc_id.')] = None
     flow_direction: Annotated[create_network_flow_report_flow_direction.CreateNetworkFlowReportFlowDirection | None, Field(description='The flow direction of the NetworkFlowReport.')] = None

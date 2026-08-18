@@ -19,5 +19,6 @@ class AnomalyNotification(BaseModel):
     created_at: Annotated[str, Field(description='The date and time, in UTC, the AnomalyNotification was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
     updated_at: Annotated[str, Field(description='The date and time, in UTC, the AnomalyNotification was last updated at. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
     threshold: Annotated[int, Field(description='The threshold amount that must be met for the notification to fire.')]
-    user_tokens: Annotated[Sequence[str], Field(description='The tokens of the users that receive the notification.')]
+    user_tokens: Annotated[Sequence[str], Field(description='The tokens of organization users that receive the notification. Freeform verified-domain emails are not included; see recipient_emails.')]
+    recipient_emails: Annotated[Sequence[str], Field(description='The email addresses that receive the notification, including organization users and verified-domain addresses.')]
     recipient_channels: Annotated[Sequence[str], Field(description='The channels that the notification is sent to.')]

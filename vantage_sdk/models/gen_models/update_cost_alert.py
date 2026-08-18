@@ -15,7 +15,7 @@ class UpdateCostAlert(BaseModel):
         populate_by_name=True,
     )
     title: Annotated[str | None, Field(description='The title of the Cost Alert.')] = None
-    email_recipients: Annotated[Sequence[str] | None, Field(description='The email recipients for the Cost Alert.')] = None
+    email_recipients: Annotated[Sequence[str] | None, Field(description='The email recipients for the Cost Alert. Accepts organization users and emails on verified IdP domains.')] = None
     interval: Annotated[str | None, Field(description="The period of time used to compare costs. Options are 'day', 'week', 'month', 'quarter'.")] = None
     threshold: Annotated[float | None, Field(description='The threshold value for the Cost Alert.')] = None
     slack_channels: Annotated[Sequence[str] | None, Field(description='The Slack channels that will receive the alert. Make sure your slack integration is connected at https://console.vantage.sh/settings/slack.')] = None

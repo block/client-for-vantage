@@ -135,6 +135,7 @@ from .update_async_virtual_tag_config_collapsed_tag_key import UpdateAsyncVirtua
 from .update_async_virtual_tag_config import UpdateAsyncVirtualTagConfig
 from .update_anomaly_notification import UpdateAnomalyNotification
 from .update_anomaly_alert import UpdateAnomalyAlert
+from .update_annotation import UpdateAnnotation
 from .update_access_grant_access import UpdateAccessGrantAccess
 from .update_access_grant import UpdateAccessGrant
 from .unit_costs_get_parameters_query_order import UnitCostsGetParametersQueryOrder
@@ -377,6 +378,7 @@ from .create_billing_profile_banking_information_attributes import CreateBilling
 from .create_billing_profile import CreateBillingProfile
 from .create_azure_integration import CreateAzureIntegration
 from .create_anomaly_notification import CreateAnomalyNotification
+from .create_annotation import CreateAnnotation
 from .create_access_grant_access import CreateAccessGrantAccess
 from .create_access_grant import CreateAccessGrant
 from .costs_get_parameters_query_settings_aggregate_by import CostsGetParametersQuerySettingsAggregateBy
@@ -476,6 +478,9 @@ from .anomaly_notification import AnomalyNotification
 from .anomaly_alerts_get_parameters_query import AnomalyAlertsGetParametersQuery
 from .anomaly_alerts import AnomalyAlerts
 from .anomaly_alert import AnomalyAlert
+from .annotations_get_parameters_query import AnnotationsGetParametersQuery
+from .annotations import Annotations
+from .annotation import Annotation
 from .adjustment_item_calculation_type import AdjustmentItemCalculationType
 from .adjustment_item_adjustment_type import AdjustmentItemAdjustmentType
 from .adjustment_item import AdjustmentItem
@@ -506,6 +511,9 @@ __all__ = [
     "AdjustmentItem",
     "AdjustmentItemAdjustmentType",
     "AdjustmentItemCalculationType",
+    "Annotation",
+    "Annotations",
+    "AnnotationsGetParametersQuery",
     "AnomalyAlert",
     "AnomalyAlerts",
     "AnomalyAlertsGetParametersQuery",
@@ -608,6 +616,7 @@ __all__ = [
     "CostsGetParametersQuerySettingsAggregateBy",
     "CreateAccessGrant",
     "CreateAccessGrantAccess",
+    "CreateAnnotation",
     "CreateAnomalyNotification",
     "CreateAzureIntegration",
     "CreateBillingProfile",
@@ -858,6 +867,7 @@ __all__ = [
     "UnitCostsGetParametersQueryOrder",
     "UpdateAccessGrant",
     "UpdateAccessGrantAccess",
+    "UpdateAnnotation",
     "UpdateAnomalyAlert",
     "UpdateAnomalyNotification",
     "UpdateAsyncVirtualTagConfig",
