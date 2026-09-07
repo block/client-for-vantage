@@ -49,3 +49,5 @@ class IntegrationsGetParametersQueryProvider(StrEnum):
     digital_ocean = 'digital_ocean'
     together_ai = 'together_ai'
     coreweave = 'coreweave'
+    devin = 'devin'
+    openrouter = 'openrouter'

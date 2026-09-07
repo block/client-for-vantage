@@ -16,6 +16,7 @@ class CreateBudgetAlert(BaseModel):
     )
     budget_tokens: Annotated[Sequence[str], Field(description='The tokens of the Budget that has the alert.')]
     threshold: Annotated[int, Field(description='The threshold amount that must be met for the alert to fire.')]
+    workspace_token: Annotated[str | None, Field(description='The token of the Workspace to add the BudgetAlert to. Required if the API token is associated with multiple Workspaces.')] = None
     user_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the users that receive the alert.')] = None
     recipient_emails: Annotated[Sequence[str] | None, Field(description='Email addresses that receive the alert. Must be organization users or addresses on a verified domain.')] = None
     duration_in_days: Annotated[str, Field(description='The number of days from the start or end of the month to trigger the alert if the threshold is reached.  For the full month, pass an empty value.')]

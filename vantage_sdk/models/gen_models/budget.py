@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import budget_performance, budget_period
+from . import budget_performance, budget_period, period_cadence as period_cadence_1
 
 
 class Budget(BaseModel):
@@ -24,5 +24,6 @@ class Budget(BaseModel):
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Budget was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
     budget_alert_tokens: Annotated[Sequence[str], Field(description='The tokens of the BudgetAlerts associated with the Budget.')]
     child_budget_tokens: Annotated[Sequence[str], Field(description='The tokens of the child Budgets associated with the hierarchical Budget.')]
+    period_cadence: period_cadence_1.PeriodCadence
     periods: Annotated[Sequence[budget_period.BudgetPeriod], Field(description='The budget periods associated with the Budget.')]
     performance: Annotated[Sequence[budget_performance.BudgetPerformance] | None, Field(description='The historical performance of the Budget.')] = None

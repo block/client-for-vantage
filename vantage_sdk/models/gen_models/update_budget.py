@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import update_budget_period
+from . import update_budget_period, update_budget_period_cadence
 
 
 class UpdateBudget(BaseModel):
@@ -17,5 +17,6 @@ class UpdateBudget(BaseModel):
     )
     name: Annotated[str | None, Field(description='The name of the Budget.')] = None
     cost_report_token: Annotated[str | None, Field(description='The CostReport token. Ignored for hierarchical Budgets.')] = None
-    child_budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of any child Budgets when creating a hierarchical Budget.')] = None
+    child_budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of any child Budgets when creating a hierarchical Budget. Child budgets must share the same current period dates. Omitted on update to leave the current child list unchanged.')] = None
+    period_cadence: Annotated[update_budget_period_cadence.UpdateBudgetPeriodCadence | None, Field(description='The interval cadence for budget periods. Changing cadence after creation is rejected.')] = None
     periods: Annotated[Sequence[update_budget_period.UpdateBudgetPeriod] | None, Field(description='The periods for the Budget. The start_at and end_at must be iso8601 formatted e.g. YYYY-MM-DD. Ignored for hierarchical Budgets.')] = None

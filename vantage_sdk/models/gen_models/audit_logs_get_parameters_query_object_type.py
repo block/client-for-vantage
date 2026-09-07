@@ -10,3 +10,4 @@ class AuditLogsGetParametersQueryObjectType(StrEnum):
     cost_report = 'cost_report'
     recommendation_commitment = 'recommendation_commitment'
     segment = 'segment'
+    access_policy = 'access_policy'

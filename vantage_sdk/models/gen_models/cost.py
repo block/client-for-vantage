@@ -31,4 +31,7 @@ class Cost(BaseModel):
     tags: Annotated[Sequence[str] | None, Field(description='The tag pairs attached to the cost that was incurred.')] = None
     cost_category: Annotated[str | None, Field(description='The category for the cost.', examples=['Data Transfer'])] = None
     cost_subcategory: Annotated[str | None, Field(description='The subcategory for the cost.', examples=['DataTransfer-Regional-Bytes'])] = None
+    charge_type: Annotated[str | None, Field(description='The charge type for the cost.', examples=['Usage'])] = None
+    tagged: Annotated[bool | None, Field(description='Whether the cost has tags.', examples=[True])] = None
+    usage_unit: Annotated[str | None, Field(description='The unit used to measure usage.', examples=['GB'])] = None
     segment: Annotated[str | None, Field(description='The segment name for segment report costs.', examples=['Engineering'])] = None
