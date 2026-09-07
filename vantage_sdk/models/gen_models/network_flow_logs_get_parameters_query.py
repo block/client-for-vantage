@@ -4,7 +4,8 @@
 from __future__ import annotations
 from datetime import date as date_aliased
 from collections.abc import Sequence
-from pydantic import BaseModel, ConfigDict
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
 from . import network_flow_logs_get_parameters_query_date_interval, network_flow_logs_get_parameters_query_flow_direction, network_flow_logs_get_parameters_query_flow_weight, network_flow_logs_get_parameters_query_grouping
 
 
@@ -22,4 +23,4 @@ class NetworkFlowLogsGetParametersQuery(BaseModel):
     flow_direction: network_flow_logs_get_parameters_query_flow_direction.NetworkFlowLogsGetParametersQueryFlowDirection | None = None
     flow_weight: network_flow_logs_get_parameters_query_flow_weight.NetworkFlowLogsGetParametersQueryFlowWeight | None = None
     page: int = 1
-    limit: int = 100
+    limit: Annotated[int, Field(ge=1, le=1000)] = 100

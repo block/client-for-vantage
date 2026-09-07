@@ -16,3 +16,4 @@ class CreateAzureIntegration(BaseModel):
     tenant: Annotated[str, Field(description='Azure AD Tenant ID.')]
     app_id: Annotated[str, Field(description='Service Principal Application ID.')]
     password: Annotated[str, Field(description='Service Principal Password.')]
+    billing_account_id: Annotated[str | None, Field(description='Microsoft Customer Agreement (MCA) or Enterprise Agreement (EA) billing account ID. Must not contain whitespace.')] = None

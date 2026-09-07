@@ -9,4 +9,7 @@ class CostProvidersGetParametersQuery(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
+    page: int | None = None
+    limit: int | None = None
     workspace_token: str | None = None
+    q: str | None = None
