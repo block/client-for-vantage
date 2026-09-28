@@ -14,3 +14,4 @@ class CostProviderAccountsGetParametersQuery(BaseModel):
     provider: cost_provider_accounts_get_parameters_query_provider.CostProviderAccountsGetParametersQueryProvider | None = None
     account_id: str | None = None
     account_name: str | None = None
+    q: str | None = None

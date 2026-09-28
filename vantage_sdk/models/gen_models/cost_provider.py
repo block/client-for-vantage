@@ -54,11 +54,15 @@ class CostProvider(StrEnum):
     digital_ocean = 'digital_ocean'
     together_ai = 'together_ai'
     coreweave = 'coreweave'
+    devin = 'devin'
+    openrouter = 'openrouter'
+    deepgram = 'deepgram'
+    crusoe = 'crusoe'
 
 
 class CostProviderModel(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    name: Annotated[str, Field(description='The name of the CostProvider.', examples=['AWS'])]
-    key: Annotated[str, Field(description='The key of the CostProvider, useful for filtering Costs.', examples=['aws'])]
+    name: Annotated[str, Field(description='The name of the CostProvider. For Custom Providers, this is the customer-defined name.', examples=['AWS'])]
+    key: Annotated[str, Field(description='The key of the CostProvider, useful for filtering Costs. Custom Providers use the form custom_provider:<token>.', examples=['aws'])]

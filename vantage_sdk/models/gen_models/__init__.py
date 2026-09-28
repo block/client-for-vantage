@@ -64,6 +64,7 @@ from .update_network_flow_report_flow_direction import UpdateNetworkFlowReportFl
 from .update_network_flow_report_date_interval import UpdateNetworkFlowReportDateInterval
 from .update_network_flow_report import UpdateNetworkFlowReport
 from .update_me import UpdateMe
+from .update_managed_account_integration import UpdateManagedAccountIntegration
 from .update_managed_account_business_information_attributes_metadata_custom_field import UpdateManagedAccountBusinessInformationAttributesMetadataCustomField
 from .update_managed_account_business_information_attributes_metadata import UpdateManagedAccountBusinessInformationAttributesMetadata
 from .update_managed_account_business_information_attributes import UpdateManagedAccountBusinessInformationAttributes
@@ -110,6 +111,9 @@ from .update_business_metric_cost_report_tokens_with_metadatum import UpdateBusi
 from .update_business_metric_cloudwatch_fields_dimension import UpdateBusinessMetricCloudwatchFieldsDimension
 from .update_business_metric_cloudwatch_fields import UpdateBusinessMetricCloudwatchFields
 from .update_business_metric import UpdateBusinessMetric
+from .update_budget_type import UpdateBudgetType
+from .update_budget_period_cadence_interval_unit import UpdateBudgetPeriodCadenceIntervalUnit
+from .update_budget_period_cadence import UpdateBudgetPeriodCadence
 from .update_budget_period import UpdateBudgetPeriod
 from .update_budget_alert import UpdateBudgetAlert
 from .update_budget import UpdateBudget
@@ -136,6 +140,10 @@ from .update_async_virtual_tag_config import UpdateAsyncVirtualTagConfig
 from .update_anomaly_notification import UpdateAnomalyNotification
 from .update_anomaly_alert import UpdateAnomalyAlert
 from .update_annotation import UpdateAnnotation
+from .update_access_policy_policy_policy import UpdateAccessPolicyPolicyPolicy
+from .update_access_policy_policy_api_version import UpdateAccessPolicyPolicyApiVersion
+from .update_access_policy_policy import UpdateAccessPolicyPolicy
+from .update_access_policy import UpdateAccessPolicy
 from .update_access_grant_access import UpdateAccessGrantAccess
 from .update_access_grant import UpdateAccessGrant
 from .unit_costs_get_parameters_query_order import UnitCostsGetParametersQueryOrder
@@ -214,6 +222,7 @@ from .products import Products
 from .product import Product
 from .prices import Prices
 from .price import Price
+from .period_cadence import PeriodCadence
 from .network_flow_reports_get_parameters_query import NetworkFlowReportsGetParametersQuery
 from .network_flow_reports import NetworkFlowReports
 from .network_flow_report import NetworkFlowReport
@@ -227,11 +236,18 @@ from .network_flow_log import NetworkFlowLog
 from .me import Me
 from .managed_accounts_get_parameters_query import ManagedAccountsGetParametersQuery
 from .managed_accounts import ManagedAccounts
+from .managed_account_integration import ManagedAccountIntegration
 from .managed_account import ManagedAccount
 from .links import Links
+from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_order import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryOrder
+from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_date_bin import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryDateBin
+from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQuery
 from .kubernetes_efficiency_reports_get_parameters_query import KubernetesEfficiencyReportsGetParametersQuery
 from .kubernetes_efficiency_reports_data_exports_post_parameters_query import KubernetesEfficiencyReportsDataExportsPostParametersQuery
 from .kubernetes_efficiency_reports import KubernetesEfficiencyReports
+from .kubernetes_efficiency_report_costs import KubernetesEfficiencyReportCosts
+from .kubernetes_efficiency_report_cost_label import KubernetesEfficiencyReportCostLabel
+from .kubernetes_efficiency_report_cost import KubernetesEfficiencyReportCost
 from .kubernetes_efficiency_report import KubernetesEfficiencyReport
 from .invoices_get_parameters_query import InvoicesGetParametersQuery
 from .invoices import Invoices
@@ -242,6 +258,7 @@ from .integrations_get_parameters_query import IntegrationsGetParametersQuery
 from .integrations import Integrations
 from .integration_status import IntegrationStatus
 from .integration import Integration
+from .gcp_bigquery_metric_fields import GcpBigqueryMetricFields
 from .forecasted_costs import ForecastedCosts
 from .forecasted_cost_provider import ForecastedCostProvider
 from .forecasted_cost import ForecastedCost
@@ -252,13 +269,28 @@ from .folder import Folder
 from .financial_commitments_get_parameters_query import FinancialCommitmentsGetParametersQuery
 from .financial_commitments import FinancialCommitments
 from .financial_commitment_reports_get_parameters_query import FinancialCommitmentReportsGetParametersQuery
+from .financial_commitment_reports_financial_commitment_report_token_costs_get_parameters_query_order import FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryOrder
+from .financial_commitment_reports_financial_commitment_report_token_costs_get_parameters_query_on_demand_costs_scope import FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryOnDemandCostsScope
+from .financial_commitment_reports_financial_commitment_report_token_costs_get_parameters_query_date_bin import FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryDateBin
+from .financial_commitment_reports_financial_commitment_report_token_costs_get_parameters_query import FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQuery
 from .financial_commitment_reports import FinancialCommitmentReports
+from .financial_commitment_report_costs import FinancialCommitmentReportCosts
+from .financial_commitment_report_cost_tag import FinancialCommitmentReportCostTag
+from .financial_commitment_report_cost import FinancialCommitmentReportCost
 from .financial_commitment_report import FinancialCommitmentReport
 from .financial_commitment import FinancialCommitment
 from .exchange_rates_get_parameters_query import ExchangeRatesGetParametersQuery
 from .exchange_rates import ExchangeRates
 from .exchange_rate import ExchangeRate
 from .errors import Errors
+from .enrichment_statistics import EnrichmentStatistics
+from .enrichment_statistic import EnrichmentStatistic
+from .enrichment_sources_get_parameters_query import EnrichmentSourcesGetParametersQuery
+from .enrichment_sources_enrichment_source_token_statistics_get_parameters_query_provider import EnrichmentSourcesEnrichmentSourceTokenStatisticsGetParametersQueryProvider
+from .enrichment_sources_enrichment_source_token_statistics_get_parameters_query import EnrichmentSourcesEnrichmentSourceTokenStatisticsGetParametersQuery
+from .enrichment_sources import EnrichmentSources
+from .enrichment_source_type import EnrichmentSourceType
+from .enrichment_source import EnrichmentSource
 from .download_invoice_file_type import DownloadInvoiceFileType
 from .default_forecast_kind import DefaultForecastKind
 from .default_forecast import DefaultForecast
@@ -291,6 +323,7 @@ from .create_virtual_tag_config import CreateVirtualTagConfig
 from .create_user_feedback import CreateUserFeedback
 from .create_unit_costs_export_date_bin import CreateUnitCostsExportDateBin
 from .create_unit_costs_export import CreateUnitCostsExport
+from .create_twilio_integration import CreateTwilioIntegration
 from .create_team_role import CreateTeamRole
 from .create_team import CreateTeam
 from .create_sso_connection_for_managed_account_type import CreateSsoConnectionForManagedAccountType
@@ -352,6 +385,7 @@ from .create_cost_alert import CreateCostAlert
 from .create_canvas import CreateCanvas
 from .create_business_metric_value import CreateBusinessMetricValue
 from .create_business_metric_snowflake_metric_fields import CreateBusinessMetricSnowflakeMetricFields
+from .create_business_metric_gcp_bigquery_metric_fields import CreateBusinessMetricGcpBigqueryMetricFields
 from .create_business_metric_forecasted_value import CreateBusinessMetricForecastedValue
 from .create_business_metric_datadog_metric_fields import CreateBusinessMetricDatadogMetricFields
 from .create_business_metric_cost_report_tokens_with_metadatum_unit_scale import CreateBusinessMetricCostReportTokensWithMetadatumUnitScale
@@ -359,7 +393,11 @@ from .create_business_metric_cost_report_tokens_with_metadatum_calculation_type 
 from .create_business_metric_cost_report_tokens_with_metadatum import CreateBusinessMetricCostReportTokensWithMetadatum
 from .create_business_metric_cloudwatch_fields_dimension import CreateBusinessMetricCloudwatchFieldsDimension
 from .create_business_metric_cloudwatch_fields import CreateBusinessMetricCloudwatchFields
+from .create_business_metric_clickhouse_metric_fields import CreateBusinessMetricClickhouseMetricFields
 from .create_business_metric import CreateBusinessMetric
+from .create_budget_type import CreateBudgetType
+from .create_budget_period_cadence_interval_unit import CreateBudgetPeriodCadenceIntervalUnit
+from .create_budget_period_cadence import CreateBudgetPeriodCadence
 from .create_budget_period import CreateBudgetPeriod
 from .create_budget_alert import CreateBudgetAlert
 from .create_budget import CreateBudget
@@ -379,6 +417,10 @@ from .create_billing_profile import CreateBillingProfile
 from .create_azure_integration import CreateAzureIntegration
 from .create_anomaly_notification import CreateAnomalyNotification
 from .create_annotation import CreateAnnotation
+from .create_access_policy_policy_policy import CreateAccessPolicyPolicyPolicy
+from .create_access_policy_policy_api_version import CreateAccessPolicyPolicyApiVersion
+from .create_access_policy_policy import CreateAccessPolicyPolicy
+from .create_access_policy import CreateAccessPolicy
 from .create_access_grant_access import CreateAccessGrantAccess
 from .create_access_grant import CreateAccessGrant
 from .costs_get_parameters_query_settings_aggregate_by import CostsGetParametersQuerySettingsAggregateBy
@@ -416,6 +458,7 @@ from .cost import Cost
 from .cloudwatch_fields_stat import CloudwatchFieldsStat
 from .cloudwatch_fields import CloudwatchFields
 from .cloudwatch_dimension import CloudwatchDimension
+from .clickhouse_metric_fields import ClickhouseMetricFields
 from .chart_settings_y_axis_dimension import ChartSettingsYAxisDimension
 from .chart_settings import ChartSettings
 from .canvases_get_parameters_query import CanvasesGetParametersQuery
@@ -443,7 +486,9 @@ from .business_information import BusinessInformation
 from .budgets_get_parameters_query import BudgetsGetParametersQuery
 from .budgets_budget_token_get_parameters_query import BudgetsBudgetTokenGetParametersQuery
 from .budgets import Budgets
+from .budget_type import BudgetType
 from .budget_period import BudgetPeriod
+from .budget_performance_type import BudgetPerformanceType
 from .budget_performance import BudgetPerformance
 from .budget_alerts_get_parameters_query import BudgetAlertsGetParametersQuery
 from .budget_alerts import BudgetAlerts
@@ -486,11 +531,21 @@ from .adjustment_item_adjustment_type import AdjustmentItemAdjustmentType
 from .adjustment_item import AdjustmentItem
 from .add_team_member_role import AddTeamMemberRole
 from .add_team_member import AddTeamMember
+from .access_policy_rules import AccessPolicyRules
+from .access_policy_document_api_version import AccessPolicyDocumentApiVersion
+from .access_policy_document import AccessPolicyDocument
+from .access_policy import AccessPolicy
+from .access_policies_get_parameters_query import AccessPoliciesGetParametersQuery
+from .access_policies import AccessPolicies
 from .access_grants_get_parameters_query import AccessGrantsGetParametersQuery
 from .access_grants import AccessGrants
 from .access_grant import AccessGrant
 from .business_metrics_business_metric_token_values_csv_put_request1 import BusinessMetricsBusinessMetricTokenValuesCsvPutRequest as BusinessMetricsBusinessMetricTokenValuesCsvPutRequest1BusinessMetricsBusinessMetricTokenValuesCsvPutRequest
 from .business_metrics_business_metric_token_values_csv_put_request import BusinessMetricsBusinessMetricTokenValuesCsvPutRequest as BusinessMetricsBusinessMetricTokenValuesCsvPutRequestBusinessMetricsBusinessMetricTokenValuesCsvPutRequest
+from .create_financial_commitment_report_groupings1 import CreateFinancialCommitmentReportGroupings as CreateFinancialCommitmentReportGroupings1CreateFinancialCommitmentReportGroupings
+from .create_financial_commitment_report_groupings import CreateFinancialCommitmentReportGroupings as CreateFinancialCommitmentReportGroupingsCreateFinancialCommitmentReportGroupings
+from .create_kubernetes_efficiency_report_groupings1 import CreateKubernetesEfficiencyReportGroupings as CreateKubernetesEfficiencyReportGroupings1CreateKubernetesEfficiencyReportGroupings
+from .create_kubernetes_efficiency_report_groupings import CreateKubernetesEfficiencyReportGroupings as CreateKubernetesEfficiencyReportGroupingsCreateKubernetesEfficiencyReportGroupings
 from .create_virtual_tag_config_value1 import CreateVirtualTagConfigValue as CreateVirtualTagConfigValue1CreateVirtualTagConfigValue
 from .create_virtual_tag_config_value import CreateVirtualTagConfigValue as CreateVirtualTagConfigValueCreateVirtualTagConfigValue
 from .download_invoice1 import DownloadInvoice as DownloadInvoice1DownloadInvoice
@@ -499,6 +554,14 @@ from .exchange_rates_csv_post_request1 import ExchangeRatesCsvPostRequest as Exc
 from .exchange_rates_csv_post_request import ExchangeRatesCsvPostRequest as ExchangeRatesCsvPostRequestExchangeRatesCsvPostRequest
 from .integrations_integration_token_costs_csv_post_request1 import IntegrationsIntegrationTokenCostsCsvPostRequest as IntegrationsIntegrationTokenCostsCsvPostRequest1IntegrationsIntegrationTokenCostsCsvPostRequest
 from .integrations_integration_token_costs_csv_post_request import IntegrationsIntegrationTokenCostsCsvPostRequest as IntegrationsIntegrationTokenCostsCsvPostRequestIntegrationsIntegrationTokenCostsCsvPostRequest
+from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings1 import KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings as KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings1KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings
+from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings import KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings as KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupingsKubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings
+from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings1 import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings1KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
+from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupingsKubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
+from .update_financial_commitment_report_groupings1 import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupings1UpdateFinancialCommitmentReportGroupings
+from .update_financial_commitment_report_groupings import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupingsUpdateFinancialCommitmentReportGroupings
+from .update_kubernetes_efficiency_report_groupings1 import UpdateKubernetesEfficiencyReportGroupings as UpdateKubernetesEfficiencyReportGroupings1UpdateKubernetesEfficiencyReportGroupings
+from .update_kubernetes_efficiency_report_groupings import UpdateKubernetesEfficiencyReportGroupings as UpdateKubernetesEfficiencyReportGroupingsUpdateKubernetesEfficiencyReportGroupings
 from .update_virtual_tag_config_value1 import UpdateVirtualTagConfigValue as UpdateVirtualTagConfigValue1UpdateVirtualTagConfigValue
 from .update_virtual_tag_config_value import UpdateVirtualTagConfigValue as UpdateVirtualTagConfigValueUpdateVirtualTagConfigValue
 
@@ -506,6 +569,12 @@ __all__ = [
     "AccessGrant",
     "AccessGrants",
     "AccessGrantsGetParametersQuery",
+    "AccessPolicies",
+    "AccessPoliciesGetParametersQuery",
+    "AccessPolicy",
+    "AccessPolicyDocument",
+    "AccessPolicyDocumentApiVersion",
+    "AccessPolicyRules",
     "AddTeamMember",
     "AddTeamMemberRole",
     "AdjustmentItem",
@@ -548,7 +617,9 @@ __all__ = [
     "BudgetAlerts",
     "BudgetAlertsGetParametersQuery",
     "BudgetPerformance",
+    "BudgetPerformanceType",
     "BudgetPeriod",
+    "BudgetType",
     "Budgets",
     "BudgetsBudgetTokenGetParametersQuery",
     "BudgetsGetParametersQuery",
@@ -578,6 +649,7 @@ __all__ = [
     "CanvasesGetParametersQuery",
     "ChartSettings",
     "ChartSettingsYAxisDimension",
+    "ClickhouseMetricFields",
     "CloudwatchDimension",
     "CloudwatchFields",
     "CloudwatchFieldsStat",
@@ -616,6 +688,10 @@ __all__ = [
     "CostsGetParametersQuerySettingsAggregateBy",
     "CreateAccessGrant",
     "CreateAccessGrantAccess",
+    "CreateAccessPolicy",
+    "CreateAccessPolicyPolicy",
+    "CreateAccessPolicyPolicyApiVersion",
+    "CreateAccessPolicyPolicyPolicy",
     "CreateAnnotation",
     "CreateAnomalyNotification",
     "CreateAzureIntegration",
@@ -635,7 +711,11 @@ __all__ = [
     "CreateBudget",
     "CreateBudgetAlert",
     "CreateBudgetPeriod",
+    "CreateBudgetPeriodCadence",
+    "CreateBudgetPeriodCadenceIntervalUnit",
+    "CreateBudgetType",
     "CreateBusinessMetric",
+    "CreateBusinessMetricClickhouseMetricFields",
     "CreateBusinessMetricCloudwatchFields",
     "CreateBusinessMetricCloudwatchFieldsDimension",
     "CreateBusinessMetricCostReportTokensWithMetadatum",
@@ -643,6 +723,7 @@ __all__ = [
     "CreateBusinessMetricCostReportTokensWithMetadatumUnitScale",
     "CreateBusinessMetricDatadogMetricFields",
     "CreateBusinessMetricForecastedValue",
+    "CreateBusinessMetricGcpBigqueryMetricFields",
     "CreateBusinessMetricSnowflakeMetricFields",
     "CreateBusinessMetricValue",
     "CreateCanvas",
@@ -673,6 +754,8 @@ __all__ = [
     "CreateFinancialCommitmentReport",
     "CreateFinancialCommitmentReportDateBucket",
     "CreateFinancialCommitmentReportDateInterval",
+    "CreateFinancialCommitmentReportGroupings1CreateFinancialCommitmentReportGroupings",
+    "CreateFinancialCommitmentReportGroupingsCreateFinancialCommitmentReportGroupings",
     "CreateFinancialCommitmentReportOnDemandCostsScope",
     "CreateFolder",
     "CreateFolderType",
@@ -684,6 +767,8 @@ __all__ = [
     "CreateKubernetesEfficiencyReportDateInterval",
     "CreateKubernetesEfficiencyReportExport",
     "CreateKubernetesEfficiencyReportExportDateBin",
+    "CreateKubernetesEfficiencyReportGroupings1CreateKubernetesEfficiencyReportGroupings",
+    "CreateKubernetesEfficiencyReportGroupingsCreateKubernetesEfficiencyReportGroupings",
     "CreateManagedAccount",
     "CreateNetworkFlowReport",
     "CreateNetworkFlowReportDateInterval",
@@ -704,6 +789,7 @@ __all__ = [
     "CreateSsoConnectionForManagedAccountType",
     "CreateTeam",
     "CreateTeamRole",
+    "CreateTwilioIntegration",
     "CreateUnitCostsExport",
     "CreateUnitCostsExportDateBin",
     "CreateUserFeedback",
@@ -740,6 +826,14 @@ __all__ = [
     "DownloadInvoice1DownloadInvoice",
     "DownloadInvoiceDownloadInvoice",
     "DownloadInvoiceFileType",
+    "EnrichmentSource",
+    "EnrichmentSourceType",
+    "EnrichmentSources",
+    "EnrichmentSourcesEnrichmentSourceTokenStatisticsGetParametersQuery",
+    "EnrichmentSourcesEnrichmentSourceTokenStatisticsGetParametersQueryProvider",
+    "EnrichmentSourcesGetParametersQuery",
+    "EnrichmentStatistic",
+    "EnrichmentStatistics",
     "Errors",
     "ExchangeRate",
     "ExchangeRates",
@@ -748,7 +842,14 @@ __all__ = [
     "ExchangeRatesGetParametersQuery",
     "FinancialCommitment",
     "FinancialCommitmentReport",
+    "FinancialCommitmentReportCost",
+    "FinancialCommitmentReportCostTag",
+    "FinancialCommitmentReportCosts",
     "FinancialCommitmentReports",
+    "FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQuery",
+    "FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryDateBin",
+    "FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryOnDemandCostsScope",
+    "FinancialCommitmentReportsFinancialCommitmentReportTokenCostsGetParametersQueryOrder",
     "FinancialCommitmentReportsGetParametersQuery",
     "FinancialCommitments",
     "FinancialCommitmentsGetParametersQuery",
@@ -759,6 +860,7 @@ __all__ = [
     "ForecastedCost",
     "ForecastedCostProvider",
     "ForecastedCosts",
+    "GcpBigqueryMetricFields",
     "Integration",
     "IntegrationStatus",
     "Integrations",
@@ -771,11 +873,22 @@ __all__ = [
     "Invoices",
     "InvoicesGetParametersQuery",
     "KubernetesEfficiencyReport",
+    "KubernetesEfficiencyReportCost",
+    "KubernetesEfficiencyReportCostLabel",
+    "KubernetesEfficiencyReportCosts",
     "KubernetesEfficiencyReports",
     "KubernetesEfficiencyReportsDataExportsPostParametersQuery",
+    "KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings1KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings",
+    "KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupingsKubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings",
     "KubernetesEfficiencyReportsGetParametersQuery",
+    "KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQuery",
+    "KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryDateBin",
+    "KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings1KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings",
+    "KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupingsKubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings",
+    "KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryOrder",
     "Links",
     "ManagedAccount",
+    "ManagedAccountIntegration",
     "ManagedAccounts",
     "ManagedAccountsGetParametersQuery",
     "Me",
@@ -789,6 +902,7 @@ __all__ = [
     "NetworkFlowReport",
     "NetworkFlowReports",
     "NetworkFlowReportsGetParametersQuery",
+    "PeriodCadence",
     "Price",
     "Prices",
     "Product",
@@ -867,6 +981,10 @@ __all__ = [
     "UnitCostsGetParametersQueryOrder",
     "UpdateAccessGrant",
     "UpdateAccessGrantAccess",
+    "UpdateAccessPolicy",
+    "UpdateAccessPolicyPolicy",
+    "UpdateAccessPolicyPolicyApiVersion",
+    "UpdateAccessPolicyPolicyPolicy",
     "UpdateAnnotation",
     "UpdateAnomalyAlert",
     "UpdateAnomalyNotification",
@@ -893,6 +1011,9 @@ __all__ = [
     "UpdateBudget",
     "UpdateBudgetAlert",
     "UpdateBudgetPeriod",
+    "UpdateBudgetPeriodCadence",
+    "UpdateBudgetPeriodCadenceIntervalUnit",
+    "UpdateBudgetType",
     "UpdateBusinessMetric",
     "UpdateBusinessMetricCloudwatchFields",
     "UpdateBusinessMetricCloudwatchFieldsDimension",
@@ -927,6 +1048,8 @@ __all__ = [
     "UpdateFinancialCommitmentReport",
     "UpdateFinancialCommitmentReportDateBucket",
     "UpdateFinancialCommitmentReportDateInterval",
+    "UpdateFinancialCommitmentReportGroupings1UpdateFinancialCommitmentReportGroupings",
+    "UpdateFinancialCommitmentReportGroupingsUpdateFinancialCommitmentReportGroupings",
     "UpdateFinancialCommitmentReportOnDemandCostsScope",
     "UpdateFolder",
     "UpdateIntegration",
@@ -934,11 +1057,14 @@ __all__ = [
     "UpdateKubernetesEfficiencyReportAggregatedBy",
     "UpdateKubernetesEfficiencyReportDateBucket",
     "UpdateKubernetesEfficiencyReportDateInterval",
+    "UpdateKubernetesEfficiencyReportGroupings1UpdateKubernetesEfficiencyReportGroupings",
+    "UpdateKubernetesEfficiencyReportGroupingsUpdateKubernetesEfficiencyReportGroupings",
     "UpdateManagedAccount",
     "UpdateManagedAccountBillingInformationAttributes",
     "UpdateManagedAccountBusinessInformationAttributes",
     "UpdateManagedAccountBusinessInformationAttributesMetadata",
     "UpdateManagedAccountBusinessInformationAttributesMetadataCustomField",
+    "UpdateManagedAccountIntegration",
     "UpdateMe",
     "UpdateNetworkFlowReport",
     "UpdateNetworkFlowReportDateInterval",

@@ -16,7 +16,7 @@ class Cost(BaseModel):
         populate_by_name=True,
     )
     links: links_1.Links | None = None
-    accrued_at: Annotated[str, Field(description='The date the cost was accrued. ISO 8601 Formatted.', examples=['2023-09-05+00:00'])]
+    accrued_at: Annotated[str, Field(description='The date that the cost was accrued. ISO 8601 Formatted. Hourly date_bin responses include the hour (e.g. 2023-09-05T13:00:00Z); other bins are date-only.', examples=['2023-09-05T00:00:00Z'])]
     amount: Annotated[str, Field(description='The amount of the cost.', examples=['4.25'])]
     currency: Annotated[str, Field(description='The currency of the cost.', examples=['USD'])]
     usage: Annotated[Mapping[str, Any] | None, Field(description='The usage amount and unit incurred by the cost.')] = None
@@ -31,4 +31,7 @@ class Cost(BaseModel):
     tags: Annotated[Sequence[str] | None, Field(description='The tag pairs attached to the cost that was incurred.')] = None
     cost_category: Annotated[str | None, Field(description='The category for the cost.', examples=['Data Transfer'])] = None
     cost_subcategory: Annotated[str | None, Field(description='The subcategory for the cost.', examples=['DataTransfer-Regional-Bytes'])] = None
+    charge_type: Annotated[str | None, Field(description='The charge type for the cost.', examples=['Usage'])] = None
+    tagged: Annotated[bool | None, Field(description='Whether the cost has tags.', examples=[True])] = None
+    usage_unit: Annotated[str | None, Field(description='The unit used to measure usage.', examples=['GB'])] = None
     segment: Annotated[str | None, Field(description='The segment name for segment report costs.', examples=['Engineering'])] = None

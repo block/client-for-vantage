@@ -22,11 +22,11 @@ class CostsGetParametersQuery(BaseModel):
     limit: int | None = None
     page: int | None = None
     date_bin: costs_get_parameters_query_date_bin.CostsGetParametersQueryDateBin | None = None
-    settings_include_credits_: Annotated[bool, Field(alias='settings[include_credits]')] = False
-    settings_include_refunds_: Annotated[bool, Field(alias='settings[include_refunds]')] = False
-    settings_include_discounts_: Annotated[bool, Field(alias='settings[include_discounts]')] = True
-    settings_include_tax_: Annotated[bool, Field(alias='settings[include_tax]')] = True
-    settings_amortize_: Annotated[bool, Field(alias='settings[amortize]')] = True
-    settings_unallocated_: Annotated[bool, Field(alias='settings[unallocated]')] = False
-    settings_aggregate_by_: Annotated[costs_get_parameters_query_settings_aggregate_by.CostsGetParametersQuerySettingsAggregateBy, Field(alias='settings[aggregate_by]')] = costs_get_parameters_query_settings_aggregate_by.CostsGetParametersQuerySettingsAggregateBy.cost
-    settings_show_previous_period_: Annotated[bool, Field(alias='settings[show_previous_period]')] = True
+    settings_include_credits_: Annotated[bool | None, Field(alias='settings[include_credits]')] = None
+    settings_include_refunds_: Annotated[bool | None, Field(alias='settings[include_refunds]')] = None
+    settings_include_discounts_: Annotated[bool | None, Field(alias='settings[include_discounts]')] = None
+    settings_include_tax_: Annotated[bool | None, Field(alias='settings[include_tax]')] = None
+    settings_amortize_: Annotated[bool | None, Field(alias='settings[amortize]')] = None
+    settings_unallocated_: Annotated[bool | None, Field(alias='settings[unallocated]')] = None
+    settings_aggregate_by_: Annotated[costs_get_parameters_query_settings_aggregate_by.CostsGetParametersQuerySettingsAggregateBy | None, Field(alias='settings[aggregate_by]')] = None
+    settings_show_previous_period_: Annotated[bool | None, Field(alias='settings[show_previous_period]')] = None

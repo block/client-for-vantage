@@ -4,6 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
+from . import budget_performance_type
 
 
 class BudgetPerformance(BaseModel):
@@ -11,5 +12,7 @@ class BudgetPerformance(BaseModel):
         populate_by_name=True,
     )
     date: Annotated[str, Field(description='The date and time, in UTC, the Budget was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
-    actual: Annotated[str, Field(description='The date and time, in UTC, the Budget was created. ISO 8601 Formatted.', examples=['2024-03-19T00:00:00Z'])]
+    actual: Annotated[str, Field(description='Settled spend as a percent of the Budget amount for the month. For example, 114% means spend is 14% over the Budget.', examples=['114%'])]
     amount: Annotated[str, Field(description='The amount of the Budget Period as a string to ensure precision.', examples=['100.00'])]
+    type: Annotated[budget_performance_type.BudgetPerformanceType, Field(description='The type of Budget. One of: cost, usage.', examples=['cost'])]
+    unit: Annotated[str | None, Field(description='The usage unit for usage Budget performance amounts.')] = None

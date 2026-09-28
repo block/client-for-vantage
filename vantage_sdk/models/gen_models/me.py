@@ -19,3 +19,4 @@ class Me(BaseModel):
     default_dashboard_token: Annotated[str | None, Field(description='The token of the default Dashboard for the User.')] = None
     workspaces: Sequence[workspace.Workspace]
     bearer_token: bearer_token_1.BearerToken
+    is_account_owner: Annotated[bool, Field(description='True when the authenticated User or Token has the Owner role on the Account.')]

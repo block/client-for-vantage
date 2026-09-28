@@ -18,8 +18,8 @@ class ReportNotification(BaseModel):
     token: str
     title: Annotated[str, Field(description='The title of the ReportNotification.', examples=['Acme Report Notification'])]
     cost_report_token: Annotated[str, Field(description='The token for a CostReport the ReportNotification is applied to.', examples=['rprt_abcd1234'])]
-    user_tokens: Annotated[Sequence[str], Field(description='The tokens of organization users that receive the notification. Freeform verified-domain emails are not included; see recipient_emails.')]
-    recipient_emails: Annotated[Sequence[str], Field(description='The email addresses that receive the notification, including organization users and verified-domain addresses.')]
+    user_tokens: Annotated[Sequence[str], Field(description='The tokens of organization users that receive the notification. Freeform SSO-domain and approved third-party emails are not included; see recipient_emails.')]
+    recipient_emails: Annotated[Sequence[str], Field(description='The email addresses that receive the notification, including organization users, SSO-domain addresses, and approved third-party addresses.')]
     recipient_channels: Annotated[Sequence[str], Field(description='The Slack or Microsoft Teams channels that receive the notification.')]
     frequency: Annotated[report_notification_frequency.ReportNotificationFrequency, Field(description='The frequency the ReportNotification is sent.', examples=['weekly'])]
     change: Annotated[report_notification_change.ReportNotificationChange, Field(description='The type of change the ReportNotification is tracking.', examples=['percentage'])]

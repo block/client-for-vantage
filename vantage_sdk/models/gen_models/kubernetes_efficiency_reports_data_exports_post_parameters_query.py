@@ -4,10 +4,11 @@
 from __future__ import annotations
 from collections.abc import Sequence
 from pydantic import BaseModel, ConfigDict
+from . import kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings, kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings1
 
 
 class KubernetesEfficiencyReportsDataExportsPostParametersQuery(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    groupings: Sequence[str] | None = None
+    groupings: Sequence[kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings.KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings | kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings1.KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings] | None = None
