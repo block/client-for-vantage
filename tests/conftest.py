@@ -10,11 +10,9 @@ API keys never end up in version control and replayed responses match
 regardless of when they were recorded.
 """
 
-from datetime import datetime
-
 # This fixes a type issue with the generated code in models.py
 import builtins
-import time
+from datetime import datetime
 from pathlib import Path
 
 builtins.bytes_aliased = bytes
@@ -22,38 +20,31 @@ builtins.bytes_aliased = bytes
 import pytest
 from httpx import HTTPError, Timeout
 
-from tests.test_models import Settings, ResourceNameFactory
+from tests.test_models import ResourceNameFactory, Settings
 from vantage_sdk import VantageSDK
 from vantage_sdk.models import (
     AccessGrant,
     AccessGrantTokenParams,
     AnomalyNotification,
     AnomalyNotificationTokenParams,
-    AuditLog,
     AuditLogs,
     AuditLogsGetParametersQuery,
     BillingRule,
     BillingRuleTokenParams,
     Budget,
     BudgetAlert,
-    BudgetAlertTokenParams,
     BudgetAlertsPostRequest,
+    BudgetAlertTokenParams,
     BudgetTokenParams,
     BusinessMetric,
     BusinessMetricTokenParams,
+    Canvas,
+    CanvasTokenParams,
     CostAlert,
     CostAlertTokenParams,
     CostReport,
     CostReportTokenParams,
     CostsDataExportsPostRequest,
-    CreateCostReportChartType,
-    CreateDashboardDateBin,
-    CreateCostReportDateBin,
-    CreateDashboardDateInterval,
-    CreateFinancialCommitmentReportDateInterval,
-    CreateKubernetesEfficiencyReportDateInterval,
-    CreateNetworkFlowReportDateInterval,
-    CreateCostExportSchema,
     CreateAccessGrant,
     CreateAccessGrantAccess,
     CreateAnomalyNotification,
@@ -62,39 +53,49 @@ from vantage_sdk.models import (
     CreateBudgetPeriod,
     CreateBusinessMetric,
     CreateBusinessMetricCostReportTokensWithMetadatum,
+    CreateBusinessMetricCostReportTokensWithMetadatumUnitScale,
+    CreateBusinessMetricForecastedValue,
     CreateBusinessMetricValue,
     CreateCanvas,
     CreateCostAlert,
+    CreateCostExportSchema,
     CreateCostReport,
+    CreateCostReportChartSettings,
+    CreateCostReportChartType,
+    CreateCostReportDateBin,
+    CreateCostReportSettings,
     CreateDashboard,
+    CreateDashboardDateBin,
+    CreateDashboardDateInterval,
+    CreateDashboardWidget,
+    CreateDashboardWidgetSettings,
     CreateFinancialCommitmentReport,
+    CreateFinancialCommitmentReportDateInterval,
     CreateFolder,
     CreateKubernetesEfficiencyReport,
+    CreateKubernetesEfficiencyReportDateInterval,
     CreateManagedAccount,
     CreateNetworkFlowReport,
+    CreateNetworkFlowReportDateInterval,
+    CreateNetworkFlowReportFlowDirection,
+    CreateNetworkFlowReportFlowWeight,
+    CreateNetworkFlowReportGrouping,
     CreateResourceReport,
     CreateSavedFilter,
     CreateTeam,
     CreateTeamRole,
     CreateVirtualTagConfig,
-    Canvas,
-    CanvasTokenParams,
+    CreateVirtualTagConfigCollapsedTagKey,
+    CreateVirtualTagConfigValue,
+    CreateWorkspace,
     Dashboard,
     DashboardTokenParams,
-    CreateNetworkFlowReportFlowDirection,
-    CreateNetworkFlowReportFlowWeight,
-    CreateNetworkFlowReportGrouping,
     FinancialCommitmentReport,
     FinancialCommitmentReportTokenParams,
     Folder,
     FolderTokenParams,
-    CreateBusinessMetricForecastedValue,
     KubernetesEfficiencyReport,
     KubernetesEfficiencyReportTokenParams,
-    CreateCostReportSettings,
-    CreateDashboardWidgetSettings,
-    CreateVirtualTagConfigValue,
-    VirtualTagConfigValue,
     ManagedAccount,
     ManagedAccountTokenParams,
     NetworkFlowReport,
@@ -103,18 +104,11 @@ from vantage_sdk.models import (
     ResourceReportTokenParams,
     SavedFilter,
     SavedFilterTokenParams,
-    CreateCostReportChartSettings,
-    CreateVirtualTagConfigCollapsedTagKey,
-    VirtualTagConfigValueCostMetricAggregation,
-    VirtualTagConfigValuePercentage,
     Team,
     TeamTokenParams,
     UpdateCostReport,
-    CreateBusinessMetricCostReportTokensWithMetadatumUnitScale,
-    CreateDashboardWidget,
     VirtualTagConfig,
     VirtualTagTokenParams,
-    CreateWorkspace,
     Workspace,
     WorkspaceTokenParams,
 )
@@ -124,10 +118,12 @@ CASSETTE_DIR = Path(__file__).parent / "cassettes"
 
 settings = Settings()
 
+
 def _scrub_request(request):
     if "authorization" in request.headers:
         request.headers["authorization"] = "REDACTED"
     return request
+
 
 def _scrub_response(response):
     response["headers"].pop("Date", None)
@@ -141,6 +137,7 @@ def pytest_configure(config) -> None:
     config.addinivalue_line("markers", "live: mark test as requiring the live API")
     config.addinivalue_line("markers", "vcr_only: mark test as requiring VCR cassettes (skipped against live API)")
 
+
 def pytest_collection_modifyitems(items):
     use_vcr = settings.vcr_enabled
     if not use_vcr:
@@ -151,10 +148,15 @@ def pytest_collection_modifyitems(items):
     for item in items:
         item.add_marker(pytest.mark.vcr)
 
+
+@pytest.fixture(scope="session")
+def vcr_cassette_dir():
+    return str(CASSETTE_DIR)
+
+
 @pytest.fixture(scope="session")
 def vcr_config():
     return {
-        "cassette_library_dir": str(CASSETTE_DIR),
         "filter_headers": ["authorization"],
         "before_record_request": _scrub_request,
         "before_record_response": _scrub_response,
@@ -683,7 +685,6 @@ def budget_alert_fixture(vantage_sdk, budget_fixture):
 @pytest.fixture()
 def dashboard_fixture(vantage_sdk, cost_report_fixture):
     """Fixture to create a dashboard for testing"""
-
     # setup - create a test dashboard
     dashboard_title = RESOURCES.dashboard_name
 
@@ -724,7 +725,6 @@ def dashboard_fixture(vantage_sdk, cost_report_fixture):
 @pytest.fixture()
 def canvas_fixture(vantage_sdk):
     """Fixture to create a canvas for testing"""
-
     # setup - create a test canvas
     canvas_title = RESOURCES.canvas_name
 

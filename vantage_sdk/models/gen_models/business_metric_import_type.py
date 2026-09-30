@@ -11,6 +11,8 @@ class BusinessMetricImportType(StrEnum):
     """
     datadog_metrics = 'datadog_metrics'
     cloudwatch = 'cloudwatch'
+    clickhouse_metrics = 'clickhouse_metrics'
+    gcp_bigquery_metrics = 'gcp_bigquery_metrics'
     snowflake_metrics = 'snowflake_metrics'
     metronome_metrics = 'metronome_metrics'
     csv = 'csv'

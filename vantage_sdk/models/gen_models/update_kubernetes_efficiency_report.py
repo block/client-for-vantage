@@ -6,7 +6,7 @@ from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from datetime import date as date_aliased
 from collections.abc import Sequence
-from . import update_kubernetes_efficiency_report_aggregated_by, update_kubernetes_efficiency_report_date_bucket, update_kubernetes_efficiency_report_date_interval
+from . import update_kubernetes_efficiency_report_aggregated_by, update_kubernetes_efficiency_report_date_bucket, update_kubernetes_efficiency_report_date_interval, update_kubernetes_efficiency_report_groupings, update_kubernetes_efficiency_report_groupings1
 
 
 class UpdateKubernetesEfficiencyReport(BaseModel):
@@ -23,4 +23,4 @@ class UpdateKubernetesEfficiencyReport(BaseModel):
     date_interval: Annotated[update_kubernetes_efficiency_report_date_interval.UpdateKubernetesEfficiencyReportDateInterval | None, Field(description="The date interval of the KubernetesEfficiencyReport. Incompatible with 'start_date' and 'end_date' parameters. Defaults to 'this_month' if start_date and end_date are not provided.")] = None
     aggregated_by: Annotated[update_kubernetes_efficiency_report_aggregated_by.UpdateKubernetesEfficiencyReportAggregatedBy | None, Field(description='The column by which the costs are aggregated.')] = None
     date_bucket: Annotated[update_kubernetes_efficiency_report_date_bucket.UpdateKubernetesEfficiencyReportDateBucket | None, Field(description='The date bucket of the KubernetesEfficiencyReport.')] = None
-    groupings: Annotated[Sequence[str] | None, Field(description='Grouping values for aggregating costs on the KubernetesEfficiencyReport. Valid groupings: cluster_id, namespace, region, labeled, category, pod, label, label:<label_name>.')] = None
+    groupings: Annotated[Sequence[update_kubernetes_efficiency_report_groupings.UpdateKubernetesEfficiencyReportGroupings | update_kubernetes_efficiency_report_groupings1.UpdateKubernetesEfficiencyReportGroupings] | None, Field(description='Grouping values for aggregating costs on the KubernetesEfficiencyReport. Group by up to 100 fields. Valid groupings: cluster_id, namespace, region, labeled, category, pod, label:<label_name>.')] = None

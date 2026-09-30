@@ -14,7 +14,7 @@ class UnitCost(BaseModel):
     links: links_1.Links | None = None
     business_metric_token: Annotated[str, Field(description='The token of the BusinessMetric for which the unit cost was calculated.', examples=['bsnss_mtrc_1234'])]
     business_metric_title: Annotated[str, Field(description='The title of the BusinessMetric for which the unit cost was calculated.', examples=['Total Revenue'])]
-    calculation_type: Annotated[unit_cost_calculation_type.UnitCostCalculationType | None, Field(description='The calculation type applied to produce this result.', examples=['unit_cost'])] = None
+    calculation_type: Annotated[unit_cost_calculation_type.UnitCostCalculationType, Field(description='The calculation type applied to produce this result.', examples=['unit_cost'])]
     unit_cost_amount: Annotated[str, Field(description='The amount of the unit cost. For raw_business_metric types, this equals the business_metric_amount.', examples=['4.25'])]
     business_metric_amount: Annotated[str, Field(description='The amount of the business metric.', examples=['0.371'])]
     scale: Annotated[float, Field(description="The scale of the BusinessMetric's values within a particular CostReport.", examples=[1.0])]

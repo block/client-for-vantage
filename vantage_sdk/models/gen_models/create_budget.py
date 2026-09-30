@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import create_budget_period
+from . import create_budget_period, create_budget_period_cadence, create_budget_type
 
 
 class CreateBudget(BaseModel):
@@ -18,5 +18,8 @@ class CreateBudget(BaseModel):
     name: Annotated[str, Field(description='The name of the Budget.')]
     workspace_token: Annotated[str | None, Field(description='The token of the Workspace to add the Budget to.')] = None
     cost_report_token: Annotated[str | None, Field(description='The CostReport token. Ignored for hierarchical Budgets.')] = None
-    child_budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of any child Budgets when creating a hierarchical Budget.')] = None
+    type: Annotated[create_budget_type.CreateBudgetType | None, Field(description='The type of Budget. One of: cost, usage.')] = None
+    unit: Annotated[str | None, Field(description='The usage unit for usage Budgets.')] = None
+    child_budget_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of any child Budgets when creating a hierarchical Budget. Child budgets must share the same current period dates.')] = None
+    period_cadence: Annotated[create_budget_period_cadence.CreateBudgetPeriodCadence | None, Field(description='The interval cadence for budget periods.')] = None
     periods: Annotated[Sequence[create_budget_period.CreateBudgetPeriod] | None, Field(description='The periods for the Budget. The start_at and end_at must be iso8601 formatted e.g. YYYY-MM-DD. Ignored for hierarchical Budgets.')] = None

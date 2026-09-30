@@ -21,6 +21,6 @@ class VirtualTagConfig(BaseModel):
     hidden: Annotated[bool, Field(description='Whether the VirtualTagConfig key is hidden from the Vantage UI.')]
     preferred: Annotated[bool, Field(description='Whether the VirtualTagConfig key is marked as preferred in the Vantage UI.')]
     overridable: Annotated[bool, Field(description='Whether the VirtualTagConfig can override a provider-supplied tag on a matching Cost.')]
-    backfill_until: Annotated[str, Field(description='The earliest month VirtualTagConfig should be backfilled to.', examples=['2026-02-01'])]
+    backfill_until: Annotated[str, Field(description='The earliest month VirtualTagConfig should be backfilled to.', examples=['2026-03-01'])]
     collapsed_tag_keys: Annotated[Sequence[virtual_tag_config_collapsed_tag_key.VirtualTagConfigCollapsedTagKey], Field(description='Tag keys to collapse values for.')]
     values: Annotated[Sequence[virtual_tag_config_value.VirtualTagConfigValue], Field(description='Values for the VirtualTagConfig, with match precedence determined by their relative order in the list.')]

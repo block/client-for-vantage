@@ -23,3 +23,4 @@ class Integration(BaseModel):
     workspace_tokens: Annotated[Sequence[str], Field(description='The tokens for any Workspaces that the account belongs to.')]
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Integration was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
     managed_account_tokens: Annotated[Sequence[str], Field(description='The tokens for any Managed Accounts that are associated with the Integration.')]
+    enriched_by: Annotated[Sequence[str], Field(description="Tokens of the data integrations that enrich this integration's costs. Empty when enrichment is not connected.")]

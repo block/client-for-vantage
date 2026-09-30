@@ -6,7 +6,7 @@ from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from datetime import date as date_aliased
 from collections.abc import Sequence
-from . import create_financial_commitment_report_date_bucket, create_financial_commitment_report_date_interval, create_financial_commitment_report_on_demand_costs_scope
+from . import create_financial_commitment_report_date_bucket, create_financial_commitment_report_date_interval, create_financial_commitment_report_groupings, create_financial_commitment_report_groupings1, create_financial_commitment_report_on_demand_costs_scope
 
 
 class CreateFinancialCommitmentReport(BaseModel):
@@ -24,4 +24,4 @@ class CreateFinancialCommitmentReport(BaseModel):
     date_interval: Annotated[create_financial_commitment_report_date_interval.CreateFinancialCommitmentReportDateInterval | None, Field(description="The date interval of the FinancialCommitmentReport. Unless 'custom' is used, this is incompatible with 'start_date' and 'end_date' parameters. Defaults to 'last_3_months'.")] = None
     date_bucket: Annotated[create_financial_commitment_report_date_bucket.CreateFinancialCommitmentReportDateBucket | None, Field(description='The date bucket of the FinancialCommitmentReport.')] = None
     on_demand_costs_scope: Annotated[create_financial_commitment_report_on_demand_costs_scope.CreateFinancialCommitmentReportOnDemandCostsScope | None, Field(description='The scope for the costs. Possible values: discountable, all.')] = None
-    groupings: Annotated[Sequence[str] | None, Field(description='Grouping values for aggregating costs on the FinancialCommitmentReport. Valid groupings: cost_type, commitment_type, commitment_id, service, resource_account_id, provider_account_id, region, cost_category, cost_sub_category, instance_type, tag, tag:<label_name>.')] = None
+    groupings: Annotated[Sequence[create_financial_commitment_report_groupings.CreateFinancialCommitmentReportGroupings | create_financial_commitment_report_groupings1.CreateFinancialCommitmentReportGroupings] | None, Field(description='Grouping values for aggregating costs on the FinancialCommitmentReport. Group by up to 100 fields. Valid groupings: cost_type, commitment_type, commitment_id, service, resource_account_id, provider_account_id, region, cost_category, cost_sub_category, instance_type, tag:<label_name>.')] = None
