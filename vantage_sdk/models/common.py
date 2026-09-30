@@ -601,7 +601,6 @@ class BudgetAlertsPostRequest(create_budget_alert_model.CreateBudgetAlert):
     """Extends CreateBudgetAlert to accept integer durations"""
 
     duration_in_days: int | str | None = None  # type: ignore[assignment]
-    workspace_token: str | None = None
 
 
 class BudgetAlertsBudgetAlertTokenPutRequest(update_budget_alert_model.UpdateBudgetAlert):

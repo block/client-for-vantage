@@ -18,7 +18,7 @@ interactions:
     uri: https://api.vantage.sh/v2/me
   response:
     body:
-      string: '{"default_workspace_token":null,"workspaces":[{"token":"wrkspc_1f841c10eacc61a7","name":"Updated_test_workspace_20251124_145143_558109","created_at":"2025-11-24T21:51:44Z","enable_currency_conversion":true,"currency":"USD","exchange_rate_date":"daily_rate"},{"token":"wrkspc_576fafc861f024a4","name":"Default","created_at":"2025-11-24T20:55:56Z","enable_currency_conversion":false,"currency":"USD","exchange_rate_date":"daily_rate"}],"bearer_token":{"description":"vantage_sdk","created_at":"2025-11-24T20:58:49Z","scope":["read","write"]}}'
+      string: '{"default_workspace_token":null,"default_dashboard_token":null,"workspaces":[{"token":"wrkspc_1f841c10eacc61a7","name":"Updated_test_workspace_20251124_145143_558109","created_at":"2025-11-24T21:51:44Z","enable_currency_conversion":true,"currency":"USD","exchange_rate_date":"daily_rate"},{"token":"wrkspc_576fafc861f024a4","name":"Default","created_at":"2025-11-24T20:55:56Z","enable_currency_conversion":false,"currency":"USD","exchange_rate_date":"daily_rate"}],"bearer_token":{"description":"vantage_sdk","created_at":"2025-11-24T20:58:49Z","scope":["read","write"]},"is_account_owner":true}'
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -29,17 +29,18 @@ interactions:
       Connection:
       - keep-alive
       Content-Security-Policy:
-      - 'default-src ''self'' https:; font-src ''self'' https: data: https://fonts.gstatic.com;
-        img-src ''self'' https: data:; object-src ''none''; script-src ''self'' https:
-        ''unsafe-inline''; style-src ''self'' https: https://fonts.googleapis.com
-        ''unsafe-inline''; connect-src ''self'' https: https://browser-intake-datadoghq.com;
-        report-uri https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
+      - 'default-src ''self'' https:; frame-ancestors ''self''; font-src ''self''
+        https: data: https://fonts.gstatic.com; img-src ''self'' https: data:; object-src
+        ''none''; script-src ''self'' https: ''unsafe-inline''; worker-src ''self''
+        https: blob:; style-src ''self'' https: https://fonts.googleapis.com ''unsafe-inline'';
+        connect-src ''self'' https: wss: https://browser-intake-datadoghq.com; report-uri
+        https://browser-intake-datadoghq.com/api/v2/logs?dd-api-key=pub6a4daf9be897fccfebb14341baa5d70c&dd-evp-origin=content-security-policy&ddsource=csp-report'
       Content-Type:
       - application/json
       ETag:
-      - W/"7c788d619014abf51cccaeb5e9cdc2e6"
+      - W/"bd91932e46e3e19e21b5e5a426790fc9"
       Set-Cookie:
-      - _stratus_session=c2egz9oUBXKvs%2Byz23J3Zec8sTYqBF9E%2FSC3hk6BuUabzFqnF77ek2oDY53MEwrA0q3kHArM%2FuTyl1QPmPRgGIaA4KeUujp%2B6Xucb9CprkP7QofCggJg8PW0xm8VRvSpO7LZkgThDCdLA502Ua5VUmTtYo64g%2FY9KvprfvSjAeSO6MSHWahl1vz1fRVWhla%2B0%2BLqJhzgi4A%3D--UCqCok7B6jkIgtWJ--uibI2CFS3LK%2FtqBy3WqEQQ%3D%3D;
+      - _stratus_session=AvnRU%2FO1iBFykMB4o2dfcd4SPwYJwKylOgvIUOYBx9K6TMSYQSpoTOQSop%2BkfQBkXP7YYfn9wVKOwvTrIyXwrA1s3d%2FAspCPsOwYwe1Owoc75%2BWR7%2F6vcwEg7gs2DxJRXPMDlzTKd7O14J4lUPZMgrsFqwaGTPS40Yikqtk4TEm%2B83QfCGPtgeDItqYJk7TKXDha6gQWxVA%3D--d060sNOzIy%2FdG3ci--%2BZT0spHuwo0UobG6DsURgQ%3D%3D;
         path=/; secure; HttpOnly; SameSite=Lax
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains
@@ -48,13 +49,13 @@ interactions:
       X-Rate-Limit-Limit:
       - '1000'
       X-Rate-Limit-Remaining:
-      - '365'
+      - '997'
       X-Rate-Limit-Reset:
-      - '1770576040'
+      - '1790812984'
       X-Runtime:
-      - '0.035673'
+      - '0.037219'
       content-length:
-      - '540'
+      - '595'
     status:
       code: 200
       message: OK

@@ -6,6 +6,8 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from vantage_sdk.models import UnitCostCalculationType, UnitCosts
+
 
 class WorkspaceConfig(BaseModel):
     """Workspace configuration with token information"""
@@ -135,3 +137,27 @@ class ResourceNameFactory(BaseModel):
     @property
     def updated_prefix(self) -> str:
         return self.name_generator(ResourcePrefix.UPDATED)
+
+
+def test_unit_costs_nonempty_response():
+    unit_costs = UnitCosts.model_validate(
+        {
+            "unit_costs": [
+                {
+                    "business_metric_token": "bsnss_mtrc_test",
+                    "business_metric_title": "Total Revenue",
+                    "calculation_type": "unit_cost",
+                    "unit_cost_amount": "4.25",
+                    "business_metric_amount": "0.371",
+                    "scale": 1.0,
+                    "date": "2026-01-01",
+                }
+            ]
+        }
+    )
+
+    assert len(unit_costs.unit_costs) == 1
+    unit_cost = unit_costs.unit_costs[0]
+    assert unit_cost.calculation_type is UnitCostCalculationType.unit_cost
+    assert unit_cost.unit_cost_amount == "4.25"
+    assert unit_cost.business_metric_amount == "0.371"
