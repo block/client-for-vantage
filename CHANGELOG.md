@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [3.0.0](https://github.com/block/client-for-vantage/compare/v2.2.1...v3.0.0) (2026-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** The models merged in #34 require Me.is_account_owner, Integration.enriched_by, Budget.type, Budget.period_cadence, BudgetPerformance.type, and UnitCost.calculation_type. Kubernetes and financial-commitment grouping parameters now reject unsupported values. Update manually constructed models and grouping inputs before upgrading.
+
+### Bug Fixes
+
+* **release:** release updated models and classify OpenAPI updates ([0fe454b](https://github.com/block/client-for-vantage/commit/0fe454bc5a5a92027d491f3418da2cd1c4782c19))
+
 ## [2.2.1](https://github.com/block/client-for-vantage/compare/v2.2.0...v2.2.1) (2026-08-18)
 
 
