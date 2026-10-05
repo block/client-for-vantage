@@ -5,7 +5,6 @@ from __future__ import annotations
 from enum import StrEnum
 
 
-class UpdateDashboardWidgetSettingsDisplayType(StrEnum):
-    table = 'table'
-    chart = 'chart'
-    kpi = 'kpi'
+class UpdateDashboardWidgetSettingsKpiCalculation(StrEnum):
+    sum = 'sum'
+    average = 'average'

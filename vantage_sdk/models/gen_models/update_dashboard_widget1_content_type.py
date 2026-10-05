@@ -5,7 +5,8 @@ from __future__ import annotations
 from enum import StrEnum
 
 
-class UpdateDashboardWidgetSettingsDisplayType(StrEnum):
-    table = 'table'
-    chart = 'chart'
-    kpi = 'kpi'
+class UpdateDashboardWidget1ContentType(StrEnum):
+    """
+    The TipTap document root type.
+    """
+    doc = 'doc'

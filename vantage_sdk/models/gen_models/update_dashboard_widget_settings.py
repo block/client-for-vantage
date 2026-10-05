@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 from pydantic import BaseModel, ConfigDict
-from . import update_dashboard_widget_settings_display_type
+from . import update_dashboard_widget_settings_display_type, update_dashboard_widget_settings_kpi_calculation, update_dashboard_widget_settings_kpi_type
 
 
 class UpdateDashboardWidgetSettings(BaseModel):
@@ -13,4 +13,7 @@ class UpdateDashboardWidgetSettings(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    display_type: update_dashboard_widget_settings_display_type.UpdateDashboardWidgetSettingsDisplayType
+    display_type: update_dashboard_widget_settings_display_type.UpdateDashboardWidgetSettingsDisplayType | None = None
+    kpi_calculation: update_dashboard_widget_settings_kpi_calculation.UpdateDashboardWidgetSettingsKpiCalculation | None = None
+    kpi_type: update_dashboard_widget_settings_kpi_type.UpdateDashboardWidgetSettingsKpiType | None = None
+    kpi_usage_unit: str | None = None

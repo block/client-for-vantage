@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import StrEnum
 
 
-class UpdateDashboardWidgetSettingsDisplayType(StrEnum):
+class UpdateDashboardWidget1SettingsDisplayType(StrEnum):
     table = 'table'
     chart = 'chart'
     kpi = 'kpi'

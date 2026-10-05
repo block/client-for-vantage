@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from . import update_virtual_tag_config_value1_cost_metric, update_virtual_tag_config_value1_date_range, update_virtual_tag_config_value1_label_transform, update_virtual_tag_config_value1_percentage
 
 
@@ -20,6 +20,7 @@ class UpdateVirtualTagConfigValue(BaseModel):
     business_metric_token: Annotated[str | None, Field(description='The token of an associated business metric.')] = None
     label_key: Annotated[str | None, Field(description='The business metric label key used for this virtual tag value.')] = None
     label_values: Annotated[Sequence[str] | None, Field(description='Business metric label values. An empty array includes every value for the label key.')] = None
+    label_filters: Annotated[Mapping[str, Sequence[str]] | None, Field(description='ClickHouse BusinessMetric row filters. Each key must match, and values within a key are alternatives. Cannot include the fan-out label_key. Null and an empty object leave stored filters unchanged.', examples=[{'app': ['consumer'], 'team': ['payments']}])] = None
     display_name: Annotated[str | None, Field(description='The display name for a cost metric or percentage allocation value.')] = None
     label_transforms: Sequence[update_virtual_tag_config_value1_label_transform.UpdateVirtualTagConfigValue1LabelTransform] | None = None
     cost_metric: update_virtual_tag_config_value1_cost_metric.UpdateVirtualTagConfigValue1CostMetric | None = None

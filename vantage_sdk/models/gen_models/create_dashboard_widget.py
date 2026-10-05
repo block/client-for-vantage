@@ -4,13 +4,15 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import create_dashboard_widget_settings
+from . import create_dashboard_widget_content, create_dashboard_widget_settings, create_dashboard_widget_widgetable_type
 
 
 class CreateDashboardWidget(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    widgetable_token: Annotated[str, Field(description='The token of the represented Resource.')]
-    title: Annotated[str | None, Field(description='The title of the Widget (defaults to the title of the Resource).')] = None
-    settings: Annotated[create_dashboard_widget_settings.CreateDashboardWidgetSettings | None, Field(description='The settings for the DashboardWidget.')] = None
+    widgetable_token: Annotated[str | None, Field(description='The token of the represented Resource.')] = None
+    widgetable_type: Annotated[create_dashboard_widget_widgetable_type.CreateDashboardWidgetWidgetableType | None, Field(description='The widget type. Use free_text for a free text widget.')] = None
+    title: Annotated[str | None, Field(description='The title of the Widget (defaults to the Resource title, or Free Text for a free text widget).')] = None
+    content: Annotated[create_dashboard_widget_content.CreateDashboardWidgetContent | None, Field(description='The required rich-text document for a free text widget.')] = None
+    settings: Annotated[create_dashboard_widget_settings.CreateDashboardWidgetSettings | None, Field(description='The display and grid layout settings for the DashboardWidget.')] = None
