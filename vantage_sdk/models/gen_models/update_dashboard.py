@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import update_dashboard_date_bin, update_dashboard_date_interval, update_dashboard_widget
+from . import update_dashboard_date_bin, update_dashboard_date_interval, update_dashboard_widget1
 
 
 class UpdateDashboard(BaseModel):
@@ -16,7 +16,7 @@ class UpdateDashboard(BaseModel):
         populate_by_name=True,
     )
     title: Annotated[str | None, Field(description='The title of the Dashboard.')] = None
-    widgets: Annotated[Sequence[update_dashboard_widget.UpdateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Currently supports CostReport, ResourceReport, KubernetesEfficiencyReport, FinancialCommitmentReport, and RecommendationView.')] = None
+    widgets: Annotated[Sequence[update_dashboard_widget1.UpdateDashboardWidget] | None, Field(description='The complete replacement list of widgets for the Dashboard. Omit widgets to preserve every existing widget. When provided, include every report-backed and free text widget to keep; an empty array removes all widgets. Report-backed widgets use widgetable_token. Free text widgets use widgetable_type set to free_text and require content.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Saved Filters used in the Dashboard.')] = None
     date_bin: Annotated[update_dashboard_date_bin.UpdateDashboardDateBin | None, Field(description='Determines how to group costs in the Dashboard.')] = None
     date_interval: Annotated[update_dashboard_date_interval.UpdateDashboardDateInterval | None, Field(description="Determines the date range in the Dashboard. Incompatible with 'start_date' and 'end_date' parameters.")] = None

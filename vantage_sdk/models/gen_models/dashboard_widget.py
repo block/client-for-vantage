@@ -2,15 +2,22 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from typing import Annotated
+from typing import Annotated, Any
 from pydantic import BaseModel, ConfigDict, Field
-from . import dashboard_widget_settings
+from collections.abc import Mapping
+from . import dashboard_widget_settings, dashboard_widget_widgetable_type
 
 
 class DashboardWidget(BaseModel):
+    """
+    DashboardWidget model
+    """
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    widgetable_token: Annotated[str, Field(examples=['rprt_a12b3c'])]
+    token: Annotated[str, Field(description='The token of the Dashboard Widget.', examples=['dshbrd_wdgt_a12b3c'])]
+    widgetable_token: Annotated[str, Field(description='The token of the represented Resource.', examples=['rprt_a12b3c'])] = None
+    widgetable_type: Annotated[dashboard_widget_widgetable_type.DashboardWidgetWidgetableType, Field(description='The widget type. Present instead of widgetable_token for free text widgets.')] = None
     title: Annotated[str, Field(description='The title of the Widget.', examples=['My Widget'])]
-    settings: dashboard_widget_settings.DashboardWidgetSettings
+    content: Annotated[Mapping[str, Any] | None, Field(description='The rich-text document for a free text widget.')] = None
+    settings: dashboard_widget_settings.DashboardWidgetSettings | None = None

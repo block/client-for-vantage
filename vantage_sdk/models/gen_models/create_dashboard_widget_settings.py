@@ -2,15 +2,20 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel, ConfigDict
-from . import create_dashboard_widget_settings_display_type
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
+from . import create_dashboard_widget_settings_display_type, create_dashboard_widget_settings_grid, create_dashboard_widget_settings_kpi_calculation, create_dashboard_widget_settings_kpi_type
 
 
 class CreateDashboardWidgetSettings(BaseModel):
     """
-    The settings for the DashboardWidget.
+    The display and grid layout settings for the DashboardWidget.
     """
     model_config = ConfigDict(
         populate_by_name=True,
     )
     display_type: create_dashboard_widget_settings_display_type.CreateDashboardWidgetSettingsDisplayType
+    kpi_calculation: Annotated[create_dashboard_widget_settings_kpi_calculation.CreateDashboardWidgetSettingsKpiCalculation | None, Field(description='The aggregation used when display_type is kpi.')] = None
+    kpi_type: Annotated[create_dashboard_widget_settings_kpi_type.CreateDashboardWidgetSettingsKpiType | None, Field(description='The metric represented when display_type is kpi.')] = None
+    kpi_usage_unit: Annotated[str | None, Field(description='The usage unit represented when kpi_type is usage.')] = None
+    grid: Annotated[create_dashboard_widget_settings_grid.CreateDashboardWidgetSettingsGrid | None, Field(description="The widget's size and position in the dashboard's 12-column grid.")] = None
