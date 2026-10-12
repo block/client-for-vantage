@@ -56,4 +56,5 @@ class ForecastedCostProvider(StrEnum):
     openrouter = 'openrouter'
     deepgram = 'deepgram'
     crusoe = 'crusoe'
+    sentry_billing = 'sentry_billing'
     all = 'all'

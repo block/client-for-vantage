@@ -8,9 +8,12 @@ from . import update_dashboard_widget_settings
 
 
 class UpdateDashboardWidget(BaseModel):
+    """
+    Update a single Dashboard Widget.
+    """
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    widgetable_token: Annotated[str, Field(description='The token of the represented Resource.')]
-    title: Annotated[str | None, Field(description='The title of the Widget (defaults to the title of the Resource).')] = None
+    widgetable_token: Annotated[str | None, Field(description='The token of the Resource represented by the Widget.')] = None
+    title: Annotated[str | None, Field(description='The title of the Widget.')] = None
     settings: Annotated[update_dashboard_widget_settings.UpdateDashboardWidgetSettings | None, Field(description='The settings for the DashboardWidget.')] = None
