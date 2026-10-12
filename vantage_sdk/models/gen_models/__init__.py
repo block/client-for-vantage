@@ -80,9 +80,20 @@ from .update_financial_commitment_report_on_demand_costs_scope import UpdateFina
 from .update_financial_commitment_report_date_interval import UpdateFinancialCommitmentReportDateInterval
 from .update_financial_commitment_report_date_bucket import UpdateFinancialCommitmentReportDateBucket
 from .update_financial_commitment_report import UpdateFinancialCommitmentReport
+from .update_dashboard_widget_settings_kpi_type import UpdateDashboardWidgetSettingsKpiType
+from .update_dashboard_widget_settings_kpi_calculation import UpdateDashboardWidgetSettingsKpiCalculation
 from .update_dashboard_widget_settings_display_type import UpdateDashboardWidgetSettingsDisplayType
 from .update_dashboard_widget_settings import UpdateDashboardWidgetSettings
-from .update_dashboard_widget import UpdateDashboardWidget
+from .update_dashboard_widget1_widgetable_type import UpdateDashboardWidget1WidgetableType
+from .update_dashboard_widget1_settings_kpi_type import UpdateDashboardWidget1SettingsKpiType
+from .update_dashboard_widget1_settings_kpi_calculation import UpdateDashboardWidget1SettingsKpiCalculation
+from .update_dashboard_widget1_settings_grid import UpdateDashboardWidget1SettingsGrid
+from .update_dashboard_widget1_settings_display_type import UpdateDashboardWidget1SettingsDisplayType
+from .update_dashboard_widget1_settings import UpdateDashboardWidget1Settings
+from .update_dashboard_widget1_content_type import UpdateDashboardWidget1ContentType
+from .update_dashboard_widget1_content import UpdateDashboardWidget1Content
+from .update_dashboard_notification_frequency import UpdateDashboardNotificationFrequency
+from .update_dashboard_notification import UpdateDashboardNotification
 from .update_dashboard_date_interval import UpdateDashboardDateInterval
 from .update_dashboard_date_bin import UpdateDashboardDateBin
 from .update_dashboard import UpdateDashboard
@@ -299,9 +310,17 @@ from .data_export_manifest import DataExportManifest
 from .data_export import DataExport
 from .dashboards_get_parameters_query import DashboardsGetParametersQuery
 from .dashboards import Dashboards
+from .dashboard_widget_widgetable_type import DashboardWidgetWidgetableType
+from .dashboard_widget_settings_kpi_type import DashboardWidgetSettingsKpiType
+from .dashboard_widget_settings_kpi_calculation import DashboardWidgetSettingsKpiCalculation
 from .dashboard_widget_settings_display_type import DashboardWidgetSettingsDisplayType
 from .dashboard_widget_settings import DashboardWidgetSettings
+from .dashboard_widget_grid_layout import DashboardWidgetGridLayout
 from .dashboard_widget import DashboardWidget
+from .dashboard_notifications_get_parameters_query import DashboardNotificationsGetParametersQuery
+from .dashboard_notifications import DashboardNotifications
+from .dashboard_notification_frequency import DashboardNotificationFrequency
+from .dashboard_notification import DashboardNotification
 from .dashboard_date_interval import DashboardDateInterval
 from .dashboard_date_bin import DashboardDateBin
 from .dashboard import Dashboard
@@ -358,9 +377,17 @@ from .create_financial_commitment_report_on_demand_costs_scope import CreateFina
 from .create_financial_commitment_report_date_interval import CreateFinancialCommitmentReportDateInterval
 from .create_financial_commitment_report_date_bucket import CreateFinancialCommitmentReportDateBucket
 from .create_financial_commitment_report import CreateFinancialCommitmentReport
+from .create_dashboard_widget_widgetable_type import CreateDashboardWidgetWidgetableType
+from .create_dashboard_widget_settings_kpi_type import CreateDashboardWidgetSettingsKpiType
+from .create_dashboard_widget_settings_kpi_calculation import CreateDashboardWidgetSettingsKpiCalculation
+from .create_dashboard_widget_settings_grid import CreateDashboardWidgetSettingsGrid
 from .create_dashboard_widget_settings_display_type import CreateDashboardWidgetSettingsDisplayType
 from .create_dashboard_widget_settings import CreateDashboardWidgetSettings
+from .create_dashboard_widget_content_type import CreateDashboardWidgetContentType
+from .create_dashboard_widget_content import CreateDashboardWidgetContent
 from .create_dashboard_widget import CreateDashboardWidget
+from .create_dashboard_notification_frequency import CreateDashboardNotificationFrequency
+from .create_dashboard_notification import CreateDashboardNotification
 from .create_dashboard_date_interval import CreateDashboardDateInterval
 from .create_dashboard_date_bin import CreateDashboardDateBin
 from .create_dashboard import CreateDashboard
@@ -558,6 +585,8 @@ from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings
 from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings import KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings as KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupingsKubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings
 from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings1 import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings1KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
 from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupingsKubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
+from .update_dashboard_widget1 import UpdateDashboardWidget as UpdateDashboardWidget1UpdateDashboardWidget
+from .update_dashboard_widget import UpdateDashboardWidget as UpdateDashboardWidgetUpdateDashboardWidget
 from .update_financial_commitment_report_groupings1 import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupings1UpdateFinancialCommitmentReportGroupings
 from .update_financial_commitment_report_groupings import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupingsUpdateFinancialCommitmentReportGroupings
 from .update_kubernetes_efficiency_report_groupings1 import UpdateKubernetesEfficiencyReportGroupings as UpdateKubernetesEfficiencyReportGroupings1UpdateKubernetesEfficiencyReportGroupings
@@ -748,9 +777,17 @@ __all__ = [
     "CreateDashboard",
     "CreateDashboardDateBin",
     "CreateDashboardDateInterval",
+    "CreateDashboardNotification",
+    "CreateDashboardNotificationFrequency",
     "CreateDashboardWidget",
+    "CreateDashboardWidgetContent",
+    "CreateDashboardWidgetContentType",
     "CreateDashboardWidgetSettings",
     "CreateDashboardWidgetSettingsDisplayType",
+    "CreateDashboardWidgetSettingsGrid",
+    "CreateDashboardWidgetSettingsKpiCalculation",
+    "CreateDashboardWidgetSettingsKpiType",
+    "CreateDashboardWidgetWidgetableType",
     "CreateFinancialCommitmentReport",
     "CreateFinancialCommitmentReportDateBucket",
     "CreateFinancialCommitmentReportDateInterval",
@@ -813,9 +850,17 @@ __all__ = [
     "Dashboard",
     "DashboardDateBin",
     "DashboardDateInterval",
+    "DashboardNotification",
+    "DashboardNotificationFrequency",
+    "DashboardNotifications",
+    "DashboardNotificationsGetParametersQuery",
     "DashboardWidget",
+    "DashboardWidgetGridLayout",
     "DashboardWidgetSettings",
     "DashboardWidgetSettingsDisplayType",
+    "DashboardWidgetSettingsKpiCalculation",
+    "DashboardWidgetSettingsKpiType",
+    "DashboardWidgetWidgetableType",
     "Dashboards",
     "DashboardsGetParametersQuery",
     "DataExport",
@@ -1042,9 +1087,22 @@ __all__ = [
     "UpdateDashboard",
     "UpdateDashboardDateBin",
     "UpdateDashboardDateInterval",
-    "UpdateDashboardWidget",
+    "UpdateDashboardNotification",
+    "UpdateDashboardNotificationFrequency",
+    "UpdateDashboardWidget1Content",
+    "UpdateDashboardWidget1ContentType",
+    "UpdateDashboardWidget1Settings",
+    "UpdateDashboardWidget1SettingsDisplayType",
+    "UpdateDashboardWidget1SettingsGrid",
+    "UpdateDashboardWidget1SettingsKpiCalculation",
+    "UpdateDashboardWidget1SettingsKpiType",
+    "UpdateDashboardWidget1UpdateDashboardWidget",
+    "UpdateDashboardWidget1WidgetableType",
     "UpdateDashboardWidgetSettings",
     "UpdateDashboardWidgetSettingsDisplayType",
+    "UpdateDashboardWidgetSettingsKpiCalculation",
+    "UpdateDashboardWidgetSettingsKpiType",
+    "UpdateDashboardWidgetUpdateDashboardWidget",
     "UpdateFinancialCommitmentReport",
     "UpdateFinancialCommitmentReportDateBucket",
     "UpdateFinancialCommitmentReportDateInterval",

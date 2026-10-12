@@ -4,7 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from . import virtual_tag_config_value_cost_metric, virtual_tag_config_value_date_range, virtual_tag_config_value_label_transform, virtual_tag_config_value_percentage
 
 
@@ -21,6 +21,7 @@ class VirtualTagConfigValue(BaseModel):
     business_metric_token: Annotated[str | None, Field(description='The token of the associated BusinessMetric.', examples=['bsnss_mtrc_abc123'])] = None
     label_key: Annotated[str | None, Field(description='The business metric label key used for this virtual tag value.')] = None
     label_values: Annotated[Sequence[str] | None, Field(description='Optional business metric label values. An empty array includes every value for the label key.')] = None
+    label_filters: Annotated[Mapping[str, Sequence[str]] | None, Field(description='ClickHouse BusinessMetric row filters. Each key must match, and values within a key are alternatives.', examples=[{'app': ['consumer'], 'team': ['payments']}])] = None
     cost_metric: virtual_tag_config_value_cost_metric.VirtualTagConfigValueCostMetric | None = None
     display_name: Annotated[str | None, Field(description='The display name for this allocation value.')] = None
     label_transforms: Annotated[Sequence[virtual_tag_config_value_label_transform.VirtualTagConfigValueLabelTransform], Field(description='Label transforms applied to business metric labels.')]

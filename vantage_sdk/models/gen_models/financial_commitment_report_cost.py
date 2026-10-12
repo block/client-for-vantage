@@ -19,6 +19,7 @@ class FinancialCommitmentReportCost(BaseModel):
     covered_gross_amount: Annotated[str, Field(description='The gross amount of costs covered by commitments.', examples=['100.00'])]
     currency: Annotated[str, Field(description='The currency of the cost.', examples=['USD'])]
     cost_type: Annotated[str | None, Field(description='The type of cost.', examples=['SavingsPlanCoveredUsage'])] = None
+    provider: Annotated[str | None, Field(description='The cloud provider which incurred the cost.', examples=['aws'])] = None
     commitment_type: Annotated[str | None, Field(description='The type of financial commitment.', examples=['savings_plan'])] = None
     commitment_id: Annotated[str | None, Field(description='The identifier of the financial commitment.', examples=['sp-1234567890abcdef0'])] = None
     service: Annotated[str | None, Field(description='The service which incurred the cost.', examples=['Amazon Elastic Compute Cloud - Compute'])] = None
