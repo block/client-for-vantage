@@ -53,3 +53,5 @@ class TagsGetParametersQueryProvider(StrEnum):
     openrouter = 'openrouter'
     deepgram = 'deepgram'
     crusoe = 'crusoe'
+    sentry_billing = 'sentry_billing'
+    ramp = 'ramp'

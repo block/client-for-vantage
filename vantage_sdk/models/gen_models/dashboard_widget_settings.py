@@ -2,8 +2,9 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from pydantic import BaseModel, ConfigDict
-from . import dashboard_widget_settings_display_type
+from typing import Annotated
+from pydantic import BaseModel, ConfigDict, Field
+from . import dashboard_widget_grid_layout, dashboard_widget_settings_display_type, dashboard_widget_settings_kpi_calculation, dashboard_widget_settings_kpi_type
 
 
 class DashboardWidgetSettings(BaseModel):
@@ -11,3 +12,7 @@ class DashboardWidgetSettings(BaseModel):
         populate_by_name=True,
     )
     display_type: dashboard_widget_settings_display_type.DashboardWidgetSettingsDisplayType
+    kpi_calculation: Annotated[dashboard_widget_settings_kpi_calculation.DashboardWidgetSettingsKpiCalculation | None, Field(description='The aggregation used when display_type is kpi.')] = None
+    kpi_type: Annotated[dashboard_widget_settings_kpi_type.DashboardWidgetSettingsKpiType | None, Field(description='The metric represented by the KPI.')] = None
+    kpi_usage_unit: Annotated[str | None, Field(description='The usage unit represented by the KPI.')] = None
+    grid: dashboard_widget_grid_layout.DashboardWidgetGridLayout | None = None
