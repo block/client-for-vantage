@@ -9,11 +9,11 @@ from collections.abc import Sequence
 
 class UpdateFolder(BaseModel):
     """
-    Update a Folder for CostReports.
+    Update a Folder.
     """
     model_config = ConfigDict(
         populate_by_name=True,
     )
     title: Annotated[str | None, Field(description='The title of the Folder.')] = None
-    parent_folder_token: Annotated[str | None, Field(description='The token of the parent Folder.')] = None
+    parent_folder_token: Annotated[str | None, Field(description='The token of the parent Folder. Send null or an empty string to move the Folder to the root.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the SavedFilters to apply to any Cost Report contained within the Folder.')] = None

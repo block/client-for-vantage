@@ -10,4 +10,5 @@ class CreateFolderType(StrEnum):
     The type of the Folder.
     """
     CostFolder = 'CostFolder'
+    DashboardFolder = 'DashboardFolder'
     ProviderResourceFolder = 'ProviderResourceFolder'

@@ -10,7 +10,7 @@ from . import create_folder_type
 
 class CreateFolder(BaseModel):
     """
-    Create a Folder for CostReports.
+    Create a Folder.
     """
     model_config = ConfigDict(
         populate_by_name=True,

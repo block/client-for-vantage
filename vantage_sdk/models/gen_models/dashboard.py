@@ -17,7 +17,7 @@ class Dashboard(BaseModel):
     )
     token: Annotated[str, Field(examples=['dshbrd_abcd1234567890'])]
     title: Annotated[str, Field(description='The title of the Dashboard.', examples=['AWS Dashboard'])]
-    widgets: Sequence[dashboard_widget.DashboardWidget]
+    widgets: Annotated[Sequence[dashboard_widget.DashboardWidget], Field(description='The widgets displayed in the Dashboard. Report-backed widgets include widgetable_token and settings. Free text widgets include widgetable_type set to free_text and content, omit widgetable_token, and include settings when a grid layout is persisted.')]
     saved_filter_tokens: Annotated[Sequence[str], Field(description='The tokens of the Saved Filters used in the Dashboard.')]
     date_bin: Annotated[dashboard_date_bin.DashboardDateBin | None, Field(description='Determines how to group costs in the Dashboard.')]
     date_interval: Annotated[dashboard_date_interval.DashboardDateInterval | None, Field(description="Determines the date range for Reports in the Dashboard. Guaranteed to be set to 'custom' if 'start_date' and 'end_date' are set.")]
@@ -25,4 +25,5 @@ class Dashboard(BaseModel):
     end_date: Annotated[str | None, Field(description="The end date for the date range for Reports in the Dashboard. ISO 8601 Formatted. Overwrites 'date_interval' if set.", examples=['2023-09-04'])] = None
     created_at: Annotated[str, Field(description='The date and time, in UTC, the Dashboard was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
     updated_at: Annotated[str, Field(description='The date and time, in UTC, the Dashboard was created. ISO 8601 Formatted.', examples=['2023-08-04T00:00:00Z'])]
+    folder_token: Annotated[str | None, Field(description='The token for the Dashboard Folder containing the Dashboard, if any.', examples=['fldr_abcd1234567890'])]
     workspace_token: Annotated[str, Field(description='The token for the Workspace the Dashboard is a part of.', examples=['wrkspc_abcd1234567890'])]

@@ -53,4 +53,6 @@ class CostReportsCostReportTokenForecastedCostsGetParametersQueryProvider(StrEnu
     openrouter = 'openrouter'
     deepgram = 'deepgram'
     crusoe = 'crusoe'
+    sentry_billing = 'sentry_billing'
+    ramp = 'ramp'
     all = 'all'
