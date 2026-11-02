@@ -10,7 +10,7 @@ from . import update_access_policy_policy
 
 class UpdateAccessPolicy(BaseModel):
     """
-    Update an Access Policy.
+    Update an Access Policy. Requires a personal API token belonging to a user with the Owner role and the write scope.
     """
     model_config = ConfigDict(
         populate_by_name=True,

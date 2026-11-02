@@ -7,4 +7,5 @@ from enum import StrEnum
 
 class FoldersGetParametersQueryType(StrEnum):
     CostFolder = 'CostFolder'
+    DashboardFolder = 'DashboardFolder'
     ProviderResourceFolder = 'ProviderResourceFolder'

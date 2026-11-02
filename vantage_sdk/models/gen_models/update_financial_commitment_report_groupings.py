@@ -7,6 +7,7 @@ from enum import StrEnum
 
 class UpdateFinancialCommitmentReportGroupings(StrEnum):
     cost_type = 'cost_type'
+    provider = 'provider'
     commitment_type = 'commitment_type'
     commitment_id = 'commitment_id'
     service = 'service'

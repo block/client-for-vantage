@@ -4,6 +4,7 @@
 from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
+from collections.abc import Sequence
 from . import cost_report_settings_aggregate_by
 
 
@@ -23,3 +24,4 @@ class CostReportSettings(BaseModel):
     aggregate_by: Annotated[cost_report_settings_aggregate_by.CostReportSettingsAggregateBy | None, Field(description='Report will aggregate by cost, usage, or count.')] = cost_report_settings_aggregate_by.CostReportSettingsAggregateBy.cost
     show_previous_period: Annotated[bool | None, Field(description='Report will show previous period cost, usage, or count comparison.')] = True
     complete_period: Annotated[bool | None, Field(description='Report will restrict date ranges to completed periods only.')] = False
+    table_column_order: Annotated[Sequence[str] | None, Field(description='Ordered list of CostReport table column keys. Empty or omitted uses the default column order.')] = None

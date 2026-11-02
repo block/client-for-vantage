@@ -13,3 +13,4 @@ class EnrichmentSourceType(StrEnum):
     cloudflare_ai_gateway_enrichment_source = 'cloudflare_ai_gateway_enrichment_source'
     lite_llm_enrichment_source = 'lite_llm_enrichment_source'
     aws_bedrock_enrichment_source = 'aws_bedrock_enrichment_source'
+    bifrost_enrichment_source = 'bifrost_enrichment_source'
