@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import create_business_metric_clickhouse_metric_fields, create_business_metric_cloudwatch_fields, create_business_metric_cost_report_tokens_with_metadatum, create_business_metric_datadog_metric_fields, create_business_metric_forecasted_value, create_business_metric_gcp_bigquery_metric_fields, create_business_metric_snowflake_metric_fields, create_business_metric_value
+from . import create_business_metric_clickhouse_metric_fields, create_business_metric_cloudwatch_fields, create_business_metric_cost_report_tokens_with_metadatum, create_business_metric_datadog_metric_fields, create_business_metric_forecasted_value, create_business_metric_gcp_bigquery_metric_fields, create_business_metric_metronome_metric_fields, create_business_metric_snowflake_metric_fields, create_business_metric_value
 
 
 class CreateBusinessMetric(BaseModel):
@@ -23,4 +23,5 @@ class CreateBusinessMetric(BaseModel):
     cloudwatch_fields: Annotated[create_business_metric_cloudwatch_fields.CreateBusinessMetricCloudwatchFields | None, Field(description='Cloudwatch configuration fields.')] = None
     gcp_bigquery_metric_fields: Annotated[create_business_metric_gcp_bigquery_metric_fields.CreateBusinessMetricGcpBigqueryMetricFields | None, Field(description='GCP BigQuery metric configuration fields.')] = None
     snowflake_metric_fields: Annotated[create_business_metric_snowflake_metric_fields.CreateBusinessMetricSnowflakeMetricFields | None, Field(description='Snowflake metric configuration fields.')] = None
+    metronome_metric_fields: Annotated[create_business_metric_metronome_metric_fields.CreateBusinessMetricMetronomeMetricFields | None, Field(description='Metronome configuration. Customer ID, customer name, first ingest alias, and supported custom fields are imported automatically as label columns. Omitted fields preserve existing values on update. Switching to revenue clears billable metric fields.')] = None
     clickhouse_metric_fields: Annotated[create_business_metric_clickhouse_metric_fields.CreateBusinessMetricClickhouseMetricFields | None, Field(description='ClickHouse metric configuration fields.')] = None

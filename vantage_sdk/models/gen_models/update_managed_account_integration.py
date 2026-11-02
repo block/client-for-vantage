@@ -14,4 +14,4 @@ class UpdateManagedAccountIntegration(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    provider_account_identifiers: Annotated[Sequence[str], Field(description='The provider account identifiers this delegated Integration should import, replacing the current list. For Azure CSP these are Azure subscription ids. An empty array applies no filter.')]
+    provider_account_identifiers: Annotated[Sequence[str], Field(description='The provider account identifiers this delegated Integration should import, replacing the current list. For Azure CSP these are subscription ids and for GCP these are billing account ids (reseller subaccounts) on the billing export. An empty array applies no filter.')]

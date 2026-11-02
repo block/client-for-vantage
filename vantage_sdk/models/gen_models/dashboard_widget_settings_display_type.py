@@ -8,3 +8,4 @@ from enum import StrEnum
 class DashboardWidgetSettingsDisplayType(StrEnum):
     table = 'table'
     chart = 'chart'
+    kpi = 'kpi'

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import update_business_metric_cloudwatch_fields, update_business_metric_cost_report_tokens_with_metadatum, update_business_metric_datadog_metric_fields, update_business_metric_forecasted_value, update_business_metric_snowflake_metric_fields, update_business_metric_value
+from . import update_business_metric_clickhouse_metric_fields, update_business_metric_cloudwatch_fields, update_business_metric_cost_report_tokens_with_metadatum, update_business_metric_datadog_metric_fields, update_business_metric_forecasted_value, update_business_metric_gcp_bigquery_metric_fields, update_business_metric_metronome_metric_fields, update_business_metric_snowflake_metric_fields, update_business_metric_value
 
 
 class UpdateBusinessMetric(BaseModel):
@@ -22,3 +22,6 @@ class UpdateBusinessMetric(BaseModel):
     datadog_metric_fields: Annotated[update_business_metric_datadog_metric_fields.UpdateBusinessMetricDatadogMetricFields | None, Field(description='Datadog metric configuration fields')] = None
     cloudwatch_fields: Annotated[update_business_metric_cloudwatch_fields.UpdateBusinessMetricCloudwatchFields | None, Field(description='Cloudwatch configuration fields.')] = None
     snowflake_metric_fields: Annotated[update_business_metric_snowflake_metric_fields.UpdateBusinessMetricSnowflakeMetricFields | None, Field(description='Snowflake metric configuration fields.')] = None
+    gcp_bigquery_metric_fields: Annotated[update_business_metric_gcp_bigquery_metric_fields.UpdateBusinessMetricGcpBigqueryMetricFields | None, Field(description='GCP BigQuery metric configuration fields.')] = None
+    metronome_metric_fields: Annotated[update_business_metric_metronome_metric_fields.UpdateBusinessMetricMetronomeMetricFields | None, Field(description='Metronome configuration. Customer ID, customer name, first ingest alias, and supported custom fields are imported automatically as label columns. Omitted fields preserve existing values on update. Switching to revenue clears billable metric fields.')] = None
+    clickhouse_metric_fields: Annotated[update_business_metric_clickhouse_metric_fields.UpdateBusinessMetricClickhouseMetricFields | None, Field(description='ClickHouse metric configuration fields.')] = None

@@ -16,10 +16,11 @@ class CreateDashboard(BaseModel):
         populate_by_name=True,
     )
     title: Annotated[str, Field(description='The title of the Dashboard.')]
-    widgets: Annotated[Sequence[create_dashboard_widget.CreateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Currently supports CostReport, ResourceReport, KubernetesEfficiencyReport, FinancialCommitmentReport, and RecommendationView.')] = None
+    widgets: Annotated[Sequence[create_dashboard_widget.CreateDashboardWidget] | None, Field(description='The widgets to add to the Dashboard. Report-backed widgets use widgetable_token. Free text widgets use widgetable_type set to free_text and require content.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the Saved Filters used in the Dashboard.')] = None
     date_bin: Annotated[create_dashboard_date_bin.CreateDashboardDateBin | None, Field(description='Determines how to group costs in the Dashboard.')] = None
     date_interval: Annotated[create_dashboard_date_interval.CreateDashboardDateInterval | None, Field(description="Determines the date range in the Dashboard. Incompatible with 'start_date' and 'end_date' parameters.")] = None
     start_date: Annotated[str | None, Field(description="The start date for the date range for costs in the Dashboard. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
     end_date: Annotated[str | None, Field(description="The end date for the date range for costs in the Dashboard. ISO 8601 Formatted. Incompatible with 'date_interval' parameter.")] = None
+    folder_token: Annotated[str | None, Field(description='The token of the Dashboard Folder to add the Dashboard to. Send null or an empty string to create the Dashboard at the root.')] = None
     workspace_token: Annotated[str | None, Field(description='The token of the Workspace to add the Dashboard to. Required if the API token is associated with multiple Workspaces.')] = None
