@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from . import costs_get_parameters_query_date_bin, costs_get_parameters_query_order, costs_get_parameters_query_settings_aggregate_by
+from . import costs_get_parameters_query_date_bin, costs_get_parameters_query_order, costs_get_parameters_query_settings_aggregate_by, costs_get_parameters_query_sort_direction
 
 
 class CostsGetParametersQuery(BaseModel):
@@ -19,6 +19,8 @@ class CostsGetParametersQuery(BaseModel):
     end_date: str | None = None
     groupings: Sequence[str] | None = None
     order: costs_get_parameters_query_order.CostsGetParametersQueryOrder = costs_get_parameters_query_order.CostsGetParametersQueryOrder.desc
+    sort_column: str | None = None
+    sort_direction: costs_get_parameters_query_sort_direction.CostsGetParametersQuerySortDirection | None = None
     limit: int | None = None
     page: int | None = None
     date_bin: costs_get_parameters_query_date_bin.CostsGetParametersQueryDateBin | None = None

@@ -13,3 +13,4 @@ class DashboardsGetParametersQuery(BaseModel):
     limit: int | None = None
     q: str | None = None
     workspace_token: str | None = None
+    folder_token: str | None = None

@@ -20,6 +20,7 @@ class CostReport(BaseModel):
     folder_token: Annotated[str | None, Field(description='The token for the Folder the CostReport is a part of.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens for the SavedFilters assigned to the CostReport.')] = None
     business_metric_tokens_with_metadata: Annotated[Sequence[attached_business_metric_for_cost_report.AttachedBusinessMetricForCostReport], Field(description='The tokens for the BusinessMetrics assigned to the CostReport, the unit scale, and label filter.')]
+    custom_calculation_tokens: Annotated[Sequence[str], Field(description='The tokens of the CustomCalculations attached to the CostReport.')]
     default_forecast: default_forecast_1.DefaultForecast
     filter: Annotated[str | None, Field(description='The filter applied to the CostReport. Additional documentation available at https://docs.vantage.sh/vql.')]
     groupings: Annotated[str | None, Field(description='The grouping aggregations applied to the filtered data.', examples=['provider, service'])] = None

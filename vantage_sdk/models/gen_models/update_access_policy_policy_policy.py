@@ -13,4 +13,4 @@ class UpdateAccessPolicyPolicyPolicy(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,
     )
-    filter: Annotated[str, Field(description='Vantage Query Language (VQL) that controls which costs this AccessPolicy allows.', examples=["(vantage.provider = 'aws')"])]
+    filter: Annotated[str, Field(description='Vantage Query Language (VQL) that controls which costs this AccessPolicy allows. At least one filter is required.', examples=["(vantage.provider = 'aws')"])]

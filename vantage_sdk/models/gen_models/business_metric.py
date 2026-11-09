@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Sequence
-from . import attached_cost_report_for_business_metric, business_metric_import_type, clickhouse_metric_fields as clickhouse_metric_fields_1, cloudwatch_fields as cloudwatch_fields_1, datadog_metric_fields as datadog_metric_fields_1, gcp_bigquery_metric_fields as gcp_bigquery_metric_fields_1, snowflake_metric_fields as snowflake_metric_fields_1
+from . import attached_cost_report_for_business_metric, business_metric_import_type, clickhouse_metric_fields as clickhouse_metric_fields_1, cloudwatch_fields as cloudwatch_fields_1, datadog_metric_fields as datadog_metric_fields_1, gcp_bigquery_metric_fields as gcp_bigquery_metric_fields_1, metronome_metric_fields as metronome_metric_fields_1, snowflake_metric_fields as snowflake_metric_fields_1
 
 
 class BusinessMetric(BaseModel):
@@ -25,4 +25,5 @@ class BusinessMetric(BaseModel):
     datadog_metric_fields: datadog_metric_fields_1.DatadogMetricFields | None = None
     gcp_bigquery_metric_fields: gcp_bigquery_metric_fields_1.GcpBigqueryMetricFields | None = None
     snowflake_metric_fields: snowflake_metric_fields_1.SnowflakeMetricFields | None = None
+    metronome_metric_fields: metronome_metric_fields_1.MetronomeMetricFields | None = None
     clickhouse_metric_fields: clickhouse_metric_fields_1.ClickhouseMetricFields | None = None

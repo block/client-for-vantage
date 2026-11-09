@@ -80,9 +80,21 @@ from .update_financial_commitment_report_on_demand_costs_scope import UpdateFina
 from .update_financial_commitment_report_date_interval import UpdateFinancialCommitmentReportDateInterval
 from .update_financial_commitment_report_date_bucket import UpdateFinancialCommitmentReportDateBucket
 from .update_financial_commitment_report import UpdateFinancialCommitmentReport
+from .update_data_import_lock import UpdateDataImportLock
+from .update_dashboard_widget_settings_kpi_type import UpdateDashboardWidgetSettingsKpiType
+from .update_dashboard_widget_settings_kpi_calculation import UpdateDashboardWidgetSettingsKpiCalculation
 from .update_dashboard_widget_settings_display_type import UpdateDashboardWidgetSettingsDisplayType
 from .update_dashboard_widget_settings import UpdateDashboardWidgetSettings
-from .update_dashboard_widget import UpdateDashboardWidget
+from .update_dashboard_widget1_widgetable_type import UpdateDashboardWidget1WidgetableType
+from .update_dashboard_widget1_settings_kpi_type import UpdateDashboardWidget1SettingsKpiType
+from .update_dashboard_widget1_settings_kpi_calculation import UpdateDashboardWidget1SettingsKpiCalculation
+from .update_dashboard_widget1_settings_grid import UpdateDashboardWidget1SettingsGrid
+from .update_dashboard_widget1_settings_display_type import UpdateDashboardWidget1SettingsDisplayType
+from .update_dashboard_widget1_settings import UpdateDashboardWidget1Settings
+from .update_dashboard_widget1_content_type import UpdateDashboardWidget1ContentType
+from .update_dashboard_widget1_content import UpdateDashboardWidget1Content
+from .update_dashboard_notification_frequency import UpdateDashboardNotificationFrequency
+from .update_dashboard_notification import UpdateDashboardNotification
 from .update_dashboard_date_interval import UpdateDashboardDateInterval
 from .update_dashboard_date_bin import UpdateDashboardDateBin
 from .update_dashboard import UpdateDashboard
@@ -103,6 +115,8 @@ from .update_cost_alert import UpdateCostAlert
 from .update_canvas import UpdateCanvas
 from .update_business_metric_value import UpdateBusinessMetricValue
 from .update_business_metric_snowflake_metric_fields import UpdateBusinessMetricSnowflakeMetricFields
+from .update_business_metric_metronome_metric_fields import UpdateBusinessMetricMetronomeMetricFields
+from .update_business_metric_gcp_bigquery_metric_fields import UpdateBusinessMetricGcpBigqueryMetricFields
 from .update_business_metric_forecasted_value import UpdateBusinessMetricForecastedValue
 from .update_business_metric_datadog_metric_fields import UpdateBusinessMetricDatadogMetricFields
 from .update_business_metric_cost_report_tokens_with_metadatum_unit_scale import UpdateBusinessMetricCostReportTokensWithMetadatumUnitScale
@@ -110,6 +124,7 @@ from .update_business_metric_cost_report_tokens_with_metadatum_calculation_type 
 from .update_business_metric_cost_report_tokens_with_metadatum import UpdateBusinessMetricCostReportTokensWithMetadatum
 from .update_business_metric_cloudwatch_fields_dimension import UpdateBusinessMetricCloudwatchFieldsDimension
 from .update_business_metric_cloudwatch_fields import UpdateBusinessMetricCloudwatchFields
+from .update_business_metric_clickhouse_metric_fields import UpdateBusinessMetricClickhouseMetricFields
 from .update_business_metric import UpdateBusinessMetric
 from .update_budget_type import UpdateBudgetType
 from .update_budget_period_cadence_interval_unit import UpdateBudgetPeriodCadenceIntervalUnit
@@ -146,6 +161,7 @@ from .update_access_policy_policy import UpdateAccessPolicyPolicy
 from .update_access_policy import UpdateAccessPolicy
 from .update_access_grant_access import UpdateAccessGrantAccess
 from .update_access_grant import UpdateAccessGrant
+from .unlock_data_imports import UnlockDataImports
 from .unit_costs_get_parameters_query_order import UnitCostsGetParametersQueryOrder
 from .unit_costs_get_parameters_query_date_bin import UnitCostsGetParametersQueryDateBin
 from .unit_costs_get_parameters_query import UnitCostsGetParametersQuery
@@ -223,6 +239,7 @@ from .product import Product
 from .prices import Prices
 from .price import Price
 from .period_cadence import PeriodCadence
+from .payment_required_errors import PaymentRequiredErrors
 from .network_flow_reports_get_parameters_query import NetworkFlowReportsGetParametersQuery
 from .network_flow_reports import NetworkFlowReports
 from .network_flow_report import NetworkFlowReport
@@ -233,6 +250,8 @@ from .network_flow_logs_get_parameters_query_date_interval import NetworkFlowLog
 from .network_flow_logs_get_parameters_query import NetworkFlowLogsGetParametersQuery
 from .network_flow_logs import NetworkFlowLogs
 from .network_flow_log import NetworkFlowLog
+from .metronome_metric_fields_metric_kind import MetronomeMetricFieldsMetricKind
+from .metronome_metric_fields import MetronomeMetricFields
 from .me import Me
 from .managed_accounts_get_parameters_query import ManagedAccountsGetParametersQuery
 from .managed_accounts import ManagedAccounts
@@ -295,16 +314,28 @@ from .download_invoice_file_type import DownloadInvoiceFileType
 from .default_forecast_kind import DefaultForecastKind
 from .default_forecast import DefaultForecast
 from .datadog_metric_fields import DatadogMetricFields
+from .data_import_locks_get_parameters_query import DataImportLocksGetParametersQuery
+from .data_import_locks import DataImportLocks
+from .data_import_lock import DataImportLock
 from .data_export_manifest import DataExportManifest
 from .data_export import DataExport
 from .dashboards_get_parameters_query import DashboardsGetParametersQuery
 from .dashboards import Dashboards
+from .dashboard_widget_widgetable_type import DashboardWidgetWidgetableType
+from .dashboard_widget_settings_kpi_type import DashboardWidgetSettingsKpiType
+from .dashboard_widget_settings_kpi_calculation import DashboardWidgetSettingsKpiCalculation
 from .dashboard_widget_settings_display_type import DashboardWidgetSettingsDisplayType
 from .dashboard_widget_settings import DashboardWidgetSettings
+from .dashboard_widget_grid_layout import DashboardWidgetGridLayout
 from .dashboard_widget import DashboardWidget
+from .dashboard_notifications_get_parameters_query import DashboardNotificationsGetParametersQuery
+from .dashboard_notifications import DashboardNotifications
+from .dashboard_notification_frequency import DashboardNotificationFrequency
+from .dashboard_notification import DashboardNotification
 from .dashboard_date_interval import DashboardDateInterval
 from .dashboard_date_bin import DashboardDateBin
 from .dashboard import Dashboard
+from .create_xai_integration import CreateXaiIntegration
 from .create_workspace_exchange_rate_date import CreateWorkspaceExchangeRateDate
 from .create_workspace import CreateWorkspace
 from .create_virtual_tag_config_value_percentage import CreateVirtualTagConfigValuePercentage
@@ -338,6 +369,8 @@ from .create_resource_report import CreateResourceReport
 from .create_report_notification import CreateReportNotification
 from .create_report_forecast import CreateReportForecast
 from .create_recommendation_view import CreateRecommendationView
+from .create_openrouter_integration import CreateOpenrouterIntegration
+from .create_open_ai_integration import CreateOpenAIIntegration
 from .create_network_flow_report_grouping import CreateNetworkFlowReportGrouping
 from .create_network_flow_report_flow_weight import CreateNetworkFlowReportFlowWeight
 from .create_network_flow_report_flow_direction import CreateNetworkFlowReportFlowDirection
@@ -358,9 +391,18 @@ from .create_financial_commitment_report_on_demand_costs_scope import CreateFina
 from .create_financial_commitment_report_date_interval import CreateFinancialCommitmentReportDateInterval
 from .create_financial_commitment_report_date_bucket import CreateFinancialCommitmentReportDateBucket
 from .create_financial_commitment_report import CreateFinancialCommitmentReport
+from .create_data_import_lock import CreateDataImportLock
+from .create_dashboard_widget_widgetable_type import CreateDashboardWidgetWidgetableType
+from .create_dashboard_widget_settings_kpi_type import CreateDashboardWidgetSettingsKpiType
+from .create_dashboard_widget_settings_kpi_calculation import CreateDashboardWidgetSettingsKpiCalculation
+from .create_dashboard_widget_settings_grid import CreateDashboardWidgetSettingsGrid
 from .create_dashboard_widget_settings_display_type import CreateDashboardWidgetSettingsDisplayType
 from .create_dashboard_widget_settings import CreateDashboardWidgetSettings
+from .create_dashboard_widget_content_type import CreateDashboardWidgetContentType
+from .create_dashboard_widget_content import CreateDashboardWidgetContent
 from .create_dashboard_widget import CreateDashboardWidget
+from .create_dashboard_notification_frequency import CreateDashboardNotificationFrequency
+from .create_dashboard_notification import CreateDashboardNotification
 from .create_dashboard_date_interval import CreateDashboardDateInterval
 from .create_dashboard_date_bin import CreateDashboardDateBin
 from .create_dashboard import CreateDashboard
@@ -385,6 +427,7 @@ from .create_cost_alert import CreateCostAlert
 from .create_canvas import CreateCanvas
 from .create_business_metric_value import CreateBusinessMetricValue
 from .create_business_metric_snowflake_metric_fields import CreateBusinessMetricSnowflakeMetricFields
+from .create_business_metric_metronome_metric_fields import CreateBusinessMetricMetronomeMetricFields
 from .create_business_metric_gcp_bigquery_metric_fields import CreateBusinessMetricGcpBigqueryMetricFields
 from .create_business_metric_forecasted_value import CreateBusinessMetricForecastedValue
 from .create_business_metric_datadog_metric_fields import CreateBusinessMetricDatadogMetricFields
@@ -415,6 +458,7 @@ from .create_billing_profile_banking_information_attributes_secure_data import C
 from .create_billing_profile_banking_information_attributes import CreateBillingProfileBankingInformationAttributes
 from .create_billing_profile import CreateBillingProfile
 from .create_azure_integration import CreateAzureIntegration
+from .create_anthropic_integration import CreateAnthropicIntegration
 from .create_anomaly_notification import CreateAnomalyNotification
 from .create_annotation import CreateAnnotation
 from .create_access_policy_policy_policy import CreateAccessPolicyPolicyPolicy
@@ -423,6 +467,7 @@ from .create_access_policy_policy import CreateAccessPolicyPolicy
 from .create_access_policy import CreateAccessPolicy
 from .create_access_grant_access import CreateAccessGrantAccess
 from .create_access_grant import CreateAccessGrant
+from .costs_get_parameters_query_sort_direction import CostsGetParametersQuerySortDirection
 from .costs_get_parameters_query_settings_aggregate_by import CostsGetParametersQuerySettingsAggregateBy
 from .costs_get_parameters_query_order import CostsGetParametersQueryOrder
 from .costs_get_parameters_query_date_bin import CostsGetParametersQueryDateBin
@@ -501,6 +546,8 @@ from .billing_profiles_get_parameters_query import BillingProfilesGetParametersQ
 from .billing_profiles import BillingProfiles
 from .billing_profile import BillingProfile
 from .billing_information import BillingInformation
+from .billing_action_type import BillingActionType
+from .billing_action import BillingAction
 from .bearer_token import BearerToken
 from .banking_information_secure_data import BankingInformationSecureData
 from .banking_information import BankingInformation
@@ -558,6 +605,8 @@ from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings
 from .kubernetes_efficiency_reports_data_exports_post_parameters_query_groupings import KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings as KubernetesEfficiencyReportsDataExportsPostParametersQueryGroupingsKubernetesEfficiencyReportsDataExportsPostParametersQueryGroupings
 from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings1 import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings1KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
 from .kubernetes_efficiency_reports_kubernetes_efficiency_report_token_costs_get_parameters_query_groupings import KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings as KubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupingsKubernetesEfficiencyReportsKubernetesEfficiencyReportTokenCostsGetParametersQueryGroupings
+from .update_dashboard_widget1 import UpdateDashboardWidget as UpdateDashboardWidget1UpdateDashboardWidget
+from .update_dashboard_widget import UpdateDashboardWidget as UpdateDashboardWidgetUpdateDashboardWidget
 from .update_financial_commitment_report_groupings1 import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupings1UpdateFinancialCommitmentReportGroupings
 from .update_financial_commitment_report_groupings import UpdateFinancialCommitmentReportGroupings as UpdateFinancialCommitmentReportGroupingsUpdateFinancialCommitmentReportGroupings
 from .update_kubernetes_efficiency_report_groupings1 import UpdateKubernetesEfficiencyReportGroupings as UpdateKubernetesEfficiencyReportGroupings1UpdateKubernetesEfficiencyReportGroupings
@@ -605,6 +654,8 @@ __all__ = [
     "BankingInformation",
     "BankingInformationSecureData",
     "BearerToken",
+    "BillingAction",
+    "BillingActionType",
     "BillingInformation",
     "BillingProfile",
     "BillingProfiles",
@@ -686,6 +737,7 @@ __all__ = [
     "CostsGetParametersQueryDateBin",
     "CostsGetParametersQueryOrder",
     "CostsGetParametersQuerySettingsAggregateBy",
+    "CostsGetParametersQuerySortDirection",
     "CreateAccessGrant",
     "CreateAccessGrantAccess",
     "CreateAccessPolicy",
@@ -694,6 +746,7 @@ __all__ = [
     "CreateAccessPolicyPolicyPolicy",
     "CreateAnnotation",
     "CreateAnomalyNotification",
+    "CreateAnthropicIntegration",
     "CreateAzureIntegration",
     "CreateBillingProfile",
     "CreateBillingProfileBankingInformationAttributes",
@@ -724,6 +777,7 @@ __all__ = [
     "CreateBusinessMetricDatadogMetricFields",
     "CreateBusinessMetricForecastedValue",
     "CreateBusinessMetricGcpBigqueryMetricFields",
+    "CreateBusinessMetricMetronomeMetricFields",
     "CreateBusinessMetricSnowflakeMetricFields",
     "CreateBusinessMetricValue",
     "CreateCanvas",
@@ -748,9 +802,18 @@ __all__ = [
     "CreateDashboard",
     "CreateDashboardDateBin",
     "CreateDashboardDateInterval",
+    "CreateDashboardNotification",
+    "CreateDashboardNotificationFrequency",
     "CreateDashboardWidget",
+    "CreateDashboardWidgetContent",
+    "CreateDashboardWidgetContentType",
     "CreateDashboardWidgetSettings",
     "CreateDashboardWidgetSettingsDisplayType",
+    "CreateDashboardWidgetSettingsGrid",
+    "CreateDashboardWidgetSettingsKpiCalculation",
+    "CreateDashboardWidgetSettingsKpiType",
+    "CreateDashboardWidgetWidgetableType",
+    "CreateDataImportLock",
     "CreateFinancialCommitmentReport",
     "CreateFinancialCommitmentReportDateBucket",
     "CreateFinancialCommitmentReportDateInterval",
@@ -775,6 +838,8 @@ __all__ = [
     "CreateNetworkFlowReportFlowDirection",
     "CreateNetworkFlowReportFlowWeight",
     "CreateNetworkFlowReportGrouping",
+    "CreateOpenAIIntegration",
+    "CreateOpenrouterIntegration",
     "CreateRecommendationView",
     "CreateReportForecast",
     "CreateReportNotification",
@@ -810,16 +875,28 @@ __all__ = [
     "CreateVirtualTagConfigValuePercentage",
     "CreateWorkspace",
     "CreateWorkspaceExchangeRateDate",
+    "CreateXaiIntegration",
     "Dashboard",
     "DashboardDateBin",
     "DashboardDateInterval",
+    "DashboardNotification",
+    "DashboardNotificationFrequency",
+    "DashboardNotifications",
+    "DashboardNotificationsGetParametersQuery",
     "DashboardWidget",
+    "DashboardWidgetGridLayout",
     "DashboardWidgetSettings",
     "DashboardWidgetSettingsDisplayType",
+    "DashboardWidgetSettingsKpiCalculation",
+    "DashboardWidgetSettingsKpiType",
+    "DashboardWidgetWidgetableType",
     "Dashboards",
     "DashboardsGetParametersQuery",
     "DataExport",
     "DataExportManifest",
+    "DataImportLock",
+    "DataImportLocks",
+    "DataImportLocksGetParametersQuery",
     "DatadogMetricFields",
     "DefaultForecast",
     "DefaultForecastKind",
@@ -892,6 +969,8 @@ __all__ = [
     "ManagedAccounts",
     "ManagedAccountsGetParametersQuery",
     "Me",
+    "MetronomeMetricFields",
+    "MetronomeMetricFieldsMetricKind",
     "NetworkFlowLog",
     "NetworkFlowLogs",
     "NetworkFlowLogsGetParametersQuery",
@@ -902,6 +981,7 @@ __all__ = [
     "NetworkFlowReport",
     "NetworkFlowReports",
     "NetworkFlowReportsGetParametersQuery",
+    "PaymentRequiredErrors",
     "PeriodCadence",
     "Price",
     "Prices",
@@ -979,6 +1059,7 @@ __all__ = [
     "UnitCostsGetParametersQuery",
     "UnitCostsGetParametersQueryDateBin",
     "UnitCostsGetParametersQueryOrder",
+    "UnlockDataImports",
     "UpdateAccessGrant",
     "UpdateAccessGrantAccess",
     "UpdateAccessPolicy",
@@ -1015,6 +1096,7 @@ __all__ = [
     "UpdateBudgetPeriodCadenceIntervalUnit",
     "UpdateBudgetType",
     "UpdateBusinessMetric",
+    "UpdateBusinessMetricClickhouseMetricFields",
     "UpdateBusinessMetricCloudwatchFields",
     "UpdateBusinessMetricCloudwatchFieldsDimension",
     "UpdateBusinessMetricCostReportTokensWithMetadatum",
@@ -1022,6 +1104,8 @@ __all__ = [
     "UpdateBusinessMetricCostReportTokensWithMetadatumUnitScale",
     "UpdateBusinessMetricDatadogMetricFields",
     "UpdateBusinessMetricForecastedValue",
+    "UpdateBusinessMetricGcpBigqueryMetricFields",
+    "UpdateBusinessMetricMetronomeMetricFields",
     "UpdateBusinessMetricSnowflakeMetricFields",
     "UpdateBusinessMetricValue",
     "UpdateCanvas",
@@ -1042,9 +1126,23 @@ __all__ = [
     "UpdateDashboard",
     "UpdateDashboardDateBin",
     "UpdateDashboardDateInterval",
-    "UpdateDashboardWidget",
+    "UpdateDashboardNotification",
+    "UpdateDashboardNotificationFrequency",
+    "UpdateDashboardWidget1Content",
+    "UpdateDashboardWidget1ContentType",
+    "UpdateDashboardWidget1Settings",
+    "UpdateDashboardWidget1SettingsDisplayType",
+    "UpdateDashboardWidget1SettingsGrid",
+    "UpdateDashboardWidget1SettingsKpiCalculation",
+    "UpdateDashboardWidget1SettingsKpiType",
+    "UpdateDashboardWidget1UpdateDashboardWidget",
+    "UpdateDashboardWidget1WidgetableType",
     "UpdateDashboardWidgetSettings",
     "UpdateDashboardWidgetSettingsDisplayType",
+    "UpdateDashboardWidgetSettingsKpiCalculation",
+    "UpdateDashboardWidgetSettingsKpiType",
+    "UpdateDashboardWidgetUpdateDashboardWidget",
+    "UpdateDataImportLock",
     "UpdateFinancialCommitmentReport",
     "UpdateFinancialCommitmentReportDateBucket",
     "UpdateFinancialCommitmentReportDateInterval",

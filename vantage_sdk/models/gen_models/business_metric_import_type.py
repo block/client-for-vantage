@@ -15,4 +15,5 @@ class BusinessMetricImportType(StrEnum):
     gcp_bigquery_metrics = 'gcp_bigquery_metrics'
     snowflake_metrics = 'snowflake_metrics'
     metronome_metrics = 'metronome_metrics'
+    rippling_metrics = 'rippling_metrics'
     csv = 'csv'

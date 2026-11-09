@@ -11,5 +11,8 @@ class EnrichmentSourceType(StrEnum):
     """
     custom_llm_enrichment_source = 'custom_llm_enrichment_source'
     cloudflare_ai_gateway_enrichment_source = 'cloudflare_ai_gateway_enrichment_source'
+    cloudflare_ai_gateway_otel_enrichment_source = 'cloudflare_ai_gateway_otel_enrichment_source'
     lite_llm_enrichment_source = 'lite_llm_enrichment_source'
     aws_bedrock_enrichment_source = 'aws_bedrock_enrichment_source'
+    bifrost_enrichment_source = 'bifrost_enrichment_source'
+    open_router_enrichment_source = 'open_router_enrichment_source'

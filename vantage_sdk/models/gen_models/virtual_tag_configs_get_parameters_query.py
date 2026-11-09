@@ -10,3 +10,5 @@ class VirtualTagConfigsGetParametersQuery(BaseModel):
         populate_by_name=True,
     )
     q: str | None = None
+    page: int | None = None
+    limit: int | None = None
