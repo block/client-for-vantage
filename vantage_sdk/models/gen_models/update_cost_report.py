@@ -16,6 +16,7 @@ class UpdateCostReport(BaseModel):
         populate_by_name=True,
     )
     title: Annotated[str | None, Field(description='The title of the CostReport.')] = None
+    custom_calculation_tokens: Annotated[Sequence[str] | None, Field(description='The complete replacement set of CustomCalculation tokens to attach. An empty array clears all attachments; omission or null leaves them unchanged.')] = None
     groupings: Annotated[str | None, Field(description='Grouping values for aggregating costs on the report. Valid groupings: account_id, billing_account_id, charge_type, cost_category, cost_subcategory, provider, region, resource_id, service, tagged, usage_unit, tag:<tag_value>. If providing multiple groupings, join as comma separated values: groupings=provider,service,region')] = None
     filter: Annotated[str | None, Field(description='The filter query language to apply to the CostReport. Additional documentation available at https://docs.vantage.sh/vql.')] = None
     saved_filter_tokens: Annotated[Sequence[str] | None, Field(description='The tokens of the SavedFilters to apply to the CostReport.')] = None

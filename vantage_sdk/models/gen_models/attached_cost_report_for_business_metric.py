@@ -2,7 +2,7 @@
 #   filename:  openapi_spec.json
 
 from __future__ import annotations
-from typing import Annotated, Any
+from typing import Annotated
 from pydantic import BaseModel, ConfigDict, Field
 from collections.abc import Mapping, Sequence
 from . import attached_cost_report_for_business_metric_calculation_type, attached_cost_report_for_business_metric_unit_scale
@@ -17,4 +17,4 @@ class AttachedCostReportForBusinessMetric(BaseModel):
     calculation_type: Annotated[attached_cost_report_for_business_metric_calculation_type.AttachedCostReportForBusinessMetricCalculationType, Field(description='The calculation type applied when this BusinessMetric is used in the CostReport.', examples=['unit_cost'])]
     label: Annotated[str | None, Field(description='Optional custom display name for this BusinessMetric on the CostReport. When omitted, a default is derived from the calculation type.', examples=['Gross Margin'])] = None
     label_filter: Annotated[Sequence[str] | None, Field(description='The labels that the BusinessMetric is filtered by within a particular CostReport.')] = None
-    label_filters: Annotated[Mapping[str, Any] | None, Field(description='The ClickHouse BusinessMetric label filters applied within a CostReport. Each key is required and values within a key are alternatives.', examples=[{'team': ['platform', 'finops'], 'environment': ['production']}])] = None
+    label_filters: Annotated[Mapping[str, Sequence[str]] | None, Field(description='The ClickHouse BusinessMetric label filters applied within a CostReport. Each key is required and values within a key are alternatives.', examples=[{'team': ['platform', 'finops'], 'environment': ['production']}])] = None

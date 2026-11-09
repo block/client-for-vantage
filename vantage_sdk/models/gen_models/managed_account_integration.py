@@ -16,4 +16,4 @@ class ManagedAccountIntegration(BaseModel):
     )
     access_credential_token: Annotated[str, Field(description='The token of the parent Access Credential that is delegated to this Managed Account.', examples=['accss_crdntl_3971e6f022b4e39b'])]
     provider: Annotated[str, Field(description='The key of the Provider for the delegated Integration.', examples=['azure_csp'])]
-    provider_account_identifiers: Annotated[Sequence[str], Field(description='The provider account identifiers this delegated Integration imports. For Azure CSP these are Azure subscription ids. An empty array means no filter is applied, so every provider account the credential can see is imported. Providers that do not support scoping always report an empty array.')]
+    provider_account_identifiers: Annotated[Sequence[str], Field(description='The provider account identifiers this delegated Integration imports. Azure CSP uses subscription ids and GCP uses billing account ids (reseller subaccounts). An empty array means no filter is applied, so every provider account the credential can see is imported. Providers that do not support scoping always report an empty array.')]
